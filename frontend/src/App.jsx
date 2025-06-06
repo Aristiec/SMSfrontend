@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./components/student/Header";
 import Navbar from "./components/student/Navbar";
+import WelcomeBanner from "./components/student/dashboard/WelcomeBanner";
+import StatsCard from "./components/student/dashboard/StatsCard";
+
 
 function App() {
   return (
@@ -8,9 +11,18 @@ function App() {
       <Header />
       <div className="flex">
         <Navbar />
-        <main className="flex-1 p-6">Your dashboard content here</main>
+         
+        <main className="flex-1 p-6">
+          
+          <WelcomeBanner/>
+          <StatsCard/>
+          </main>
+          
+        
       </div>
+     
     </div>
+    
   );
 }
 
