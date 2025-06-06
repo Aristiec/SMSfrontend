@@ -1,24 +1,19 @@
 import React from "react";
 import Header from "./components/student/Header";
 import Navbar from "./components/student/Navbar";
+import StudentDashboard from "./pages/student/Dashboard";
 
 function App() {
   return (
-    <div
-      className="min-h-screen bg-[#f5f7fa] flex"
-      style={{ paddingTop: "72px" }}
-    >
-      <Header />
-      <nav className="w-[240px] fixed left-0 bottom-0 bg-white shadow-md overflow-auto top-[72px] scrollbar-hide">
+    <div className="min-h-screen bg-[#f5f7fa] flex pt-[72px]">
+      <nav className="w-[240px] fixed left-0 top-[72px] bottom-0 bg-white shadow-md overflow-auto scrollbar-hide">
         <Navbar />
       </nav>
 
-      <main
-        className="flex-1 ml-64 p-6 overflow-auto"
-        style={{ maxHeight: "calc(100vh - 72px)" }}
-      >
-        Your dashboard content here
-      </main>
+      <div className="flex-1 ml-[240px] flex flex-col">
+        <Header />
+        <StudentDashboard />
+      </div>
     </div>
   );
 }
