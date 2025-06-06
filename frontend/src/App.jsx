@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./components/student/Header";
 import Navbar from "./components/student/Navbar";
+import WelcomeBanner from "./components/student/dashboard/WelcomeBanner";
+import StatsCard from "./components/student/dashboard/StatsCard";
+
 
 function App() {
   return (
@@ -11,15 +14,16 @@ function App() {
       <Header />
       <nav className="w-[240px] fixed left-0 bottom-0 bg-white shadow-md overflow-auto top-[72px] scrollbar-hide">
         <Navbar />
-      </nav>
 
-      <main
-        className="flex-1 ml-64 p-6 overflow-auto"
-        style={{ maxHeight: "calc(100vh - 72px)" }}
-      >
-        Your dashboard content here
-      </main>
+               </nav>
+        <main className="flex-1 p-6">
+          
+          <WelcomeBanner/>
+          <StatsCard/>
+          </main>
+          
     </div>
+    
   );
 }
 
