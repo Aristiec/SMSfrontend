@@ -1,12 +1,18 @@
 import React from "react";
-import { FaBars } from "react-icons/fa";
+import profilePic from "../../assets/headerBG.png";
 
 const Header = () => {
   return (
-    <header className="w-full sticky top-0 z-50 bg-[#0d2d4f] text-white shadow-md">
-      <div className="flex items-center gap-3 px-6 py-4 font-semibold text-lg">
-        <h1>Student Dashboard</h1>
-      </div>
+    <header
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0d2d4f] text-white shadow-md flex items-center px-6 font-semibold text-lg"
+      style={{ height: "72px" }}
+    >
+      <img
+        src={profilePic}
+        alt="Profile"
+        className="w-10 h-10 rounded-full object-cover border-2 border-white"
+      />
+      <h1 className="ml-3">Student Dashboard</h1>
     </header>
   );
 };
