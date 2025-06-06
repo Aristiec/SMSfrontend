@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { FaBook, FaUserCheck, FaAward, FaMoneyBill } from "react-icons/fa";
 
 const cards = [
@@ -26,7 +26,11 @@ const cards = [
   {
     title: "Fee Status",
     value: "₹45,000",
-    subtitle: <span className="text-green-600 bg-green-100 px-2 py-0.5 rounded-full text-sm">Paid</span>,
+    subtitle: (
+      <span className="text-green-600 bg-green-100 px-2 py-0.5 rounded-full text-sm">
+        Paid
+      </span>
+    ),
     icon: <FaMoneyBill className="text-green-600 w-5 h-5" />,
     bgColor: "bg-green-100",
   },
@@ -34,21 +38,24 @@ const cards = [
 
 const StatsCard = () => {
   return (
-    <>
-    <div className="w-full max-w-[1120px] mx-auto pt-5">
-      <div className="flex justify-between gap-[40px] flex-nowrap">
+    <div className="w-[1120px] mx-auto">
+      <div className="flex justify-between gap-8">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="w-[200px] h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] flex justify-between items-center bg-white"
+            className="w-[248px] h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] bg-white flex items-center"
           >
-            <div className="w-[200px] h-[79px] flex justify-between items-center">
-              <div className="w-[109.2px] h-[79px] flex flex-col gap-[5px] justify-between">
-                <h4 className="text-sm text-gray-500 font-medium">{card.title}</h4>
+            <div className="flex justify-between items-center w-full gap-[10px]">
+              <div className="flex flex-col gap-[5px]">
+                <h4 className="text-sm text-gray-500 font-medium">
+                  {card.title}
+                </h4>
                 <h2 className="text-2xl font-semibold">{card.value}</h2>
                 <p className="text-sm text-gray-500">{card.subtitle}</p>
               </div>
-              <div className={`w-[44px] h-[44px] rounded-full flex items-center justify-center ${card.bgColor}`}>
+              <div
+                className={`w-[44px] h-[44px] rounded-full flex items-center justify-center ${card.bgColor}`}
+              >
                 {card.icon}
               </div>
             </div>
@@ -56,8 +63,7 @@ const StatsCard = () => {
         ))}
       </div>
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default StatsCard
+export default StatsCard;

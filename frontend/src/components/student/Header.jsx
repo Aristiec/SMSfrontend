@@ -4,7 +4,7 @@ import profilePic from "../../assets/headerBG.png";
 const Header = () => {
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-[#0d2d4f] text-white shadow-md flex items-center px-6 font-semibold text-lg"
+      className="fixed top-0 left-0 right-0 z-50 bg-[#04203E] text-white shadow-md flex items-center px-6 font-semibold text-lg"
       style={{ height: "72px" }}
     >
       <img

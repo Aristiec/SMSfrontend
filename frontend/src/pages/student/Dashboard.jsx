@@ -1,12 +1,14 @@
-const StudentDashboard = () => {
+import React from "react";
+import WelcomeBanner from "../../components/student/dashboard/WelcomeBanner";
+import StatsCard from "../../components/student/dashboard/StatsCard";
+
+const Dashboard = () => {
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Navbar />
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">
-        Dashboard Content
-      </h2>
-    </div>
+    <main className="p-6 bg-[#f5f7fa] flex flex-col gap-8 min-h-screen">
+      <WelcomeBanner />
+      <StatsCard />
+    </main>
   );
 };
 
-export default StudentDashboard;
+export default Dashboard;
