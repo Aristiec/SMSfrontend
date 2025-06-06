@@ -35,12 +35,12 @@ const cards = [
 const StatsCard = () => {
   return (
     <>
-    <div className="w-full max-w-[1280px] mx-auto px-4 pt-10">
-      <div className="flex justify-between gap-4 flex-nowrap">
+    <div className="w-full max-w-[1120px] mx-auto pt-5">
+      <div className="flex justify-between gap-[40px] flex-nowrap">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="w-[248px] h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] flex justify-between items-center bg-white"
+            className="w-[200px] h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] flex justify-between items-center bg-white"
           >
             <div className="w-[200px] h-[79px] flex justify-between items-center">
               <div className="w-[109.2px] h-[79px] flex flex-col gap-[5px] justify-between">
