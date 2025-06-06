@@ -1,65 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  FaUser,
+  FaRegUser,
   FaClipboardList,
-  FaMoneyBillAlt,
+  FaMoneyCheckAlt,
   FaRegCalendarAlt,
   FaBook,
   FaBullhorn,
   FaChartBar,
-  FaCheckCircle,
+  FaCheck,
+  FaHome,
 } from "react-icons/fa";
+import profilePic from "../../assets/headerBG.png";
+
+const menuItems = [
+  { name: "Dashboard", icon: FaHome },
+  { name: "Timetable", icon: FaRegCalendarAlt },
+  { name: "Courses", icon: FaBook },
+  { name: "Notices", icon: FaBullhorn },
+  { name: "Assignments", icon: FaClipboardList },
+  { name: "Results", icon: FaChartBar },
+  { name: "Attendance", icon: FaCheck },
+  { name: "Fee Payment", icon: FaMoneyCheckAlt },
+  { name: "Profile", icon: FaRegUser },
+];
 
 const Navbar = () => {
+  const [active, setActive] = useState("Dashboard");
+
   return (
-    <div className="w-[220px] min-h-screen bg-white shadow-md flex flex-col justify-between pt-4">
-      <ul>
-        <li className="px-5 py-3 text-[#0d2d4f] hover:bg-gray-100 font-medium flex items-center gap-3 bg-[#e9eff5] border-l-4 border-[#0d2d4f]">
-          <FaCheckCircle />
-          Dashboard
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaRegCalendarAlt />
-          Timetable
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaBook />
-          Courses
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaBullhorn />
-          Notices
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaClipboardList />
-          Assignments
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaChartBar />
-          Results
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaCheckCircle />
-          Attendance
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaMoneyBillAlt />
-          Fee Payment
-        </li>
-        <li className="px-5 py-3 text-gray-600 hover:bg-gray-100 flex items-center gap-3">
-          <FaUser />
-          Profile
-        </li>
+    <div className="w-[240px] h-screen bg-white shadow-md flex flex-col justify-between font-[inter] text-[16px] font-normal">
+      <ul className="pt-4 flex flex-col space-y-2">
+        {menuItems.map(({ name, icon: Icon }) => (
+          <li
+            key={name}
+            onClick={() => setActive(name)}
+            className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
+              active === name
+                ? "bg-[#04203E] text-white"
+                : "hover:bg-gray-100 text-gray-600"
+            }`}
+          >
+            <div
+              className={`flex items-center gap-3 px-5 ${
+                active === name ? "translate-x-4" : ""
+              } transition-all duration-200`}
+            >
+              <Icon />
+              {name}
+            </div>
+          </li>
+        ))}
       </ul>
 
-      <div className="flex items-center gap-2 p-4 border-t mt-auto">
+      <div className="flex items-center gap-3 p-4">
         <img
-          src="https://via.placeholder.com/40"
+          src={profilePic}
           alt="Profile"
-          className="rounded-full w-10 h-10"
+          className="rounded-full w-10 h-10 object-cover"
         />
-        <div className="text-sm text-gray-700">
-          <p className="font-semibold">Asha Singh</p>
+        <div>
+          <p className="font-semibold text-[#0d2d4f]">Asha Singh</p>
           <p className="text-xs text-gray-500">Student ID: 1RUB203020</p>
         </div>
       </div>
