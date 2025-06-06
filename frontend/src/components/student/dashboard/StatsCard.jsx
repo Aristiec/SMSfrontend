@@ -47,11 +47,15 @@ const StatsCard = () => {
           >
             <div className="flex justify-between items-center w-full gap-[10px]">
               <div className="flex flex-col gap-[5px]">
-                <h4 className="text-sm text-gray-500 font-medium">
+                <h4 className="font-[Inter] text-[#1F1D1D] text-sm text-500 font-medium">
                   {card.title}
                 </h4>
-                <h2 className="text-2xl font-semibold">{card.value}</h2>
-                <p className="text-sm text-gray-500">{card.subtitle}</p>
+                <h2 className="font-[inter] text-2xl font-semibold">
+                  {card.value}
+                </h2>
+                <p className="font-[inter] text-sm text-gray-500">
+                  {card.subtitle}
+                </p>
               </div>
               <div
                 className={`w-[44px] h-[44px] rounded-full flex items-center justify-center ${card.bgColor}`}
