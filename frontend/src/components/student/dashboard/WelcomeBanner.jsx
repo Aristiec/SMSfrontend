@@ -6,7 +6,7 @@ import { FaGraduationCap } from "react-icons/fa";
 const WelcomeBanner = () => {
   return (
     <>
-    <div className="w-full max-w-[1120px] h-auto bg-[#04203E] rounded-[12px] mx-auto px-4 py-6">
+    <div className="w-full max-w-[1120px] h-[176px] bg-[#04203E] rounded-[12px] mx-auto px-4 py-6 my-7">
       <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         {/* Content Section */}
         <div className="pl-3 flex flex-col justify-center text-white">
