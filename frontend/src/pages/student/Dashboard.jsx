@@ -3,6 +3,7 @@ import WelcomeBanner from "../../components/student/dashboard/WelcomeBanner";
 import StatsCard from "../../components/student/dashboard/StatsCard";
 import ExamsTable from "../../components/student/dashboard/ExamsTable";
 import Calender from "../../components/student/dashboard/Calender";
+import Courses from "./Courses";
 const Dashboard = () => {
   return (
     <main className="p-6 bg-[#E9EEF4] flex flex-col gap-8 min-h-screen">
@@ -16,6 +17,7 @@ const Dashboard = () => {
           <Calender />
         </div>
       </div>
+     
     </main>
   );
 };
