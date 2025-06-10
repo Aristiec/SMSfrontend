@@ -5,7 +5,7 @@ import ExamsTable from "../../components/student/dashboard/ExamsTable";
 import NoticesDashboard from "../../components/student/dashboard/NoticesDashboard";
 const Dashboard = () => {
   return (
-    <main className="max-w-[1440px] px-4 lg:px-8 xl:px-12 mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen">
+    <main className="max-w-[1440px] px-4 p-4 lg:px-8 xl:px-12 mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen">
       <WelcomeBanner />
       <StatsCard />
       <div className="flex flex-col xl:flex-row gap-6">
