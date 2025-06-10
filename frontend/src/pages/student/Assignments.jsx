@@ -5,7 +5,7 @@ import {
   CheckCircle,
   Calendar,
   Eye,
-  Upload,
+  FileUp,
 } from "lucide-react";
 
 const Assignments = () => {
@@ -109,26 +109,29 @@ const Assignments = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-lg font-normal transition-colors ${
+                className={`px-4 py-2 rounded-lg font-normal transition-colors flex items-center gap-2 ${
                   activeFilter === filter
                     ? "bg-[#04203E] text-[#FAFCFD]"
                     : "bg-[#FAFCFD] text-[#1F1D1D] border border-[#1F1D1D] hover:bg-[#FAFCFD]"
                 }`}
               >
+                {filter === "Pending" && <Clock size={16} />}
+                {filter === "Overdue" && <AlertCircle size={16} />}
+                {filter === "Submitted" && <CheckCircle size={16} />}
                 {filter}
               </button>
             ))}
           </div>
         </div>
         {/* Main Content */}
-        <div className="flex gap-6">
-          <div className="flex-1">
+        <div className="flex">
+          <div className="flex-1 pr-6">
             {/* Assignment Cards */}
             <div className="space-y-4 font-[Inter]">
               {filteredAssignments.map((assignment) => (
                 <div
                   key={assignment.id}
-                  className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+                  className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-6"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
@@ -157,10 +160,24 @@ const Assignments = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                  <div className="flex items-center gap-6 text-sm text-[#1F1D1D] mb-4">
                     <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>Due: {assignment.dueDate}</span>
+                      <Clock
+                        className={`w-4 h-4 ${
+                          assignment.status === "overdue"
+                            ? "text-[#EF4444]"
+                            : ""
+                        }`}
+                      />
+                      <span
+                        className={
+                          assignment.status === "overdue"
+                            ? "text-[#EF4444]"
+                            : ""
+                        }
+                      >
+                        Due: {assignment.dueDate}
+                      </span>
                     </div>
                     <div>
                       <span>Max Marks: {assignment.maxMarks}</span>
@@ -175,12 +192,12 @@ const Assignments = () => {
 
                   <div className="flex gap-3">
                     {assignment.status !== "submitted" && (
-                      <button className="bg-slate-800 text-white px-4 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors flex items-center gap-2">
-                        <Upload className="w-4 h-4" />
+                      <button className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
+                        <FileUp className="w-4 h-4" />
                         Submit Assignment
                       </button>
                     )}
-                    <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center gap-2">
+                    <button className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
                       <Eye className="w-4 h-4" />
                       View Details
                     </button>
@@ -191,37 +208,38 @@ const Assignments = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="mt-[88px] w-80">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="w-[357px] flex-shrink-0  top-[196px] h-[732px]">
+            <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-3 h-full flex flex-col">
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-5 h-5 text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-900">
+                <Clock className="w-5 h-5 text-[#1F1D1D]" />
+                <h2 className="text-[20px] font-semibold text-[#1F1D1D]">
                   Upcoming
                 </h2>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 flex-1 px-1 py-1 w-[325px]">
                 {upcomingAssignments.map((assignment, index) => (
                   <div
                     key={index}
-                    className="border-b border-gray-100 pb-4 last:border-b-0 last:pb-0"
+                    className="bg-[#FFF4ED] rounded-md px-4 py-4 w-full shadow-sm"
                   >
-                    <h3 className="font-semibold text-gray-900 mb-1">
-                      {assignment.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {assignment.subject}
-                    </p>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-500">Due</span>
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-sm font-semibold text-[#1F1D1D]">
+                        {assignment.title}
+                      </h3>
                       <div className="text-right">
-                        <div className="font-medium text-gray-900">
-                          {assignment.dueDate}
-                        </div>
-                        <div className="text-gray-500 text-xs">
-                          {assignment.dueTime}
-                        </div>
+                        <p className="text-xs text-[#1F1D1D] font-medium">
+                          Due: {assignment.dueDate}
+                        </p>
                       </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-1">
+                      <p className="text-xs text-[#1F1D1D]">
+                        {assignment.subject}
+                      </p>
+                      <p className="text-xs text-[#1F1D1D]">
+                        {assignment.dueTime}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -235,3 +253,4 @@ const Assignments = () => {
 };
 
 export default Assignments;
+
