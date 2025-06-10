@@ -63,7 +63,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
             <h3 className="w-[56px] h-[20px]">Due Date:</h3>
             <span className="min-w-[95px] h-[20px]">{date}</span>
           </div>
-          <div className="min-w-[132px] h-[20px] flex gap-[12px]">
+          <div className="min-w-[132px] h-[20px] flex gap-[12px] items-center">
             {status === "Completed" ? (
               <img
                 className="w-[16px] h-[16px]"
