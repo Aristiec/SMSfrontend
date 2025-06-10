@@ -42,7 +42,7 @@ const Notices = () => {
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
-      <div className="rounded-[12px] px-6 py-5 bg-[#04203E] flex items-center">
+      <div className="rounded-[12px] px-6 py-4 bg-[#04203E] flex items-center">
         <h2 className="text-[#FAFCFD] font-bold text-2xl md:text-3xl leading-[28px] tracking-[-0.01em] font-[Merriweather]">
           Notices & Announcements
         </h2>

@@ -93,7 +93,7 @@ const Assignments = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] p-6 text-[Inter]">
+    <div className="min-h-screen bg-[#E9EEF4] p-4 text-[Inter]">
       <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-4 text-[#FAFCFD] font-[Inter] mx-auto">
         <h1 className="text-[24px] font-bold font-[Merriweather]">
           Assignments
@@ -246,4 +246,3 @@ const Assignments = () => {
 };
 
 export default Assignments;
-

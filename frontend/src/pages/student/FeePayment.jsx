@@ -33,7 +33,7 @@ const feeData = [
 
 const FeeTab = ({ title, type, amount, status, date }) => {
   return (
-    <div className="w-full rounded-[12px] p-5 gap-2 bg-[#FAFCFD] shadow-md flex flex-col">
+    <div className="w-full rounded-[12px] p-4 gap-2 bg-[#FAFCFD] shadow-md flex flex-col">
       <div className="flex justify-between flex-wrap">
         <div className="flex gap-6 items-center">
           <h3 className="text-[#1F1D1D] font-medium text-base">{title}</h3>
