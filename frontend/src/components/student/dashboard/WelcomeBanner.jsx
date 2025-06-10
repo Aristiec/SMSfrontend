@@ -7,7 +7,7 @@ const WelcomeBanner = () => {
     <div className="w-[1120px] mx-auto">
       <div className="w-full h-[176px] bg-[#04203E] rounded-[12px] px-8 py-8 flex items-center justify-between">
         <div className="flex flex-col text-white space-y-2">
-          <h1 className="font-[Merriweather] font-semibold text-[40px] leading-[48px] tracking-[-0.02em] text-[#FAFCFD]">
+          <h1 className="font-[Merriweather] font-medium text-[40px] leading-[48px] tracking-[-0.02em] text-[#FAFCFD]">
             Welcome Back, Asha!
           </h1>
           <h3 className="font-[Inter] font-normal text-[18px] leading-[24px] text-[#FAFCFD] ml-[30px]">
