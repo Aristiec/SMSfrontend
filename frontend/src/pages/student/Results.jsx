@@ -48,7 +48,7 @@ const previousSemesters = [
 
 const Results = () => {
   return (
-    <div className="w-[1120px] mt-[20px] ml-[20px] space-y-[20px]">
+    <div className="max-w-[1440px] mt-[20px] mx-[20px] space-y-[20px]">
       {/* Header Section */}
       <div className="bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
         <div className="flex items-center gap-2">
