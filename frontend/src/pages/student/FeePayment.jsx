@@ -36,7 +36,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
   return (
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-      className=" w-[1120px] h-[108px] rounded-[12px] p-[24px] gap-[8px] bg-[#FAFCFD] flex flex-col "
+      className=" w-[1120px] h-[108px] rounded-[12px] p-[20px] gap-[8px] bg-[#FAFCFD] flex flex-col "
     >
       <div className=" w-[1072px] h-[24px] flex justify-between">
         <div className="max-w-[213px] h-[24px] flex gap-[24px]">
@@ -110,7 +110,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 const FeePayment = () => {
   return (
     <>
-      <div className="w-[1120px] mt-[40px] ml-[40px] space-y-[20px] ">
+      <div className="w-[1120px] mt-[20px] ml-[20px] space-y-[20px] ">
         {/* header  */}
         <div className="h-[68px] rounded-[12px] px-[24px] py-[18px] bg-[#04203E] flex items-center">
           <h2 className="text-[#FAFCFD] font-bold text-[24px] leading-[28px] tracking-[-0.01em] font-[Merriweather]">
@@ -120,63 +120,62 @@ const FeePayment = () => {
 
         <div className="w-[1120px] h-[636px] pb-[24px] gap-[40px] overflow-y-auto flex flex-col  ">
           <div className=" h-[532px] w-[1120] gap-[24px] flex flex-col">
-          <div
-            style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-            className="flex justify-between rounded-[12px] bg-[#FAFCFD] h-[136px] items-center font-medium text-[16px] p-[24px] "
-          >
-            <div className="w-[332px] h-[48px] flex flex-col gap-[4px] leading-[24px] tracking-[0] ">
-              <div className="font-[Inter] leading-[24px] tracking-[0] align-center">
-                Payment Summary
+            <div
+              style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
+              className="flex justify-between rounded-[12px] bg-[#FAFCFD] h-[136px] items-center font-medium text-[16px] p-[24px] "
+            >
+              <div className="w-[332px] h-[48px] flex flex-col gap-[4px] leading-[24px] tracking-[0] ">
+                <div className="font-[Inter] leading-[24px] tracking-[0] align-center text-[16px] text-semibold">
+                  Payment Summary
+                </div>
+                <h3 className="text-[12px] w-[400px] font-[Inter] tracking-[0] leading-[26px] align-center">
+                  Student: Asha Singh | Class: CS | Student ID: 1RUB203020
+                </h3>
               </div>
-              <h3 className="text-[12px] w-[400px] font-[Inter] tracking-[0] leading-[26px] align-center">
-                Student: Asha Singh | Class: CS | Student ID: 1RUB203020
-              </h3>
+              <div className="w-[338px] h-[88px] flex flex-col gap-[8px]">
+                <div className="w-[338px] h-[40px] rounded-[8px] border-1 border-[#04203E] flex justify-between items-center  bg-[#FAFCFD] text-[#FAFCFD] py-[8px] px-[12px]">
+                  <h3 className="font-[Inter] w-[57px] h-[18px] font-medium text-[12px] leading-[18px] tracking-[0] text-[#04203E] items-center flex ">
+                    Total Paid
+                  </h3>
+                  <h3 className="font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] text-[#04203E]">
+                    ₹26,000
+                  </h3>
+                </div>
+                <div className="w-[338px] h-[40px] rounded-[8px] border-1 border-[#04203E] flex justify-between items-center  bg-[#FAFCFD] text-[#FAFCFD] py-[8px] px-[12px]">
+                  <h3 className="font-[Inter] w-[79px] h-[18px] font-medium text-[12px] leading-[18px] tracking-[0] text-[#04203E] items-center flex ">
+                    Total Pending
+                  </h3>
+                  <h3 className="font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                    ₹12,000
+                  </h3>
+                </div>
+              </div>
             </div>
-            <div className="w-[338px] h-[88px] flex flex-col gap-[8px]">
-              <div className="w-[338px] h-[40px] rounded-[8px] border-1 border-[#04203E] flex justify-between items-center  bg-[#FAFCFD] text-[#FAFCFD] py-[8px] px-[12px]">
-                <h3 className="font-[Inter] w-[57px] h-[18px] font-medium text-[12px] leading-[18px] tracking-[0] text-[#04203E] items-center flex ">
-                  Total Paid
-                </h3>
-                <h3 className="font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] text-[#04203E]">
-                  ₹26,000
-                </h3>
-              </div>
-              <div className="w-[338px] h-[40px] rounded-[8px] border-1 border-[#04203E] flex justify-between items-center  bg-[#FAFCFD] text-[#FAFCFD] py-[8px] px-[12px]">
-                <h3 className="font-[Inter] w-[79px] h-[18px] font-medium text-[12px] leading-[18px] tracking-[0] text-[#04203E] items-center flex ">
-                  Total Pending
-                </h3>
-                <h3 className="font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
-                  ₹12,000
-                </h3>
-              </div>
-            </div>
-          </div>
 
-          <div className=" w-[1120px] h-[372px] flex flex-col gap-[24px] ">
-            {/* fees */}
-            {feeData.map((fee, index) => (
-              <FeeTab
-                key={index}
-                title={fee.title}
-                type={fee.type}
-                amount={fee.amount}
-                status={fee.status}
-                date={fee.date}
-              />
-            ))}
-           
-          </div>
-        </div>
-           <div className="w-full flex justify-end">
-              <button className=" rounded-[8px] px-[12px] py-[8px] flex gap-[12px] bg-[#04203E] text-[#FAFCFD] justify-center items-center ">
-                <p className="font-[Inter] text-center font-medium text-[14px] leading-[24px] tracking-[0]">
-                  Pay All Dues
-                </p>
-                <p className="font-[Inter] text-center font-medium text-[14px] leading-[24px] tracking-[0]">
-                  (₹12,000)
-                </p>
-              </button>
+            <div className=" w-[1120px] h-[372px] flex flex-col gap-[24px] ">
+              {/* fees */}
+              {feeData.map((fee, index) => (
+                <FeeTab
+                  key={index}
+                  title={fee.title}
+                  type={fee.type}
+                  amount={fee.amount}
+                  status={fee.status}
+                  date={fee.date}
+                />
+              ))}
             </div>
+          </div>
+          <div className="w-full flex justify-end">
+            <button className=" rounded-[8px] px-[12px] py-[8px] flex gap-[12px] bg-[#04203E] text-[#FAFCFD] justify-center items-center ">
+              <p className="font-[Inter] text-center font-medium text-[14px] leading-[24px] tracking-[0]">
+                Pay All Dues
+              </p>
+              <p className="font-[Inter] text-center font-medium text-[14px] leading-[24px] tracking-[0]">
+                (₹12,000)
+              </p>
+            </button>
+          </div>
         </div>
       </div>
     </>
