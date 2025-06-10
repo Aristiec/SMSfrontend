@@ -1,6 +1,6 @@
 import React from "react";
 import { FiAlertCircle } from "react-icons/fi";
-import { FaBookOpen, FaCalendarAlt } from "react-icons/fa"; 
+import { FaBookOpen, FaCalendarAlt } from "react-icons/fa";
 
 const noticesData = [
   {
@@ -38,11 +38,10 @@ const noticesData = [
   },
 ];
 
-
-
 const Notices = () => {
-  return <>
-      <div className="w-[1120px] mt-[40px] ml-[40px] space-y-[20px]">
+  return (
+    <>
+      <div className="w-[1120px] mt-[40px] ml-[20px] space-y-[20px]">
         {/*  Header */}
         <div className="h-[68px] rounded-[12px] px-[24px] py-[18px] bg-[#04203E] flex items-center">
           <h2 className="text-[#FAFCFD] font-bold text-[24px] leading-[28px] tracking-[-0.01em] font-[Merriweather]">
@@ -92,7 +91,8 @@ const Notices = () => {
           </div>
         ))}
       </div>
-  </>;
+    </>
+  );
 };
 
 export default Notices;
