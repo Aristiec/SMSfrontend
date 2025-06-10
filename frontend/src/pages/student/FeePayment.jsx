@@ -1,7 +1,7 @@
 import React from "react";
 
-import inVoiceImage from "../../assets/inVoice.png";
-import completed from "../../assets/completed.png";
+// import inVoiceImage from "../../assets/inVoice.png";
+// import completed from "../../assets/completed.png";
 import pending from "../../assets/pending.png";
 import payNow from "../../assets/payNow.png";
 
