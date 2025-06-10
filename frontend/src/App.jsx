@@ -19,11 +19,16 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-[#E9EEF4] flex pt-[72px]">
+
+        {/* Navbar */}
+        <nav className="w-[240px] fixed left-0 top-[72px] bottom-0 bg-white shadow-md overflow-auto scrollbar-hide"/>
+
         {/* Fixed Header */}
         <Header />
 
         {/* Fixed Navbar */}
         <nav className="w-[240px] fixed left-0 top-[72px] bottom-0 bg-white shadow-md overflow-y-auto scrollbar-hide">
+
           <Navbar />
         </nav>
 
@@ -46,6 +51,7 @@ function App() {
         </div>
       </div>
     </Router>
+    
   );
 }
 
