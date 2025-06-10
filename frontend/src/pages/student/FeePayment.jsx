@@ -110,19 +110,19 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 const FeePayment = () => {
   return (
     <>
-      <div className="w-[1120px] mt-[40px] ml-[40px] space-y-[20px] ">
+      <div className="w-[1120px]  mt-[20px] ml-[40px] space-y-[10px] ">
         {/* header  */}
-        <div className="h-[68px] rounded-[12px] px-[24px] py-[18px] bg-[#04203E] flex items-center">
+        <div className="h-[68px] rounded-[12px] px-[24px] py-[20px] bg-[#04203E] flex items-center">
           <h2 className="text-[#FAFCFD] font-bold text-[24px] leading-[28px] tracking-[-0.01em] font-[Merriweather]">
             Fee Payment
           </h2>
         </div>
 
-        <div className="w-[1120px] h-[636px] pb-[24px] gap-[40px] overflow-y-auto flex flex-col  ">
-          <div className=" h-[532px] w-[1120] gap-[24px] flex flex-col">
+        <div className="w-[1120px]  gap-[10px] overflow-y-auto flex flex-col   ">
+          <div className="  w-[1120] gap-[9px] flex flex-col">
           <div
             style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-            className="flex justify-between rounded-[12px] bg-[#FAFCFD] h-[136px] items-center font-medium text-[16px] p-[24px] "
+            className="flex justify-between rounded-[12px] bg-[#FAFCFD] h-[123px] items-center font-medium text-[16px] p-[24px] "
           >
             <div className="w-[332px] h-[48px] flex flex-col gap-[4px] leading-[24px] tracking-[0] ">
               <div className="font-[Inter] leading-[24px] tracking-[0] align-center">
@@ -152,7 +152,7 @@ const FeePayment = () => {
             </div>
           </div>
 
-          <div className=" w-[1120px] h-[372px] flex flex-col gap-[24px] ">
+          <div className=" w-[1120px] h-[372px] flex flex-col gap-[18px] ">
             {/* fees */}
             {feeData.map((fee, index) => (
               <FeeTab
