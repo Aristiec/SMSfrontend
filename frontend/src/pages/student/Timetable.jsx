@@ -26,33 +26,25 @@ const TimetablePage = () => {
   ];
 
   const today = addWeeks(new Date(), currentWeek);
-  const jsDayIndex = getDay(today); // 0 (Sunday) to 6 (Saturday)
-  const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1; // convert to 0 = Monday, 6 = Sunday
+  const jsDayIndex = getDay(today);
+  const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
   return (
     <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]">
-      {/* Header with currentWeek passed as props */}
       <TimetableHeader currentWeek={currentWeek} />
 
-      <div className="min-h-screen bg-[#E9EEF4] flex items-center justify-center p-6">
-        <div
-          className="bg-[#FAFCFD] rounded-lg shadow-md border border-[#FFFFFF] p-6"
-          style={{ width: "1076px" }}
-        >
-          <table className="w-full border-collapse">
+      <div className="flex justify-center p-4 lg:p-4">
+        <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
+          <table className="min-w-full border-collapse">
             <thead>
               <tr>
-                <th
-                  className="text-[16px] font-normal text-[#1F1D1D] font-[Inter] text-center border border-[#04203E]"
-                  style={{ width: "132px", height: "64px" }}
-                ></th>
+                <th className="text-[16px] font-normal text-center border border-[#04203E] w-32 h-16"></th>
                 {timeSlots.map((time, index) => {
                   const [start, end] = time.split(" - ");
                   return (
                     <th
                       key={index}
-                      className="text-[16px] font-normal text-center border border-[#04203E] leading-tight"
-                      style={{ width: "118px", height: "64px" }}
+                      className="text-[14px] md:text-[16px] font-normal text-center border border-[#04203E] leading-tight w-28 h-16"
                     >
                       {start} -<br />
                       {end}
@@ -67,27 +59,21 @@ const TimetablePage = () => {
                 return (
                   <tr
                     key={dayIndex}
-                    style={{
-                      backgroundColor: isSelected ? "#CFDCEB" : "transparent",
-                    }}
+                    className={isSelected ? "bg-[#CFDCEB]" : ""}
                   >
-                    <td
-                      className="font-bold text-center text-[16px] border border-[#04203E]"
-                      style={{ width: "132px", height: "84px" }}
-                    >
+                    <td className="font-bold text-center text-[16px] border border-[#04203E] w-32 h-20">
                       {day}
                     </td>
                     {timeSlots.map((_, timeIndex) => (
                       <td
                         key={timeIndex}
-                        className="border border-[#04203E]"
-                        style={{ width: "118px", height: "84px" }}
+                        className="border border-[#04203E] w-28 h-20"
                       >
                         <div className="flex flex-col items-center justify-center h-full">
-                          <div className="text-[16px] font-normal font-[Inter]">
+                          <div className="text-[14px] md:text-[16px] font-normal">
                             Subject
                           </div>
-                          <div className="text-[12px] text-[#04203E] font-[Inter]">
+                          <div className="text-[12px] text-[#04203E]">
                             (Prof name)
                           </div>
                         </div>

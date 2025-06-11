@@ -11,7 +11,7 @@ const noticesData = [
     date: "May 20, 2023",
     title: "Fee Payment Due",
     description:
-      "Designer Donald Schön wrote that professionals like designers think while they do things. This is called reflection-in-action. For example, when we were building different versions of the BlahBlah Cam, we would try something, notice it didn’t work well, and change it on the spot. That process was how we learned.",
+      "Designer Donald Schön wrote that professionals like designers think while they do things. This is called reflection-in-action. For example, when we were building different versions of the BlahBlah Cam, we would try something, notice it didn't work well, and change it on the spot. That process was how we learned.",
     bgColor: "bg-[#FEF2F2]",
   },
   {
@@ -33,57 +33,57 @@ const noticesData = [
     date: "May 20, 2023",
     title: "Interclass Football Competition",
     description:
-      "Designer Donald Schön wrote that professionals like designers think while they do things. This is called reflection-in-action. For example, when we were building different versions of the BlahBlah Cam, we would try something, notice it didn’t work well, and change it on the spot. That process was how we learned.",
+      "Designer Donald Schön wrote that professionals like designers think while they do things. This is called reflection-in-action. For example, when we were building different versions of the BlahBlah Cam, we would try something, notice it didn't work well, and change it on the spot. That process was how we learned.",
     bgColor: "bg-[#ECFDF7]",
   },
 ];
 
 const Notices = () => {
   return (
-    <>
-      <div className="w-[1120px] mt-[40px] ml-[20px] space-y-[20px]">
-        {/*  Header */}
-        <div className="h-[68px] rounded-[12px] px-[24px] py-[18px] bg-[#04203E] flex items-center">
-          <h2 className="text-[#FAFCFD] font-bold text-[24px] leading-[28px] tracking-[-0.01em] font-[Merriweather]">
-            Notices & Announcements
-          </h2>
-        </div>
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Header */}
+      <div className="rounded-[12px] px-6 py-4 bg-[#04203E] flex items-center">
+        <h2 className="text-[#FAFCFD] font-bold text-2xl md:text-3xl leading-[28px] tracking-[-0.01em] font-[Merriweather]">
+          Notices & Announcements
+        </h2>
+      </div>
 
-        {/* Looping with map */}
+      {/* Notices Container */}
+      <div className="mt-8 space-y-6">
         {noticesData.map((notice) => (
           <div
             key={notice.id}
-            className={`h-[240px] ${notice.bgColor} shadow-[0_4px_8px_0px_rgba(0,0,0,0.2)] rounded-[12px] p-[24px] flex flex-col gap-[24px]`}
+            className={`${notice.bgColor} shadow-md rounded-[12px] p-6 flex flex-col gap-6`}
           >
             <div className="flex justify-between items-center">
-              <div className="flex items-center gap-[12px]">
+              <div className="flex items-center gap-3">
                 {notice.icon}
                 <span
-                  className={`${notice.labelColor} text-[14px] font-medium font-[Inter]`}
+                  className={`${notice.labelColor} text-sm md:text-base font-medium font-[Inter]`}
                 >
                   {notice.type}
                 </span>
               </div>
-              <span className="text-[#1F1D1D] text-[12px] font-normal font-[Inter]">
+              <span className="text-[#1F1D1D] text-xs md:text-sm font-normal font-[Inter]">
                 {notice.date}
               </span>
             </div>
 
-            <div className="w-[926px] flex flex-col gap-[12px]">
-              <h3 className="text-[#1F1D1D] text-[16px] leading-[28px] font-semibold font-[Inter]">
+            <div className="flex flex-col gap-3">
+              <h3 className="text-[#1F1D1D] text-lg md:text-xl leading-[28px] font-semibold font-[Inter]">
                 {notice.title}
               </h3>
-              <p className="text-[#1F1D1D] text-[16px] leading-[24px] font-normal font-[Inter]">
+              <p className="text-[#1F1D1D] text-base leading-[24px] font-normal font-[Inter]">
                 {notice.description}
               </p>
             </div>
 
             <div className="flex justify-between items-center">
-              <div className="flex gap-[4px]">
-                <span className="text-[#1F1D1D] text-[12px] font-light font-[Inter]">
+              <div className="flex gap-1">
+                <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
                   Posted by:
                 </span>
-                <span className="text-[#1F1D1D] text-[12px] font-light font-[Inter]">
+                <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
                   Academic Office
                 </span>
               </div>
@@ -91,7 +91,7 @@ const Notices = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
