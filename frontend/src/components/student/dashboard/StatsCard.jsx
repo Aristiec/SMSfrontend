@@ -1,26 +1,29 @@
 import React from "react";
-import { FaBook, FaUserCheck, FaAward, FaMoneyBill } from "react-icons/fa";
+import bookIcon from "../../../assets/card_icon1.png";
+import FaUserCheck from "../../../assets/card_icon2.png";
+import FaAward from "../../../assets/card_icon3.png";
+import FaMoneyBill from "../../../assets/card_icon4.png";
 
 const cards = [
   {
     title: "Subjects Enrolled",
     value: "8",
     subtitle: "All subjects active",
-    icon: <FaBook className="text-blue-600 w-5 h-5" />,
+    icon: <img src={bookIcon} alt="Book Icon" className="w-5 h-5" />,
     bgColor: "bg-blue-100",
   },
   {
     title: "Attendance",
     value: "87%",
     subtitle: "Last updated today",
-    icon: <FaUserCheck className="text-orange-600 w-5 h-5" />,
+    icon: <img src={FaUserCheck} alt="User Check Icon" className="w-5 h-5" />,
     bgColor: "bg-orange-100",
   },
   {
     title: "Current CGPA",
     value: "8.7",
     subtitle: "Semester 3",
-    icon: <FaAward className="text-yellow-600 w-5 h-5" />,
+    icon: <img src={FaAward} alt="Award Icon" className="w-5 h-5" />,
     bgColor: "bg-yellow-100",
   },
   {
@@ -31,19 +34,19 @@ const cards = [
         Paid
       </span>
     ),
-    icon: <FaMoneyBill className="text-green-600 w-5 h-5" />,
+    icon: <img src={FaMoneyBill} alt="Money Bill Icon" className="w-5 h-5" />,
     bgColor: "bg-green-100",
   },
 ];
 
 const StatsCard = () => {
   return (
-    <div className="w-[1120px] mx-auto">
-      <div className="flex justify-between gap-8">
+    <div className="w-full max-w-[1120px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="w-[248px] h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] bg-white flex items-center"
+            className="w-full h-[148px] rounded-[12px] border border-gray-200 shadow-md px-[24px] py-[32px] bg-white flex items-center"
           >
             <div className="flex justify-between items-center w-full gap-[10px]">
               <div className="flex flex-col gap-[5px]">

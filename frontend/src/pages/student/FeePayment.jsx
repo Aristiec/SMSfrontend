@@ -34,50 +34,45 @@ const feeData = [
 
 const FeeTab = ({ title, type, amount, status, date }) => {
   return (
-    <div
-      style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-      className=" w-[1120px] h-[108px] rounded-[12px] p-[24px] gap-[8px] bg-[#FAFCFD] flex flex-col "
-    >
-      <div className=" w-[1072px] h-[24px] flex justify-between">
-        <div className="max-w-[213px] h-[24px] flex gap-[24px]">
-          <h3 className="max-w-[118px] h-[24px] font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] flex items-center text-[#1F1D1D]">
-            {title}
-          </h3>
-          <div
-            className={`max-w-[71px] h-[20px] rounded-[12px] py-[2px] px-[12px] ${
-              type === "Paid" ? "bg-[#ECFDF7]" : "bg-[#FFF4ED]"
-            } font-[Inter] font-medium text-[12px] leding-[16px] tracking-[0] flex items-center ${
-              type === "Paid" ? "text-[#10B981]" : "text-[#F97316]"
-            } `}
+    <div className="w-full rounded-[12px] p-4 gap-2 bg-[#FAFCFD] shadow-md flex flex-col">
+      <div className="flex justify-between flex-wrap">
+        <div className="flex gap-6 items-center">
+          <h3 className="text-[#1F1D1D] font-medium text-base">{title}</h3>
+          <span
+            className={`px-3 py-1 rounded-full text-sm font-medium ${
+              type === "Paid"
+                ? "bg-[#ECFDF7] text-[#10B981]"
+                : "bg-[#FFF4ED] text-[#F97316]"
+            }`}
           >
             {type}
-          </div>
+          </span>
         </div>
-        <div className="w-[64px] h-[24px] font-[Inter] font-medium text-[16px] leading-[24px] tracking-[0] flex items-center text-[#1F1D1D]">
-          {amount}
-        </div>
+        <div className="text-[#1F1D1D] font-medium text-base">{amount}</div>
       </div>
-      <div className="w-[1072px] h-[28px] flex justify-between">
-        <div className="min-w-[270px] h-[20px] flex gap-[24px]">
-          <div className="w-[155px] h-[20px]  gap-[4px] font-[Inter] font-[400px] text-[12px] leading-[20px] tracking-[0] flex items-center text-[#1F1D1D">
-            <h3 className="w-[56px] h-[20px]">Due Date:</h3>
-            <span className="min-w-[95px] h-[20px]">{date}</span>
+
+      <div className="flex justify-between flex-wrap items-center">
+        <div className="flex gap-6 flex-wrap items-center text-sm">
+          <div className="flex items-center gap-2">
+            <span className="text-[#1F1D1D]">Due Date:</span>
+            <span>{date}</span>
           </div>
-          <div className="min-w-[132px] h-[20px] flex gap-[12px] items-center">
-            {status === "Completed" ? (
-              <img
-                className="w-[16px] h-[16px]"
-                src={completed}
-                alt="completed"
-              />
-            ) : (
-              <img className="w-[16px] h-[16px]" src={pending} alt="pending" />
-            )}
-            <div className="w-[104px] h-[20px] font-[Inter] font-[400px] text-[12px] leading-[20px] tracking-[0] flex items-center text-[#10B981]">
+          <div className="flex items-center gap-2">
+            <img
+              src={status === "Completed" ? completed : pending}
+              alt="status"
+              className="w-4 h-4"
+            />
+            <span
+              className={`${
+                status === "Completed" ? "text-[#10B981]" : "text-[#F97316]"
+              }`}
+            >
               {status}
-            </div>
+            </span>
           </div>
         </div>
+
         <button
           className={`min-w-[90px] h-[28px] rounded-[8px] border-1 py-[4px] px-[12px] flex gap-[12px] ${
             type === "Paid" ? "bg-[#FAFCFD]" : "bg-[#04203E]"
