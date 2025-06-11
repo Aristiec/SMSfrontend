@@ -17,23 +17,26 @@ const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
   return (
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-      className="flex justify-between rounded-[12px] px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start "
+      className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
     >
       <div className="flex gap-[12px] items-center">
-        <img className="w-[17px] h-[16px]" src={icon} />
-        <div className="flex flex-col gap-[8px] font-[Inter] font-medium">
-          <p className=" text-[12px] leading-[16px] tracking-[0] text-[#04203E]">
+        <img className="w-[12px] h-[16px]" src={icon} />
+        <div className="flex flex-col gap-[8px] font-[Inter]">
+          <p className=" text-[12px] leading-[16px] tracking-[0] text-[#04203E] font-medium">
             {label}
           </p>
-          <p className=" flex justify-start text-[16px] leading-[24px tracking-[0] text-center text-[#1F1D1D]">
+          <p
+            className=" flex justify-start text-[14px] md:text-[16px]
+ leading-[24px] tracking-[0] text-center text-[#1F1D1D] font-normal"
+          >
             {value}
           </p>
         </div>
       </div>
       {showRequestUpdate && (
         <button className="flex gap-[12px]">
-          <img className="w-[16px] h-[17px] " src={pencil} />
-          <div className="font-[Inter] font-medium tracking-[0] leading-[18px] text-[12px] flex justify-center items-center ">
+          <img className="w-[16px] h-[16px] " src={pencil} />
+          <div className="font-[Inter] font-medium tracking-[0] leading-[18px] text-[12px] flex justify-center items-center text-[#04203E]">
             <p className="">Request Update</p>
           </div>
         </button>
@@ -141,27 +144,26 @@ const Profile = () => {
 
   return (
     <>
-      <div className="ml-[40px] mt-[40px] font-[Inter]">
+      <div className="mx-[16px] sm:mx-[20px] md:mx-[20px] lg:mx-[40px] mt-[20px] font-[Inter]">
         {/* Header */}
-        <div className="w-[full] h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
-          <div className="text-white font-bold text-[24px] leading-[28px] font-[Inter]">
+        <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
+          <div className="text-[#FAFCFD] font-bold text-[20px] md:text-[24px] leading-[28px]">
             Student Profile
           </div>
         </div>
 
         {/* Profile Card */}
-        <div className="w-[full] h-[144px] bg-[#04203E] rounded-[12px] mt-[25px] p-[24px] flex items-center gap-[32px] shadow-[0px_4px_8px_0px_#00000033]">
+        <div className="w-full h-[144px] bg-[#04203E] rounded-[12px] mt-[25px] p-[24px] flex items-center gap-[32px] shadow-[0px_4px_8px_0px_#00000033]">
           {/* Left Image */}
           <img
             src={profileIcon}
-            alt="Profile Icon"
-            className="w-[96px] h-[96px] rounded-full object-cover"
+            className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] rounded-full object-cover"
           />
 
           {/* Right Info */}
           <div className="flex flex-col gap-[12px]">
             {/* Name */}
-            <div className="text-white font-bold text-[24px] leading-[36px] font-inter">
+            <div className="text-[#FAFCFD] font-bold text-[24px] leading-[36px] font-inter">
               Asha Singh
             </div>
 
@@ -172,10 +174,16 @@ const Profile = () => {
                 alt="Course Icon"
                 className="w-[24px] h-[24px]"
               />
-              <span className="text-white text-[16px] font-normal font-inter">
+              <span
+                className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+              >
                 Course: Computer Science
               </span>
-              <span className="text-white text-[16px] font-normal font-inter">
+              <span
+                className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+              >
                 Student ID: 2023BT01
               </span>
             </div>
@@ -183,13 +191,16 @@ const Profile = () => {
         </div>
 
         {/* Personal Details Section */}
-        <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-          <div className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+        <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
+          <div
+            className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[14px] md:text-[16px]
+ leading-[28px]"
+          >
             Personal Details
           </div>
         </div>
 
-        <div className="w-full grid grid-cols-2 gap-[24px] mt-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
           {details.map((detail, idx) => {
             const isLastOddItem = isOdd && idx === lastIndex;
             return (
@@ -201,15 +212,15 @@ const Profile = () => {
         </div>
         {/*  Guardian Details Section */}
 
-        <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-          <div className="w-[full] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+        <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
+          <div className="text-[#FAFCFD] font-semibold text-[16px] md:text-[18px] leading-[28px]">
             Guardian Details
           </div>
         </div>
 
         {/* map  guardian1 */}
 
-        <div className="w-full grid grid-cols-2 gap-[24px] mt-5 mb-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
           {guardianDetails.map((detail, idx) => {
             const isLastOddItem = isOdd && idx === lastIndex;
             return (
@@ -220,11 +231,11 @@ const Profile = () => {
           })}
         </div>
 
-        <hr className="text-gray-400" />
+        <hr className="text-[#04203E33]" />
 
         {/* gaurdian2  */}
 
-        <div className="w-full grid grid-cols-2 gap-[24px] mt-5 mb-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
           {guardianDetails2.map((detail, idx) => {
             const isLastOddItem = isOdd && idx === lastIndex;
             return (
@@ -235,15 +246,18 @@ const Profile = () => {
           })}
         </div>
 
-        <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-          <div className="w-[full] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+        <div
+          className="w-full
+ h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
+        >
+          <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[16px] leading-[28px]">
             Academic Details
           </div>
         </div>
 
         {/* academic details */}
 
-        <div className="w-full grid grid-cols-2 gap-[24px] mt-5 mb-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
           {AcademicDetails.map((detail, idx) => {
             const isLastOddItem = isOdd && idx === lastIndex;
             return (
