@@ -27,7 +27,7 @@ const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
           <p className=" text-[12px] leading-[16px] tracking-[0] text-[#04203E]">
             {label}
           </p>
-          <p className=" flex justify-start text-[16px] leading-[24px tracking-[0] text-center text-[#1F1D1D]">
+          <p className=" flex font-normal justify-start text-[16px] leading-[24px tracking-[0] text-center text-[#1F1D1D]">
             {value}
           </p>
         </div>
@@ -114,7 +114,7 @@ const Profile = () => {
 
 
 
-   <div className="ml-[40px] mt-[40px] font-[Inter]">
+   <div className="mt-[40px] font-[Inter] mx-auto">
       {/* Header */}
       <div className="w-[full] h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
         <div className="text-white font-bold text-[24px] leading-[28px] font-[Inter]">
@@ -134,17 +134,17 @@ const Profile = () => {
         {/* Right Info */}
         <div className="flex flex-col gap-[12px]">
           {/* Name */}
-          <div className="text-white font-bold text-[24px] leading-[36px] font-inter">
+          <div className="text-white font-[700px] text-[24px] leading-[36px] font-[Inter]">
             Asha Singh
           </div>
 
           {/* Course and ID */}
           <div className="flex items-center gap-[12px]">
             <img src={courseIcon} alt="Course Icon" className="w-[24px] h-[24px]" />
-            <span className="text-white text-[16px] font-normal font-inter">
+            <span className="text-white text-[16px] font-[Inter] font-[400px]">
               Course: Computer Science
             </span>
-            <span className="text-white text-[16px] font-normal font-inter">
+            <span className="text-white text-[16px] font-[400px] font-[Inter]">
               Student ID: 2023BT01
             </span>
           </div>
@@ -154,7 +154,7 @@ const Profile = () => {
 
       {/* Personal Details Section */}
 <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-  <div className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+  <div className="w-[126px] h-[28px] text-[#FAFCFD] font-[Inter] font-[600px] text-[16px] leading-[28px]">
     Personal Details
   </div>
 
@@ -176,7 +176,7 @@ const Profile = () => {
 {/*  Guardian Details Section */}
 
 <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-  <div className="w-[full] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+  <div className="w-[full] h-[28px] text-[#FAFCFD] font-[Inter] font-[600px] text-[16px] leading-[28px]">
     Guardian Details
   </div>
 
@@ -217,7 +217,7 @@ const Profile = () => {
   </div>
 
   <div className="w-[full] h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-  <div className="w-[full] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[16px] leading-[28px]">
+  <div className="w-[full] h-[28px] text-[#FAFCFD] font-[Inter] font-[600px] text-[16px] leading-[28px]">
     Academic Details
   </div>
 
