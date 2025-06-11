@@ -110,7 +110,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 const FeePayment = () => {
   return (
     <>
-      <div className="w-[1120px] mt-[40px] ml-[40px] space-y-[20px] ">
+      <div className="w-[1120px] mt-[30px] ml-[20px] space-y-[20px] ">
         {/* header  */}
         <div className="h-[68px] rounded-[12px] px-[24px] py-[18px] bg-[#04203E] flex items-center">
           <h2 className="text-[#FAFCFD] font-bold text-[24px] leading-[28px] tracking-[-0.01em] font-[Merriweather]">
