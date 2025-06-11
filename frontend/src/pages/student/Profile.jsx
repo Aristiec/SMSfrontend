@@ -1,14 +1,18 @@
 import React from "react";
-import profileIcon from '../../assets/profile_profile.png';
-import courseIcon from '../../assets/courseIcon_icon_profile.png';
-import pencil from "../../assets/pencil.png";
-import mail from "../../assets/mail.png";
-import blood from "../../assets/blood.png";
-import calendar from "../../assets/calendar.png";
-import gender from "../../assets/gender.png";
-import home from "../../assets/home.png";
-import phone from "../../assets/phone.png";
-import guardian from "../../assets/guardian.png";
+import profileIcon from '../../assets/profile_profile.svg';
+import courseIcon from '../../assets/courseIcon_icon_profile.svg';
+import pencil from "../../assets/pencil.svg";
+import mail from "../../assets/mail.svg";
+import blood from "../../assets/blood.svg";
+import calendar from "../../assets/calendar.svg";
+import gender from "../../assets/gender.svg";
+import home from "../../assets/home.svg";
+import phone from "../../assets/phone.svg";
+import guardian from "../../assets/guardian.svg";
+import admission from "../../assets/admission.svg";
+import school from "../../assets/school.svg";
+import grade from "../../assets/grade.svg";
+
 
 
 const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
@@ -90,12 +94,12 @@ const guardianDetails2 = [
 ]
 
 const AcademicDetails = [
-  { icon: mail, label: "Admission Date", value: "05 September 2029" },
-  { icon: phone, label: "Start Date", value: "03 November 2029" },
-  { icon: mail, label: "Previous School", value: "Lincoln Middle  School" },
-  { icon: phone, label: "Board", value: "CBSE" },
-  { icon: mail, label: "Year of Completion", value: "2029"},
-  { icon: mail, label: "Grade", value: "88%"},
+  { icon: admission, label: "Admission Date", value: "05 September 2029" },
+  { icon: admission, label: "Start Date", value: "03 November 2029" },
+  { icon: school, label: "Previous School", value: "Lincoln Middle  School" },
+  { icon: school, label: "Board", value: "CBSE" },
+  { icon: admission, label: "Year of Completion", value: "2029"},
+  { icon: grade, label: "Grade", value: "88%"},
   { icon: home, label: "Address", value: "123 School Lane, Education City, EC 12345"},
 ]
 
