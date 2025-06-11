@@ -1,9 +1,9 @@
 import React from "react";
 
-import inVoiceImage from "../../assets/inVoice.png";
-import completed from "../../assets/completed.png";
-import pending from "../../assets/pending.png";
-import payNow from "../../assets/payNow.png";
+import inVoiceImage from "../../assets/inVoice.svg";
+import completed from "../../assets/completed.svg";
+import pending from "../../assets/pending.svg";
+import card from "../../assets/card.svg";
 
 const feeData = [
   {
@@ -91,7 +91,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
                 alt="inVoiceImage"
               />
             ) : (
-              <img className="w-[16px] h-[12px]" src={payNow} alt="payNow" />
+              <img className="w-[16px] h-[12px]" src={card} alt="payNow" />
             )}
           </div>
           <div
