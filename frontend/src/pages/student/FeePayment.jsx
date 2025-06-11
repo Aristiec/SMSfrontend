@@ -1,5 +1,5 @@
 import React from "react";
-import inVoiceImage from "../../assets/inVoice.svg";
+import inVoiceImage from "../../assets/invoice.svg";
 import completed from "../../assets/completed.svg";
 import pending from "../../assets/pending.svg";
 import card from "../../assets/card.svg";
