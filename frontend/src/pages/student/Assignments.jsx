@@ -125,7 +125,7 @@ const Assignments = () => {
       <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto px-4">
         <div className="flex-1 pr-6">
           {/* Assignment Cards */}
-          <div className="space-y-4 font-[Inter]">
+          <div className="h-[calc(100vh-200px)] overflow-y-auto space-y-4 font-[Inter] pr-2  scrollbar-hide">
             {filteredAssignments.map((assignment) => (
               <div
                 key={assignment.id}
@@ -185,7 +185,7 @@ const Assignments = () => {
                 )}
 
                 <div className="flex gap-3">
-                  {assignment.status !== "submitted" && (
+                  {assignment.status == "pending" && (
                     <button className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
                       <FileUp className="w-4 h-4" />
                       Submit Assignment
