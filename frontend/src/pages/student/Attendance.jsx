@@ -11,55 +11,55 @@ const attendanceData = [
     total: 50,
     missed: 6,
     attendance: 88.0,
-    status: "Excellent",
+    status: "Outstanding",
   },
   {
     subject: "Operating Systems",
-    attended: 38,
+    attended: 33,
     total: 45,
-    missed: 7,
-    attendance: 84.4,
-    status: "Good",
+    missed: 12,
+    attendance: 73.3,
+    status: "Poor",
   },
   {
     subject: "Database Management System",
-    attended: 40,
+    attended: 24,
     total: 45,
-    missed: 5,
-    attendance: 89.9,
+    missed: 21,
+    attendance: 53.4,
     status: "Critical",
   },
   {
     subject: "Computer Networks",
-    attended: 35,
+    attended: 24,
     total: 40,
-    missed: 5,
-    attendance: 87.5,
-    status: "Good",
+    missed: 12,
+    attendance: 70,
+    status: "Poor",
   },
   {
     subject: "Software Engineering",
-    attended: 42,
+    attended: 36,
     total: 45,
-    missed: 3,
-    attendance: 93.3,
-    status: "Excellent",
+    missed: 9,
+    attendance: 80,
+    status: "Satisfactory",
   },
   {
     subject: "Artificial Intelligence",
-    attended: 36,
+    attended: 27,
     total: 45,
-    missed: 9,
-    attendance: 80.0,
-    status: "Good",
+    missed: 18,
+    attendance: 59.9,
+    status: "Critical",
   },
   {
     subject: "Web Development",
-    attended: 36,
+    attended: 34,
     total: 45,
-    missed: 9,
-    attendance: 80.0,
-    status: "Good",
+    missed: 11,
+    attendance: 75.5,
+    status: "Satisfactory",
   },
 ];
 
@@ -183,21 +183,25 @@ const AttendanceTable = () => {
 
         <div className="overflow-x-hidden flex gap-[12px]">
           <table className="min-w-[99%] my-2 mx-2  ">
-            <thead className="font-[Inter]  border-b-1  px-6 py-[8px] font-medium  text-[14px] leading-[16px] tracking-0  items-center text-left text-[#1F1D1D] min-w-full gap-[12px]">
+            <thead className="font-[Inter]  border-b-1  px-6 py-[8px] font-semibold  text-[14px] leading-[16px] tracking-0  items-center text-left text-[#1F1D1D] min-w-full gap-[12px]">
               <tr className=" ">
-                <th className="p-3 font-medium">Subject</th>
-                <th className="p-3 font-medium">Classes Attended</th>
-                <th className="p-3 font-medium">Classes Missed</th>
-                <th className="p-3 font-medium">Attendance</th>
-                <th className="p-3 font-medium text-[12px]">Status</th>
+                <th className="p-3 font-semibold ">Subject</th>
+                <th className="p-3 font-semibold ">Classes Attended</th>
+                <th className="p-3 font-semibold ">Classes Missed</th>
+                <th className="p-3 font-semibold ">Attendance</th>
+                <th className="p-3 font-semibold  text-[12px]">Status</th>
               </tr>
             </thead>
             <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px]">
               {attendanceData.map((item, index) => {
                 const statusColor =
-                  item.status === "Excellent"
+                  item.status === "Outstanding"
                     ? "text-[#10B981]"
-                    : "text-[#04203E]";
+                    : item.status === "Satisfactory"
+                    ? "text-[#04203E]"
+                    : item.status === "Poor"
+                    ? "text-[#F97316]"
+                    : "text-[#EF4444]";
 
                 return (
                   <tr
