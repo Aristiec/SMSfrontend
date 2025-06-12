@@ -15,50 +15,50 @@ const attendanceData = [
   },
   {
     subject: "Operating Systems",
-    attended: 38,
+    attended: 33,
     total: 45,
-    missed: 7,
-    attendance: 84.4,
-    status: "Good",
+    missed: 12,
+    attendance: 73.3,
+    status: "Poor",
   },
   {
     subject: "Database Management System",
-    attended: 40,
+    attended: 24,
     total: 45,
-    missed: 5,
-    attendance: 89.9,
+    missed: 21,
+    attendance: 53.4,
     status: "Critical",
   },
   {
     subject: "Computer Networks",
-    attended: 35,
+    attended: 24,
     total: 40,
-    missed: 5,
-    attendance: 87.5,
-    status: "Good",
+    missed: 12,
+    attendance: 70,
+    status: "Poor",
   },
   {
     subject: "Software Engineering",
-    attended: 42,
-    total: 45,
-    missed: 3,
-    attendance: 93.3,
-    status: "Excellent",
-  },
-  {
-    subject: "Artificial Intelligence",
     attended: 36,
     total: 45,
     missed: 9,
-    attendance: 80.0,
+    attendance: 80,
     status: "Good",
   },
   {
-    subject: "Web Development",
-    attended: 36,
+    subject: "Artificial Intelligence",
+    attended: 27,
     total: 45,
-    missed: 9,
-    attendance: 80.0,
+    missed: 18,
+    attendance: 59.9,
+    status: "Critical",
+  },
+  {
+    subject: "Web Development",
+    attended: 34,
+    total: 45,
+    missed: 11,
+    attendance: 75.5,
     status: "Good",
   },
 ];
@@ -197,7 +197,9 @@ const AttendanceTable = () => {
                 const statusColor =
                   item.status === "Excellent"
                     ? "text-[#10B981]"
-                    : "text-[#04203E]";
+                    : item.status === "Good" ? "text-[#04203E]"
+                    : item.status === "Poor" ? "text-[#F97316]"
+                    : "text-[#EF4444]";
 
                 return (
                   <tr

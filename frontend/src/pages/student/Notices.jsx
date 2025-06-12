@@ -12,6 +12,7 @@ const noticesData = [
     title: "Fee Payment Due",
     description:
       "This is to inform all students that the final deadline for the Semester 4 tuition fee payment is June 25, 2025. Students are advised to complete the payment process well in advance to avoid late fines or academic restrictions. As per university records, the following students have pending dues: Asha Singh (1RUB203020), Karan Mehra (1RUB203041), Priya Nair (1RUB203027), and Rahul Das (1RUB203009). Kindly log in to your student portal, navigate to the 'Fee Payment' section, and follow the payment instructions. Please note that failure to complete the payment by the due date will result in temporary suspension of access to course materials, exam schedules, and internal assessment submissions. For any discrepancies or queries related to your fee status, reach out to the Accounts Department at accounts@university.edu or visit Room No. 108 between 10:00 AM and 4:00 PM on working days. Let's ensure we meet the deadline and avoid unnecessary complications.",
+    bgColor: "bg-[#FEF2F2]",
   },
   {
     id: 2,
@@ -113,14 +114,7 @@ const Notices = () => {
                         read more
                       </span>
                     )}
-                    {isExpanded && (
-                      <span
-
-                        className="text-blue-600 ml-1 cursor-pointer inline font-medium"
-                      >
-                        read less
-                      </span>
-                    )}
+                    
                   </p>
                 </div>
               </div>
