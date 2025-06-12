@@ -42,6 +42,16 @@ const Assignments = () => {
       maxMarks: 50,
       submittedDate: "Feb 9, 2024, 03:30 PM",
     },
+    {
+      id: 4,
+      title: "Literature Review",
+      subject: "English Literature",
+      description: "Analysis of Shakespeare's Macbeth.",
+      status: "submitted",
+      dueDate: "Feb 5, 2024, 11:59 PM",
+      maxMarks: 50,
+      submittedDate: "Feb 9, 2024, 03:30 PM",
+    },
   ];
 
   const upcomingAssignments = [
