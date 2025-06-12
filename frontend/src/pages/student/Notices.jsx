@@ -113,14 +113,7 @@ const Notices = () => {
                         read more
                       </span>
                     )}
-                    {isExpanded && (
-                      <span
-
-                        className="text-blue-600 ml-1 cursor-pointer inline font-medium"
-                      >
-                        read less
-                      </span>
-                    )}
+                    
                   </p>
                 </div>
               </div>
