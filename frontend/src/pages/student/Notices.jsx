@@ -21,7 +21,7 @@ const noticesData = [
     date: "May 20, 2023",
     title: "End of Semester Exams Schedule",
     description:
-      "The end of semester examinations will commence on June 15th, 2023. Please check the detailed schedule on the academic portal.",
+      "This is to notify all students that the End of Semester Examinations for Semester 4 will commence from July 10, 2025, and will continue till July 24, 2025. The detailed exam timetable will be uploaded to the Timetable section of the student dashboard by June 20, 2025. All enrolled students are advised to verify their subject codes, course enrollment status, and ensure all assignments are submitted prior to the exam period. Exams will be held offline in designated exam halls, with timings typically from 10:00 AM to 1:00 PM. Students must carry their university ID card and arrive at least 30 minutes before the scheduled time. Internal assessments and practical's will conclude by July 5, 2025. For special accommodations or schedule conflicts, please contact the Examination Cell at exams@university.edu before June 25, 2025.",
     bgColor: "bg-[#F4F7FA]",
   },
   {
@@ -32,7 +32,7 @@ const noticesData = [
     date: "May 20, 2023",
     title: "Interclass Football Competition",
     description:
-      "Designer Donald Schön wrote that professionals like designers think while they do things. This is called reflection-in-action. For example, when we were building different versions of the BlahBlah Cam, we would try something, notice it didn't work well, and change it on the spot. That process was how we learned.",
+      "We are excited to announce that the Annual Interclass Football Tournament will be held from August 5 to August 10, 2025. The event is open to all departments and will take place at the Main Sports Ground.Each class may register one team consisting of a maximum of 11 players and 4 substitutes. The registration form will be available under the Events section of the student portal starting July 10, and the last date to register is July 25.Fixtures and match timings will be released by August 1. All participants are required to wear proper sports attire and carry their college ID cards on match days. Teams found violating fair play or discipline rules will be disqualified.For any queries or clarifications, contact the Sports Coordinator at sports@university.edu.Let the games begin! 🏆",
     bgColor: "bg-[#ECFDF7]",
   },
 ];
