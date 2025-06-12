@@ -27,7 +27,7 @@ const attendanceData = [
     total: 45,
     missed: 5,
     attendance: 89.9,
-    status: "Good",
+    status: "Critical",
   },
   {
     subject: "Computer Networks",
@@ -74,13 +74,10 @@ const AttendanceTable = () => {
       </div>
 
       {/* Cards Section */}
-      <div className="w-full ">
-        <div className="flex flex-wrap gap-6 justify-around">
+      <div className="w-full">
+        <div className="flex flex-col lg:flex-row gap-6 justify-between">
           {/* Card 1: Overall Attendance */}
-          <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  rounded-[12px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
-            style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
-          >
+          <div className="flex-1 rounded-[12px] p-[24px] bg-[#FAFCFD] shadow-lg">
             <div className="flex gap-[12px] items-center">
               <div className="w-[44px] h-[44px] rounded-full bg-[#F2F4F7] flex items-center justify-center">
                 <img
@@ -94,7 +91,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[10px]">
+            <div className="flex flex-col gap-[10px] mt-4">
               <div className="font-bold text-[#1F1D1D] text-[24px] leading-[36px]">
                 86.0%
               </div>
@@ -107,10 +104,7 @@ const AttendanceTable = () => {
           </div>
 
           {/* Card 2: Classes Attended */}
-          <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
-            style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
-          >
+          <div className="flex-1 h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] shadow-lg">
             <div className="flex gap-[12px] items-center">
               <div className="w-[44px] h-[44px] rounded-full bg-[#ECFDF7] flex items-center justify-center">
                 <img
@@ -124,7 +118,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[4px]">
+            <div className="flex flex-col gap-[4px] mt-4">
               <div className="flex gap-[8px] items-baseline">
                 <span className="text-[#027A48] font-bold text-[24px] leading-[36px]">
                   271
@@ -141,7 +135,7 @@ const AttendanceTable = () => {
 
           {/* Card 3: Classes Missed */}
           <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
+            className="flex-1 h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] shadow-md"
             style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
           >
             <div className="flex gap-[12px] items-center">
@@ -157,7 +151,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[4px]">
+            <div className="flex flex-col gap-[4px] mt-4">
               <div className="flex gap-[8px] items-baseline">
                 <span className="text-[#EF4444] font-bold text-[24px] leading-[36px]">
                   44
@@ -173,6 +167,7 @@ const AttendanceTable = () => {
           </div>
         </div>
       </div>
+
       <div
         style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
         className="p-6 bg-[#FAFCFD] font-[Inter] rounded-[12px] w-full  flex flex-col "

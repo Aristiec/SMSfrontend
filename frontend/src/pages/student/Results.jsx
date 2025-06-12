@@ -13,28 +13,28 @@ const currentResults = [
     date: "Jan 15, 2024",
     score: "87/100 (87.0%)",
     grade: "A",
-    status: "Passed",
+    status: "Pass",
   },
   {
     subject: "Mid-Term",
     date: "Jan 15, 2024",
     score: "87/100 (87.0%)",
     grade: "A",
-    status: "Passed",
+    status: "Pass",
   },
   {
     subject: "Mid-Term",
     date: "Jan 15, 2024",
     score: "87/100 (87.0%)",
     grade: "A",
-    status: "Passed",
+    status: "Pass",
   },
   {
     subject: "Mid-Term",
     date: "Jan 15, 2024",
     score: "87/100 (87.0%)",
     grade: "A",
-    status: "Passed",
+    status: "Pass",
   },
 ];
 
