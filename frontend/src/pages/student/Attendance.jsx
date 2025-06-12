@@ -189,7 +189,7 @@ const AttendanceTable = () => {
                 <th className="p-3 font-semibold ">Classes Attended</th>
                 <th className="p-3 font-semibold ">Classes Missed</th>
                 <th className="p-3 font-semibold ">Attendance</th>
-                <th className="p-3 font-semibold  text-[12px]">Status</th>
+                <th className="p-3 font-semibold ">Status</th>
               </tr>
             </thead>
             <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px]">
@@ -209,19 +209,21 @@ const AttendanceTable = () => {
                     style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
                     className="px-[12px] rounded-[12px] py-[24px] align-middle"
                   >
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
                       {item.subject}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.attended} / {item.total}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.missed}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.attendance}%
                     </td>
-                    <td className={`py-3 font-semibold ${statusColor}`}>
+                    <td
+                      className={`py-3 text-[14px] font-[Inter] font-medium ${statusColor}`}
+                    >
                       {item.status}
                     </td>
                   </tr>
