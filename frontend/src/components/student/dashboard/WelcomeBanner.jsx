@@ -4,7 +4,7 @@ import { FaGraduationCap } from "react-icons/fa";
 
 const WelcomeBanner = () => {
   return (
-    <div className="w-full max-w-[1120px] mx-auto">
+    <div className="w-full  mx-auto">
       <div className="w-full h-[176px] bg-[#04203E] rounded-[12px] px-8 py-8 flex items-center justify-between">
         <div className="flex flex-col text-white space-y-2">
           <h1 className="font-[Inter] font-medium text-[40px] leading-[48px] tracking-[-0.02em] text-[#FAFCFD]">
