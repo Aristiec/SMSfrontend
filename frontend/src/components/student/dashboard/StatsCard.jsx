@@ -41,7 +41,7 @@ const cards = [
 
 const StatsCard = () => {
   return (
-    <div className="w-full max-w-[1120px] mx-auto">
+    <div className="w-full  mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div

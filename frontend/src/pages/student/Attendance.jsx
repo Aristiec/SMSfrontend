@@ -12,55 +12,55 @@ const attendanceData = [
     total: 50,
     missed: 6,
     attendance: 88.0,
-    status: "Excellent",
+    status: "Outstanding",
   },
   {
     subject: "Operating Systems",
-    attended: 38,
+    attended: 33,
     total: 45,
-    missed: 7,
-    attendance: 84.4,
-    status: "Good",
+    missed: 12,
+    attendance: 73.3,
+    status: "Poor",
   },
   {
     subject: "Database Management System",
-    attended: 40,
+    attended: 24,
     total: 45,
-    missed: 5,
-    attendance: 89.9,
-    status: "Good",
+    missed: 21,
+    attendance: 53.4,
+    status: "Critical",
   },
   {
     subject: "Computer Networks",
-    attended: 35,
+    attended: 24,
     total: 40,
-    missed: 5,
-    attendance: 87.5,
-    status: "Good",
+    missed: 12,
+    attendance: 70,
+    status: "Poor",
   },
   {
     subject: "Software Engineering",
-    attended: 42,
+    attended: 36,
     total: 45,
-    missed: 3,
-    attendance: 93.3,
-    status: "Excellent",
+    missed: 9,
+    attendance: 80,
+    status: "Satisfactory",
   },
   {
     subject: "Artificial Intelligence",
-    attended: 36,
+    attended: 27,
     total: 45,
-    missed: 9,
-    attendance: 80.0,
-    status: "Good",
+    missed: 18,
+    attendance: 59.9,
+    status: "Critical",
   },
   {
     subject: "Web Development",
-    attended: 36,
+    attended: 34,
     total: 45,
-    missed: 9,
-    attendance: 80.0,
-    status: "Good",
+    missed: 11,
+    attendance: 75.5,
+    status: "Satisfactory",
   },
 ];
 
@@ -75,13 +75,10 @@ const AttendanceTable = () => {
       </div>
 
       {/* Cards Section */}
-      <div className="w-full ">
-        <div className="flex flex-wrap gap-6 justify-around">
+      <div className="w-full">
+        <div className="flex flex-col lg:flex-row gap-6 justify-between">
           {/* Card 1: Overall Attendance */}
-          <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  rounded-[12px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
-            style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
-          >
+          <div className="flex-1 rounded-[12px] p-[24px] bg-[#FAFCFD] shadow-lg">
             <div className="flex gap-[12px] items-center">
               <div className="w-[44px] h-[44px] rounded-full bg-[#F2F4F7] flex items-center justify-center">
                 <img
@@ -95,7 +92,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[10px]">
+            <div className="flex flex-col gap-[10px] mt-4">
               <div className="font-bold text-[#1F1D1D] text-[24px] leading-[36px]">
                 86.0%
               </div>
@@ -108,10 +105,7 @@ const AttendanceTable = () => {
           </div>
 
           {/* Card 2: Classes Attended */}
-          <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
-            style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
-          >
+          <div className="flex-1 h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] shadow-lg">
             <div className="flex gap-[12px] items-center">
               <div className="w-[44px] h-[44px] rounded-full bg-[#ECFDF7] flex items-center justify-center">
                 <img
@@ -125,7 +119,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[4px]">
+            <div className="flex flex-col gap-[4px] mt-4">
               <div className="flex gap-[8px] items-baseline">
                 <span className="text-[#027A48] font-bold text-[24px] leading-[36px]">
                   271
@@ -142,7 +136,7 @@ const AttendanceTable = () => {
 
           {/* Card 3: Classes Missed */}
           <div
-            className="w-full sm:w-[calc(50%-12px)] lg:w-[370px]  h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] flex flex-col justify-between shadow-md"
+            className="flex-1 h-[158px] rounded-[8px] p-[24px] bg-[#FAFCFD] shadow-md"
             style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
           >
             <div className="flex gap-[12px] items-center">
@@ -158,7 +152,7 @@ const AttendanceTable = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[4px]">
+            <div className="flex flex-col gap-[4px] mt-4">
               <div className="flex gap-[8px] items-baseline">
                 <span className="text-[#EF4444] font-bold text-[24px] leading-[36px]">
                   44
@@ -174,6 +168,7 @@ const AttendanceTable = () => {
           </div>
         </div>
       </div>
+
       <div
         style={{ boxShadow: "0px 4px 8px 0px #00000033" }}
         className="p-6 bg-[#FAFCFD] font-[Inter] rounded-[12px] w-full  flex flex-col "
@@ -189,21 +184,25 @@ const AttendanceTable = () => {
 
         <div className="overflow-x-hidden flex gap-[12px]">
           <table className="min-w-[99%] my-2 mx-2  ">
-            <thead className="font-[Inter]  border-b-1  px-6 py-[8px] font-medium  text-[14px] leading-[16px] tracking-0  items-center text-left text-[#1F1D1D] min-w-full gap-[12px]">
+            <thead className="font-[Inter]  border-b-1  px-6 py-[8px] font-semibold  text-[14px] leading-[16px] tracking-0  items-center text-left text-[#1F1D1D] min-w-full gap-[12px]">
               <tr className=" ">
-                <th className="p-3 font-medium">Subject</th>
-                <th className="p-3 font-medium">Classes Attended</th>
-                <th className="p-3 font-medium">Classes Missed</th>
-                <th className="p-3 font-medium">Attendance</th>
-                <th className="p-3 font-medium text-[12px]">Status</th>
+                <th className="p-3 font-semibold ">Subject</th>
+                <th className="p-3 font-semibold ">Classes Attended</th>
+                <th className="p-3 font-semibold ">Classes Missed</th>
+                <th className="p-3 font-semibold ">Attendance</th>
+                <th className="p-3 font-semibold ">Status</th>
               </tr>
             </thead>
             <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px]">
               {attendanceData.map((item, index) => {
                 const statusColor =
-                  item.status === "Excellent"
+                  item.status === "Outstanding"
                     ? "text-[#10B981]"
-                    : "text-[#04203E]";
+                    : item.status === "Satisfactory"
+                    ? "text-[#04203E]"
+                    : item.status === "Poor"
+                    ? "text-[#F97316]"
+                    : "text-[#EF4444]";
 
                 return (
                   <tr
@@ -211,19 +210,21 @@ const AttendanceTable = () => {
                     style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
                     className="px-[12px] rounded-[12px] py-[24px] align-middle"
                   >
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
                       {item.subject}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.attended} / {item.total}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.missed}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                    <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
                       {item.attendance}%
                     </td>
-                    <td className={`py-3 font-semibold ${statusColor}`}>
+                    <td
+                      className={`py-3 text-[14px] font-[Inter] font-medium ${statusColor}`}
+                    >
                       {item.status}
                     </td>
                   </tr>
