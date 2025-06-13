@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Clock,
+  Ban,
   AlertCircle,
   CheckCircle,
   Calendar,
@@ -36,11 +37,11 @@ const Assignments = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case "overdue":
-        return <AlertCircle className="w-4 h-4 text-red-500" />;
+        return <Ban className="w-4 h-4 text-[#EF4444]" />;
       case "pending":
-        return <Clock className="w-4 h-4 text-orange-500" />;
+        return <AlertCircle className="w-4 h-4 text-[#F97316]" />;
       case "submitted":
-        return <CheckCircle className="w-4 h-4 text-green-500" />;
+        return <CheckCircle className="w-4 h-4 text-[#10B981]" />;
       default:
         return null;
     }
@@ -85,7 +86,7 @@ const Assignments = () => {
               }`}
             >
               {filter === "Pending" && <Clock size={16} />}
-              {filter === "Overdue" && <AlertCircle size={16} />}
+              {filter === "Overdue" && <Ban size={16} />}
               {filter === "Submitted" && <CheckCircle size={16} />}
               {filter}
             </button>
