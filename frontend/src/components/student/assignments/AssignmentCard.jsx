@@ -1,10 +1,10 @@
 import React from "react";
-import { Calendar, Clock, AlertCircle, CheckCircle } from "lucide-react";
+import { Calendar, Clock, Ban, AlertCircle, CheckCircle } from "lucide-react";
 
 const statusIcon = {
-  pending: <Clock className="text-yellow-600" />,
-  overdue: <AlertCircle className="text-red-600" />,
-  submitted: <CheckCircle className="text-green-600" />,
+  pending: <AlertCircle className="text-[#F97316]" />,
+  overdue: <Ban className="text-[#EF4444]" />,
+  submitted: <CheckCircle className="text-[#10B981]" />,
 };
 
 const AssignmentCard = ({ assignment }) => {
@@ -17,10 +17,10 @@ const AssignmentCard = ({ assignment }) => {
           <span
             className={`capitalize font-medium ${
               assignment.status === "pending"
-                ? "text-yellow-600"
+                ? "text-[#F97316]"
                 : assignment.status === "overdue"
-                ? "text-red-600"
-                : "text-green-600"
+                ? "text-[#EF4444]"
+                : "text-[#10B981]"
             }`}
           >
             {assignment.status}
