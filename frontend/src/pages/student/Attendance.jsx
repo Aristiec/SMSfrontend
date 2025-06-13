@@ -63,6 +63,10 @@ const attendanceData = [
   },
 ];
 
+
+
+
+
 const AttendanceTable = () => {
   return (
     <div className="font-[Inter] flex  flex-col gap-6 px-3 mt-[20px] mx-[20px]">
