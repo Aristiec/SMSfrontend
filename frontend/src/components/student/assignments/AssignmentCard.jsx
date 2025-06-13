@@ -49,7 +49,7 @@ const ViewDetails = () => {
               </div>
 
               {/* Right Status */}
-              <div className="flex items-center gap-2 mt-2 sm:mt-0">
+              <div className="flex items-start gap-2 mt-2 sm:mt-0">
                 <img src={anti} alt="status" className="w-[18px] h-[18px]" />
                 <p className="text-[16px] font-[600] leading-[20px] text-[#EF4444]">
                   Overdue
