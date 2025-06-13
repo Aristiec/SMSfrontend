@@ -7,107 +7,29 @@ import {
   Eye,
   FileUp,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import assignments from "../../data/mockAssignments.js";
 
+const upcomingAssignments = [
+  {
+    title: "Modern Economics",
+    subject: "Economics 101",
+    dueDate: "2/15/2024",
+    dueTime: "11:59 PM",
+  },
+  {
+    title: "Modern Economics",
+    subject: "Economics 101",
+    dueDate: "2/15/2024",
+    dueTime: "11:59 PM",
+  },
+];
 const Assignments = () => {
   const [activeFilter, setActiveFilter] = useState("All");
-
-  const assignments = [
-    {
-      id: 1,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "overdue",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 20,
-      submittedDate: null,
-    },
-    {
-      id: 2,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "pending",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 20,
-      submittedDate: null,
-    },
-    {
-      id: 3,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-    {
-      id: 4,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-    {
-      id: 5,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-    {
-      id: 6,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-    {
-      id: 7,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-    {
-      id: 8,
-      title: "Literature Review",
-      subject: "English Literature",
-      description: "Analysis of Shakespeare's Macbeth.",
-      status: "submitted",
-      dueDate: "Feb 5, 2024, 11:59 PM",
-      maxMarks: 50,
-      submittedDate: "Feb 9, 2024, 03:30 PM",
-    },
-  ];
-
-  const upcomingAssignments = [
-    {
-      title: "Modern Economics",
-      subject: "Economics 101",
-      dueDate: "2/15/2024",
-      dueTime: "11:59 PM",
-    },
-    {
-      title: "Modern Economics",
-      subject: "Economics 101",
-      dueDate: "2/15/2024",
-      dueTime: "11:59 PM",
-    },
-  ];
+  const navigate = useNavigate();
+  const handleOpenAssignment = (assignment) => {
+    navigate(`/assignments/${assignment.id}`);
+  };
 
   const filters = ["All", "Overdue", "Pending", "Submitted"];
 
@@ -236,15 +158,24 @@ const Assignments = () => {
 
                 <div className="flex gap-3">
                   {assignment.status == "pending" && (
-                    <button className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
+                    <button
+                      onClick={() => handleOpenAssignment(assignment)}
+                      className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2"
+                    >
                       <FileUp className="w-4 h-4" />
                       Submit Assignment
                     </button>
                   )}
-                  <button className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
-                    <Eye className="w-4 h-4" />
-                    View Details
-                  </button>
+                  {(assignment.status === "overdue" ||
+                    assignment.status === "submitted") && (
+                    <button
+                      onClick={() => handleOpenAssignment(assignment)}
+                      className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                    >
+                      <Eye className="w-4 h-4" />
+                      View Details
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
