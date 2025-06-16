@@ -33,14 +33,15 @@ const Navbar = () => {
     <div className="h-screen w-[250px] bg-[#FAFCFD] flex flex-col justify-between border-r">
       <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto">
         {menuItems.map(({ name, icon: Icon, path }) => {
-          const isActive = location.pathname === path;
+          const isActive = location.pathname.startsWith(path);
 
           return (
             <Link to={path} key={name}>
+            {console.log(isActive,path)}
               <li
                 className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
                   isActive
-                    ? "bg-[#04203E] text-white"
+                    ? "bg-[#04203E] text-white" 
                     : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
                 }`}
               >
