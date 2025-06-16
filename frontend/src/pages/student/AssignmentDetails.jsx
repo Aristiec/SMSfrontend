@@ -70,10 +70,10 @@ const AssignmentDetails = () => {
 
               {/* Example PDFs with bg-[#CFDCEB] */}
               <div className="space-y-2">
-                {["assignment.pdf", "assignment.pdf"].map((file, index) => (
+                {assignment.files?.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center  justify-between bg-[#CFDCEB]  p-3 rounded-lg"
+                    className="flex items-center justify-between bg-[#CFDCEB] p-3 rounded-lg"
                   >
                     <div className="flex items-center gap-2">
                       <File className="w-4 h-4 text-[#04203E]" />
