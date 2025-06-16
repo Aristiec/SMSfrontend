@@ -6,6 +6,7 @@ import CommentSection from "../../components/student/assignments/CommentSection"
 import SubmitButton from "../../components/student/assignments/SubmitButton";
 import assignments from "../../data/mockAssignments.js";
 import { ArrowLeft, Upload, File } from "lucide-react";
+import { motion } from "motion/react";
 
 const AssignmentDetails = () => {
   const { id } = useParams();
@@ -28,7 +29,13 @@ const AssignmentDetails = () => {
   const isSubmitted = assignment.status === "submitted";
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] p-4 text-[Inter]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
+      transition={{ duration: 0.4}}
+      className="min-h-screen bg-[#E9EEF4] p-4 text-[Inter]"
+    >
       <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl px-6 py-4 text-[#FAFCFD] font-[Inter] mx-auto">
         <h1 className="text-[24px] font-bold font-[Merriweather]">
           Assignments
@@ -131,7 +138,7 @@ const AssignmentDetails = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
