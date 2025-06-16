@@ -1,5 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Ban, ChevronDown, Clock, File } from "lucide-react";
+import {
+  Ban,
+  ChevronDown,
+  Clock,
+  File,
+  AlertCircle,
+  CheckCircle,
+  ChevronUp,
+} from "lucide-react";
 
 const AssignmentCard = ({ assignment }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,9 +55,15 @@ const AssignmentCard = ({ assignment }) => {
               </p>
             </div>
             <div className="flex items-center gap-2 mt-2 sm:mt-0">
-              <Clock className="w-5 h-5" />
+              {assignment.status === "overdue" ? (
+                <Ban className="w-4 h-4 text-[#EF4444]" />
+              ) : assignment.status === "pending" ? (
+                <AlertCircle className="w-4 h-4 text-[#F97316]" />
+              ) : (
+                <CheckCircle className="w-5 h-5 text-[#10B981] " />
+              )}
               <p
-                className="text-[16px] font-[600]"
+                className="text-[16px] font-[600] font-[Inter] leading-[20px] flex items-center"
                 style={{ color: getStatusColor() }}
               >
                 {assignment.status.charAt(0).toUpperCase() +
@@ -60,10 +74,24 @@ const AssignmentCard = ({ assignment }) => {
 
           {/* Middle Section */}
           <div className="flex items-center gap-6 flex-wrap text-[14px]">
-            <div className="flex items-center gap-1 text-[#1F1D1D]">
-              <Clock className="w-4 h-4" style={{ color: getStatusColor() }} />
+            <div
+              className={`flex items-center gap-1 ${
+                assignment.status === "overdue"
+                  ? "text-[#EF4444]"
+                  : "text-[#1F1D1D]"
+              } `}
+            >
+              <Clock
+                className="w-4 h-4"
+                style={{
+                  color:
+                    assignment.status === "overdue"
+                      ? "text-[#EF4444]"
+                      : "text-[#1F1D1D]",
+                }}
+              />
               <span className="font-[400]">Due:</span>
-              <span className="font-[400]">{assignment.dueDate}</span>
+              <span className={`font-[400] `}>{assignment.dueDate}</span>
             </div>
             <div className="flex items-center gap-1">
               <span className="font-[400] text-[#1F1D1D]">
@@ -89,19 +117,64 @@ const AssignmentCard = ({ assignment }) => {
             className="overflow-hidden transition-all duration-300 ease-in-out text-[#1F1D1D] text-[14px]"
           >
             {/* Replace this section with actual instructions/resources if available */}
-            <div className="pt-2 ">
-              <h1 className="font-bold">Assignment Instructions.</h1>
-              <p className="whitespace-pre-line">{assignment.instructions}</p>
+            <div className="flex flex-col gap-1 ">
+              <h3 className=" font-[700]  flex items-center ">
+                Assignment Instruction:
+              </h3>
+              <p className=" flex items-center">
+                Read the full play with focus on key scenes (witches,
+                soliloquies, Lady Macbeth’s arc, final act). Choose focus area:
+              </p>
+              <ul className="  list-disc list-inside">
+                <li>Theme (e.g., ambition, guilt, fate vs free will)</li>
+                <li>Character (e.g., Macbeth, Lady Macbeth)</li>
+                <li>
+                  Literary device (e.g., symbolism, motifs, foreshadowing)
+                </li>
+              </ul>
+              <p>
+                Review at least 3 academic sources (books, journals, essays).
+              </p>
+              <p>Summarize and analyze the views of each critic.</p>
+              <p>
+                Add your own interpretation and compare it with critics’ views.
+              </p>
+              <p>
+                Discuss modern relevance of the play or chosen theme/character.
+              </p>
+              <p>
+                Write 1000–1500 words, properly structured with intro, body, and
+                conclusion.
+              </p>
+              <p>Use quotes from the play to support analysis.</p>
+              <p>
+                Follow formatting rules: Times New Roman, 12pt, 1.5 spacing,
+                submit as PDF or Word.
+              </p>
+              <p>Include references (MLA/APA/Chicago style).</p>
             </div>
-            <div className="pt-2">
-              <p className="font-bold">Resources</p>
-              <div className="flex flex-col gap-[8px] pt-1">
-                <div className="flex gap-2 bg-[#CFDCEB] p-2 rounded">
-                  <File />
-                  <p className="text-[#04203E] text-[14px]">
-                    {assignment.file}
+            <div className="flex flex-col py-[12px] gap-[12px] font-[Inter]">
+              <p className="font-[700] text-[14px] leading-[24px] tracking-[0] flex items-center text-[#1F1D1D]">
+                Recourses
+              </p>
+              <div className="flex flex-col gap-[8px]">
+                {assignment.files && assignment.files.length > 0 ? (
+                  assignment.files.map((file, index) => (
+                    <div
+                      key={index}
+                      className="flex gap-[8px] rounded-[8px] p-[8px] bg-[#CFDCEB]"
+                    >
+                      <File />
+                      <p className="font-[400] text-[13.6px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                        {file}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="font-[400] text-[13.6px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                    No files available
                   </p>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -111,7 +184,11 @@ const AssignmentCard = ({ assignment }) => {
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-2 cursor-pointer w-fit"
           >
-            <ChevronDown className="w-5 h-5" />
+            {isOpen ? (
+              <ChevronUp className="w-5 h-5" />
+            ) : (
+              <ChevronDown className="w-5 h-5" />
+            )}
             <p className="text-[14px] font-[400] text-[#04203E]">
               {isOpen ? "View Less" : "View More"}
             </p>
