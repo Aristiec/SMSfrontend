@@ -35,10 +35,10 @@ const AssignmentDetails = () => {
         </h1>
       </header>
       <div className="bg-[#FAFCFD] mt-3 rounded-lg border-[#FAFCFD] mb-3">
-        <div className="w-full max-w-[1072px] mx-auto">
+        <div className="w-full  mx-auto px-4">
           <button
             onClick={() => navigate(-1)}
-            className="text-[#04203E] font-[Inter] text-[14px] flex items-center gap-2 mb-4 pt-6"
+            className="text-[#04203E] font-[Inter] text-[14px] flex items-center gap-2  pt-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Back

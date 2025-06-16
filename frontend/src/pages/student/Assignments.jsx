@@ -150,6 +150,16 @@ const Assignments = () => {
                     <span>Max Marks: {assignment.maxMarks}</span>
                   </div>
                 </div>
+                {assignment.status === "overdue" && (
+                  <div className="my-[8px]">
+                    <div className="flex rounded-[8px] gap-[8px] p-[8px] items-center bg-[#FEF2F2]">
+                      <Ban size={16} className="text-[#EF4444]" />
+                      <p className="font-[Inter] font-[400] text-[16px] leading-[0] text-center text-[#EF4444]">
+                        Late submissions are not allowed
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {assignment.submittedDate && (
                   <div className="text-sm text-gray-600 mb-4">
