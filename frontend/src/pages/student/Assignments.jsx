@@ -29,7 +29,7 @@ const Assignments = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const navigate = useNavigate();
   const handleOpenAssignment = (assignment) => {
-    navigate(`/assignments/${assignment.id}`);
+    navigate(`/student/assignments/${assignment.id}`);
   };
 
   const filters = ["All", "Overdue", "Pending", "Submitted"];
