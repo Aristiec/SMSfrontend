@@ -15,6 +15,7 @@ import grade from "../../assets/grade.svg";
 
 const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
   return (
+    
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
       className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
@@ -144,7 +145,9 @@ const Profile = () => {
 
   return (
     <>
-      <div className="mx-[16px] sm:mx-[20px] md:mx-[20px] lg:mx-[40px] mt-[20px] font-[Inter]">
+     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
+      <div className="flex flex-col px-4 gap-1 mt-4"> 
+      <div className="mx-[16px] sm:mx-[20px] md:mx-[20px]  font-[Inter]">
         {/* Header */}
         <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
           <div className="text-[#FAFCFD] font-bold text-[20px] md:text-[24px] leading-[28px]">
@@ -267,6 +270,8 @@ const Profile = () => {
             );
           })}
         </div>
+      </div>
+      </div>
       </div>
     </>
   );

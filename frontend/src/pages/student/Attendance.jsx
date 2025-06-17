@@ -66,7 +66,9 @@ const attendanceData = [
 
 const AttendanceTable = () => {
   return (
-    <div className="font-[Inter] flex  flex-col gap-6 px-3 mt-[20px] mx-[20px]">
+    <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]"> 
+    <div className="flex flex-col px-4 gap-1 mt-4">
+    <div className="font-[Inter] flex  flex-col gap-6 px-3">
       {/* Header */}
       <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
         <div className="text-white font-bold text-[24px] leading-[28px]">
@@ -240,6 +242,8 @@ const AttendanceTable = () => {
           discuss your attendance.
         </p>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

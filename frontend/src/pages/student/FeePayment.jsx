@@ -93,7 +93,9 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 
 const FeePayment = () => {
   return (
-    <div className="max-w-[1200px] mx-auto p-6 space-y-6">
+    <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]"> 
+      <div className="flex flex-col px-4 gap-1 mt-4"> 
+    <div className="max-w-[1200px]   space-y-6">
       {/* Header */}
       <div className="rounded-[12px] px-6 py-4 bg-[#04203E] text-white">
         <h2 className="text-2xl font-bold font-[Merriweather]">Fee Payment</h2>
@@ -149,6 +151,8 @@ const FeePayment = () => {
           <span>(₹12,000)</span>
         </button>
       </div>
+    </div>
+    </div>
     </div>
   );
 };
