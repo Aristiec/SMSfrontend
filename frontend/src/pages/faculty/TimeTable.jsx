@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TimetableHeader from "../../components/student/TimetableHeader";
 import { addWeeks, startOfWeek, getDay } from "date-fns";
 
-const TimetablePage = () => {
+const Timetable = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
 
   const days = [
@@ -90,4 +90,4 @@ const TimetablePage = () => {
   );
 };
 
-export default TimetablePage;
+export default Timetable;

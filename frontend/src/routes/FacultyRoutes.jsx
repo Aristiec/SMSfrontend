@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import FacultyLayout from "../layouts/FacultyLayout";
-import Timetable from "../pages/faculty/Timetable";
+import Timetable from "../pages/faculty/TimeTable";
 
 const FacultyRoutes = () => (
   <>
