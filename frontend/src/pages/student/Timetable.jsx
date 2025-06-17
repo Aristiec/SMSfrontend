@@ -30,7 +30,7 @@ const TimetablePage = () => {
   const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
+    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  mx-auto font-[Inter]">
       <TimetableHeader currentWeek={currentWeek} />
 
       <div className="flex justify-center p-4 lg:p-4">

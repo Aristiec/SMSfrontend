@@ -53,78 +53,80 @@ const Courses = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] mt-[20px] text-[Inter]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
-      {/* Header */}
-      <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-4 md:px-6 lg:px-8 text-[#FAFCFD] mx-auto">
-        <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
-          Courses Enrolled
-        </h1>
-      </header>
+    <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
+      <div className="flex flex-col px-4 gap-1 mt-4">
+        {/* Header */}
+        <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-4  text-[#FAFCFD]  ">
+          <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
+            Courses Enrolled
+          </h1>
+        </header>
 
-      {/* Table Header */}
-      <div className="bg-[#FAFCFD] rounded-2xl overflow-hidden mt-[12px] w-full max-w-7xl mx-auto px-[30px]">
-        <div className="hidden md:block w-full">
-          <div className="grid grid-cols-3 border-b border-[#1F1D1D] px-4 md:px-8 py-6">
-            <div className="text-[#1F1D1D] font-semibold text-[16px]">
-              Subjects
-            </div>
-            <div className="text-[#1F1D1D] font-semibold text-[16px] text-center">
-              Professors Assigned
-            </div>
-            <div className="text-[#1F1D1D] font-semibold text-[16px] text-right pr-4 md:pr-[60px]">
-              Syllabus
+        {/* Table Header */}
+        <div className="bg-[#FAFCFD] rounded-2xl overflow-hidden mt-[12px] w-full max-w-7xl mx-auto px-4">
+          <div className="hidden md:block w-full">
+            <div className="grid grid-cols-3 border-b border-[#1F1D1D] px-4 md:px-8 py-6">
+              <div className="text-[#1F1D1D] font-semibold text-[16px]">
+                Subjects
+              </div>
+              <div className="text-[#1F1D1D] font-semibold text-[16px] text-center">
+                Professors Assigned
+              </div>
+              <div className="text-[#1F1D1D] font-semibold text-[16px] text-right pr-4 md:pr-[60px]">
+                Syllabus
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Course Cards */}
-        <div className="flex flex-col items-center space-y-4 px-2 md:px-2 py-6">
-          {courses.map((course, index) => (
-            <div
-              key={index}
-              className="w-full max-w-7xl bg-[#FAFCFD] rounded-[12px] px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg"
-            >
-              {/* Subject Info */}
-              <div className="flex items-start md:items-center space-x-3 flex-1 mb-4 md:mb-0">
-                <div className="w-[28px] h-[28px] rounded-full bg-[#E9EEF4] flex items-center justify-center mt-1 md:mt-0">
-                  <Book className="w-[16px] h-[16px] text-[#04203E]" />
-                </div>
-                <div>
-                  <p className="font-medium text-[#1F1D1D]">{course.title}</p>
-                  <p className="text-sm font-bold text-[#1F1D1D]">
-                    {course.code} | Credits: {course.credits}
-                  </p>
-                </div>
-              </div>
-
-              {/* Professor Info */}
-              <div className="flex items-center flex-1 text-sm text-[#1F1D1D]  md:ml-20">
-                <div className="min-w-[40px] flex justify-center ">
-                  <div className="w-[28px] h-[28px] rounded-full bg-[#FFF4ED] flex items-center justify-center  ">
-                    <Users className="h-[16px] w-[16px] text-[#F97316] " />
+          {/* Course Cards */}
+          <div className="flex flex-col items-center space-y-4 px-2 md:px-2 py-6">
+            {courses.map((course, index) => (
+              <div
+                key={index}
+                className="w-full max-w-7xl bg-[#FAFCFD] rounded-[12px] px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg"
+              >
+                {/* Subject Info */}
+                <div className="flex items-start md:items-center space-x-3 flex-1 mb-4 md:mb-0">
+                  <div className="w-[28px] h-[28px] rounded-full bg-[#E9EEF4] flex items-center justify-center mt-1 md:mt-0">
+                    <Book className="w-[16px] h-[16px] text-[#04203E]" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1F1D1D]">{course.title}</p>
+                    <p className="text-sm font-bold text-[#1F1D1D]">
+                      {course.code} | Credits: {course.credits}
+                    </p>
                   </div>
                 </div>
-                <div className="text-[#1F1D1D] text-[16px] font-normal font-[Inter] pl-2">
-                  {course.professor}
+
+                {/* Professor Info */}
+                <div className="flex items-center flex-1 text-sm text-[#1F1D1D]  md:ml-20">
+                  <div className="min-w-[40px] flex justify-center ">
+                    <div className="w-[28px] h-[28px] rounded-full bg-[#FFF4ED] flex items-center justify-center  ">
+                      <Users className="h-[16px] w-[16px] text-[#F97316] " />
+                    </div>
+                  </div>
+                  <div className="text-[#1F1D1D] text-[16px] font-normal font-[Inter] pl-2">
+                    {course.professor}
+                  </div>
+                </div>
+
+                {/* Syllabus Download */}
+                <div className="flex justify-end items-center flex-1 mt-4 md:mt-0 md:justify-end">
+                  <button
+                    onClick={() => handleDownload(course.title)}
+                    className="flex items-center gap-[12px] text-[16px] text-[#04203E] underline"
+                  >
+                    <img
+                      src={SyllabusIcon}
+                      alt="Syllabus"
+                      className="w-[28px] h-[28px] rounded-full bg-[#FEF2F2] p-1"
+                    />
+                    <span>Download Pdf</span>
+                  </button>
                 </div>
               </div>
-
-              {/* Syllabus Download */}
-              <div className="flex justify-end items-center flex-1 mt-4 md:mt-0 md:justify-end">
-                <button
-                  onClick={() => handleDownload(course.title)}
-                  className="flex items-center gap-[12px] text-[16px] text-[#04203E] underline"
-                >
-                  <img
-                    src={SyllabusIcon}
-                    alt="Syllabus"
-                    className="w-[28px] h-[28px] rounded-full bg-[#FEF2F2] p-1"
-                  />
-                  <span>Download Pdf</span>
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
