@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { addWeeks, format } from "date-fns";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const TimetableHeader = ({ currentWeek }) => {
-  const date = addWeeks(new Date(), currentWeek);
+const TimetableHeader = () => {
+  const [currentWeek, setCurrentWeek] = useState(0); 
+
+  const date = addWeeks(new Date(), currentWeek); 
+
+  //  previous week
+  const handlePrevWeek = () => {
+    setCurrentWeek((prevWeek) => prevWeek - 1);
+  };
+
+  // next week
+  const handleNextWeek = () => {
+    setCurrentWeek((prevWeek) => prevWeek + 1);
+  };
 
   return (
     <div className="flex justify-center px-4 lg:px-4 mt-4">
@@ -14,7 +26,7 @@ const TimetableHeader = ({ currentWeek }) => {
             Class Timetable
           </div>
 
-          {/* Middle: Date  */}
+          {/* Middle: Date */}
           <div
             className="flex items-center justify-center"
             style={{
@@ -55,23 +67,28 @@ const TimetableHeader = ({ currentWeek }) => {
 
             {/* Icons */}
             <div className="flex items-center gap-4 ml-2">
+              {/* Back week */}
               <div
-                className="flex items-center justify-center rounded"
+                className="flex items-center justify-center rounded cursor-pointer"
                 style={{
                   width: "32px",
                   height: "32px",
                   backgroundColor: "#FFFFFF",
                 }}
+                onClick={handlePrevWeek}
               >
                 <FaChevronLeft className="text-[#04203E]" />
               </div>
+
+              {/* Next week */}
               <div
-                className="flex items-center justify-center rounded"
+                className="flex items-center justify-center rounded cursor-pointer"
                 style={{
                   width: "32px",
                   height: "32px",
                   backgroundColor: "#FFFFFF",
                 }}
+                onClick={handleNextWeek}
               >
                 <FaChevronRight className="text-[#04203E]" />
               </div>
