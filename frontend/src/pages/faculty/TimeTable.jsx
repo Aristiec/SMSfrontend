@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TimetableHeader from "../../components/student/TimetableHeader";
 import { addWeeks, startOfWeek, getDay } from "date-fns";
 
-const TimetablePage = () => {
+const Timetable = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
 
   const days = [
@@ -30,7 +30,7 @@ const TimetablePage = () => {
   const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  mx-auto font-[Inter]">
+    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
       <TimetableHeader currentWeek={currentWeek} />
 
       <div className="flex justify-center p-4 lg:p-4">
@@ -90,4 +90,4 @@ const TimetablePage = () => {
   );
 };
 
-export default TimetablePage;
+export default Timetable;

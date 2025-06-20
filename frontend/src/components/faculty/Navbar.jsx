@@ -15,42 +15,44 @@ import {
 
 // Menu definitions
 const menuItems = [
-  { name: "Dashboard", icon: Home, path: "/student/dashboard" },
-  { name: "Timetable", icon: Calendar, path: "/student/timetable" },
-  { name: "Courses", icon: BookOpen, path: "/student/courses" },
-  { name: "Notices", icon: Bell, path: "/student/notices" },
-  { name: "Assignments", icon: ClipboardCheck, path: "/student/assignments" },
-  { name: "Results", icon: ChartNoAxesColumn, path: "/student/results" },
-  { name: "Attendance", icon: UserCheck, path: "/student/attendance" },
-  { name: "Fee Payment", icon: CreditCard, path: "/student/fees" },
-  { name: "Profile", icon: FaRegUser, path: "/student/profile" },
+  { name: "Home", icon: Home, path: "/faculty/dashboard" },
+  { name: "MyCourses", icon: Calendar, path: "/" },
+  { name: "Students", icon: BookOpen, path: "/" },
+  { name: "Assignments", icon: Bell, path: "/" },
+  { name: "Grades", icon: ClipboardCheck, path: "/" },
+  { name: "Calendar", icon: ChartNoAxesColumn, path: "/" },
+  { name: "Attendance", icon: UserCheck, path: "/" },
+  { name: "Query", icon: CreditCard, path: "/" },
+  { name: "Report", icon: FaRegUser, path: "/" },
+  { name: "Fee Payment", icon: FaRegUser, path: "/" },
+  { name: "Profile", icon: FaRegUser, path: "/" },
+  { name: "Timetable", icon: FaRegUser, path: "/faculty/timetable" },
 ];
 
 const Navbar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-full bg-[#FAFCFD] flex flex-col justify-between border-r ">
-      <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto overflow-x-hidden">
+    <div className="h-screen w-[250px] bg-[#FAFCFD] flex flex-col justify-between border-r">
+      <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto">
         {menuItems.map(({ name, icon: Icon, path }) => {
-          const isActive = location.pathname.startsWith(path);
+          const isActive = location.pathname === path;
 
           return (
             <Link to={path} key={name}>
-            {console.log(isActive,path)}
               <li
                 className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
                   isActive
-                    ? "bg-[#04203E] text-white" 
+                    ? "bg-[#04203E] text-white"
                     : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
                 }`}
               >
                 <div
-                  className={`flex items-center gap-3 px-5 text-[16px] ${
+                  className={`flex items-center gap-3 px-5 text-[14px] ${
                     isActive ? "translate-x-4" : ""
                   } transition-all duration-200`}
                 >
-                  <Icon className="w-[20px] h-[20px]" />
+                  <Icon className="w-[16px] h-[16px]" />
                   {name}
                 </div>
               </li>

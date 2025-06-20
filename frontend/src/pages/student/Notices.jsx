@@ -118,81 +118,83 @@ const Notices = () => {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <div className="rounded-[12px] px-6 py-4 bg-[#04203E] flex items-center">
-        <h2 className="text-[#FAFCFD] font-bold text-2xl md:text-3xl leading-[28px] tracking-[-0.01em] font-[Merriweather]">
-          Notices & Announcements
-        </h2>
-      </div>
+    <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
+      <div className="flex flex-col px-4 gap-1 mt-4">
+        {/* Header */}
+        <div className="rounded-[12px] px-6 py-4 bg-[#04203E] flex items-center h-[68px] ">
+          <h2 className="text-[#FAFCFD] font-bold text-2xl md:text-3xl leading-[28px] tracking-[-0.01em] font-[Merriweather]">
+            Notices & Announcements
+          </h2>
+        </div>
 
-      {/* Notices Container */}
-      <div className="mt-8 space-y-6">
-        {noticesData.map((notice) => {
-          const isExpanded = expandedIds.includes(notice.id);
-          const shouldTruncate =
-            notice.plaindescription?.split(" ").length > 30;
+        {/* Notices Container */}
+        <div className="mt-5 space-y-6">
+          {noticesData.map((notice) => {
+            const isExpanded = expandedIds.includes(notice.id);
+            const shouldTruncate =
+              notice.plaindescription?.split(" ").length > 30;
 
-          return (
-            <div
-              key={notice.id}
-              className={`${
-                notice.bgColor || "bg-[#FAFCFD]"
-              } shadow-md rounded-[12px] p-6 flex flex-col gap-6 `}
-              onClick={() => toggleExpand(notice.id)}
-            >
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                  {notice.icon}
-                  <span
-                    className={`${notice.labelColor} text-sm md:text-base font-medium font-[Inter]`}
-                  >
-                    {notice.type}
+            return (
+              <div
+                key={notice.id}
+                className={`${
+                  notice.bgColor || "bg-[#FAFCFD]"
+                } shadow-md rounded-[12px] p-6 flex flex-col gap-6 `}
+                onClick={() => toggleExpand(notice.id)}
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    {notice.icon}
+                    <span
+                      className={`${notice.labelColor} text-sm md:text-base font-medium font-[Inter]`}
+                    >
+                      {notice.type}
+                    </span>
+                  </div>
+                  <span className="text-[#1F1D1D] text-[12px] md:text-[12px] font-normal font-[Inter]">
+                    {notice.date}
                   </span>
                 </div>
-                <span className="text-[#1F1D1D] text-[12px] md:text-[12px] font-normal font-[Inter]">
-                  {notice.date}
-                </span>
-              </div>
 
-              <div className="flex flex-col gap-3">
-                <h3 className="text-[#1F1D1D] text-lg md:text-xl leading-[28px] font-semibold font-[Inter]">
-                  {notice.title}
-                </h3>
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-[#1F1D1D] text-lg md:text-xl leading-[28px] font-semibold font-[Inter]">
+                    {notice.title}
+                  </h3>
 
-                <div
-                  className={`
+                  <div
+                    className={`
     overflow-hidden transition-all duration-800 ease-in-out
     ${isExpanded ? "max-h-[1000px] opacity-100" : "max-h-[72px] opacity-90"}
   `}
-                >
-                  <p className="w-full max-w-[986px] text-[#1F1D1D] text-base leading-[24px] font-normal font-[Inter] text-justify">
-                    {isExpanded || !shouldTruncate
-                      ? notice.description
-                      : getPreviewText(notice.plaindescription)}
+                  >
+                    <p className="w-full max-w-[986px] text-[#1F1D1D] text-base leading-[24px] font-normal font-[Inter] text-justify">
+                      {isExpanded || !shouldTruncate
+                        ? notice.description
+                        : getPreviewText(notice.plaindescription)}
 
-                    {shouldTruncate && !isExpanded && (
-                      <span className="text-[#0077FF] ml-1 cursor-pointer inline font-medium">
-                        read more
-                      </span>
-                    )}
-                  </p>
+                      {shouldTruncate && !isExpanded && (
+                        <span className="text-[#0077FF] ml-1 cursor-pointer inline font-medium">
+                          read more
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-1">
+                    <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
+                      Posted by:
+                    </span>
+                    <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
+                      Academic Office
+                    </span>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex justify-between items-center">
-                <div className="flex gap-1">
-                  <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
-                    Posted by:
-                  </span>
-                  <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
-                    Academic Office
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
