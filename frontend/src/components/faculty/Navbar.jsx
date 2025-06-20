@@ -17,18 +17,22 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const menuItems = [
   { name: "Home", icon: Home, path: "/faculty/dashboard" },
-  { name: "MyCourses", icon: BookOpen, path: "/" },
-  { name: "Students", icon: GraduationCap, path: "/" },
-  { name: "Assignments", icon: MdOutlineAssignmentTurnedIn, path: "/" },
+  { name: "MyCourses", icon: BookOpen, path: "/faculty/courses" },
+  { name: "Students", icon: GraduationCap, path: "/faculty/students" },
+  {
+    name: "Assignments",
+    icon: MdOutlineAssignmentTurnedIn,
+    path: "/faculty/assignments",
+  },
   { name: "Attendance", icon: UserCheck, path: "/" },
-  { name: "Report", icon: MdReportGmailerrorred, path: "/" },
-  { name: "Fee Payment", icon: FiCreditCard, path: "/" },
+  { name: "Report", icon: MdReportGmailerrorred, path: "/faculty/report" },
+  { name: "Fee Payment", icon: FiCreditCard, path: "/faculty/fees" },
   { name: "Schedule", icon: Calendar },
 ];
 
 const scheduleMenuItems = [
-  { name: "Weekly Schedule", path: "/" },
-  { name: "Daily Schedule", path: "/faculty/timetable" },
+  { name: "Weekly Schedule", path: "/faculty/timetable" },
+  { name: "Daily Schedule", path: "/faculty/dailytimetable" },
 ];
 
 const Navbar = () => {
