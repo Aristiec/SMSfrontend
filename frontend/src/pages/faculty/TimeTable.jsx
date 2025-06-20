@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TimetableHeader from "../../components/student/TimetableHeader";
+import TimetableHeader from "../../components/faculty/TimetableHeader";
 import { addWeeks, startOfWeek, getDay } from "date-fns";
 
 const Timetable = () => {

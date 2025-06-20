@@ -1,28 +1,70 @@
-import React, { useState, useRef, useEffect } from 'react';
-import ViewDetails from '../../components/student/assignments/ViewDeatils';
+import React from "react";
+import calendarIcon from "../../assets/calendar.svg";
+import progressBar from "../../assets/progressBar.svg";
+import checkIcon from "../../assets/completed.svg";
+import missedIcon from "../../assets/missedIcon.svg";
 
-const Attendance = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const contentRef = useRef(null);
-  const [maxHeight, setMaxHeight] = useState('0px');
+const attendanceData = [
+  {
+    subject: "Data Structures and Algorithms",
+    attended: 44,
+    total: 50,
+    missed: 6,
+    attendance: 88.0,
+    status: "Outstanding",
+  },
+  {
+    subject: "Operating Systems",
+    attended: 33,
+    total: 45,
+    missed: 12,
+    attendance: 73.3,
+    status: "Poor",
+  },
+  {
+    subject: "Database Management System",
+    attended: 24,
+    total: 45,
+    missed: 21,
+    attendance: 53.4,
+    status: "Critical",
+  },
+  {
+    subject: "Computer Networks",
+    attended: 24,
+    total: 40,
+    missed: 12,
+    attendance: 70,
+    status: "Poor",
+  },
+  {
+    subject: "Software Engineering",
+    attended: 36,
+    total: 45,
+    missed: 9,
+    attendance: 80,
+    status: "Satisfactory",
+  },
+  {
+    subject: "Artificial Intelligence",
+    attended: 27,
+    total: 45,
+    missed: 18,
+    attendance: 59.9,
+    status: "Critical",
+  },
+  {
+    subject: "Web Development",
+    attended: 34,
+    total: 45,
+    missed: 11,
+    attendance: 75.5,
+    status: "Satisfactory",
+  },
+];
 
-  const content = `
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-  `;
-
-  useEffect(() => {
-    if (isOpen) {
-      setMaxHeight(`${contentRef.current.scrollHeight}px`);
-    } else {
-      setMaxHeight('0px');
-    }
-  }, [isOpen]);
-
+const AttendanceTable = () => {
   return (
-
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
         {/* Header */}
@@ -203,4 +245,4 @@ const Attendance = () => {
   );
 };
 
-export default Attendance;
+export default AttendanceTable;
