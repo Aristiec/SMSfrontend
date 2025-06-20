@@ -145,133 +145,131 @@ const Profile = () => {
 
   return (
     <>
-     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
-      <div className="flex flex-col px-4 gap-1 mt-4"> 
-      <div className="mx-[16px] sm:mx-[20px] md:mx-[20px]  font-[Inter]">
-        {/* Header */}
-        <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
-          <div className="text-[#FAFCFD] font-bold text-[20px] md:text-[24px] leading-[28px]">
-            Student Profile
-          </div>
-        </div>
-
-        {/* Profile Card */}
-        <div className="w-full h-[144px] bg-[#04203E] rounded-[12px] mt-[25px] p-[24px] flex items-center gap-[32px] shadow-[0px_4px_8px_0px_#00000033]">
-          {/* Left Image */}
-          <img
-            src={profileIcon}
-            className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] rounded-full object-cover"
-          />
-
-          {/* Right Info */}
-          <div className="flex flex-col gap-[12px]">
-            {/* Name */}
-            <div className="text-[#FAFCFD] font-bold text-[24px] leading-[36px] font-inter">
-              Asha Singh
-            </div>
-
-            {/* Course and ID */}
-            <div className="flex items-center gap-[12px]">
-              <img
-                src={courseIcon}
-                alt="Course Icon"
-                className="w-[24px] h-[24px]"
-              />
-              <span
-                className="text-[#FAFCFD] text-[14px] md:text-[16px]
- font-normal font-inter"
-              >
-                Course: Computer Science
-              </span>
-              <span
-                className="text-[#FAFCFD] text-[14px] md:text-[16px]
- font-normal font-inter"
-              >
-                Student ID: 2023BT01
-              </span>
+      <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
+        <div className="flex flex-col px-4  mt-4">
+          {/* Header */}
+          <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
+            <div className="text-[#FAFCFD] font-bold text-[20px] md:text-[24px] leading-[28px]">
+              Student Profile
             </div>
           </div>
-        </div>
 
-        {/* Personal Details Section */}
-        <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-          <div
-            className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[14px] md:text-[16px]
+          {/* Profile Card */}
+          <div className="w-full h-[144px] bg-[#04203E] rounded-[12px] mt-[25px] p-[24px] flex items-center gap-[32px] shadow-[0px_4px_8px_0px_#00000033]">
+            {/* Left Image */}
+            <img
+              src={profileIcon}
+              className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] rounded-full object-cover"
+            />
+
+            {/* Right Info */}
+            <div className="flex flex-col gap-[12px]">
+              {/* Name */}
+              <div className="text-[#FAFCFD] font-bold text-[24px] leading-[36px] font-inter">
+                Asha Singh
+              </div>
+
+              {/* Course and ID */}
+              <div className="flex items-center gap-[12px]">
+                <img
+                  src={courseIcon}
+                  alt="Course Icon"
+                  className="w-[24px] h-[24px]"
+                />
+                <span
+                  className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+                >
+                  Course: Computer Science
+                </span>
+                <span
+                  className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+                >
+                  Student ID: 2023BT01
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Personal Details Section */}
+          <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
+            <div
+              className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[14px] md:text-[16px]
  leading-[28px]"
-          >
-            Personal Details
+            >
+              Personal Details
+            </div>
           </div>
-        </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-          {details.map((detail, idx) => {
-            const isLastOddItem = isOdd && idx === lastIndex;
-            return (
-              <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                <DetailCard {...detail} />
-              </div>
-            );
-          })}
-        </div>
-        {/*  Guardian Details Section */}
-
-        <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
-          <div className="text-[#FAFCFD] font-semibold text-[16px] md:text-[18px] leading-[28px]">
-            Guardian Details
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+            {details.map((detail, idx) => {
+              const isLastOddItem = isOdd && idx === lastIndex;
+              return (
+                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
+                  <DetailCard {...detail} />
+                </div>
+              );
+            })}
           </div>
-        </div>
+          {/*  Guardian Details Section */}
 
-        {/* map  guardian1 */}
+          <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
+            <div className="text-[#FAFCFD] font-semibold text-[16px] md:text-[18px] leading-[28px]">
+              Guardian Details
+            </div>
+          </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-          {guardianDetails.map((detail, idx) => {
-            const isLastOddItem = isOdd && idx === lastIndex;
-            return (
-              <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                <DetailCard {...detail} />
-              </div>
-            );
-          })}
-        </div>
+          {/* map  guardian1 */}
 
-        <hr className="text-[#04203E33]" />
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+            {guardianDetails.map((detail, idx) => {
+              const isLastOddItem = isOdd && idx === lastIndex;
+              return (
+                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
+                  <DetailCard {...detail} />
+                </div>
+              );
+            })}
+          </div>
 
-        {/* gaurdian2  */}
+          <hr className="text-[#04203E33]" />
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-          {guardianDetails2.map((detail, idx) => {
-            const isLastOddItem = isOdd && idx === lastIndex;
-            return (
-              <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                <DetailCard {...detail} />
-              </div>
-            );
-          })}
-        </div>
+          {/* gaurdian2  */}
 
-        <div
-          className="w-full
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+            {guardianDetails2.map((detail, idx) => {
+              const isLastOddItem = isOdd && idx === lastIndex;
+              return (
+                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
+                  <DetailCard {...detail} />
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className="w-full
  h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
-        >
-          <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[16px] leading-[28px]">
-            Academic Details
+          >
+            <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[16px] leading-[28px]">
+              Academic Details
+            </div>
+          </div>
+
+          {/* academic details */}
+
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+            {AcademicDetails.map((detail, idx) => {
+              const isLastOddItem = isOdd && idx === lastIndex;
+              return (
+                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
+                  <DetailCard {...detail} />
+                </div>
+              );
+            })}
           </div>
         </div>
-
-        {/* academic details */}
-
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-          {AcademicDetails.map((detail, idx) => {
-            const isLastOddItem = isOdd && idx === lastIndex;
-            return (
-              <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                <DetailCard {...detail} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      </div>
       </div>
     </>
   );

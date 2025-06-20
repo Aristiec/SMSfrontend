@@ -19,9 +19,7 @@ const Header = () => {
             alt="empty Profile Icon"
             className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD]"
           />
-          <span
-            className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]"
-          >
+          <span className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]">
             Faculty Dashboard
           </span>
         </div>
@@ -60,5 +58,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

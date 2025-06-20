@@ -12,7 +12,7 @@ const CommentSection = ({ assignmentId }) => {
   };
 
   return (
-    <div className="mb-6 w-full max-w-[1024px] mx-auto ">
+    <div className="mb-6 w-full px-2 mx-auto ">
       <h3 className="text-[16px] font-[Inter] font-medium text-[#1F1D1D] mb-5">
         Comments (Optional)
       </h3>
