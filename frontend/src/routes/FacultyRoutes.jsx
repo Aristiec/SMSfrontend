@@ -1,12 +1,16 @@
+import React from "react";
 import { Route } from "react-router-dom";
 import FacultyLayout from "../layouts/FacultyLayout";
-import Timetable from "../pages/faculty/Timetable";
+import Timetable from "../pages/faculty/TimeTable";
 
 const FacultyRoutes = () => (
-  <Route path="/faculty" element={<FacultyLayout />}>
-    <Route index element={<Timetable />} />
-    <Route path="timetable" element={<Timetable />} />
-  </Route>
+  <>
+    <Route path="/faculty" element={<FacultyLayout />}>
+      <Route index element={<Timetable />} /> {/* /faculty */}
+      <Route path="timetable" element={<Timetable />} />{" "}
+      {/* /faculty/timetable */}
+    </Route>
+  </>
 );
 
 export default FacultyRoutes;
