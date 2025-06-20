@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+
 import {
   Ban,
   ChevronDown,
@@ -21,6 +22,7 @@ const AssignmentCard = ({ assignment }) => {
       setMaxHeight("0px");
     }
   }, [isOpen]);
+
 
   const getStatusColor = () => {
     switch (assignment.status) {
@@ -71,6 +73,7 @@ const AssignmentCard = ({ assignment }) => {
               </p>
             </div>
           </div>
+
 
           {/* Middle Section */}
           <div className="flex items-center gap-6 flex-wrap text-[14px]">
@@ -153,11 +156,13 @@ const AssignmentCard = ({ assignment }) => {
               </p>
               <p>Include references (MLA/APA/Chicago style).</p>
             </div>
+
             <div className="flex flex-col py-[12px] gap-[12px] font-[Inter]">
               <p className="font-[700] text-[14px] leading-[24px] tracking-[0] flex items-center text-[#1F1D1D]">
                 Recourses
               </p>
               <div className="flex flex-col gap-[8px]">
+
                 {assignment.files && assignment.files.length > 0 ? (
                   assignment.files.map((file, index) => (
                     <div
@@ -179,11 +184,14 @@ const AssignmentCard = ({ assignment }) => {
             </div>
           </div>
 
+
           {/* Toggle Button */}
+
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-2 cursor-pointer w-fit"
           >
+
             {isOpen ? (
               <ChevronUp className="w-5 h-5" />
             ) : (
@@ -195,8 +203,9 @@ const AssignmentCard = ({ assignment }) => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };
 
-export default AssignmentCard;
+export default ViewDetails;
