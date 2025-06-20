@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Download,
   GraduationCap,
@@ -47,6 +47,19 @@ const previousSemesters = [
 ];
 
 const Results = () => {
+  const [activeSemester, setActiveSemester] = useState("Sem 8");
+
+  const semesters = [
+    "Sem 8",
+    "Sem 7",
+    "Sem 6",
+    "Sem 5",
+    "Sem 4",
+    "Sem 3",
+    "Sem 2",
+    "Sem 1",
+  ];
+
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
@@ -55,13 +68,37 @@ const Results = () => {
           <div className="flex items-center gap-2">
             <GraduationCap className="w-6 h-6" />
             <h1 className="text-[24px] font-semibold font-[Merriweather]">
-              Results
+              Resultss
             </h1>
           </div>
-          <button className="bg-[#FAFCFD] h-[40px] font-[Inter] text-[12px] text-[#04203E] px-4 py-2 rounded-lg flex items-center gap-2 ">
+          <button className="bg-[#FAFCFD] h-[40px] font-[Inter] text-[12px] text-[#04203E] px-4 py-2 rounded-lg flex items-center gap-2">
             <Download className="w-4 h-4" />
             Download Report Card
           </button>
+        </div>
+
+        {/* Semester Selection */}
+        <div
+          className="flex items-center gap-[16px] px-[24px] py-[12px] rounded-[8px] shadow-sm"
+          style={{ background: "#FAFCFD", boxShadow: "0px 0px 8px 0px #0000001F" }}
+        >
+          {semesters.map((sem) => (
+            <div
+              key={sem}
+              onClick={() => setActiveSemester(sem)}
+              className={`w-[66px] h-[40px] flex items-center justify-center rounded-[8px] cursor-pointer ${
+                activeSemester === sem ? "bg-[#04203E]" : "bg-white border border-[#04203E]"
+              }`}
+            >
+              <span
+                className={`text-[14px] font-[400] leading-[24px] font-[Inter] ${
+                  activeSemester === sem ? "text-[#FAFCFD]" : "text-[#04203E]"
+                }`}
+              >
+                {sem}
+              </span>
+            </div>
+          ))}
         </div>
 
         {/* Current Results Section */}
