@@ -42,6 +42,7 @@ const AssignmentDetails = () => {
         </h1>
       </header>
       <div className="bg-[#FAFCFD] mt-3 rounded-lg border-[#FAFCFD] mb-3">
+
         <div className="w-full  mx-auto px-4">
           <button
             onClick={() => navigate(-1)}
@@ -69,7 +70,7 @@ const AssignmentDetails = () => {
 
           {/* Submitted Section - Show uploaded files and Unsubmit Button */}
           {isSubmitted && (
-            <div className="w-full max-w-[1072px] mx-auto px-3 ">
+            <div className="w-full  mx-auto px-3 ">
               {/* Uploaded Files Display */}
               <h2 className="text-[16px] font-medium text-[#1F1D1D] mb-4">
                 Uploaded Files
@@ -109,11 +110,11 @@ const AssignmentDetails = () => {
 
           {/* Submit Button for Pending Assignments */}
           {(isPending || isOverdue) && (
-            <div className="mt-6 mb-6 w-full max-w-[1024px] mx-auto px-4">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="my-6  w-full  mx-auto px-4">
+              <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between  gap-3">
                 {/* Note for Overdue Assignments */}
                 {isOverdue && (
-                  <p className="text-sm text-[#1F1D1D] font-normal md:text-right w-full md:w-[60%] -ml-[60px]">
+                  <p className="text-sm text-[#1F1D1D] font-normal  w-full  ">
                     <strong>Note:</strong> Late submissions are not allowed.
                     Please contact your instructor for guidance.
                   </p>
@@ -121,7 +122,7 @@ const AssignmentDetails = () => {
 
                 {/* Submit Button — always visible for both pending and overdue */}
                 <div
-                  className={`w-full md:w-auto ${
+                  className={`w-full flex justify-end ${
                     isPending ? "md:ml-auto text-right mb-3" : "text-left mb-3"
                   }`}
                 >

@@ -18,7 +18,7 @@ const UploadSection = ({ assignment, disabled, onFileUpload }) => {
   return (
     <div className="p-4">
       {(assignment.status === "pending" || isOverdue) && (
-        <div className="mb-6 w-full max-w-[1024px] mx-auto">
+        <div className="mb-6 w-full  mx-auto">
           <h3 className="text-[16px] font-[Inter] font-medium text-[#1F1D1D] mb-5">
             Upload Files
           </h3>
