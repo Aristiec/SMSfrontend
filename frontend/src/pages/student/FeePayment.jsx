@@ -93,61 +93,65 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 
 const FeePayment = () => {
   return (
-    <div className="max-w-[1200px] mx-auto p-6 space-y-6">
-      {/* Header */}
-      <div className="rounded-[12px] px-6 py-4 bg-[#04203E] text-white">
-        <h2 className="text-2xl font-bold font-[Merriweather]">Fee Payment</h2>
-      </div>
-
-      {/* Summary */}
-      <div className="bg-[#FAFCFD] p-6 rounded-[12px] shadow-md flex flex-col lg:flex-row justify-between gap-6">
-        <div className="flex-1 space-y-1">
-          <div className="text-base font-medium">Payment Summary</div>
-          <p className="text-sm">
-            Student: Asha Singh | Class: CS | Student ID: 1RUB203020
-          </p>
+    <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
+      <div className="flex flex-col px-4 gap-4 mt-4">
+        {/* Header */}
+        <div className="rounded-[12px] px-6 py-4 bg-[#04203E] text-white">
+          <h2 className="text-2xl font-bold font-[Merriweather]">
+            Fee Payment
+          </h2>
         </div>
 
-        <div className="flex flex-col gap-2 w-full lg:w-[338px]">
-          <div className="flex justify-between border border-[#04203E] rounded-md px-4 py-2 bg-[#FAFCFD]">
-            <span className="text-[#04203E] text-sm font-medium">
-              Total Paid
-            </span>
-            <span className="text-[#04203E] text-base font-medium">
-              ₹26,000
-            </span>
+        {/* Summary */}
+        <div className="bg-[#FAFCFD] p-6 rounded-[12px] shadow-md flex flex-col lg:flex-row justify-between gap-6">
+          <div className="flex-1 space-y-1">
+            <div className="text-base font-medium">Payment Summary</div>
+            <p className="text-sm">
+              Student: Asha Singh | Class: CS | Student ID: 1RUB203020
+            </p>
           </div>
-          <div className="flex justify-between border border-[#04203E] rounded-md px-4 py-2 bg-[#FAFCFD]">
-            <span className="text-[#04203E] text-sm font-medium">
-              Total Pending
-            </span>
-            <span className="text-[#04203E] text-base font-medium">
-              ₹12,000
-            </span>
+
+          <div className="flex flex-col gap-2 w-full lg:w-[338px]">
+            <div className="flex justify-between border border-[#04203E] rounded-md px-4 py-2 bg-[#FAFCFD]">
+              <span className="text-[#04203E] text-sm font-medium">
+                Total Paid
+              </span>
+              <span className="text-[#04203E] text-base font-medium">
+                ₹26,000
+              </span>
+            </div>
+            <div className="flex justify-between border border-[#04203E] rounded-md px-4 py-2 bg-[#FAFCFD]">
+              <span className="text-[#04203E] text-sm font-medium">
+                Total Pending
+              </span>
+              <span className="text-[#04203E] text-base font-medium">
+                ₹12,000
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Fee Items */}
-      <div className="space-y-6">
-        {feeData.map((fee, index) => (
-          <FeeTab
-            key={index}
-            title={fee.title}
-            type={fee.type}
-            amount={fee.amount}
-            status={fee.status}
-            date={fee.date}
-          />
-        ))}
-      </div>
+        {/* Fee Items */}
+        <div className="space-y-6">
+          {feeData.map((fee, index) => (
+            <FeeTab
+              key={index}
+              title={fee.title}
+              type={fee.type}
+              amount={fee.amount}
+              status={fee.status}
+              date={fee.date}
+            />
+          ))}
+        </div>
 
-      {/* Pay All Dues Button */}
-      <div className="flex justify-end">
-        <button className="bg-[#04203E] text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium">
-          <span>Pay All Dues</span>
-          <span>(₹12,000)</span>
-        </button>
+        {/* Pay All Dues Button */}
+        <div className="flex justify-end">
+          <button className="bg-[#04203E] text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium">
+            <span>Pay All Dues</span>
+            <span>(₹12,000)</span>
+          </button>
+        </div>
       </div>
     </div>
   );
