@@ -40,7 +40,7 @@ const Navbar = () => {
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
 
   return (
-    <div className="h-full w-[250px] bg-[#FAFCFD] flex flex-col justify-between border-r">
+    <div className="h-full w-[250px] bg-[#FAFCFD] flex flex-col justify-between ">
       <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto">
         {menuItems.map(({ name, icon: Icon, path }) => {
           const isActive = location.pathname === path;
