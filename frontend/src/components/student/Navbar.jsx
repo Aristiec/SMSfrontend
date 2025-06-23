@@ -16,7 +16,7 @@ import {
 // Menu definitions
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/student/dashboard" },
-  { name: "Timetable", icon: Calendar, path: "/student/timetable" },
+  { name: "Schedule", icon: Calendar, path: "/student/timetable" },
   { name: "Courses", icon: BookOpen, path: "/student/courses" },
   { name: "Notices", icon: Bell, path: "/student/notices" },
   { name: "Assignments", icon: ClipboardCheck, path: "/student/assignments" },
@@ -37,11 +37,11 @@ const Navbar = () => {
 
           return (
             <Link to={path} key={name}>
-            {console.log(isActive,path)}
+              {console.log(isActive, path)}
               <li
                 className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
                   isActive
-                    ? "bg-[#04203E] text-white" 
+                    ? "bg-[#04203E] text-white"
                     : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
                 }`}
               >
