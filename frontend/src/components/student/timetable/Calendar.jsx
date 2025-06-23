@@ -8,6 +8,10 @@ const Calendar = () => {
   });
   const [selectedDay, setSelectedDay] = useState(null);
   const [eventInfo, setEventInfo] = useState(null);
+  const daysInMonth = 30; // June 2025 has 30 days
+  const startDay = new Date(
+    `${currentMonth.month} 1, ${currentMonth.year}`
+  ).getDay(); // 0=Sun, ..., 6=Sat
 
   const events = {
     11: {
@@ -52,11 +56,31 @@ const Calendar = () => {
     let base =
       "w-[64px] h-[78px] pt-[8px] pr-[8px] pb-[52px] pl-[48px] gap-[10px] rounded border text-[12px] font-medium leading-[18px] text-right align-middle font-[Inter] flex items-start justify-end cursor-pointer transition-colors";
 
-    if (events[date]) {
-      const type = events[date].type;
+    const isSelected = date === selectedDay;
+    const event = events[date];
+
+    if (event) {
+      const type = event.type;
+
+      // Highlight selected with background
+      if (isSelected) {
+        if (type === "exam")
+          return base + " border-[#0077FF] text-white bg-[#0077FF]";
+        if (type === "holiday")
+          return base + " border-[#EF4444] text-white bg-[#EF4444]";
+        if (type === "event")
+          return base + " border-[#10B981] text-white bg-[#10B981]";
+      }
+
+      // Default event styling without selection
       if (type === "exam") return base + " border-[#0077FF] text-[#0077FF]";
       if (type === "holiday") return base + " border-[#EF4444] text-[#EF4444]";
       if (type === "event") return base + " border-[#10B981] text-[#10B981]";
+    }
+
+    // For regular days
+    if (isSelected) {
+      return base + " border-[#1F1D1D] text-[#1F1D1D]";
     }
 
     return base + " border-[#1F1D1D] text-[#1F1D1D]";
@@ -69,19 +93,58 @@ const Calendar = () => {
 
   const renderDays = () => {
     const days = [];
-    for (let i = 1; i <= 30; i++) {
+
+    // Previous month's trailing days
+    for (let i = startDay - 1; i >= 0; i--) {
       days.push(
-        <div key={i} onClick={() => handleClick(i)} className={getDayStyle(i)}>
+        <div
+          key={`prev-${i}`}
+          className={`w-[64px] h-[78px] pt-[8px] pr-[8px] pb-[52px] pl-[48px] gap-[10px] rounded border border-[#D1D5DB] text-[12px] font-medium leading-[18px] text-right align-middle font-[Inter] flex items-start justify-end opacity-40 cursor-default`}
+        >
+          {new Date(currentMonth.year, 5, -i).getDate()} {/* Previous month */}
+        </div>
+      );
+    }
+
+    // Current month days
+    for (let i = 1; i <= daysInMonth; i++) {
+      const date = new Date(currentMonth.year, 5, i); // June = 5 (0-based)
+      const isSunday = date.getDay() === 0;
+
+      days.push(
+        <div
+          key={i}
+          onClick={() => handleClick(i)}
+          className={`${getDayStyle(i)} ${
+            isSunday ? "text-[#EF4444] border-[#EF4444]" : ""
+          }`}
+        >
           {i}
         </div>
       );
     }
+
+    // Next month's leading days
+    const totalCells = startDay + daysInMonth;
+    const nextDaysCount = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+
+    for (let i = 1; i <= nextDaysCount; i++) {
+      days.push(
+        <div
+          key={`next-${i}`}
+          className={`w-[64px] h-[78px] pt-[8px] pr-[8px] pb-[52px] pl-[48px] gap-[10px] rounded border border-[#D1D5DB] text-[12px] font-medium leading-[18px] text-right align-middle font-[Inter] flex items-start justify-end opacity-40 cursor-default`}
+        >
+          {i}
+        </div>
+      );
+    }
+
     return days;
   };
 
   return (
     <div className="w-[552px] h-[808px] mx-auto p-4 bg-[#FAFCFD] rounded-lg shadow border border-gray-200 flex flex-col">
-      <h2 className="text-lg font-bold text-gray-800 mb-4 mt-2">
+      <h2 className="text-lg font-bold text-[#1F1D1D] mb-4 mt-2">
         Academic Calendar
       </h2>
 
@@ -101,8 +164,13 @@ const Calendar = () => {
 
       {/* Weekday Header */}
       <div className="grid grid-cols-7 gap-[6px] border-b border-gray-300 pb-2 mb-2 text-[12px] text-[#1F1D1D] font-semibold">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-          <div key={day} className="text-center font-[Inter]">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day, index) => (
+          <div
+            key={day}
+            className={`text-center font-[Inter] ${
+              index === 0 ? "text-red-500" : "text-[#1F1D1D]"
+            }`}
+          >
             {day}
           </div>
         ))}
@@ -123,27 +191,31 @@ const Calendar = () => {
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row justify-between gap-6">
-                {eventInfo.sessions.map((session, index) => (
-                  <div
-                    key={index}
-                    className="flex-1 flex flex-col sm:flex-row items-start gap-4 sm:gap-8 border-r last:border-none pr-4 last:pr-0"
-                  >
-                    {/* Left: Time */}
-                    <div className="text-sm text-gray-800 whitespace-nowrap">
-                      {session.time}
-                    </div>
+                {eventInfo.sessions.map((session, index) => {
+                  const [startTime, endTime] = session.time.split(" - ");
+                  return (
+                    <div
+                      key={index}
+                      className="flex-1 flex flex-col sm:flex-row items-start gap-4 sm:gap-8 border-r last:border-none pr-4 last:pr-0"
+                    >
+                      {/* Left: Time */}
+                      <div className="text-sm text-gray-800 whitespace-nowrap">
+                        {startTime} - <br />
+                        {endTime}
+                      </div>
 
-                    {/* Right: Subject and Hall */}
-                    <div className="flex flex-col">
-                      <div className="text-md font-bold text-gray-900">
-                        {session.subject}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {session.location}
+                      {/* Right: Subject and Hall */}
+                      <div className="flex flex-col">
+                        <div className="text-md font-bold text-gray-900">
+                          {session.subject}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {session.location}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ) : (
@@ -152,7 +224,7 @@ const Calendar = () => {
                 <div
                   className={`w-3 h-3 rounded-full ${
                     eventInfo.type === "exam"
-                      ? "bg-blue-600"
+                      ? "bg-[#0077FF]"
                       : eventInfo.type === "holiday"
                       ? "bg-red-500"
                       : "bg-green-600"
