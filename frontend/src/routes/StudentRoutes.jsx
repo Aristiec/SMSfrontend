@@ -11,8 +11,8 @@ import Attendance from "../pages/student/Attendance";
 import FeePayment from "../pages/student/FeePayment";
 import Profile from "../pages/student/Profile";
 import AcademicCalendar from "../pages/student/AcademicCalendar";
-import ChatInterface from "../components/student/AI/ChatInterface";
-import ChatWidget from "../components/student/AI/ChatWidget";
+// import ChatInterface from "../components/student/Ai/";
+import ChatWidget from "../components/student/Ai/ChatWidget.jsx";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
