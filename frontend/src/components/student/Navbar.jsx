@@ -16,7 +16,7 @@ import {
 // Menu definitions
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/student/dashboard" },
-  { name: "Timetable", icon: Calendar, path: "/student/timetable" },
+  { name: "Schedule", icon: Calendar, path: "/student/timetable" },
   { name: "Courses", icon: BookOpen, path: "/student/courses" },
   { name: "Notices", icon: Bell, path: "/student/notices" },
   { name: "Assignments", icon: ClipboardCheck, path: "/student/assignments" },
@@ -30,18 +30,18 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-full bg-[#FAFCFD] flex flex-col justify-between border-r ">
+    <div className="h-full bg-[#FAFCFD] flex flex-col justify-between  ">
       <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto overflow-x-hidden">
         {menuItems.map(({ name, icon: Icon, path }) => {
           const isActive = location.pathname.startsWith(path);
 
           return (
             <Link to={path} key={name}>
-            {console.log(isActive,path)}
+              {console.log(isActive, path)}
               <li
                 className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
                   isActive
-                    ? "bg-[#04203E] text-white" 
+                    ? "bg-[#04203E] text-white"
                     : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
                 }`}
               >

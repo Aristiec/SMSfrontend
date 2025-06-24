@@ -15,6 +15,7 @@ import grade from "../../assets/grade.svg";
 
 const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
   return (
+    
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
       className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
