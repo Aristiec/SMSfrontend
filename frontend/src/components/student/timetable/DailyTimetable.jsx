@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { RotateCcw } from "lucide-react";
-
+import { ArrowRightLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 const DailyClassTimetable = () => {
   const [selectedDay, setSelectedDay] = useState("Wednesday");
 
@@ -147,16 +147,20 @@ const DailyClassTimetable = () => {
   };
 
   const currentSchedule = scheduleData[selectedDay] || [];
+  const navigate = useNavigate();
 
   return (
-    <div className="max-w-2xl mx-auto bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden font-[Inter]">
+    <div className="max-w-3xl mx-auto bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden font-[Inter]">
       {/* Header */}
       <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
         <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
           Daily Class Timetable
         </h1>
-        <button className="p-2 hover:bg-gray-200 rounded-lg transition-colors">
-          <RotateCcw className="w-5 h-5 text-[#1F1D1D]" />
+        <button
+          className="p-2 rounded-lg bg-[#CFDCEB]"
+          onClick={() => navigate("/student/timetable")}
+        >
+          <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
         </button>
       </div>
 

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import TimetableHeader from "../../components/student/TimetableHeader";
 import { addWeeks, getDay } from "date-fns";
+import { ArrowRightLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const TimetablePage = () => {
+const Timetable = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
-
+  const navigate = useNavigate();
   const days = [
     "Monday",
     "Tuesday",
@@ -30,25 +32,33 @@ const TimetablePage = () => {
   const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
   return (
-    <div className="bg-[#E9EEF4] text-[#1F1D1D] font-[Inter] min-h-screen">
-      <TimetableHeader currentWeek={currentWeek} />
+    <div className="bg-[#E9EEF4] text-[#1F1D1D] font-[Inter] min-h-screen -mx-[5px]">
+      <TimetableHeader />
 
-      <div className="p-4 hidden md:block">
-        <div className="w-full overflow-x-auto mx-auto">
+      <div className="p-4 hidden md:block w-full overflow-x-hidden">
+        <div className="w-full mx-auto">
           <div className="inline-block min-w-full bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 justify-center">
-            <div className="flex flex-nowrap w-full justify-center">
+            <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
+              <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
+                Weekly Class Timetable
+              </h1>
+              <button
+                className="p-2 rounded-lg bg-[#CFDCEB]"
+                onClick={() => navigate("/student/academicCal")}
+              >
+                <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
+              </button>
+            </div>
+            <div className="flex flex-nowrap w-full justify-center px-4">
               {/* === Table 1 === */}
               <table className="border-collapse">
                 <thead>
                   <tr>
-                    <th className="text-xs md:text-sm font-medium text-center border border-[#04203E] min-w-[7.9rem] h-16"></th>
+                    <th className="text-xs md:text-sm font-medium text-center border border-[#04203E] min-w-[5rem] h-12"></th>
                     {timeSlots.map((time, index) => {
                       const [start, end] = time.split(" - ");
                       return (
-                        <th
-                          key={index}
-                          className="text-xs md:text-sm font-normal text-center border border-[#04203E] min-w-[7.9rem] h-16"
-                        >
+                        <th className="text-xs md:text-sm font-normal text-center border border-[#04203E] px-2 py-3">
                           {start} -<br />
                           {end}
                         </th>
@@ -64,7 +74,7 @@ const TimetablePage = () => {
                         key={dayIndex}
                         className={isSelected ? "bg-[#CFDCEB]" : ""}
                       >
-                        <td className="font-bold text-center text-xs md:text-sm border border-[#04203E] min-w-[7.9rem] h-16">
+                        <td className="font-bold text-center text-xs md:text-sm border border-[#04203E] px-2 py-2">
                           {day}
                         </td>
                         {timeSlots.map((_, timeIndex) => (
@@ -87,7 +97,7 @@ const TimetablePage = () => {
               </table>
 
               {/* === Break === */}
-              <div className="flex flex-col justify-center items-center px-4 text-[#1F1D1D] font-bold text-sm md:text-lg tracking-wide min-w-[4rem]  gap-20 border">
+              <div className="flex flex-col justify-center items-center px-4 text-[#1F1D1D] font-bold text-sm md:text-lg tracking-wide min-w-[3rem]  gap-20 border">
                 <p>B</p>
                 <p>R</p>
                 <p>E</p>
@@ -104,7 +114,7 @@ const TimetablePage = () => {
                       return (
                         <th
                           key={index}
-                          className="text-xs md:text-sm font-normal text-center border border-[#04203E] min-w-[7.9rem] h-16"
+                          className="text-xs md:text-sm font-normal text-center border border-[#04203E] px-2 py-2 "
                         >
                           {start} -<br />
                           {end}
@@ -139,7 +149,7 @@ const TimetablePage = () => {
                   })}
                 </tbody>
               </table>
-              <div className="flex flex-col justify-center gap-20  items-center px-4 text-[#1F1D1D] font-bold text-sm md:text-lg tracking-wide min-w-[4rem] border ">
+              <div className="flex flex-col justify-center gap-20  items-center px-4 text-[#1F1D1D] font-bold text-sm md:text-lg tracking-wide min-w-[3rem] border ">
                 <p>L</p>
                 <p>U</p>
                 <p>N</p>
@@ -254,4 +264,4 @@ const TimetablePage = () => {
   );
 };
 
-export default TimetablePage;
+export default Timetable;

@@ -38,14 +38,6 @@ const currentResults = [
   },
 ];
 
-const previousSemesters = [
-  {
-    semester: "Spring 2023",
-    cgpa: "3.7",
-    credits: "15",
-  },
-];
-
 const Results = () => {
   const [activeSemester, setActiveSemester] = useState("Sem 8");
 
@@ -80,14 +72,19 @@ const Results = () => {
         {/* Semester Selection */}
         <div
           className="flex items-center gap-[16px] px-[24px] py-[12px] rounded-[8px] shadow-sm"
-          style={{ background: "#FAFCFD", boxShadow: "0px 0px 8px 0px #0000001F" }}
+          style={{
+            background: "#FAFCFD",
+            boxShadow: "0px 0px 8px 0px #0000001F",
+          }}
         >
           {semesters.map((sem) => (
             <div
               key={sem}
               onClick={() => setActiveSemester(sem)}
               className={`w-[66px] h-[40px] flex items-center justify-center rounded-[8px] cursor-pointer ${
-                activeSemester === sem ? "bg-[#04203E]" : "bg-white border border-[#04203E]"
+                activeSemester === sem
+                  ? "bg-[#04203E]"
+                  : "bg-white border border-[#04203E]"
               }`}
             >
               <span
@@ -141,50 +138,6 @@ const Results = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Previous Semesters Section */}
-        <div className="space-y-4">
-          <div className="bg-[#04203E] text-[#FAFCFD] p-4 rounded-lg flex items-center gap-2">
-            <Calendar className="w-6 h-6" />
-            <h2 className="text-xl font-semibold">Previous Semesters</h2>
-          </div>
-
-          <div className="space-y-4">
-            {previousSemesters.map((semester, index) => (
-              <div
-                key={index}
-                className="bg-[#FAFCFD] p-6 rounded-lg border border-[#FAFCFD]"
-              >
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <p className="text-[#1F1D1D] text-[14px] mb-[4px]">
-                      {semester.semester}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1 text-[12px] text-[#1F1D1D]">
-                      <div className="flex items-center gap-1">
-                        <span>CGPA: {semester.cgpa}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Dot className="w-4 h-4" />
-                        <span>Credits: {semester.credits}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button className="bg-[#04203E] h-[44px] text-[#FAFCFD] px-4 py-2 rounded-lg flex items-center gap-2">
-                      <Download className="w-4 h-4" />
-                      <span className="font-medium text-[12px]">
-                        Download Report
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
