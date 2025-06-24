@@ -25,10 +25,10 @@ const suggestions = [
     subtitle: "to someone 5 years old",
   },
 ];
-const GeneralAssistant = () => {
+const GeneralAssistant = ({setShowGeneralAssistant ,showGeneralAssistant}) => {
   return (
-    <div className="h-[100dvh] overflow-y-auto flex flex-col  ">
-      <Header />
+    <div className="h-[100dvh] overflow-y-hidden flex flex-col  ">
+      <Header setShowGeneralAssistant={setShowGeneralAssistant} showGeneralAssistant={showGeneralAssistant} />
       <div className="flex flex-col items-center mt-[4%] ">
         <div className="w-[80px] h-[80px] rounded-full bg-blue-600 flex items-center justify-center mb-[24px]">
           <img
