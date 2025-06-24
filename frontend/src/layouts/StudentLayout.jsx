@@ -3,10 +3,10 @@ import Header from "../components/student/Header";
 import Navbar from "../components/student/Navbar";
 import { Outlet } from "react-router-dom";
 import GeneralAssistant from "../components/student/Ai/generalAssistant";
-// import { logo } from "../assets/logo.svg";
+import logo from "../assets/logo.svg";
 
 const StudentLayout = () => {
-  const [showGeneralAssistant, setShowGeneralAssistant] = useState(true);
+  const [showGeneralAssistant, setShowGeneralAssistant] = useState(false);
   return (
     <div className="min-h-screen bg-[#E9EEF4] flex pt-[72px] relative">
       <Header />
@@ -18,13 +18,10 @@ const StudentLayout = () => {
       </div>
       <div className="">
         <div
-          style={{
-            background:
-              "linear-gradient(311.58deg, #04203E 14.78%, #0077FF 98.82%)",
-          }}
-          className=""
+        className="fixed right-5 bottom-4 w-8"
+         
         >
-          {/* <img src={logo}/> */}
+          <img src={logo}/>
         </div>
       </div>
 
