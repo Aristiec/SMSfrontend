@@ -8,6 +8,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 import { useEffect } from "react";
+import aristiecLogo from "../../../assets/logo.svg";
 
 const suggestions = [
   { title: "Explain airplane", subtitle: "to someone 5 years old" },
@@ -156,10 +157,11 @@ const ChatWidget = () => {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="text-center">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+              src={aristiecLogo}
               alt="Bot Logo"
               className="w-16 mx-auto mb-4"
             />
+
             <h3 className="text-[16px] font-[Inter] text-[#1F1D1D] font-bold">
               How can I help you today?
             </h3>
