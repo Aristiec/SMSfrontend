@@ -31,25 +31,25 @@ const Header = () => {
         {/* Right Side */}
         <div className="flex items-center justify-center" style={{ color: "#FAFCFD" }}>
           {/* Exams */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaFileAlt className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]" >Exams</span>
           </div>
 
           {/* Hostel */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaBuilding className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Hostel</span>
           </div>
 
           {/* Transport */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaBus className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Transport</span>
           </div>
 
           {/* Support */}
-          <div onClick={() => {navigate("support")}} className="flex items-center gap-[12px] px-4 py-3">
+          <div onClick={() => {navigate("support")}} className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaPhoneAlt    className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Support</span>
           </div>
