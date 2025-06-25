@@ -1,63 +1,90 @@
 import React, { useState } from "react";
 import { Download, GraduationCap, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const currentResults = [
-  { title: "Data Structures and Algorithms",
-     subject: "Mid-Term", 
-     date: "Jan 15, 2024", 
-     score: "87/100 (87.0%)", 
-     grade: "A", 
-     status: "Pass" },
-
-  { title: "Operating Systems",
-     subject: "Mid-Term", 
-     date: "Jan 15, 2024",
-      score: "87/100 (87.0%)",
-      grade: "A",
-       status: "Pass" },
-  { title: "Database Management System",
-     subject: "Mid-Term", 
-     date: "Jan 15, 2024", 
-     score: "87/100 (87.0%)", 
-     grade: "A", 
-     status: "Pass" },
-  { title: "Computer Networks", 
-    subject: "Mid-Term", 
-    date: "Jan 15, 2024", 
-    score: "87/100 (87.0%)",
-     grade: "A", 
-     status: "Pass" },
-  { title: "Software Engineering", 
-    subject: "Mid-Term", 
-    date: "Jan 15, 2024", 
-    score: "87/100 (87.0%)", 
-    grade: "A", 
-    status: "Pass" },
-  { title: "Artificial Intelligence", 
+  {
+    title: "Data Structures and Algorithms",
     subject: "Mid-Term",
-     date: "Jan 15, 2024",
-      score: "87/100 (87.0%)", 
-      grade: "A",
-       status: "Pass" },
-  { title: "Web Development", 
-    subject: "Mid-Term", 
-    date: "Jan 15, 2024", 
-    score: "87/100 (87.0%)", 
-    grade: "A", 
-    status: "Pass" },
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+
+  {
+    title: "Operating Systems",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+  {
+    title: "Database Management System",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+  {
+    title: "Computer Networks",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+  {
+    title: "Software Engineering",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+  {
+    title: "Artificial Intelligence",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
+  {
+    title: "Web Development",
+    subject: "Mid-Term",
+    date: "Jan 15, 2024",
+    score: "87/100 (87.0%)",
+    grade: "A",
+    status: "Pass",
+  },
 ];
 
 const Results = () => {
   const [activeSemester, setActiveSemester] = useState("Sem 8");
-  const [activeButton, setActiveButton] = useState(null); 
+  const [activeButton, setActiveButton] = useState(null);
+  const navigate = useNavigate();
 
-  const semesters = ["Sem 8", "Sem 7", "Sem 6", "Sem 5", "Sem 4", "Sem 3", "Sem 2", "Sem 1"];
+
+  const semesters = [
+    "Sem 8",
+    "Sem 7",
+    "Sem 6",
+    "Sem 5",
+    "Sem 4",
+    "Sem 3",
+    "Sem 2",
+    "Sem 1",
+  ];
 
   const handleButtonClick = (index) => {
     if (activeButton === index) {
-      setActiveButton(null); 
+      setActiveButton(null);
+      navigate("recheck")
     } else {
-      setActiveButton(index); 
+      setActiveButton(index);
     }
   };
 
@@ -68,7 +95,9 @@ const Results = () => {
         <div className="bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
           <div className="flex items-center gap-2">
             <GraduationCap className="w-6 h-6" />
-            <h1 className="text-[24px] font-semibold font-[Merriweather]">Results</h1>
+            <h1 className="text-[24px] font-semibold font-[Merriweather]">
+              Results
+            </h1>
           </div>
           <button className="bg-[#FAFCFD] h-[40px] text-[12px] text-[#04203E] px-4 py-2 rounded-lg flex items-center gap-2">
             <Download className="w-4 h-4" />
@@ -83,7 +112,9 @@ const Results = () => {
               key={sem}
               onClick={() => setActiveSemester(sem)}
               className={`w-[66px] h-[40px] flex items-center justify-center rounded-[8px] cursor-pointer ${
-                activeSemester === sem ? "bg-[#04203E]" : "bg-white border border-[#04203E]"
+                activeSemester === sem
+                  ? "bg-[#04203E]"
+                  : "bg-white border border-[#04203E]"
               }`}
             >
               <span
@@ -100,7 +131,10 @@ const Results = () => {
         {/*  Results Section */}
         <div className="space-y-4">
           {currentResults.map((result, index) => (
-            <div key={index} className="bg-[#FAFCFD] p-6 rounded-lg border border-[#FAFCFD]">
+            <div
+              key={index}
+              className="bg-[#FAFCFD] p-6 rounded-lg border border-[#FAFCFD]"
+            >
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-[2px]">
@@ -123,18 +157,21 @@ const Results = () => {
                 <div className="flex flex-col items-end gap-2">
                   <div className="flex items-center gap-2 text-[#10B981]">
                     <CheckCircle className="w-5 h-5" />
-                    <span className="font-medium text-[12px]">{result.status}</span>
+                    <span className="font-medium text-[12px]">
+                      {result.status}
+                    </span>
                   </div>
 
-                 <button onClick={() => handleButtonClick(index)}
-  className={`h-[40px] w-[145px] text-[14px] leading-[24px] font-['Inter'] font-[400] text-center flex items-center justify-center rounded-[8px] border mt-8 ${
-    activeButton === index
-      ? "bg-[#04203E] text-[#FAFCFD] border-[#04203E]"
-      : "bg-white text-[#04203E] border-[#04203E]"
-  }`}
->
-  {index === 1 ? "Recheck Status" : "Apply for Recheck"}
-              </button>
+                  <button
+                    onClick={() => handleButtonClick(index)}
+                    className={`h-[40px] w-[145px] text-[14px] leading-[24px] font-['Inter'] font-[400] text-center flex items-center justify-center rounded-[8px] border mt-8 ${
+                      activeButton === index
+                        ? "bg-[#04203E] text-[#FAFCFD] border-[#04203E]"
+                        : "bg-white text-[#04203E] border-[#04203E]"
+                    }`}
+                  >
+                    {index === 1 ? "Recheck Status" : "Apply for Recheck"}
+                  </button>
                 </div>
               </div>
             </div>
@@ -154,16 +191,16 @@ const Results = () => {
                 results are published.
               </li>
               <li>
-                A processing fee of ₹500 will be applied to your student account if the
-                recheck request is approved.
+                A processing fee of ₹500 will be applied to your student account
+                if the recheck request is approved.
               </li>
               <li>
-                Supporting documents are optional but may help in the assessment of
-                your request.
+                Supporting documents are optional but may help in the assessment
+                of your request.
               </li>
               <li>
-                Recheck results will be communicated within 5-7 working days after
-                submission.
+                Recheck results will be communicated within 5-7 working days
+                after submission.
               </li>
               <li>The decision of the examination committee is final.</li>
             </ul>
