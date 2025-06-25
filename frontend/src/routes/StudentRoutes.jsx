@@ -13,6 +13,7 @@ import Profile from "../pages/student/Profile";
 import AcademicCalendar from "../pages/student/AcademicCalendar";
 // import ChatInterface from "../components/student/Ai/";
 import ChatWidget from "../components/student/Ai/ChatWidget.jsx";
+import Support from "../pages/student/Support.jsx";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
@@ -29,6 +30,7 @@ const StudentRoutes = () => (
     <Route path="attendance" element={<Attendance />} />
     <Route path="fees" element={<FeePayment />} />
     <Route path="profile" element={<Profile />} />
+    <Route path="support" element={<Support/>}/>
   </Route>
 );
 
