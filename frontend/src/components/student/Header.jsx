@@ -1,7 +1,7 @@
 import React from "react";
 import profilePic from "../../assets/headerBG.png";
 import emptyProfilePic from "../../assets/empty_profile.svg";
-import { FaFileAlt, FaBuilding, FaBus  } from "react-icons/fa";
+import { FaFileAlt, FaBuilding,FaPhoneAlt , FaBus  } from "react-icons/fa";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -29,28 +29,28 @@ const Header = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center" style={{ color: "#FAFCFD" }}>
+        <div className="flex items-center justify-center" style={{ color: "#FAFCFD" }}>
           {/* Exams */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaFileAlt className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]" >Exams</span>
           </div>
 
           {/* Hostel */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaBuilding className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Hostel</span>
           </div>
 
           {/* Transport */}
-          <div className="flex items-center gap-[12px] px-4 py-3">
+          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaBus className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Transport</span>
           </div>
 
           {/* Support */}
-          <div onClick={() => {navigate("support")}} className="flex items-center gap-[12px] px-4 py-3">
-            <MdOutlineLocalPhone   className="w-[16px] h-[16px]" />
+          <div onClick={() => {navigate("support")}} className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
+            <FaPhoneAlt    className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Support</span>
           </div>
 
