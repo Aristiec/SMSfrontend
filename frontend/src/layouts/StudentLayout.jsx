@@ -3,8 +3,8 @@ import Header from "../components/student/Header";
 import Navbar from "../components/student/Navbar";
 import { Outlet } from "react-router-dom";
 
-import GeneralAssistant from "../components/student/AI/General/GeneralAssistant";
-import DocumentAssistant from "../components/student/AI/Document/ChatWidget";
+import GeneralAssistant from "../components/student/AI/General/GeneralAssistant.jsx";
+import DocumentAssistant from "../components/student/AI/Document/ChatWidget.jsx";
 
 import logo from "../assets/logo.svg";
 import pdf from "../assets/pdf.svg";
@@ -27,7 +27,7 @@ const StudentLayout = () => {
       <div className="flex-1 ml-[240px] p-4">
         <Outlet />
       </div>
-      <div className=" relative">
+      <div className=" relative z-10000">
         <div
           onClick={() => setShowTab(!showTab)}
           className="fixed right-5 bottom-4 w-11 cursor-pointer"
