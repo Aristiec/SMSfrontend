@@ -23,8 +23,8 @@ const MessageBubble = ({ message }) => {
           <div
             className={`px-4 py-2 text-sm ${
               isUser
-                ? "bg-[#FAFCFD] rounded-lg shadow text-[#1F1D1D]"
-                : "bg-white rounded-lg shadow text-[#1F1D1D]"
+                ? "bg-[#FAFCFD] font-[Inter] text-[16px] rounded-lg shadow text-[#1F1D1D]"
+                : "text-[#1F1D1D] font-[Inter] text-[16px]"
             }`}
           >
             <p>{message.text}</p>

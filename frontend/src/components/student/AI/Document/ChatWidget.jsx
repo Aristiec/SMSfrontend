@@ -6,7 +6,7 @@ import ChatFooter from "./ChatFooter";
 import { chatHistory as initialChats } from "../../../../data/chatHistory";
 import { suggestions } from "../../../../data/suggestions";
 
-const ChatWidget = () => {
+const ChatWidget = ({ setShowDocumentAssistant }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -68,11 +68,11 @@ const ChatWidget = () => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
     <div
-      className="fixed top-0 right-0 z-50 shadow-xl transition-all duration-300 ease-in-out"
+      className={`fixed top-0 right-0 z-50 shadow-xl transition-all duration-300 ease-in-out ${
+        isOpen ? "" : "hidden"
+      }`}
       style={{
         width: isFullscreen ? "100vw" : "560px",
         height: "100vh",
@@ -87,8 +87,8 @@ const ChatWidget = () => {
           className="flex flex-row w-full h-full relative"
           style={{ flex: 1 }}
         >
-          {isSidebarOpen && (
-            <div className="absolute top-0 left-0 z-50">
+          {isSidebarOpen && isFullscreen && (
+            <div className="h-full">
               <ChatSidebar
                 chatHistory={chatHistory}
                 activeChat={activeChat}
@@ -99,12 +99,24 @@ const ChatWidget = () => {
           )}
 
           <div className="flex flex-col flex-1 relative z-10">
-            {/* Overlay covers entire right panel */}
             {isSidebarOpen && !isFullscreen && (
-              <div
-                className="absolute inset-0 bg-[#1F1D1D66] z-20"
-                onClick={() => setIsSidebarOpen(false)}
-              />
+              <>
+                {/* Dark background overlay */}
+                <div
+                  className="absolute inset-0 bg-[#1F1D1D66] z-20"
+                  onClick={() => setIsSidebarOpen(false)}
+                />
+
+                {/* Actual sidebar - floating */}
+                <div className="absolute top-0 left-0 z-30 h-full">
+                  <ChatSidebar
+                    chatHistory={chatHistory}
+                    activeChat={activeChat}
+                    onClose={() => setIsSidebarOpen(false)}
+                    onChatClick={handleChatClick}
+                  />
+                </div>
+              </>
             )}
 
             <ChatHeader
@@ -112,7 +124,7 @@ const ChatWidget = () => {
               isFullscreen={isFullscreen}
               isSidebarOpen={isSidebarOpen}
               onToggleFullscreen={() => setIsFullscreen((prev) => !prev)}
-              onClose={() => setIsOpen(false)}
+              onClose={() => setShowDocumentAssistant(false)}
               onOpenSidebar={() => setIsSidebarOpen(true)}
             />
 

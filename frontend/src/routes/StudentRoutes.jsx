@@ -11,8 +11,8 @@ import Attendance from "../pages/student/Attendance";
 import FeePayment from "../pages/student/FeePayment";
 import Profile from "../pages/student/Profile";
 import AcademicCalendar from "../pages/student/AcademicCalendar";
-// import ChatWidget from "../components/student/AI/ChatWidget.jsx";
 import Recheck from "../components/student/Recheck";
+
 import Support from "../pages/student/Support.jsx";
 import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx";
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx"
@@ -35,6 +35,7 @@ const StudentRoutes = () => (
     <Route path="results/recheck" element={<Recheck/>}/>
     <Route path="results/recheckStatus" element={<RecheckRequestStatus/>}/>
     <Route path="support" element={<Support/>}/>
+    <Route path="support" element={<Support />} />
   </Route>
 );
 
