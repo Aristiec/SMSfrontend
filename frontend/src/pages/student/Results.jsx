@@ -86,17 +86,13 @@ const Results = () => {
     "Sem 1",
   ];
 
-  const handleButtonClick = (recheck,index) => {
-    if (activeButton === index) {
-      setActiveButton(null);
-    } else {
-      setActiveButton(index);
-    }
-    if(recheck){
-      navigate("recheckStatus")
+  const handleButtonClick = (result,index) => {
+    
+    if(result.recheck){
+      navigate("recheckStatus",{state:{result:result}})
     }
     else{
-      navigate("recheck")
+      navigate("recheck",{state:{result:result}})
     }
 
   };
@@ -176,9 +172,9 @@ const Results = () => {
                   </div>
 
                   <button
-                    onClick={() => handleButtonClick(result.recheck,index)}
+                    onClick={() => handleButtonClick(result,index)}
                     className={`h-[40px] w-[145px] text-[14px] leading-[24px] font-['Inter'] font-[400] text-center flex items-center justify-center rounded-[8px] border mt-8 ${
-                      activeButton === index
+                      result.recheck === false
                         ? "bg-[#04203E] text-[#FAFCFD] border-[#04203E]"
                         : "bg-white text-[#04203E] border-[#04203E]"
                     }`}

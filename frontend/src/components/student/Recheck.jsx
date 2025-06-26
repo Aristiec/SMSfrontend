@@ -1,9 +1,14 @@
 import { Upload } from "lucide-react";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 
 const Recheck = () => {
 const [selectedFiles, setSelectedFiles] = useState([]);
+const {state} = useLocation();
+const result = state?.result;
+
+console.log(result);
 
   const handleFileSelect = (event) => {
     const files = Array.from(event.target.files);
@@ -32,7 +37,7 @@ const [selectedFiles, setSelectedFiles] = useState([]);
                   Subject Name
                 </div>
                 <div className="border border-[#D1D5DB] font-[400] rounded-[4px] px-3 py-3 text-[16px] leading-[24px] text-[#1F1D1D]">
-                  Operating Systems
+                  {result?.title}
                 </div>
               </div>
 
@@ -42,7 +47,7 @@ const [selectedFiles, setSelectedFiles] = useState([]);
                   Exam Type
                 </div>
                 <div className="border border-[#D1D5DB] font-[400] rounded-[4px] px-3 py-3 text-[16px] leading-[24px] text-[#1F1D1D]">
-                  Mid-term Examination
+                  {result?.subject}
                 </div>
               </div>
             </div>
@@ -55,7 +60,7 @@ const [selectedFiles, setSelectedFiles] = useState([]);
                   Exam Date
                 </div>
                 <div className="border border-[#D1D5DB] font-[400] rounded-[4px]  px-3 py-3 text-[16px] leading-[24px] text-[#1F1D1D]">
-                  Jan 15, 2024
+                  {result?.date}
                 </div>
               </div>
 
@@ -65,7 +70,7 @@ const [selectedFiles, setSelectedFiles] = useState([]);
                   Original Score
                 </div>
                 <div className="border border-[#D1D5DB] font-[400] rounded-[4px] px-3 py-3 text-[16px] leading-[24px] text-[#1F1D1D]">
-                  87/100
+                  {result?.score}
                 </div>
               </div>
             </div>
