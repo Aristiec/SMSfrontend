@@ -8,7 +8,7 @@ const statusStyles = {
   Rejected: "bg-[#FEF2F2] text-[#EF4444]",
 };
 const RecheckRemark = ({ data,setSelectedRemarkData }) => {
-  console.log(data);
+  
   return (
     <motion.div
     initial={{ opacity: 0,x:100 }}
@@ -16,7 +16,7 @@ const RecheckRemark = ({ data,setSelectedRemarkData }) => {
     exit={{ opacity: 0,x:100 }}
     transition={{ duration: 0.3 }}
 
-     className="w-[34%] bg-[#E9EEF4] fixed top-0 z-500 right-0 h-screen flex flex-col gap-6">
+     className="w-[34%] bg-[#FAFCFD] fixed top-0 z-5000 right-0 h-screen flex flex-col gap-6">
       <header className="font-[Inter] text-[24px] font-[600] leading-6 flex items-center justify-between text-[#1F1D1D] border-b-1 border-[#717171] p-6">
         <p>Recheck Remarks</p>
         <button onClick={() => setSelectedRemarkData(null)} ><X size={20} /></button>
