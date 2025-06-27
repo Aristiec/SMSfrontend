@@ -101,8 +101,8 @@ const Results = () => {
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
         {/* Header */}
-        <div className="bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="sticky top-20 bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
+          <div className="flex items-center gap-2 ">
             <GraduationCap className="w-6 h-6" />
             <h1 className="text-[24px] font-semibold font-[Merriweather]">
               Results

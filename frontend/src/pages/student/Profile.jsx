@@ -148,7 +148,7 @@ const Profile = () => {
       <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
         <div className="flex flex-col px-4  mt-4">
           {/* Header */}
-          <div className="w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
+          <div className="sticky top-20 w-full h-[64px] bg-[#04203E] rounded-[12px] px-[24px] py-[18px] flex items-center">
             <div className="text-[#FAFCFD] font-bold text-[20px] md:text-[24px] leading-[28px]">
               Student Profile
             </div>

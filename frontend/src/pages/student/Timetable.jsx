@@ -32,7 +32,7 @@ const Timetable = () => {
   const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
   return (
-    <div className="bg-[#E9EEF4] text-[#1F1D1D] font-[Inter] min-h-screen -mx-[5px]">
+    <div className="bg-[#E9EEF4] text-[#1F1D1D] font-[Inter] min-h-screen -mx-[5px] ">
       <TimetableHeader />
 
       <div className="p-4 hidden md:block w-full overflow-x-hidden">

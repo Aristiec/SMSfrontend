@@ -96,7 +96,7 @@ const FeePayment = () => {
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
         {/* Header */}
-        <div className="rounded-[12px] px-6 py-4 bg-[#04203E] text-white">
+        <div className="sticky top-20 rounded-[12px] px-6 py-4 bg-[#04203E] text-white">
           <h2 className="text-2xl font-bold font-[Merriweather]">
             Fee Payment
           </h2>

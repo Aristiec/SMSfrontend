@@ -56,7 +56,7 @@ const Courses = () => {
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-1 mt-4">
         {/* Header */}
-        <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-4  text-[#FAFCFD]  ">
+        <header className="  sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-4  text-[#FAFCFD]  ">
           <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
             Courses Enrolled
           </h1>
