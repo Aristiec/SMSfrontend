@@ -10,8 +10,9 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
-
+  
   {
     title: "Operating Systems",
     subject: "Mid-Term",
@@ -19,6 +20,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:true
   },
   {
     title: "Database Management System",
@@ -27,6 +29,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
   {
     title: "Computer Networks",
@@ -35,6 +38,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
   {
     title: "Software Engineering",
@@ -43,6 +47,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
   {
     title: "Artificial Intelligence",
@@ -51,6 +56,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
   {
     title: "Web Development",
@@ -59,6 +65,7 @@ const currentResults = [
     score: "87/100 (87.0%)",
     grade: "A",
     status: "Pass",
+    recheck:false
   },
 ];
 
@@ -79,21 +86,23 @@ const Results = () => {
     "Sem 1",
   ];
 
-  const handleButtonClick = (index) => {
-    if (activeButton === index) {
-      setActiveButton(null);
-      navigate("recheck")
-    } else {
-      setActiveButton(index);
+  const handleButtonClick = (result,index) => {
+    
+    if(result.recheck){
+      navigate("recheckStatus",{state:{result:result}})
     }
+    else{
+      navigate("recheck",{state:{result:result}})
+    }
+
   };
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
         {/* Header */}
-        <div className="bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="sticky top-20 bg-[#04203E] h-[68px] text-[#FAFCFD] p-4 rounded-lg flex items-center justify-between">
+          <div className="flex items-center gap-2 ">
             <GraduationCap className="w-6 h-6" />
             <h1 className="text-[24px] font-semibold font-[Merriweather]">
               Results
@@ -163,14 +172,14 @@ const Results = () => {
                   </div>
 
                   <button
-                    onClick={() => handleButtonClick(index)}
+                    onClick={() => handleButtonClick(result,index)}
                     className={`h-[40px] w-[145px] text-[14px] leading-[24px] font-['Inter'] font-[400] text-center flex items-center justify-center rounded-[8px] border mt-8 ${
-                      activeButton === index
+                      result.recheck === false
                         ? "bg-[#04203E] text-[#FAFCFD] border-[#04203E]"
                         : "bg-white text-[#04203E] border-[#04203E]"
                     }`}
                   >
-                    {index === 1 ? "Recheck Status" : "Apply for Recheck"}
+                    {result.recheck === true ? "Recheck Status" : "Apply for Recheck"}
                   </button>
                 </div>
               </div>

@@ -43,7 +43,7 @@ const Header = () => {
           </div>
 
           {/* Transport */}
-          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
+          <div onClick={() => {navigate("transport")}} className="flex items-center gap-[12px] px-4 py-3 cursor-pointer" >
             <FaBus className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">Transport</span>
           </div>
