@@ -1,6 +1,7 @@
 import React from "react";
 import { Map, MapPin, Clock } from "lucide-react";
 import { MdErrorOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import {
   FaBus,
   FaRegClock,
@@ -120,6 +121,9 @@ const updates = [
   },
 ];
 const Transport = () => {
+
+    const navigate = useNavigate();
+
   return (
     <div className="bg-[#E9EEF4] p-4 font-[Inter]  min-h-screen space-y-6">
       <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto">
@@ -218,9 +222,9 @@ const Transport = () => {
         <p className="text-[20px] font-[600] leading-7 text-[#1F1D1D] flex items-center">
           Route Stops
         </p>
-        <button className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center">
+        <button onClick={()=> navigate("map")} className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center">
           <Map size={18} color={"#FAFCFD"} />
-          <p className=" text-[14px] leading-6 font-[600] text-[#FAFCFD]">
+          <p  className=" text-[14px] leading-6 font-[600] text-[#FAFCFD]">
             Route Map
           </p>
         </button>

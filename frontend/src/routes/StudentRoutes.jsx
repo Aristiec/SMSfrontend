@@ -17,6 +17,7 @@ import Support from "../pages/student/Support.jsx";
 import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx";
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx"
 import Transport from "../pages/student/Transport.jsx";
+import TransportMap from "../components/student/TransportMap.jsx";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
@@ -37,6 +38,7 @@ const StudentRoutes = () => (
     <Route path="results/recheckStatus" element={<RecheckRequestStatus/>}/>
     <Route path="support" element={<Support/>}/>
     <Route path="transport" element={<Transport />} />
+     <Route path="transport/map" element={<TransportMap/>}/>
   </Route>
 );
 
