@@ -307,11 +307,11 @@ const Transport = () => {
           </div>
 
           {/* Cards */}
-          <div className=" h-[402px] flex flex-col gap-[24px]">
+          <div className=" flex flex-col gap-[24px]">
             {updates.map((item) => (
               <div
                 key={item.id}
-                className={`w-[352px] h-[118px] rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
+                className={` rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
                 style={{ backgroundColor: item.bg }}
               >
                 <div className="flex items-center gap-[12px] ">
