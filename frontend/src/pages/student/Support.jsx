@@ -43,7 +43,7 @@ const Support = () => {
 
   return (
     <div className="bg-[#E9EEF4] p-4 font-[Inter] min-h-screen space-y-6">
-      <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto">
+      <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto">
         <h1 className="text-[24px] font-bold font-[Merriweather]">
           Student Support
         </h1>

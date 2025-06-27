@@ -68,7 +68,7 @@ const Assignments = () => {
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-1 mt-4">
-        <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
+        <header className=" sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather]">
             Assignments
           </h1>
