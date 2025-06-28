@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Paperclip, FileUp } from "lucide-react";
+import Dropdown from "../../components/utils/Dropdown";
 
 const tickets = [
   {
@@ -34,12 +35,39 @@ const statusStyles = {
   Resolved: "bg-green-100 text-green-600",
 };
 
+
+
+const dropdown = {
+  sendTo:{
+    placeholder:"Select Category",
+    options:["Admin", "Transport","Faculty"]
+
+  },
+  category:{
+    placeholder:"Select Category",
+    options:["Academic","Administrative", "Technical", "Transport", "Finance", "Others"]
+  },
+  myTicketDropdown1:{
+    placeholder:"All Categories",
+    options:["Academic","Administrative", "Technical", "Transport", "Finance", "Others"]
+  },
+  myTicketDropdown2:{
+    placeholder:"All Status",
+    options:["Open", "In Progress", "Resolved"]
+  }
+}
+
 const Support = () => {
   const [sendTo, setSendTo] = useState("");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
   const [status,setStatus] = useState("");
   const [ticketCategory, setTicketCategory] = useState("");
+
+
+  const handleSelect = (option) => {
+    console.log(option);
+  };
 
   return (
     <div className="bg-[#E9EEF4] p-4 font-[Inter] min-h-screen space-y-6">
@@ -58,42 +86,17 @@ const Support = () => {
           </p>
 
           <div className="flex justify-between">
-            <div className="flex flex-col gap-2 w-[40%]">
+            <div className="flex flex-col gap-2 w-[45%]">
               <label className="font-[Inter] font-medium text-[12px] leading-4 tracking-[0] text-[#1F1D1D] flex items-center">
                 Send To
               </label>
-              <select
-                value={sendTo}
-                onChange={(e) => setSendTo(e.target.value)}
-                className="rounded-[4px] border-1 px-2 py-3 border-[#717171]"
-              >
-                <option value="" disabled hidden>
-                  Select Category
-                </option>
-                <option value="admin">Admin</option>
-                <option value="faculty">Faculty</option>
-                <option value="transport">Transport</option>
-              </select>
+             <Dropdown options={dropdown.sendTo.options} placeholder={dropdown.category.placeholder} onSelect={handleSelect} />
             </div>
-            <div className="flex flex-col gap-2 w-[40%]">
+            <div className="flex flex-col gap-2 w-[45%]">
               <label className="font-[Inter] font-medium text-[12px] leading-4 tracking-[0] text-[#1F1D1D] flex items-center">
                 Category
               </label>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="rounded-[4px] border-1 px-2 py-3 border-[#717171]"
-              >
-                <option value="" disabled hidden>
-                  Select Category
-                </option>
-                <option value="academic">Academic</option>
-                <option value="administrative">Administrative</option>
-                <option value="finance">Finance</option>
-                <option value="technical">Technical</option>
-                <option value="transport">Transport</option>
-                <option value="other">Other</option>
-              </select>
+              <Dropdown options={dropdown.category.options} onSelect={handleSelect} placeholder={dropdown.category.placeholder}/>
             </div>
           </div>
 
@@ -125,8 +128,8 @@ const Support = () => {
             </div>
           </div>
 
-          <div className="flex justify-end ">
-            <button className="bg-[#04203E] flex gap-3 rounded-[8px] px-2 py-3 cursor-pointer">
+          <div className="flex justify-end gap-3 rounded-[8px]">
+            <button className="bg-[#04203E] flex gap-3 rounded-[8px] px-3 py-2 cursor-pointer">
               <FileUp color="#FAFCFD" />
               <p className="text-[#FAFCFD] fony-[Inter] font-[400] text-[14px] leading-6 text-center">
                 Submit Ticket
@@ -139,45 +142,22 @@ const Support = () => {
           style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
           className="font-[Inter] bg-[#FAFCFD] rounded-[12px] flex flex-col gap-6 p-6 "
         >
-          <div className="flex">
+          <div className="flex justify-between">
             <p className="w-1/2 font-medium text-[24px] leading-6 flex items-center text-[#1F1D1D] ">
               My Tickets
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 w-1/2 ">
               <input
-                className="rounded-[4px] border-1 border-[#717171] py-2 px-3 bg-[#FAFCFD] font-[400] text-[16px] leading-6 text-[#717171]"
+                className="w-full  rounded-[4px] border-1 border-[#717171] py-2 px-2 bg-[#FAFCFD] font-[400] text-[16px] leading-6 text-[#717171]"
                 placeholder="Search tickets..."
               />
-              <div>
-                <select
-                  value={ticketCategory}
-                  onChange={(e) => setTicketCategory(e.target.value)}
-                  className="rounded-[4px] border-1 px-3 py-3 border-[#717171] text-[16px] font-[400] leading-6 flex justify-between items-center "
-                >
-                  <option value="" disabled hidden>
-                    All Categories
-                  </option>
-                  <option value="academic">Academic</option>
-                  <option value="administrative">Administrative</option>
-                  <option value="finance">Finance</option>
-                  <option value="technical">Technical</option>
-                  <option value="transport">Transport</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <select
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  className="rounded-[4px] border-1 px-3 py-3 border-[#717171] text-[16px] font-[400] leading-6 flex justify-between items-center "
-                >
-                  <option value="" disabled hidden>
-                    All Categories
-                  </option>
-                  <option value="open">Open</option>
-                  <option value="inProgress">In Progress</option>
-                  <option value="resolved">Resolved</option>
-                </select>
+              
+                <div className="w-full">
+                  <Dropdown options={dropdown.myTicketDropdown1.options} placeholder={dropdown.myTicketDropdown1.placeholder} onSelect={handleSelect}/>
+              
+                </div>
+              <div className="w-full">
+                <Dropdown options={dropdown.myTicketDropdown2.options} placeholder={dropdown.myTicketDropdown2.placeholder} onSelect={handleSelect}/>
               </div>
             </div>
           </div>
