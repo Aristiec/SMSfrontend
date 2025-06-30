@@ -254,7 +254,7 @@ const Transport = () => {
                     <div className="flex gap-3 items-center">
                       <div
                         className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                          stop.isCurrentStop ? "bg-[blue]" : "bg-[#FAFCFD]"
+                          stop.isCurrentStop ? "bg-[#04203E]" : "bg-[#FAFCFD]"
                         }`}
                       >
                         <MapPin
@@ -274,21 +274,26 @@ const Transport = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 justify-center">
-                    <div className="flex flex-col pl-7 justify-center">
-                      <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal">
-                        <span>Distance:</span> {stop.distance}
-                      </p>
-                    </div>
-
-                    <div className="pl-1">
-                      <div className="flex gap-2 pl-7 items-center border-[#717171] border-dashed border-l-1">
-                        <Clock size={12} />
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col gap-2 justify-center">
+                      <div className="flex flex-col pl-7 justify-center">
                         <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal">
-                          {stop.duration}
+                          <span>Distance:</span> {stop.distance}
                         </p>
                       </div>
+
+                      <div className="pl-1">
+                        <div className="flex gap-2 pl-7 items-center border-[#717171] border-dashed border-l-1">
+                          <Clock size={12} />
+                          <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal">
+                            {stop.duration}
+                          </p>
+                        </div>
+                      </div>
                     </div>
+                   { stop.isCurrentStop && <button className="bg-[#04203E] py-1 px-4 gap-2 flex font-[Inter] rounded-full ">
+                    <p className="text-[12px] leading-4 font-medium tracking-normal text-[#FAFCFD] flex items-center">Your Stop</p>
+                    </button>}
                   </div>
                 </div>
               ))}
@@ -307,11 +312,11 @@ const Transport = () => {
           </div>
 
           {/* Cards */}
-          <div className=" h-[402px] flex flex-col gap-[24px]">
+          <div className=" flex flex-col gap-[24px]">
             {updates.map((item) => (
               <div
                 key={item.id}
-                className={`w-[352px] h-[118px] rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
+                className={` rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
                 style={{ backgroundColor: item.bg }}
               >
                 <div className="flex items-center gap-[12px] ">
