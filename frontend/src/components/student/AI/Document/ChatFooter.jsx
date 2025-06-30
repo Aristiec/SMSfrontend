@@ -28,7 +28,6 @@ const ChatFooter = ({
 
   return (
     <div className="p-4 border-[#FAFCFD] bg-[#FAFCFD] rounded-lg m-3">
-      {/* 📎 Attachments preview section - no layout change */}
       {attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-2">
           {attachments.map((file, idx) => (
@@ -55,7 +54,6 @@ const ChatFooter = ({
         </div>
       )}
 
-      {/* ✅ Keep your existing footer input layout below */}
       <div className="flex items-center gap-2">
         <label className="cursor-pointer">
           <Paperclip size={18} />

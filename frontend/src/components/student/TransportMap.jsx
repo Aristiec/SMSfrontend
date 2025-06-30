@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 // import MapImage from '../../assets/MapImage.svg'
 
 const TransportMap = () => {
   return (
-      <div
+    <div
       className=" w-[594px] h-[104px]  fixed inset-0 m-auto rounded-[12px] p-6 
        bg-[#FAFCFDCC] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.24)]
        flex flex-col gap-1 items-center justify-center"
@@ -15,7 +15,7 @@ const TransportMap = () => {
         Live tracking and detailed route information will be available soon
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default TransportMap
+export default TransportMap;

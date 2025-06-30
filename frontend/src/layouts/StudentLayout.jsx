@@ -33,12 +33,15 @@ const StudentLayout = () => {
         <Outlet />
       </div>
       <div className=" relative z-10000">
-        <div
-          onClick={() => setShowTab(!showTab)}
-          className="fixed right-5 bottom-4 w-11 cursor-pointer"
-        >
-          <img src={logo} />
-        </div>
+        {!showGeneralAssistant && !showDocumentAssistant && (
+          <div
+            onClick={() => setShowTab(!showTab)}
+            className="fixed right-5 bottom-4 w-11 cursor-pointer"
+          >
+            <img src={logo} />
+          </div>
+        )}
+
         {showTab && (
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
