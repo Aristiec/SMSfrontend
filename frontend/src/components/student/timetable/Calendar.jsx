@@ -143,7 +143,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="w-[552px] h-[808px] mx-auto p-4 bg-[#FAFCFD] rounded-lg shadow border border-gray-200 flex flex-col">
+    <div className="w-full h-full mx-auto p-4 bg-[#FAFCFD] rounded-lg shadow border border-gray-200 flex flex-col">
       <h2 className="text-lg font-bold text-[#1F1D1D] mb-4 mt-2">
         Academic Calendar
       </h2>

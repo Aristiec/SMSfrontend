@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArrowRightLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 const DailyClassTimetable = () => {
-  const [selectedDay, setSelectedDay] = useState("Wednesday");
+  const [selectedDay, setSelectedDay] = useState("Tuesday");
 
   const days = [
     "Monday",
