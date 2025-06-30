@@ -3,13 +3,11 @@ import StudentInfoCard from "../../components/student/Exam/Online/StudentInfoCar
 import OngoingExam from "../../components/student/Exam/Online/OnGoingExam";
 import UpcomingExams from "../../components/student/Exam/Online/UpcomingExams";
 import ExamUpdatesSidebar from "../../components/student/Exam/Online/ExamUpdatesSidebar";
-
+import NoOngoingExam from "../../components/student/Exam/Online/NoOngoingExam";
 const Exam = () => {
-  // State management
-  const [isExamOngoing, setIsExamOngoing] = useState(true); // Toggle this to test both states
+  const [isExamOngoing, setIsExamOngoing] = useState(true);
   const [selectedExamType, setSelectedExamType] = useState("upcoming");
 
-  // Mock data - replace with your API calls
   const studentData = {
     name: "Asha Singh",
     id: "TRUB203020",
@@ -86,31 +84,23 @@ const Exam = () => {
     },
   ];
 
-  // Event handlers
   const handleSystemCheck = () => {
     console.log("Running system check...");
-    // Implement system check logic
   };
 
   const handleStartExam = () => {
     console.log("Starting examination...");
-    // Implement exam start logic
   };
 
   return (
     <div className="min-h-screen p-6">
-      {/* Header */}
       <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg mb-6">
         <h1 className="text-[24px] font-bold font-[Merriweather]">Exams</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Student Info Card */}
           <StudentInfoCard student={studentData} />
-
-          {/* Ongoing Exam Section */}
           {isExamOngoing ? (
             <OngoingExam
               exam={ongoingExamData}
@@ -120,29 +110,21 @@ const Exam = () => {
           ) : (
             <NoOngoingExam />
           )}
-
-          {/* Upcoming/Completed Exams */}
-          <UpcomingExams
-            exams={
-              selectedExamType === "upcoming" ? upcomingExams : completedExams
-            }
-            selectedType={selectedExamType}
-            onTypeChange={setSelectedExamType}
-          />
         </div>
 
-        {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="h-full">
           <ExamUpdatesSidebar updates={examUpdates} />
-
-          {/* Toggle button for testing */}
-          <button
-            onClick={() => setIsExamOngoing(!isExamOngoing)}
-            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Toggle Exam State (Test)
-          </button>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <UpcomingExams
+          exams={
+            selectedExamType === "upcoming" ? upcomingExams : completedExams
+          }
+          selectedType={selectedExamType}
+          onTypeChange={setSelectedExamType}
+        />
       </div>
     </div>
   );
