@@ -20,12 +20,14 @@ import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
 import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
 import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
+import OfflineExam from "../pages/student/OfflineExam";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
     <Route path="academicCal" element={<AcademicCalendar />} />
     <Route path="chat" element={<ChatWidget />} />
     <Route path="exam" element={<Exam />} />
+    <Route path="offlineExam" element={<OfflineExam />} />
     <Route path="dashboard" element={<StudentDashboard />} />
     <Route path="dashboard" element={<StudentDashboard />} />
     <Route path="timetable" element={<Timetable />} />
@@ -42,8 +44,8 @@ const StudentRoutes = () => (
     <Route path="support" element={<Support />} />
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
-     <Route path="preexam" element={<PreExamSet />} />
-    <Route path="preExam" element={<PreExam2 />} />
+    <Route path="preexam" element={<PreExamSet />} />
+    <Route path="preexam2" element={<PreExam2 />} />
   </Route>
 );
 

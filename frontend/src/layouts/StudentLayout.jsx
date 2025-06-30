@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/student/Header";
 import Navbar from "../components/student/Navbar";
 import { Outlet } from "react-router-dom";
-
+import ScrollToTop from "../pages/ScrollToTop";
 import GeneralAssistant from "../components/student/AI/General/GeneralAssistant";
 import DocumentAssistant from "../components/student/AI/Document/ChatWidget";
 import logo from "../assets/logo.svg";
@@ -30,6 +30,7 @@ const StudentLayout = () => {
         <Navbar />
       </nav>
       <div className="flex-1 ml-[240px] p-4">
+        <ScrollToTop />
         <Outlet />
       </div>
       <div className=" relative z-10000">
