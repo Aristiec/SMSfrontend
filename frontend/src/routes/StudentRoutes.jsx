@@ -18,6 +18,7 @@ import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx"
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx";
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
+import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
@@ -40,6 +41,7 @@ const StudentRoutes = () => (
     <Route path="support" element={<Support />} />
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
+     <Route path="preexam" element={<PreExamSet />} />
   </Route>
 );
 
