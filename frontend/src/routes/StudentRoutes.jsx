@@ -19,6 +19,7 @@ import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
 import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
+import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
@@ -42,6 +43,7 @@ const StudentRoutes = () => (
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
      <Route path="preexam" element={<PreExamSet />} />
+    <Route path="preExam" element={<PreExam2 />} />
   </Route>
 );
 
