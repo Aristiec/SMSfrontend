@@ -167,7 +167,7 @@ const Notices = () => {
     ${isExpanded ? "max-h-[1000px] opacity-100" : "max-h-[72px] opacity-90"}
   `}
                   >
-                    <p className="w-full max-w-[986px] text-[#1F1D1D] text-base leading-[24px] font-normal font-[Inter] text-justify">
+                    <p className="w-full  text-[#1F1D1D] text-base leading-[24px] font-normal font-[Inter] text-justify">
                       {isExpanded || !shouldTruncate
                         ? notice.description
                         : getPreviewText(notice.plaindescription)}
