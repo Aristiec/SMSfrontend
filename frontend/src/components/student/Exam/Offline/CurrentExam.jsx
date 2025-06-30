@@ -7,30 +7,12 @@ import {
   FileText,
   Calendar,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
-const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
-  const [timeLeft, setTimeLeft] = useState(exam.timeLeft);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 60000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (minutes) => {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-    return `${hours}:${mins.toString().padStart(2, "0")}`;
-  };
-
+const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
   return (
     <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">
       <h2 className="text-[20px] font-[Inter] font-semibold text-[#1F1D1D] mb-6">
-        Ongoing Exam
+        Next Exam
       </h2>
 
       <div className="space-y-4">
@@ -63,15 +45,7 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex items-center space-x-2 rounded-lg">
           <Calendar className="w-4 h-4 text-[#1F1D1D]" />
-          {"  "}
-          <div className=" w-3 h-3 bg-[#10B981] rounded-full"></div>
-          <span className="text-[#1F1D1D] font-medium text-[16px]">
-            Ongoing - Ends at {exam.endTime}
-            <span className="text-[12px] text-[#EF4444] font-[Inter] font-bold">
-              {" "}
-              ({timeLeft} minutes left)
-            </span>
-          </span>
+          <span className="text-[#1F1D1D] font-[Inter]">{exam.date}</span>
         </div>
 
         <div className="p-3 bg-[#FFF4ED] border border-[#FFF4ED] rounded-lg">
@@ -85,25 +59,20 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex space-x-3 pt-4 border-t border-[#71717166]">
           <button
-            onClick={() => navigate("/student/preexam")}
-            className="flex-1 bg-[#04203E] text-[#FAFCFD] px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
+            onClick={onSystemCheck}
+            className="flex-1 bg-[#CFDCEB] text-[#1F1D1D] px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
           >
-            <Settings className="w-4 h-4" />
-            <span className="text-[16px] font-[Inter]">
-              Run System Check Now
-            </span>
+            <AlertCircle className="w-4 h-4" />
+            <span className="text-[16px] font-[Inter]">View Instructions</span>
           </button>
           <button
             onClick={onStartExam}
-            disabled={!exam.systemCheckComplete}
-            className={`flex-1 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 ${
-              exam.systemCheckComplete
-                ? "bg-[#CFDCEB] text-[#717171]"
-                : "bg-gray-200 text-gray-500 cursor-not-allowed"
-            }`}
+            className={
+              "flex-1 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2  bg-[#04203E] text-[#FAFCFD]"
+            }
           >
             <Clock className="w-4 h-4" />
-            <span>Start Examination</span>
+            <span>Seating Arrangement</span>
           </button>
         </div>
       </div>
@@ -111,4 +80,4 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
   );
 };
 
-export default OnGoingExam;
+export default CurrentExam;

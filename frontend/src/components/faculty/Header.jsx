@@ -1,7 +1,7 @@
 import React from "react";
 import emptyProfile from "../../assets/empty_profile.svg";
 import profilePic from "../../assets/headerBG.png";
-
+import headerLogo from "../../assets/headerLogo.svg";
 import { FaClipboardCheck } from "react-icons/fa";
 import { MdHelpOutline } from "react-icons/md";
 
