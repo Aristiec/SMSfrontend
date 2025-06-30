@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Clock, AlertCircle, Settings } from "lucide-react";
+import {
+  Clock,
+  AlertCircle,
+  Settings,
+  Book,
+  FileText,
+  Calendar,
+} from "lucide-react";
 
 const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
   const [timeLeft, setTimeLeft] = useState(exam.timeLeft);
@@ -36,13 +43,15 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="grid grid-cols-2 gap-1 text-[12px] font-[Inter] text-[#717171]">
           <div className="flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-gray-500" />
+            <Clock className="w-4 h-4 text-[#717171]" />
             <span>{exam.duration} minutes</span>
           </div>
           <div className="flex items-center space-x-2">
+            <FileText className="w-4 h-4 text-[#717171]" />
             <span>{exam.questions} questions</span>
           </div>
           <div className="flex items-center space-x-2">
+            <Book className="w-4 h-4 text-[#717171]" />
             <span>Theory</span>
           </div>
           <div className="flex items-center space-x-2">
@@ -50,8 +59,10 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 p-3 rounded-lg">
-          <div className="w-3 h-3 bg-[#10B981] rounded-full"></div>
+        <div className="flex items-center space-x-2 rounded-lg">
+          <Calendar className="w-4 h-4 text-[#1F1D1D]" />
+          {"  "}
+          <div className=" w-3 h-3 bg-[#10B981] rounded-full"></div>
           <span className="text-[#1F1D1D] font-medium text-[16px]">
             Ongoing - Ends at {exam.endTime}
             <span className="text-[12px] text-[#EF4444] font-[Inter] font-bold">

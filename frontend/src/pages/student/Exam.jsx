@@ -4,6 +4,7 @@ import OngoingExam from "../../components/student/Exam/Online/OnGoingExam";
 import UpcomingExams from "../../components/student/Exam/Online/UpcomingExams";
 import ExamUpdatesSidebar from "../../components/student/Exam/Online/ExamUpdatesSidebar";
 import NoOngoingExam from "../../components/student/Exam/Online/NoOngoingExam";
+
 const Exam = () => {
   const [isExamOngoing, setIsExamOngoing] = useState(true);
   const [selectedExamType, setSelectedExamType] = useState("upcoming");
