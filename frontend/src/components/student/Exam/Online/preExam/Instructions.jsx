@@ -42,7 +42,7 @@ const instructionCards = [
   },
 ];
 
-const PreExamSet = () => {
+const Instructions = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen w-full rounded-[12px] p-6 bg-[#FAFCFD] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.24)] gap-8 flex flex-col items-center justify-start mx-auto">
@@ -151,4 +151,4 @@ const PreExamSet = () => {
   );
 };
 
-export default PreExamSet;
+export default Instructions;

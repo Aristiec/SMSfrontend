@@ -18,8 +18,11 @@ import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx"
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx";
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
-import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
-import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
+import Instructions from "../components/student/Exam/Online/preExam/Instructions.jsx";
+import SystemCheck from "../components/student/Exam/Online/preExam/SystemCheck.jsx";
+import Review from "../components/student/Exam/Online/preExam/Review.jsx";
+import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
+import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
 import OfflineExam from "../pages/student/OfflineExam";
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
@@ -44,6 +47,10 @@ const StudentRoutes = () => (
     <Route path="support" element={<Support />} />
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
+    <Route path="instructions" element={<Instructions />} />
+    <Route path="systemCheck" element={<SystemCheck />} />
+    <Route path="review" element={<Review />} />
+
     <Route path="preexam" element={<PreExamSet />} />
     <Route path="preexam2" element={<PreExam2 />} />
   </Route>
