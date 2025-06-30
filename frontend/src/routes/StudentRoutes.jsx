@@ -18,9 +18,11 @@ import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx"
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx";
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
-import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
+import PreExamSet from "../components/student/Exam/Online/preExam/PreExamSet.jsx";
 import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
+import OnlineExam from "../pages/student/OnlineExam.jsx";
 const StudentRoutes = () => (
+  <>
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
     <Route path="academicCal" element={<AcademicCalendar />} />
@@ -43,8 +45,10 @@ const StudentRoutes = () => (
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
      <Route path="preexam" element={<PreExamSet />} />
-    <Route path="preExam" element={<PreExam2 />} />
+    <Route path="preexam2" element={<PreExam2 />} />
   </Route>
+  <Route  path="exam" element={<OnlineExam />} />
+  </>
 );
 
 export default StudentRoutes;

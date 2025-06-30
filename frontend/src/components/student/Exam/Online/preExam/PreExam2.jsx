@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Stage from "./Stage";
+import { useNavigate } from "react-router-dom";
 
 import {
   Monitor,
@@ -48,10 +49,11 @@ const checks = [
   },
 ];
 const PreExam2 = () => {
+    const navigate = useNavigate();
   const hasLoadingOrFail = checks.some(
     (check) => check.status === "loading" || check.status === "fail"
   );
-  console.log(hasLoadingOrFail);
+//   console.log(hasLoadingOrFail);
   return (
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000003D" }}
@@ -125,7 +127,7 @@ const PreExam2 = () => {
       )}
 
       <div className="flex justify-between pb-6">
-        <button className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
+        <button onClick={() => navigate("/student/preexam")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
           <ChevronLeft size={20} color="#1F1D1D" />
           <p className="font-medium text-[16px] leading-6 tracking-normal font-[Inter] text-[#1F1D1D]">
             Previous
