@@ -1,5 +1,7 @@
 import React from 'react';
 import { CheckCircle, Clock, Shield, ChevronLeft  } from 'lucide-react'; 
+import { useNavigate } from "react-router-dom";
+
 
 const instructionCards = [
   {
@@ -41,7 +43,8 @@ const instructionCards = [
   },
 ];
 
-const PreExamSet = () => {
+const Instructions = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen rounded-[12px] p-6 bg-[#FAFCFD] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.24)] gap-8 flex flex-col items-center justify-start mx-auto">
 
@@ -147,7 +150,7 @@ const PreExamSet = () => {
   </div>
 </div>
       <div className="flex items-center bg-[#04203E] rounded-[8px] px-4 py-3 cursor-pointer">
-        <div className="text-[#FAFCFD] font-medium text-[16px] leading-[24px]">
+        <div onClick={()=> navigate("/student/systemCheck")} className="text-[#FAFCFD] font-medium text-[16px] leading-[24px]">
           I Understand, Continue to System Check
         </div>
       </div>
@@ -157,4 +160,4 @@ const PreExamSet = () => {
   );
 };
 
-export default PreExamSet;
+export default Instructions;

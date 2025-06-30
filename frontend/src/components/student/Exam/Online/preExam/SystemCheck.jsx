@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Stage from "./Stage";
+import { useNavigate } from "react-router-dom";
 
 import {
   Monitor,
@@ -31,7 +32,7 @@ const checks = [
   {
     title: "Microphone Access",
     subText: "Testing audio input",
-    status: "fail",
+    status: "pass",
     icon: Mic,
   },
   {
@@ -43,11 +44,12 @@ const checks = [
   {
     title: "Security Setup",
     subText: "Configuring secure environment",
-    status: "loading",
+    status: "pass",
     icon: Shield,
   },
 ];
-const PreExam2 = () => {
+const SystemCheck = () => {
+  const navigate = useNavigate();
   const hasLoadingOrFail = checks.some(
     (check) => check.status === "loading" || check.status === "fail"
   );
@@ -125,13 +127,13 @@ const PreExam2 = () => {
       )}
 
       <div className="flex justify-between pb-6">
-        <button className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
+        <button  onClick={() => navigate("/student/instructions")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
           <ChevronLeft size={20} color="#1F1D1D" />
           <p className="font-medium text-[16px] leading-6 tracking-normal font-[Inter] text-[#1F1D1D]">
             Previous
           </p>
         </button>
-        <button
+        <button onClick={() => navigate("/student/review")}
           disabled={hasLoadingOrFail}
           className={`py-3 px-4 rounded-[8px] flex items-center gap-3 ${
             hasLoadingOrFail
@@ -157,4 +159,4 @@ const PreExam2 = () => {
   );
 };
 
-export default PreExam2;
+export default SystemCheck;
