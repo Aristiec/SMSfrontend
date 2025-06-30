@@ -7,9 +7,11 @@ import {
   FileText,
   Calendar,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
   const [timeLeft, setTimeLeft] = useState(exam.timeLeft);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -83,7 +85,7 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex space-x-3 pt-4 border-t border-[#71717166]">
           <button
-            onClick={onSystemCheck}
+            onClick={() => navigate("/student/preexam")}
             className="flex-1 bg-[#04203E] text-[#FAFCFD] px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
           >
             <Settings className="w-4 h-4" />
