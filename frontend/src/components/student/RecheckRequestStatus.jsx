@@ -65,7 +65,7 @@ const statusStyles = {
 const RecheckRequestStatus = () => {
   const [selectedRemarkData, setSelectedRemarkData] = useState(null);
   return (
-    <div className=" flex flex-col gap-10 min-h-screen font-[Inter] rounded-[12px] mt-5 mx-5">
+    <div className=" flex flex-col gap-10  font-[Inter] rounded-[12px] mt-5 mx-5">
       <div className="bg-[#FAFCFD] p-6 rounded-[12px] flex gap-6 flex-col ">
         <p className="font-[Inter] font-[600] text-[24px] leading-7 tracking-[0] flex items-center text-[#1F2937]">
           Recheck Request Status
