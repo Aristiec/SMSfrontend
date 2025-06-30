@@ -3,6 +3,7 @@ import StudentInfoCard from "../../components/student/Exam/Online/StudentInfoCar
 import OngoingExam from "../../components/student/Exam/Online/OnGoingExam";
 import UpcomingExams from "../../components/student/Exam/Online/UpcomingExams";
 import ExamUpdatesSidebar from "../../components/student/Exam/Online/ExamUpdatesSidebar";
+import NoOngoingExam from "../../components/student/Exam/Online/NoOngoingExam";
 
 const Exam = () => {
   // State management
