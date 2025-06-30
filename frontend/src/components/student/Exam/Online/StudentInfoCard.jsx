@@ -38,7 +38,7 @@ const StudentInfoCard = ({ student }) => (
       </div>
     </div>
 
-    <div className="grid grid-cols-3 gap-4 mt-2 pt-2 ml-10">
+    <div className="grid grid-cols-3 gap-1 mt-2 pt-2 ml-10">
       <div className="text-center">
         <div className="text-[16px] font-[Inter] font-bold text-[#1F1D1D]">
           {student.attendance}%
