@@ -54,7 +54,10 @@ const SystemCheck = () => {
 =======
 const PreExam2 = () => {
     const navigate = useNavigate();
+<<<<<<< HEAD:frontend/src/components/student/Exam/Online/preExam/SystemCheck.jsx
 >>>>>>> f591ff8 (onlineexam):frontend/src/components/student/Exam/Online/preExam/PreExam2.jsx
+=======
+>>>>>>> e2c0f9bc6a9d7da036db907ae22881cfdf2a70b6:frontend/src/components/student/Exam/Online/preExam/PreExam2.jsx
   const hasLoadingOrFail = checks.some(
     (check) => check.status === "loading" || check.status === "fail"
   );
@@ -133,10 +136,14 @@ const PreExam2 = () => {
 
       <div className="flex justify-between pb-6">
 <<<<<<< HEAD:frontend/src/components/student/Exam/Online/preExam/SystemCheck.jsx
+<<<<<<< HEAD:frontend/src/components/student/Exam/Online/preExam/SystemCheck.jsx
         <button  onClick={() => navigate("/student/instructions")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
 =======
         <button onClick={() => navigate("/student/preexam")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
 >>>>>>> f591ff8 (onlineexam):frontend/src/components/student/Exam/Online/preExam/PreExam2.jsx
+=======
+        <button onClick={() => navigate("/student/preexam")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
+>>>>>>> e2c0f9bc6a9d7da036db907ae22881cfdf2a70b6:frontend/src/components/student/Exam/Online/preExam/PreExam2.jsx
           <ChevronLeft size={20} color="#1F1D1D" />
           <p className="font-medium text-[16px] leading-6 tracking-normal font-[Inter] text-[#1F1D1D]">
             Previous
