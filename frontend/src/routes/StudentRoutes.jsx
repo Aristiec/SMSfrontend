@@ -18,17 +18,11 @@ import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx"
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx";
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
-import Instructions from "../components/student/Exam/Online/preExam/Instructions.jsx";
-import SystemCheck from "../components/student/Exam/Online/preExam/SystemCheck.jsx";
-import Review from "../components/student/Exam/Online/preExam/Review.jsx";
-import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
-import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
-import OfflineExam from "../pages/student/OfflineExam";
-import Seating from "../components/student/Exam/Offline/Seating";
-import AdmitCard from "../components/student/Exam/Offline/AdmitCard";
-import ExamInstructions from "../components/student/Exam/Offline/ExamInstructions";
-
+import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
+import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
+import OnlineExam from "../components/student/Exam/Online/preExam/OnlineExam.jsx"
 const StudentRoutes = () => (
+  <>
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
     <Route path="academicCal" element={<AcademicCalendar />} />
@@ -51,15 +45,11 @@ const StudentRoutes = () => (
     <Route path="support" element={<Support />} />
     <Route path="transport" element={<Transport />} />
     <Route path="transport/map" element={<TransportMap />} />
-    <Route path="instructions" element={<Instructions />} />
-    <Route path="systemCheck" element={<SystemCheck />} />
-    <Route path="review" element={<Review />} />
-    <Route path="seating" element={<Seating />} />
-    <Route path="preexam" element={<PreExamSet />} />
-    <Route path="preexam2" element={<PreExam2 />} />
-    <Route path="admit" element={<AdmitCard />} />
-    <Route path="examinst" element={<ExamInstructions />} />
+     <Route path="preexam" element={<PreExamSet />} />
+    <Route path="preExam" element={<PreExam2 />} />
   </Route>
+  <Route  path="exam" element={<OnlineExam />} />
+  </>
 );
 
 export default StudentRoutes;
