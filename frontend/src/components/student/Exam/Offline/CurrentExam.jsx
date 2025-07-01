@@ -7,8 +7,10 @@ import {
   FileText,
   Calendar,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">
       <h2 className="text-[20px] font-[Inter] font-semibold text-[#1F1D1D] mb-6">
@@ -59,17 +61,15 @@ const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex space-x-3 pt-4 border-t border-[#71717166]">
           <button
-            onClick={onSystemCheck}
+            onClick={() => navigate("/student/examinst")}
             className="flex-1 bg-[#CFDCEB] text-[#1F1D1D] px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
           >
             <AlertCircle className="w-4 h-4" />
             <span className="text-[16px] font-[Inter]">View Instructions</span>
           </button>
           <button
-            onClick={onStartExam}
-            className={
-              "flex-1 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2  bg-[#04203E] text-[#FAFCFD]"
-            }
+            onClick={() => navigate("/student/seating")}
+            className="flex-1 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 bg-[#04203E] text-[#FAFCFD]"
           >
             <Clock className="w-4 h-4" />
             <span>Seating Arrangement</span>

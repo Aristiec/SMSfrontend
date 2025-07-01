@@ -11,7 +11,6 @@ import {
   upcomingExams,
   completedExams,
 } from "../../data/examData";
-
 const Exam = () => {
   const [isExamOngoing, setIsExamOngoing] = useState(true);
   const [selectedExamType, setSelectedExamType] = useState("upcoming");
@@ -44,7 +43,6 @@ const Exam = () => {
           <ExamUpdatesSidebar updates={examUpdates} />
         </div>
       </div>
-
       <div className="mt-6">
         <UpcomingExams
           exams={
