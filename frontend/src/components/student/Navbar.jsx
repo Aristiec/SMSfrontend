@@ -14,6 +14,7 @@ import {
   Calculator,
   ChevronDown,
   ChevronUp,
+  LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
@@ -28,7 +29,6 @@ const menuItems = [
   { name: "Attendance", icon: UserCheck, path: "/student/attendance" },
   { name: "Notices", icon: Bell, path: "/student/notices" },
   { name: "Fee Payment", icon: CreditCard, path: "/student/fees" },
-  { name: "Profile", icon: FaRegUser, path: "/student/profile" },
 ];
 
 const examMenuItems = [
@@ -134,17 +134,32 @@ const Navbar = () => {
           }
         })}
       </ul>
-
-      <div className="flex items-center gap-3 p-4 flex-shrink-0">
-        <img
-          src={profilePic}
-          alt="Profile"
-          className="rounded-full w-10 h-10 object-cover"
-        />
-        <div>
-          <p className="font-semibold text-[#0d2d4f]">Asha Singh</p>
-          <p className="text-xs text-gray-500">Student ID: 1RUB203020</p>
+      <div
+        style={{
+          borderTop: "1px solid",
+          borderImageSource:
+            "linear-gradient(90deg, #FAFCFD 0%, #717171 50%, #FAFCFD 100%)",
+          borderImageSlice: 1,
+        }}
+        className="flex flex-col  border-t p-4 mb-3 gap-3 "
+      >
+        <div className="flex items-center gap-3  flex-shrink-0">
+          <img
+            src={profilePic}
+            alt="Profile"
+            className="rounded-full w-10 h-10 object-cover"
+          />
+          <div>
+            <p className="font-semibold text-[#0d2d4f]">Asha Singh</p>
+            <p className="text-xs text-gray-500">Student ID: 1RUB203020</p>
+          </div>
         </div>
+        <button className=" cursor-pointer flex gap-2 rounded-lg bg-[#FAFCFD] border border-[#71717166] items-center justify-center  ">
+          <LogOut size={14} color="#1F1D1D" />
+          <p className="font-[400] text-[14px] font-[Inter] leading-6 tracking-normal flex items-center text-[#1F1D1D]">
+            Logout
+          </p>
+        </button>
       </div>
     </div>
   );
