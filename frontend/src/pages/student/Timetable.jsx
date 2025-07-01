@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TimetableHeader from "../../components/faculty/TimetableHeader";
 import { addWeeks, startOfWeek, getDay } from "date-fns";
 import { ArrowRightLeft } from "lucide-react";
@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 const Timetable = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
   const navigate = useNavigate();
-
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
+  const [isHovering, setIsHovering] = useState(false);
   const days = [
     "Monday",
     "Tuesday",
@@ -31,7 +33,15 @@ const Timetable = () => {
   const today = addWeeks(new Date(), currentWeek);
   const jsDayIndex = getDay(today);
   const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
-
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
+        setShowTooltip(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   return (
     <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
       <TimetableHeader currentWeek={currentWeek} />
@@ -42,20 +52,32 @@ const Timetable = () => {
             <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
               Weekly Class Timetable
             </h1>
-            <div className="relative group">
-              <button
-                className="p-2 rounded-lg bg-[#CFDCEB]"
-                onClick={() => navigate("/student/academicCal")}
-              >
-                <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
-              </button>
+            <div className="relative group" ref={tooltipRef}>
+              {isHovering && (
+                <div className="fixed inset-0 bg-[#1F1D1D]/20 z-40 pointer-events-none" />
+              )}
 
-              <div className="absolute -left-28 top-full mt-2 bg-[#FAFCFD] border text-[12px] text-[#1F1D1D] px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition duration-200 whitespace-nowrap z-50">
-                Click to switch between
-                <br /> Weekly and Daily view
+              <div
+                className="relative group z-50"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <button
+                  className="p-2 rounded-lg bg-[#CFDCEB] relative"
+                  onClick={() => navigate("/student/academicCal")}
+                >
+                  <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
+                </button>
+
+                {/* Tooltip on hover */}
+                <div className="absolute -left-42 top-full mt-2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-50">
+                  Click to switch between
+                  <br /> Weekly and Daily view
+                </div>
               </div>
             </div>
           </div>
+
           <table className="min-w-full border-collapse">
             <thead>
               <tr>

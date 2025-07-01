@@ -1,8 +1,6 @@
 import React from "react";
 import profilePic from "../../assets/headerBG.png";
-import emptyProfilePic from "../../assets/empty_profile.svg";
-import { FaFileAlt, FaBuilding, FaPhoneAlt, FaBus } from "react-icons/fa";
-import { MdOutlineLocalPhone } from "react-icons/md";
+import { FaBuilding, FaPhoneAlt, FaBus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import headerLogo from "../../assets/headerLogo.svg";
 
@@ -16,11 +14,17 @@ const Header = () => {
       >
         {/* Left Side */}
         <div className="flex items-center gap-[16px]">
-          <img
-            src={headerLogo}
-            alt=" Profile Icon"
-            className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD]"
-          />
+          <div
+            onClick={() => navigate("/student/dashboard")}
+            className="cursor-pointer"
+          >
+            <img
+              src={headerLogo}
+              alt="Profile Icon"
+              className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD]"
+            />
+          </div>
+
           <span
             className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]"
             style={{ color: "#FAFCFD" }}
@@ -70,11 +74,16 @@ const Header = () => {
 
           {/*  Profile */}
           <div className="pl-4">
-            <img
-              src={profilePic}
-              alt="User"
-              className="w-[40px] h-[40px] rounded-full "
-            />
+            <div
+              onClick={() => navigate("/student/profile")}
+              className="cursor-pointer"
+            >
+              <img
+                src={profilePic}
+                alt="User"
+                className="w-[40px] h-[40px] rounded-full "
+              />
+            </div>
           </div>
         </div>
       </div>
