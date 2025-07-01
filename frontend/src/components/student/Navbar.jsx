@@ -38,6 +38,9 @@ const examMenuItems = [
 const Navbar = () => {
   const location = useLocation();
   const [isExamOpen, setIsExamOpen] = useState(false);
+  const isExamActive =
+    location.pathname === "/student/exam" ||
+    location.pathname === "/student/offlineExam";
 
   return (
     <div className="h-full bg-[#FAFCFD] flex flex-col justify-between  ">
@@ -71,7 +74,7 @@ const Navbar = () => {
               <div key={name}>
                 <li
                   className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
-                    location.pathname.startsWith("/student")
+                    isExamActive
                       ? "bg-[#04203E] text-white"
                       : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
                   }`}

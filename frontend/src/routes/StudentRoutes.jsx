@@ -24,6 +24,10 @@ import Review from "../components/student/Exam/Online/preExam/Review.jsx";
 import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
 import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
 import OfflineExam from "../pages/student/OfflineExam";
+import Seating from "../components/student/Exam/Offline/Seating";
+import AdmitCard from "../components/student/Exam/Offline/AdmitCard";
+import ExamInstructions from "../components/student/Exam/Offline/ExamInstructions";
+
 const StudentRoutes = () => (
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
@@ -50,9 +54,11 @@ const StudentRoutes = () => (
     <Route path="instructions" element={<Instructions />} />
     <Route path="systemCheck" element={<SystemCheck />} />
     <Route path="review" element={<Review />} />
-
+    <Route path="seating" element={<Seating />} />
     <Route path="preexam" element={<PreExamSet />} />
     <Route path="preexam2" element={<PreExam2 />} />
+    <Route path="admit" element={<AdmitCard />} />
+    <Route path="examinst" element={<ExamInstructions />} />
   </Route>
 );
 
