@@ -18,40 +18,40 @@ import ChatWidget from "../components/student/AI/Document/DocumentAssistant.jsx"
 import RecheckRequestStatus from "../components/student/RecheckRequestStatus.jsx";
 import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
-import PreExamSet from "../components/student/Exam/Online/preExam/PreExamSet.jsx";
-import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
+import Instructions from "../components/student/Exam/Online/preExam/Instructions.jsx";
+import SystemCheck from "../components/student/Exam/Online/preExam/SystemCheck.jsx";
 
 import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam.jsx";
-import OfflineExam from "../components/student/Exam/Offline/OfflineExam.jsx";
+import OfflineExam from "../pages/student/OfflineExam.jsx";
 
 const StudentRoutes = () => (
   <>
-  <Route path="/student" element={<StudentLayout />}>
-    <Route path="" element={<StudentDashboard />} />
-    <Route path="academicCal" element={<AcademicCalendar />} />
-    <Route path="chat" element={<ChatWidget />} />
-    <Route path="exam" element={<Exam />} />
-    <Route path="offlineExam" element={<OfflineExam />} />
-    <Route path="dashboard" element={<StudentDashboard />} />
-    <Route path="dashboard" element={<StudentDashboard />} />
-    <Route path="timetable" element={<Timetable />} />
-    <Route path="courses" element={<Courses />} />
-    <Route path="notices" element={<Notices />} />
-    <Route path="assignments" element={<Assignments />} />
-    <Route path="assignments/:id" element={<AssignmentDetails />} />
-    <Route path="results" element={<Results />} />
-    <Route path="attendance" element={<Attendance />} />
-    <Route path="fees" element={<FeePayment />} />
-    <Route path="profile" element={<Profile />} />
-    <Route path="results/recheck" element={<Recheck />} />
-    <Route path="results/recheckStatus" element={<RecheckRequestStatus />} />
-    <Route path="support" element={<Support />} />
-    <Route path="transport" element={<Transport />} />
-    <Route path="transport/map" element={<TransportMap />} />
-     <Route path="preexam" element={<PreExamSet />} />
-    <Route path="preexam2" element={<PreExam2 />} />
-  </Route>
-  <Route  path="exam" element={<OnlineExam />} />
+    <Route path="/student" element={<StudentLayout />}>
+      <Route path="" element={<StudentDashboard />} />
+      <Route path="academicCal" element={<AcademicCalendar />} />
+      <Route path="chat" element={<ChatWidget />} />
+      <Route path="exam" element={<Exam />} />
+      <Route path="offlineExam" element={<OfflineExam />} />
+      <Route path="dashboard" element={<StudentDashboard />} />
+      <Route path="dashboard" element={<StudentDashboard />} />
+      <Route path="timetable" element={<Timetable />} />
+      <Route path="courses" element={<Courses />} />
+      <Route path="notices" element={<Notices />} />
+      <Route path="assignments" element={<Assignments />} />
+      <Route path="assignments/:id" element={<AssignmentDetails />} />
+      <Route path="results" element={<Results />} />
+      <Route path="attendance" element={<Attendance />} />
+      <Route path="fees" element={<FeePayment />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="results/recheck" element={<Recheck />} />
+      <Route path="results/recheckStatus" element={<RecheckRequestStatus />} />
+      <Route path="support" element={<Support />} />
+      <Route path="transport" element={<Transport />} />
+      <Route path="transport/map" element={<TransportMap />} />
+      <Route path="preexam" element={<Instructions />} />
+      <Route path="preexam2" element={<SystemCheck />} />
+    </Route>
+    <Route path="exam" element={<OnlineExam />} />
   </>
 );
 
