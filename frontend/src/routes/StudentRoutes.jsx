@@ -20,7 +20,9 @@ import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
 import PreExamSet from "../components/student/Exam/Online/PreExamSet.jsx";
 import PreExam2 from "../components/student/Exam/Online/preExam/PreExam2.jsx";
-import OnlineExam from "../components/student/Exam/Online/preExam/OnlineExam.jsx"
+
+import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam.jsx";
+
 const StudentRoutes = () => (
   <>
   <Route path="/student" element={<StudentLayout />}>
