@@ -24,7 +24,12 @@ import Review from "../components/student/Exam/Online/preExam/Review.jsx";
 import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
 import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
 import OfflineExam from "../pages/student/OfflineExam";
+
+import SignIn from "../pages/student/Login/SignIn.jsx";
+import SignUp from "../pages/student/Login/SignUp.jsx";
+import ResetPassword from "../pages/student/Login/ResetPassword.jsx";
 const StudentRoutes = () => (
+  <> 
   <Route path="/student" element={<StudentLayout />}>
     <Route path="" element={<StudentDashboard />} />
     <Route path="academicCal" element={<AcademicCalendar />} />
@@ -50,10 +55,15 @@ const StudentRoutes = () => (
     <Route path="instructions" element={<Instructions />} />
     <Route path="systemCheck" element={<SystemCheck />} />
     <Route path="review" element={<Review />} />
-
     <Route path="preexam" element={<PreExamSet />} />
     <Route path="preexam2" element={<PreExam2 />} />
+   
   </Route>
+
+   <Route path="signin" element={<SignIn />} />
+    <Route path="signup" element={<SignUp />} />
+    <Route path="resetpassword" element={<ResetPassword />} />
+</>
 );
 
 export default StudentRoutes;
