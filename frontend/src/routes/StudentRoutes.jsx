@@ -25,6 +25,7 @@ import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam.js
 import OfflineExam from "../pages/student/OfflineExam.jsx";
 import AdmitCard from "../components/student/Exam/Offline/AdmitCard";
 import Seating from "../components/student/Exam/Offline/Seating";
+import ExamReview from "../components/student/Exam/Online/preExam/Review.jsx"
 const StudentRoutes = () => (
   <>
     <Route path="/student" element={<StudentLayout />}>
@@ -49,13 +50,14 @@ const StudentRoutes = () => (
       <Route path="support" element={<Support />} />
       <Route path="transport" element={<Transport />} />
       <Route path="transport/map" element={<TransportMap />} />
-      <Route path="preexam" element={<Instructions />} />
-      <Route path="preexam2" element={<SystemCheck />} />
+      <Route path="exam/preexam" element={<Instructions />} />
+      <Route path="exam/systemCheck" element={<SystemCheck />} />
       <Route path="instructions" element={<ExamInstructions />} />
       <Route path="admit" element={<AdmitCard />} />
       <Route path="seating" element={<Seating />} />
+      <Route path="exam/review" element={<ExamReview />} />
     </Route>
-    <Route path="exam" element={<OnlineExam />} />
+    <Route path="test" element={<OnlineExam />} />
   </>
 );
 
