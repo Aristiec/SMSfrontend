@@ -43,11 +43,11 @@ const Timetable = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   return (
-    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
+    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[10px] md:mx-[10px] lg:mx-[10px]">
       <TimetableHeader currentWeek={currentWeek} />
 
       <div className="flex justify-center p-4 lg:p-4">
-        <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
+        <div className="w-full  bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
           <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
             <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
               Weekly Class Timetable
