@@ -10,7 +10,6 @@ const SignUp = () => {
 
   const dropdownRef = useRef(null);
 
-  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -33,7 +32,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full flex h-screen">
+    <div className="w-full flex min-h-screen">
       {/* Left Side */}
       <div className="w-1/2 flex justify-center items-center bg-[#FAFCFD]">
         <img
@@ -59,7 +58,6 @@ const SignUp = () => {
 
             {/* Form */}
             <div className="flex flex-col gap-6 font-[Inter]">
-              
               <div className="flex flex-col gap-3">
                 <label className="text-[16px] font-medium text-[#04203E]">
                   Name
@@ -71,7 +69,6 @@ const SignUp = () => {
                 />
               </div>
 
-              
               <div className="flex flex-col gap-3">
                 <label className="text-[16px] font-medium text-[#04203E]">
                   Email Address
@@ -83,7 +80,6 @@ const SignUp = () => {
                 />
               </div>
 
-             
               <div className="flex flex-col gap-3">
                 <label className="text-[16px] font-medium text-[#04203E]">
                   Phone Number
@@ -106,7 +102,6 @@ const SignUp = () => {
                 />
               </div>
 
-             
               <div className="flex flex-col gap-3">
                 <label className="text-[16px] font-medium text-[#04203E]">
                   Confirm Password
@@ -118,7 +113,6 @@ const SignUp = () => {
                 />
               </div>
 
-              
               <div className="flex flex-col gap-2" ref={dropdownRef}>
                 <label className="text-[16px] font-medium text-[#04203E]">
                   Select Role
@@ -149,54 +143,50 @@ const SignUp = () => {
                     </svg>
                   </button>
 
-                   <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="w-[99%] mt-2 bg-white border border-[#717171] rounded-[6px] shadow flex flex-col gap-1 p-1"
-                    >
-                      <div
-                        className="bg-[#D9D9D9] rounded-[4px] px-2 py-1 cursor-pointer hover:bg-[#cfcfcf] text-[12px]"
-                        onClick={() => handleSelect("Faculty")}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="w-[99%] mt-2 bg-white border border-[#717171] rounded-[6px] shadow flex flex-col gap-1 p-1"
                       >
-                        Faculty
-                      </div>
-                      <div
-                        className="bg-[#D9D9D9] rounded-[4px] px-2 py-1 cursor-pointer hover:bg-[#cfcfcf] text-[12px]"
-                        onClick={() => handleSelect("Student")}
-                      >
-                        Student
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                        <div
+                          className="bg-[#D9D9D9] rounded-[4px] px-2 py-1 cursor-pointer hover:bg-[#cfcfcf] text-[12px]"
+                          onClick={() => handleSelect("Faculty")}
+                        >
+                          Faculty
+                        </div>
+                        <div
+                          className="bg-[#D9D9D9] rounded-[4px] px-2 py-1 cursor-pointer hover:bg-[#cfcfcf] text-[12px]"
+                          onClick={() => handleSelect("Student")}
+                        >
+                          Student
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
 
-            
             <div className="flex flex-col gap-4 font-[Inter]">
               <button className="w-full h-[32px] rounded-[8px] bg-[#04203E] text-[#FAFCFD] text-[12px] font-bold">
                 Create account
               </button>
             </div>
 
-            
             <div className="flex items-center gap-6">
               <div className="flex-grow h-[1px] bg-[#717171]"></div>
               <span className="text-[#1F1D1D] text-[16px]">OR</span>
               <div className="flex-grow h-[1px] bg-[#717171]"></div>
             </div>
 
-           
             <button className="w-full h-[40px] border border-[#717171] rounded-[6px] gap-3 font-[Inter] text-[16px] leading-[22px]">
               Continue with Google
             </button>
 
-            
             <div className="flex justify-center gap-[4px]">
               <p className="text-[12px] text-[#717171] leading-[20px] font-[Inter]">
                 Already have an account?

@@ -39,8 +39,8 @@ const Navbar = () => {
   const location = useLocation();
   const [isExamOpen, setIsExamOpen] = useState(false);
   const isExamActive =
-    location.pathname === "/student/exam" ||
-    location.pathname === "/student/offlineExam";
+    location.pathname.startsWith("/student/exam") ||
+    location.pathname.startsWith("/student/offlineExam");
 
   return (
     <div className="h-full bg-[#FAFCFD] flex flex-col justify-between  ">
@@ -105,7 +105,7 @@ const Navbar = () => {
                       className="flex flex-col space-y-2 overflow-hidden"
                     >
                       {examMenuItems.map(({ name, path }, index) => {
-                        const isActive = location.pathname === path;
+                        const isActive = location.pathname.startsWith(path);
                         return (
                           <Link to={path} key={index}>
                             <li

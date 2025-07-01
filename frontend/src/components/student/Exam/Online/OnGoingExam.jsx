@@ -63,7 +63,7 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex items-center space-x-2 rounded-lg">
           <Calendar className="w-4 h-4 text-[#1F1D1D]" />
-          {"  "}
+          <span className="text-[#1F1D1D] font-[Inter]">{exam.date}</span>
           <div className=" w-3 h-3 bg-[#10B981] rounded-full"></div>
           <span className="text-[#1F1D1D] font-medium text-[16px]">
             Ongoing - Ends at {exam.endTime}
@@ -85,7 +85,7 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex space-x-3 pt-4 border-t border-[#71717166]">
           <button
-            onClick={() => navigate("/student/preexam")}
+            onClick={() => navigate("/student/exam/preexam")}
             className="flex-1 bg-[#04203E] text-[#FAFCFD] px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
           >
             <Settings className="w-4 h-4" />
