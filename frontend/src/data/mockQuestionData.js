@@ -250,3 +250,158 @@ export const mockQuestions = [
     selectedAnswer: null
   }
 ];
+
+
+export const mockSubjectiveQuestions = [
+  {
+    id: 1,
+    question: "Explain the concept of normalization in relational databases.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 2,
+    question: "Describe the various types of database relationships with examples.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 3,
+    question: "What are the advantages and disadvantages of DBMS over traditional file systems?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 4,
+    question: "Write a short note on ACID properties in database transactions.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 5,
+    question: "Explain primary key, foreign key, and unique key with examples.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 6,
+    question: "What is indexing in DBMS? How does it improve performance?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 7,
+    question: "Describe the differences between clustered and non-clustered indexes.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 8,
+    question: "Explain the architecture of a DBMS system.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 9,
+    question: "What is a view in SQL? How is it different from a table?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 10,
+    question: "Write an SQL query to find the second highest salary from the employee table.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 11,
+    question: "Differentiate between DELETE, TRUNCATE, and DROP commands in SQL.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 12,
+    question: "Explain the different types of joins in SQL with examples.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 13,
+    question: "What is a transaction log and why is it important in DBMS?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 14,
+    question: "Explain the difference between OLTP and OLAP.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 15,
+    question: "Describe the life cycle of a database system.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 16,
+    question: "What is a deadlock in DBMS? How can it be prevented?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 17,
+    question: "What is data redundancy and how does DBMS handle it?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 18,
+    question: "Describe different types of data models in DBMS.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 19,
+    question: "What is a stored procedure? How is it different from a function?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 20,
+    question: "Explain the importance of data integrity in a database.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 21,
+    question: "What are triggers in SQL? Provide use cases.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 22,
+    question: "What is an ER diagram? Explain its components.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 23,
+    question: "Describe the concept of schema and instance in DBMS.",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 24,
+    question: "What are the challenges in distributed databases?",
+    answer: "",
+    status: "unanswered",
+  },
+  {
+    id: 25,
+    question: "Compare and contrast hierarchical, network, and relational database models.",
+    answer: "",
+    status: "unanswered",
+  },
+];
+
