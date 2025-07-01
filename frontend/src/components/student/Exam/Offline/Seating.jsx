@@ -7,14 +7,14 @@ function Seating() {
     const initialSeats = {};
     for (let i = 1; i <= 49; i++) {
       initialSeats[i] = {
-        answered: false,
+        answered: i === 45,
         markedForReview: i === 25,
       };
     }
     return initialSeats;
   });
 
-  const [selectedSeat, setSelectedSeat] = useState(null);
+  const [selectedSeat, setSelectedSeat] = useState(45);
   const navigate = useNavigate();
   const handleSeatClick = (seatNumber) => {
     setSelectedSeat(seatNumber);
@@ -53,7 +53,9 @@ function Seating() {
           </div>
           <div className="bg-[#FAFCFD] text-[#04203E] font-[Inter] px-4 py-2 rounded-lg">
             <div className="text-sm font-medium">Your Seat</div>
-            <div className="text-lg font-bold">{selectedSeat}</div>
+            <div className="text-lg font-bold">
+              {selectedSeat ? `A - ${selectedSeat}` : "-"}
+            </div>
           </div>
         </div>
       </div>
