@@ -63,7 +63,7 @@ const OnGoingExam = ({ exam, onSystemCheck, onStartExam }) => {
 
         <div className="flex items-center space-x-2 rounded-lg">
           <Calendar className="w-4 h-4 text-[#1F1D1D]" />
-          {"  "}
+          <span className="text-[#1F1D1D] font-[Inter]">{exam.date}</span>
           <div className=" w-3 h-3 bg-[#10B981] rounded-full"></div>
           <span className="text-[#1F1D1D] font-medium text-[16px]">
             Ongoing - Ends at {exam.endTime}
