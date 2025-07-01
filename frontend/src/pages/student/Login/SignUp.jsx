@@ -33,7 +33,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full flex h-screen">
+    <div className="w-full flex min-h-screen">
       {/* Left Side */}
       <div className="w-1/2 flex justify-center items-center bg-[#FAFCFD]">
         <img
