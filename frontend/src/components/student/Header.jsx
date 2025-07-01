@@ -14,12 +14,16 @@ const Header = () => {
       >
         {/* Left Side */}
         <div className="flex items-center gap-[16px]">
-          <img
-            onClick={() => navigate("/student/profile")}
-            src={headerLogo}
-            alt="Profile Icon"
-            className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD] cursor-pointer"
-          />
+          <div
+            onClick={() => navigate("/student/dashboard")}
+            className="cursor-pointer"
+          >
+            <img
+              src={headerLogo}
+              alt="Profile Icon"
+              className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD]"
+            />
+          </div>
 
           <span
             className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]"
@@ -70,11 +74,16 @@ const Header = () => {
 
           {/*  Profile */}
           <div className="pl-4">
-            <img
-              src={profilePic}
-              alt="User"
-              className="w-[40px] h-[40px] rounded-full "
-            />
+            <div
+              onClick={() => navigate("/student/profile")}
+              className="cursor-pointer"
+            >
+              <img
+                src={profilePic}
+                alt="User"
+                className="w-[40px] h-[40px] rounded-full "
+              />
+            </div>
           </div>
         </div>
       </div>
