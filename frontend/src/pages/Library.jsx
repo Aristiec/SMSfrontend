@@ -1,7 +1,10 @@
 import React from "react";
+import LowerComponent from "../components/student/Library/LowerComponent.jsx"
 
 const Library = () => {
-  return <div>Library</div>;
+  return <section>
+  <LowerComponent/>
+  </section>;
 };
 
 export default Library;
