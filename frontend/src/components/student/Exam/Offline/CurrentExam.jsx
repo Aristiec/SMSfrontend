@@ -12,7 +12,7 @@ import ExamInstructions from "./ExamInstructions";
 const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
   const navigate = useNavigate();
   const [showInstructions, setShowInstructions] = useState(false);
-
+  console.log("Exam Data:", exam);
   return (
     <>
       <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">

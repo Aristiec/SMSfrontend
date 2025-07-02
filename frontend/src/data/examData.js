@@ -19,6 +19,7 @@ export const ongoingExamData = {
   questions: 45,
   totalMarks: 100,
   endTime: "12:30 PM",
+  date: "Sat, Nov 25, 2024, 10:00 AM",
   timeLeft: 42,
   systemCheckComplete: false,
 };
