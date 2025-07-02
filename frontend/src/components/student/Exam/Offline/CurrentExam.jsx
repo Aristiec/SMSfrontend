@@ -53,15 +53,6 @@ const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
             <span className="text-[#1F1D1D] font-[Inter]">{exam.date}</span>
           </div>
 
-          <div className="p-3 bg-[#FFF4ED] border border-[#FFF4ED] rounded-lg">
-            <div className="flex items-center space-x-2">
-              <AlertCircle className="w-4 h-4 text-[#F97316]" />
-              <span className="text-[#F97316] text-[14px] font-[Inter]">
-                System check must be completed before you can begin the exam
-              </span>
-            </div>
-          </div>
-
           <div className="flex space-x-3 pt-4 border-t border-[#71717166]">
             <button
               onClick={() => setShowInstructions(true)}
