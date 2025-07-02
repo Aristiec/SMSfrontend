@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StudentLayout from "../layouts/StudentLayout";
 import StudentDashboard from "../pages/student/Dashboard";
 import Timetable from "../pages/student/Timetable";
@@ -36,48 +36,53 @@ import Fines from "../components/student/Library/Fines";
 import IssuedBooks from "../components/student/Library/IssuedBooks";
 import Wishlist from "../components/student/Library/Wishlist";
 import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
-const StudentRoutes = () => (
-  <>
-    <Route path="/student" element={<StudentLayout />}>
-      <Route path="" element={<StudentDashboard />} />
-      <Route path="academicCal" element={<AcademicCalendar />} />
-      <Route path="chat" element={<ChatWidget />} />
-      <Route path="exam" element={<Exam />} />
-      <Route path="offlineExam" element={<OfflineExam />} />
-      <Route path="dashboard" element={<StudentDashboard />} />
-      <Route path="dashboard" element={<StudentDashboard />} />
-      <Route path="timetable" element={<Timetable />} />
-      <Route path="courses" element={<Courses />} />
-      <Route path="notices" element={<Notices />} />
-      <Route path="assignments" element={<Assignments />} />
-      <Route path="assignments/:id" element={<AssignmentDetails />} />
-      <Route path="results" element={<Results />} />
-      <Route path="attendance" element={<Attendance />} />
-      <Route path="fees" element={<FeePayment />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="results/recheck" element={<Recheck />} />
-      <Route path="results/recheckStatus" element={<RecheckRequestStatus />} />
-      <Route path="support" element={<Support />} />
-      <Route path="transport" element={<Transport />} />
-      <Route path="transport/map" element={<TransportMap />} />
-      <Route path="library" element={<Library />} />
-      <Route path="exam/preexam" element={<Instructions />} />
-      <Route path="exam/systemCheck" element={<SystemCheck />} />
-      <Route path="instructions" element={<ExamInstructions />} />
-      <Route path="offlineExam/admit" element={<AdmitCard />} />
-      <Route path="offlineExam/seating" element={<Seating />} />
-      <Route path="activity" element={<ActivityHistory />} />
-      <Route path="book" element={<BookDetails />} />
-      <Route path="lib" element={<BrowseLibrary />} />
-      <Route path="fine" element={<Fines />} />
-      <Route path="issued" element={<IssuedBooks />} />
-      <Route path="wishlist" element={<Wishlist />} />
-      <Route path="feePayment1" element={<FeePayment1 />} />
-    </Route>
-    <Route path="test" element={<OnlineExam />} />
-    <Route path="signin" element={<SignIn />} />
-    <Route path="resetpassword" element={<ResetPassword />} />
-  </>
-);
+const StudentRoutes = () => {
+  return (
+    <>
+      <Route path="/student" element={<StudentLayout />}>
+        <Route path="" element={<StudentDashboard />} />
+        <Route path="academicCal" element={<AcademicCalendar />} />
+        <Route path="chat" element={<ChatWidget />} />
+        <Route path="exam" element={<Exam />} />
+        <Route path="offlineExam" element={<OfflineExam />} />
+        <Route path="dashboard" element={<StudentDashboard />} />
+        <Route path="dashboard" element={<StudentDashboard />} />
+        <Route path="timetable" element={<Timetable />} />
+        <Route path="courses" element={<Courses />} />
+        <Route path="notices" element={<Notices />} />
+        <Route path="assignments" element={<Assignments />} />
+        <Route path="assignments/:id" element={<AssignmentDetails />} />
+        <Route path="results" element={<Results />} />
+        <Route path="attendance" element={<Attendance />} />
+        <Route path="fees" element={<FeePayment />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="results/recheck" element={<Recheck />} />
+        <Route
+          path="results/recheckStatus"
+          element={<RecheckRequestStatus />}
+        />
+        <Route path="support" element={<Support />} />
+        <Route path="book/:id" element={<BookDetails />} />
+        <Route path="transport" element={<Transport />} />
+        <Route path="transport/map" element={<TransportMap />} />
+        <Route path="library" element={<Library />} />
+        <Route path="exam/preexam" element={<Instructions />} />
+        <Route path="exam/systemCheck" element={<SystemCheck />} />
+        <Route path="instructions" element={<ExamInstructions />} />
+        <Route path="offlineExam/admit" element={<AdmitCard />} />
+        <Route path="offlineExam/seating" element={<Seating />} />
+        <Route path="activity" element={<ActivityHistory />} />
+        <Route path="lib" element={<BrowseLibrary />} />
+        <Route path="fine" element={<Fines />} />
+        <Route path="issued" element={<IssuedBooks />} />
+        <Route path="wishlist" element={<Wishlist />} />
+                <Route path="feePayment1" element={<FeePayment1 />} />
+      </Route>
+      <Route path="test" element={<OnlineExam />} />
+      <Route path="signin" element={<SignIn />} />
+      <Route path="resetpassword" element={<ResetPassword />} />
+    </>
+  );
+};
 
 export default StudentRoutes;
