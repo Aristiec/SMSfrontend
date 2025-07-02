@@ -53,13 +53,14 @@ const Timetable = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D] sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
+
+    <div className="min-h-screen bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[10px] md:mx-[10px] lg:mx-[10px]">
       <TimetableHeader currentWeek={currentWeek} />
 
       <div className="flex justify-center p-4 lg:p-4">
-        <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
-          <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
-            <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
+        <div className="w-full  bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
+          <div className="  py-4 flex items-center justify-between">
+            <h1 className="text-[20px]  font-semibold text-[#1F1D1D]">
               Weekly Class Timetable
             </h1>
 
@@ -81,6 +82,15 @@ const Timetable = () => {
              
               {showTooltip && (
                 <div className="absolute right-full mr-4 top-1/3 -translate-y-1/2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md z-50 whitespace-nowrap">
+                <button
+                  className="p-2 rounded-lg bg-[#CFDCEB] relative"
+                  onClick={() => navigate("/student/academicCal")}
+                >
+                  <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
+                </button>
+
+                {/* Tooltip on hover */}
+                <div className="absolute -left-52 -top-7 mt-2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-50">
                   Click to switch between
                   <br /> Weekly and Daily view
                 </div>

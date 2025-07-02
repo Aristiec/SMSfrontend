@@ -1,7 +1,6 @@
 import React from "react";
 import profileIcon from "../../assets/profile_profile.svg";
 import courseIcon from "../../assets/courseIcon_icon_profile.svg";
-import pencil from "../../assets/pencil.svg";
 import mail from "../../assets/mail.svg";
 import blood from "../../assets/blood.svg";
 import calendar from "../../assets/calendar.svg";
@@ -13,9 +12,8 @@ import admission from "../../assets/admission.svg";
 import school from "../../assets/school.svg";
 import grade from "../../assets/grade.svg";
 
-const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
+const DetailCard = ({ icon, label, value = false }) => {
   return (
-    
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
       className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
@@ -34,14 +32,6 @@ const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
           </p>
         </div>
       </div>
-      {showRequestUpdate && (
-        <button className="flex gap-[12px]">
-          <img className="w-[16px] h-[16px] " src={pencil} />
-          <div className="font-[Inter] font-medium tracking-[0] leading-[18px] text-[12px] flex justify-center items-center text-[#04203E]">
-            <p className="">Request Update</p>
-          </div>
-        </button>
-      )}
     </div>
   );
 };
@@ -194,10 +184,7 @@ const Profile = () => {
 
           {/* Personal Details Section */}
           <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-            <div
-              className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[14px] md:text-[16px]
- leading-[28px]"
-            >
+            <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Personal Details
             </div>
           </div>
@@ -215,7 +202,7 @@ const Profile = () => {
           {/*  Guardian Details Section */}
 
           <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
-            <div className="text-[#FAFCFD] font-semibold text-[16px] md:text-[18px] leading-[28px]">
+            <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Guardian Details
             </div>
           </div>
@@ -252,7 +239,7 @@ const Profile = () => {
             className="w-full
  h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
           >
-            <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[16px] leading-[28px]">
+            <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[20px] leading-[28px]">
               Academic Details
             </div>
           </div>
