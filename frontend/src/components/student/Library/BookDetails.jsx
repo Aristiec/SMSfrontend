@@ -1,97 +1,129 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { BookOpen, MapPin, Tag, Calendar } from "lucide-react";
+import { Book, MapPin, Tag, Calendar, X } from "lucide-react";
 import { mockBooks } from "../../../data/mockBooks";
-const BookDetails = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+const BookDetails = ({ book, onBack, onAddToWishlist }) => {
+  if (!book) return null;
+  const handleWishlist = () => {
+    if (onAddToWishlist) {
+      onAddToWishlist(book);
+      onBack();
+    }
+  };
+  return (
+    <div className=" px-8 py-6 max-w-[1024px] mx-auto">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-[20px] font-[Inter] text-[#1F1D1D] font-bold">
+          Book Details
+        </h2>
 
-  const book = mockBooks.find((b) => b.id === Number(id));
-
-  if (!book) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-red-500">Book not found.</p>
-        <button
-          className="ml-4 text-blue-600 underline"
-          onClick={() => navigate("/student/lib")}
-        >
-          Go Back
+        <button onClick={onBack} className="text-[#1F1D1D] transition">
+          <X className="w-5 h-5" />
         </button>
       </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-white px-8 py-6">
-      <h2 className="text-xl font-semibold mb-6">Book Details</h2>
-
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Left: Book Image */}
         <div className="w-full md:w-[200px] flex flex-col items-center">
           <img
-            src={book.image}
+            src={book.cover}
             alt={book.title}
-            className="w-[160px] h-[220px] object-cover rounded-lg shadow-md"
+            className="w-[190px] h-[256px] object-cover rounded-lg shadow-md"
           />
-          <p className="text-sm text-gray-400 mt-2">
-            Library Stock: {book.stock} {book.stock === 1 ? "copy" : "copies"}
+          <p className="text-[12px] font-[Inter] text-[#717171] mt-2">
+            Library Stock: {book.available ? "Available" : "Unavailable"}
           </p>
         </div>
 
         {/* Right: Book Info */}
         <div className="flex-1">
-          <h1 className="text-xl font-semibold text-gray-900">{book.title}</h1>
-          <p className="text-sm text-gray-700 mb-4">by {book.author}</p>
-
-          {/* Status */}
-          {book.stock === 0 && (
-            <p className="text-sm text-red-500 font-medium mb-2">
-              Currently Unavailable
-            </p>
-          )}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+            <h1 className="text-[20px] font-[Inter] font-bold text-[#1F1D1D]">
+              {book.title}
+            </h1>
+            {!book.available && (
+              <p className="text-[14px] text-red-600 font-[Inter] font-medium mt-2 md:mt-0">
+                Currently Unavailable
+              </p>
+            )}
+          </div>
+          <p className="text-[16px] font-[Inter] text-[#717171] mb-4">
+            by {book.author}
+          </p>
 
           {/* Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-4 h-4" />
-              <span>
-                <strong>ISBN</strong>: {book.isbn}
-              </span>
+          <div className="grid grid-cols-2 gap-y-6 gap-x-12 text-sm  mb-8">
+            <div className="flex items-start gap-2">
+              <Book className="w-4 h-4 mt-2 text-[#1F1D1D]" />
+              <div>
+                <div className="text-[12px] text-[#717171] font-[Inter] font-medium">
+                  ISBN
+                </div>
+                <div className="text-[12px] font-[Inter] text-[#1F1F1F]">
+                  {book.isbn}
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4" />
-              <span>
-                <strong>Category</strong>: {book.category}
-              </span>
+
+            <div className="flex items-start gap-2">
+              <Tag className="w-4 h-4 mt-2 text-[#1F1D1D]" />
+              <div>
+                <div className="text-[12px] text-[#717171] font-[Inter] font-medium">
+                  Category
+                </div>
+                <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
+                  {book.category}
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              <span>
-                <strong>Shelf Location</strong>: {book.shelfLocation}
-              </span>
+
+            <div className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 mt-2 text-[#1F1D1D]" />
+              <div>
+                <div className="text-[12px] text-[#717171] font-[Inter] font-medium">
+                  Shelf Location
+                </div>
+                <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
+                  Section P, Row 12
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <span>
-                <strong>Edition</strong>: {book.edition}
-              </span>
+
+            <div className="flex items-start gap-2">
+              <Calendar className="w-4 h-4 mt-2 text-[#1F1D1D]" />
+              <div>
+                <div className="text-[12px] text-[#717171] font-[Inter] font-medium">
+                  Edition
+                </div>
+                <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
+                  1st Edition, 2012
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Description */}
           <div className="mb-4">
-            <h3 className="text-sm font-semibold text-gray-800 mb-1">
+            <h3 className="text-[14px] font-medium font-[Inter] text-[#717171] mb-4">
               Description
             </h3>
-            <p className="text-sm text-gray-700">{book.description}</p>
+            <p className="text-[14px] font-[Inter] text-[#1F1D1D] w-[570px]">
+              "Clean Code" is a must-read for every developer who cares about
+              writing readable, maintainable, and efficient code. Authored by
+              Robert C. Martin, this book dives deep into principles, patterns,
+              and best practices of agile software development. Through
+              real-world examples and detailed refactoring strategies, it
+              teaches you how to transform messy, complex codebases into elegant
+              and scalable solutions. Whether you're a beginner or a seasoned
+              engineer, this book will sharpen your coding mindset and elevate
+              your craftsmanship..
+            </p>
           </div>
-
-          {/* Add to Wishlist */}
-          <button className="mt-4 border border-gray-500 text-gray-800 px-4 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100 transition">
-            <BookmarkIcon className="w-4 h-4" />
-            Add to Wishlist
-          </button>
+          {book.available && (
+            <button
+              onClick={handleWishlist}
+              className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100 transition"
+            >
+              <BookmarkIcon className="w-4 h-4" />
+              Add to Wishlist
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Search, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import BookDetails from "./BookDetails";
 import book1 from "../../../assets/bd7ef330bde6a8f16ed147ce73e81a9992bb7d70.png";
 import book2 from "../../../assets/4fa4fa216f04b58ac64bde3c5b1453b97396f08a.png";
 import book3 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
@@ -156,13 +156,18 @@ const CustomDropdown = ({ label, options, value, onChange }) => {
     </div>
   );
 };
-const BrowseLibrary = () => {
+const BrowseLibrary = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [semesterFilter, setSemesterFilter] = useState("All");
   const [courseFilter, setCourseFilter] = useState("All");
   const navigate = useNavigate();
-
+  const [selectedBook, setSelectedBook] = useState(null);
+  const handleAddToWishlist = (book) => {
+    if (!wishlist.find((b) => b.id === book.id)) {
+      setWishlist([...wishlist, book]);
+    }
+  };
   // Get unique filter options
   const categories = [...new Set(mockBooks.map((book) => book.category))];
   const semesters = [...new Set(mockBooks.map((book) => book.semester))];
@@ -189,7 +194,7 @@ const BrowseLibrary = () => {
     });
   }, [searchQuery, categoryFilter, semesterFilter, courseFilter]);
 
-  const BookCard = ({ book }) => (
+  const BookCard = ({ book, onViewDetails }) => (
     <div className="w-full h-[240px] bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden border border-[#71717166] flex flex-col justify-between">
       <div className="flex px-4 pt-4">
         <div className="flex-shrink-0 mr-4">
@@ -231,9 +236,7 @@ const BrowseLibrary = () => {
           {book.semester}
         </span>
         <button
-          onClick={() =>
-            navigate(`/student/book/${book.id}`, { state: { book } })
-          }
+          onClick={() => onViewDetails(book)}
           className="bg-[#04203E] text-[#FAFCFD] text-xs w-[130px] h-[32px] font-[Inter] rounded flex items-center justify-center gap-1"
         >
           <Eye className="w-3.5 h-3.5" />
@@ -245,64 +248,78 @@ const BrowseLibrary = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-[#FAFCFD] rounded-lg min-h-screen mx-10">
-      {/* Search Bar */}
-      <div className="relative mb-6">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-[#71717166]" />
-        </div>
-        <input
-          type="text"
-          placeholder="Search by title, author, or ISBN..."
-          className="block w-full pl-10 pr-3 py-2 border border-[#71717166] rounded-md leading-5 bg-[#FAFCFD] placeholder:text-[#717171] placeholder:text-[16px] placeholder:font-[Inter]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
+      {!selectedBook ? (
+        <>
+          {/* Search */}
+          <div className="relative mb-6">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-[#71717166]" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by title, author, or ISBN..."
+              className="block w-full pl-10 pr-3 py-2 border border-[#71717166] rounded-md leading-5 bg-[#FAFCFD] placeholder:text-[#717171] placeholder:text-[16px] placeholder:font-[Inter]"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
 
-      {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <CustomDropdown
-          label="Category"
-          options={categories}
-          value={categoryFilter}
-          onChange={setCategoryFilter}
-        />
-        <CustomDropdown
-          label="Semester"
-          options={semesters}
-          value={semesterFilter}
-          onChange={setSemesterFilter}
-        />
-        <CustomDropdown
-          label="Course"
-          options={courses}
-          value={courseFilter}
-          onChange={setCourseFilter}
-        />
-      </div>
+          {/* Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <CustomDropdown
+              label="Category"
+              options={categories}
+              value={categoryFilter}
+              onChange={setCategoryFilter}
+            />
+            <CustomDropdown
+              label="Semester"
+              options={semesters}
+              value={semesterFilter}
+              onChange={setSemesterFilter}
+            />
+            <CustomDropdown
+              label="Course"
+              options={courses}
+              value={courseFilter}
+              onChange={setCourseFilter}
+            />
+          </div>
 
-      {/* Results Count */}
-      <div className="text-right text-sm text-[#717171] font-[Inter] font-medium mb-4">
-        Showing {filteredBooks.length} Results
-      </div>
+          {/* Results Count */}
+          <div className="text-right text-sm text-[#717171] font-[Inter] font-medium mb-4">
+            Showing {filteredBooks.length} Results
+          </div>
 
-      {/* Book Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredBooks.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </div>
+          {/* Book Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredBooks.map((book) => (
+              <BookCard
+                key={book.id}
+                book={book}
+                onViewDetails={setSelectedBook}
+              />
+            ))}
+          </div>
 
-      {/* No Results */}
-      {filteredBooks.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">
-            No books found matching your criteria.
-          </p>
-          <p className="text-gray-400 text-sm mt-2">
-            Try adjusting your search or filters.
-          </p>
-        </div>
+          {/* No Results */}
+          {filteredBooks.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">
+                No books found matching your criteria.
+              </p>
+              <p className="text-gray-400 text-sm mt-2">
+                Try adjusting your search or filters.
+              </p>
+            </div>
+          )}
+        </>
+      ) : (
+        <BookDetails
+          book={selectedBook}
+          onBack={() => setSelectedBook(null)}
+          onAddToWishlist={handleAddToWishlist}
+        />
       )}
     </div>
   );

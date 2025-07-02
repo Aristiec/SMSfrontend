@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Book, Search, DollarSign, Bookmark, History } from "lucide-react";
 import ActivityHistory from "../../student/Library/ActivityHistory.jsx";
 import Fines from "./Fines.jsx";
-
+import BrowseLibrary from "./BrowseLibrary.jsx";
+import Wishlist from "./Wishlist.jsx";
+import IssuedBooks from "./IssuedBooks.jsx";
 const menuItems = [
   {
     icon: <Book size={14} />,
@@ -27,7 +29,9 @@ const menuItems = [
 ];
 
 const LowerComponent = () => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [wishlist, setWishlist] = useState([]);
+
   return (
     <div className="flex flex-col gap-6 p-6 bg-[#FAFCFD] rounded-t-xl">
       <div className="flex gap-8">
@@ -47,8 +51,23 @@ const LowerComponent = () => {
         ))}
       </div>
       <div>
-        {selectedIndex === 2 ? (
+        {selectedIndex === 0 ? (
+          <IssuedBooks />
+        ) : selectedIndex === 1 ? (
+          <BrowseLibrary wishlist={wishlist} setWishlist={setWishlist} />
+        ) : selectedIndex === 2 ? (
           <Fines />
+        ) : selectedIndex === 3 ? (
+          <Wishlist
+            wishlist={wishlist}
+            onViewDetails={(book) => {
+              setSelectedIndex(1);
+              setSelectedBook(book);
+            }}
+            onRemove={(bookId) =>
+              setWishlist((prev) => prev.filter((b) => b.id !== bookId))
+            }
+          />
         ) : selectedIndex === 4 ? (
           <ActivityHistory />
         ) : null}
