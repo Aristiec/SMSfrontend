@@ -7,7 +7,7 @@ const StudentInfo = ({ student }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate("/student/admit");
+    navigate("/student/offlineExam/admit");
   };
   return (
     <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">

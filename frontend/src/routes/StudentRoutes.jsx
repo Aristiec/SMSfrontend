@@ -53,8 +53,8 @@ const StudentRoutes = () => (
       <Route path="exam/preexam" element={<Instructions />} />
       <Route path="exam/systemCheck" element={<SystemCheck />} />
       <Route path="instructions" element={<ExamInstructions />} />
-      <Route path="admit" element={<AdmitCard />} />
-      <Route path="seating" element={<Seating />} />
+      <Route path="offlineExam/admit" element={<AdmitCard />} />
+      <Route path="offlineExam/seating" element={<Seating />} />
       <Route path="exam/review" element={<ExamReview />} />
     </Route>
     <Route path="test" element={<OnlineExam />} />
