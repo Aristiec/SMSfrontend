@@ -47,6 +47,16 @@ const Header = () => {
           className="flex items-center justify-center"
           style={{ color: "#FAFCFD" }}
         >
+          {/* Library */}
+          <div
+            onClick={() => navigate("/student/library")}
+            className={getLinkClasses("library")}
+          >
+            <FaBuilding className="w-[16px] h-[16px]" />
+            <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
+              Library
+            </span>
+          </div>
           {/* Hostel */}
           <div className={getLinkClasses("hostel")}>
             <FaBuilding className="w-[16px] h-[16px]" />
