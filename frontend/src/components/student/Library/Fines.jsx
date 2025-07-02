@@ -42,102 +42,88 @@ const Fines = () => {
         <p className="font-[Inter] font-medium text-[20px] leading-7 tracking-normal text-[#1F1D1D] flex items-center">
           Unpaid Fines
         </p>
-        <div className="flex flex-col gap-3 justify-center">
-          <div className="bg-[#F4F7FA] border-b-1 border-[#71717166] grid grid-cols-7 font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171] tracking-normal gap-3 p-5 ">
-            <p className="col-span-2">Books</p>
-            <p>Due Date</p>
-            <p>Return Date</p>
-            <p>Days Late</p>
-            <p>Fines</p>
-            <p>Action</p>
-          </div>
-          <div className="flex flex-col">
-            {unpaidFines.map((fine, index) => (
-              <div
-                key={index}
-                className="border-b-1 border-[#71717166] py-5 gap-3  grid grid-cols-7"
-              >
-                <div className="col-span-2">
-                  <p className="text-[#1F1D1D] font-[Inter] font-medium text-[16px] leading-6 tracking-normal  truncate ">
-                    {fine.book}
-                  </p>
-                  <p className="text-[#717171] font-[Inter] font-[400] text-[12px] leading-5 tracking-normal flex items-center">
-                    {fine.isbn}
-                  </p>
-                </div>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.dueDate}
-                </p>
-
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.returnDate}
-                </p>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.daysLate}
-                </p>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.fine}
-                </p>
-                <div className="flex items-center">
-                  <button className="bg-[#04203E] py-1 px-5 gap-[10px] rounded-sm flex font-[Inter] font-medium text-[14px] leading-5 tracking-normal text-[#FAFCFD] ">
-                    Pay
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full border-separate border-spacing-y-3 font-[Inter]">
+            <thead>
+              <tr className="bg-[#F4F7FA] text-[#717171] text-[14px] font-medium leading-[18px] tracking-normal">
+                <th className="text-left px-5 py-3 col-span-2">Books</th>
+                <th className="text-left px-5 py-3">Due Date</th>
+                <th className="text-left px-5 py-3">Return Date</th>
+                <th className="text-left px-5 py-3">Days Late</th>
+                <th className="text-left px-5 py-3">Fines</th>
+                <th className="text-left px-5 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {unpaidFines.map((fine, index) => (
+                <tr
+                  key={index}
+                  className="border-b border-[#71717166] text-[#1F1D1D] text-[14px] font-normal leading-[18px] tracking-normal"
+                >
+                  <td className="px-5 py-3">
+                    <p className="text-[16px] font-medium leading-6 truncate">
+                      {fine.book}
+                    </p>
+                    <p className="text-[#717171] text-[12px] font-normal leading-5">
+                      {fine.isbn}
+                    </p>
+                  </td>
+                  <td className="px-5 py-3">{fine.dueDate}</td>
+                  <td className="px-5 py-3">{fine.returnDate}</td>
+                  <td className="px-5 py-3">{fine.daysLate}</td>
+                  <td className="px-5 py-3">{fine.fine}</td>
+                  <td className="px-5 py-3">
+                    <button className="bg-[#04203E] py-1 px-5 gap-[10px] rounded-sm text-[#FAFCFD] text-[14px] font-medium leading-5 tracking-normal">
+                      Pay
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       <div className="bg-[#FAFCFD] flex flex-col gap-3 rounded-xl ">
         <p className="font-[Inter] font-medium text-[20px] leading-7 tracking-normal text-[#1F1D1D] flex items-center">
           Payment History
         </p>
-        <div className="flex flex-col gap-3 justify-center">
-          <div className="bg-[#F4F7FA] border-b-1 border-[#71717166] grid grid-cols-6 font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171] tracking-normal gap-3 p-5 ">
-            <p className="col-span-2">Books</p>
-            <p>Days Late</p>
-            <p>Fine</p>
-            <p>Paid On</p>
-            <p>Status</p>
-          </div>
-          <div className="flex flex-col">
-            {paymentHistory.map((fine, index) => (
-              <div
-                key={index}
-                className="border-b-1 border-[#71717166] py-5 gap-3  grid grid-cols-6"
-              >
-                <div className="col-span-2">
-                  <p className="text-[#1F1D1D] font-[Inter] font-medium text-[16px] leading-6 tracking-normal  truncate ">
-                    {fine.book}
-                  </p>
-                  <p className="text-[#717171] font-[Inter] font-[400] text-[12px] leading-5 tracking-normal flex items-center">
-                    {fine.isbn}
-                  </p>
-                </div>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.daysLate}
-                </p>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.fine}
-                </p>
-                <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                  {fine.paidOn}
-                </p>
-                <div
-                  className="flex items-center"
-                >
-                  <p
-                    className={`font-[Inter] font-medium text-[12px] leading-4 tracking-normal gap-2 px-3 py-1  rounded-full flex items-center ${
-                      statusColor[fine.status]
-                    }`}
-                  >
-                    {fine.status}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+       <div className="overflow-x-auto">
+  <table className="min-w-full border-separate border-spacing-y-3 font-[Inter]">
+    <thead>
+      <tr className="bg-[#F4F7FA] text-[#717171] text-[14px] font-medium leading-[18px] tracking-normal">
+        <th className="text-left px-5 py-3 col-span-2">Books</th>
+        <th className="text-left px-5 py-3">Days Late</th>
+        <th className="text-left px-5 py-3">Fine</th>
+        <th className="text-left px-5 py-3">Paid On</th>
+        <th className="text-left px-5 py-3">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {paymentHistory.map((fine, index) => (
+        <tr
+          key={index}
+          className="border-b border-[#71717166] text-[#1F1D1D] text-[14px] font-normal leading-[18px] tracking-normal"
+        >
+          <td className="px-5 py-3">
+            <p className="text-[16px] font-medium leading-6 truncate">{fine.book}</p>
+            <p className="text-[#717171] text-[12px] font-normal leading-5">{fine.isbn}</p>
+          </td>
+          <td className="px-5 py-3">{fine.daysLate}</td>
+          <td className="px-5 py-3">{fine.fine}</td>
+          <td className="px-5 py-3">{fine.paidOn}</td>
+          <td className="px-5 py-3">
+            <span
+              className={`text-[12px] font-medium leading-4 tracking-normal px-3 py-1 rounded-full inline-flex items-center ${statusColor[fine.status]}`}
+            >
+              {fine.status}
+            </span>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
       </div>
     </div>
   );
