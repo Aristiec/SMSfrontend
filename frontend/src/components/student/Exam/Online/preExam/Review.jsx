@@ -148,7 +148,7 @@ const Review = () => {
             ))}
           </div>
 
-          <div className="flex justify-center">
+          <div  onClick={()=> navigate("/test")} className="flex justify-center">
             <button className="bg-[#04203E] text-[#FAFCFD] w-full px-8 py-2 rounded-[8px] font-medium text-[16px]">
               Verify
             </button>
@@ -159,7 +159,7 @@ const Review = () => {
       {/* Previous Button  */}
       <div>
         <button
-          onClick={()=> navigate("/student/systemCheck")}
+          onClick={()=> navigate("/student/exam/systemCheck")}
           className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3"
         >
           <ChevronLeft size={20} color="#1F1D1D" />

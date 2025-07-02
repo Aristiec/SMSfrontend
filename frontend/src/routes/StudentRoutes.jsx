@@ -20,15 +20,15 @@ import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
 import Instructions from "../components/student/Exam/Online/preExam/Instructions.jsx";
 import SystemCheck from "../components/student/Exam/Online/preExam/SystemCheck.jsx";
-import Review from "../components/student/Exam/Online/preExam/Review.jsx";
-import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
-import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
+import ExamInstructions from "../components/student/Exam/Offline/ExamInstructions";
 import OfflineExam from "../pages/student/OfflineExam";
 import AdmitCard from "../components/student/Exam/Offline/AdmitCard";
 import SignIn from "../pages/student/Login/SignIn.jsx";
 import SignUp from "../pages/student/Login/SignUp.jsx";
 import ResetPassword from "../pages/student/Login/ResetPassword.jsx";
 import Seating from "../components/student/Exam/Offline/Seating";
+import ExamReview from "../components/student/Exam/Online/preExam/Review.jsx";
+import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam";
 const StudentRoutes = () => (
   <>
     <Route path="/student" element={<StudentLayout />}>
@@ -53,17 +53,16 @@ const StudentRoutes = () => (
       <Route path="support" element={<Support />} />
       <Route path="transport" element={<Transport />} />
       <Route path="transport/map" element={<TransportMap />} />
-      <Route path="instructions" element={<Instructions />} />
-      <Route path="systemCheck" element={<SystemCheck />} />
-      <Route path="review" element={<Review />} />
-      <Route path="preexam" element={<PreExamSet />} />
-      <Route path="preexam2" element={<PreExam2 />} />
+
+      <Route path="exam/preexam" element={<Instructions />} />
+      <Route path="exam/systemCheck" element={<SystemCheck />} />
+      <Route path="instructions" element={<ExamInstructions />} />
       <Route path="admit" element={<AdmitCard />} />
       <Route path="seating" element={<Seating />} />
+      <Route path="exam/review" element={<ExamReview />} />
     </Route>
-
+    <Route path="test" element={<OnlineExam />} />
     <Route path="signin" element={<SignIn />} />
-    <Route path="signup" element={<SignUp />} />
     <Route path="resetpassword" element={<ResetPassword />} />
   </>
 );

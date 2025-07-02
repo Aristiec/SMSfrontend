@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Clock3,
   Save,
@@ -6,13 +6,13 @@ import {
   FileScan,
   Calendar,
   Files,
+  File,
 } from "lucide-react";
 import {
   mockQuestions,
   mockSubjectiveQuestions,
 } from "../../../../../data/mockQuestionData.js";
 import Dropdown from "../../../../utils/Dropdown.jsx";
-
 
 const OnlineExam = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -30,7 +30,6 @@ const OnlineExam = () => {
     : setQuestions;
   const handleNext = () => {
     if (!showSubjective) {
-
       if (selectedAnswer !== null) {
         setQuestions((prev) =>
           prev.map((q, i) => {
@@ -85,7 +84,7 @@ const OnlineExam = () => {
       setCurrentQuestion((prev) =>
         prev === mockSubjectiveQuestions.length ? 1 : prev + 1
       );
-      setSubjectiveAnswer(""); 
+      setSubjectiveAnswer("");
       setSelectedFile(null);
     }
   };
@@ -99,11 +98,9 @@ const OnlineExam = () => {
     setCurrentQuestion(newIndex);
 
     if (!showSubjective) {
-      
       const previousAnswer = questions[newIndex - 1]?.selectedAnswer || null;
       setSelectedAnswer(previousAnswer);
     } else {
-      
       const prevQuestion = subjectiveQuestion[newIndex - 1];
       setSubjectiveAnswer(prevQuestion?.subjectiveAnswer || "");
       setSelectedFile(prevQuestion?.file || null);
@@ -156,6 +153,8 @@ const OnlineExam = () => {
     );
     setCurrentQuestion(currentQuestion + 1);
     setSelectedAnswer(null);
+    setSubjectiveAnswer("");
+    setSelectedFile(null);
     if (currentQuestion === mockQuestions.length) {
       setCurrentQuestion(1);
     }
@@ -167,7 +166,6 @@ const OnlineExam = () => {
     } else setShowSubjective(true);
   };
 
-  
 
   return (
     <div className="bg-[#FAFCFD] py-10 px-12">
@@ -303,7 +301,11 @@ const OnlineExam = () => {
                           onClick={() => setSelectedAnswer(index + 1)}
                           className="flex gap-6 p-4 rounded-[8px] border border-[#717171] items-center cursor-pointer"
                         >
-                          <div className={`size-3 rounded-full border border-[#717171] ${selectedAnswer === index + 1 ? "bg-[black]" : ""}`}></div>
+                          <div
+                            className={`size-3 rounded-full border border-[#717171] ${
+                              selectedAnswer === index + 1 ? "bg-[black]" : ""
+                            }`}
+                          ></div>
                           <p className="font-[400] text-[16px] leading-6 tracking-normal text-[#1F1D1D] ">
                             {option}
                           </p>
@@ -313,7 +315,10 @@ const OnlineExam = () => {
                     {showSubjective && (
                       <div className="flex flex-col gap-4">
                         <textarea
-                          value={subjectiveAnswer}
+                        key={currentQuestion}
+                          value={subjectiveAnswer || subjectiveQuestion.find(
+                        (q) => q.id === currentQuestion - 1
+                      )?.answer}  
                           onChange={(e) => setSubjectiveAnswer(e.target.value)}
                           placeholder="Write your answer in the given space"
                           className="w-full p-4 h-[256px] resize-none overflow-y-scroll scrollbar-hide rounded-[8px] border border-[#717171] text-[16px] font-[400] leading-6 tracking-normal text-[#717171] "
@@ -377,7 +382,11 @@ const OnlineExam = () => {
                     type="file"
                     multiple
                     accept=".pdf"
-                    onChange={(e) => setSelectedFile(e.target.files[0])}
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      setSelectedFile(file);
+                      e.target.value = null;
+                    }}
                     className={`absolute inset-0 w-full h-full opacity-0 z-10
                            pointer-events-auto
                         `}
@@ -405,6 +414,24 @@ const OnlineExam = () => {
                 </div>
               </div>
             )}
+
+            {(selectedFile ||
+              subjectiveQuestion.some(
+                (q) => q.id === currentQuestion && q.file
+              )) && (
+              <div className="flex flex-col gap-[8px]">
+                <div className="flex gap-[8px] rounded-[8px] p-[8px] bg-[#CFDCEB]">
+                  <File />
+                  <p className="font-[400] text-[13.6px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                    {selectedFile?.name ||
+                      subjectiveQuestion.find(
+                        (q) => q.id === currentQuestion - 1
+                      )?.file?.name}
+                  </p>
+                </div>
+              </div>
+            )}
+
             <div className="flex justify-between">
               <button
                 onClick={handleClear}

@@ -127,13 +127,13 @@ const SystemCheck = () => {
       )}
 
       <div className="flex justify-between pb-6">
-        <button  onClick={() => navigate("/student/instructions")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
+        <button  onClick={() => navigate("/student/exam/preexam")} className="py-3 px-4 rounded-[8px] bg-[#CFDCEB] flex items-center gap-3 ">
           <ChevronLeft size={20} color="#1F1D1D" />
           <p className="font-medium text-[16px] leading-6 tracking-normal font-[Inter] text-[#1F1D1D]">
             Previous
           </p>
         </button>
-        <button onClick={() => navigate("/student/review")}
+        <button onClick={() => navigate("/student/exam/review")}
           disabled={hasLoadingOrFail}
           className={`py-3 px-4 rounded-[8px] flex items-center gap-3 ${
             hasLoadingOrFail
