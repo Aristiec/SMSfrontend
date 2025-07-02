@@ -114,7 +114,7 @@ const Courses = () => {
                 <div className="flex justify-end items-center flex-1 mt-4 md:mt-0 md:justify-end">
                   <button
                     onClick={() => handleDownload(course.title)}
-                    className="flex items-center gap-[12px] text-[16px] text-[#04203E] underline"
+                    className="flex items-center gap-[12px] text-[16px] text-[#04203E] mb-1 underline"
                   >
                     <img
                       src={SyllabusIcon}
