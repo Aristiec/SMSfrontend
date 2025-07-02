@@ -1,7 +1,6 @@
 import React from "react";
 import profileIcon from "../../assets/profile_profile.svg";
 import courseIcon from "../../assets/courseIcon_icon_profile.svg";
-import pencil from "../../assets/pencil.svg";
 import mail from "../../assets/mail.svg";
 import blood from "../../assets/blood.svg";
 import calendar from "../../assets/calendar.svg";
@@ -13,7 +12,7 @@ import admission from "../../assets/admission.svg";
 import school from "../../assets/school.svg";
 import grade from "../../assets/grade.svg";
 
-const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
+const DetailCard = ({ icon, label, value = false }) => {
   return (
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
@@ -33,14 +32,6 @@ const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
           </p>
         </div>
       </div>
-      {showRequestUpdate && (
-        <button className="flex gap-[12px]">
-          <img className="w-[16px] h-[16px] " src={pencil} />
-          <div className="font-[Inter] font-medium tracking-[0] leading-[18px] text-[12px] flex justify-center items-center text-[#04203E]">
-            <p className="">Request Update</p>
-          </div>
-        </button>
-      )}
     </div>
   );
 };
