@@ -29,6 +29,12 @@ import Seating from "../components/student/Exam/Offline/Seating";
 import ExamReview from "../components/student/Exam/Online/preExam/Review.jsx";
 import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam";
 import Library from "../pages/Library";
+import ActivityHistory from "../components/student/Library/ActivityHistory";
+import BookDetails from "../components/student/Library/BookDetails";
+import BrowseLibrary from "../components/student/Library/BrowseLibrary";
+import Fines from "../components/student/Library/Fines";
+import IssuedBooks from "../components/student/Library/IssuedBooks";
+import Wishlist from "../components/student/Library/Wishlist";
 const StudentRoutes = () => (
   <>
     <Route path="/student" element={<StudentLayout />}>
@@ -59,7 +65,12 @@ const StudentRoutes = () => (
       <Route path="instructions" element={<ExamInstructions />} />
       <Route path="offlineExam/admit" element={<AdmitCard />} />
       <Route path="offlineExam/seating" element={<Seating />} />
-      <Route path="exam/review" element={<ExamReview />} />
+      <Route path="activity" element={<ActivityHistory />} />
+      <Route path="book" element={<BookDetails />} />
+      <Route path="lib" element={<BrowseLibrary />} />
+      <Route path="fine" element={<Fines />} />
+      <Route path="issued" element={<IssuedBooks />} />
+      <Route path="wishlist" element={<Wishlist />} />
     </Route>
     <Route path="test" element={<OnlineExam />} />
     <Route path="signin" element={<SignIn />} />
