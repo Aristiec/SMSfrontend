@@ -132,7 +132,10 @@ const Instructions = () => {
       {/* button div  */}
 
       <div className="w-[1072px]  flex justify-between pb-6 font-[Inter]">
-        <div onClick={() => navigate(-1)} className="flex items-center gap-3 bg-[#CFDCEB] rounded-[8px] px-4 py-3 cursor-pointer">
+        <div
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-3 bg-[#CFDCEB] rounded-[8px] px-4 py-3 cursor-pointer"
+        >
           <ChevronLeft size={16} color="#1F1D1D" strokeWidth={2} />
           <div className="text-[#1F1D1D] font-medium text-[16px] leading-[24px]">
             Previous
@@ -143,7 +146,7 @@ const Instructions = () => {
             onClick={() => navigate("/student/exam/systemCheck")}
             className="text-[#FAFCFD] font-medium text-[16px] leading-[24px]"
           >
-            I Understand, Continue to System Check
+            Continue
           </div>
         </div>
       </div>

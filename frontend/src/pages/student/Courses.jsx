@@ -114,14 +114,16 @@ const Courses = () => {
                 <div className="flex justify-end items-center flex-1 mt-4 md:mt-0 md:justify-end">
                   <button
                     onClick={() => handleDownload(course.title)}
-                    className="flex items-center gap-[12px] text-[16px] text-[#04203E] underline"
+                    className="flex items-center gap-[12px] text-[16px] text-[#04203E] mb-1"
                   >
                     <img
                       src={SyllabusIcon}
                       alt="Syllabus"
                       className="w-[28px] h-[28px] rounded-full bg-[#FEF2F2] p-1"
                     />
-                    <span>Download Pdf</span>
+                    <span className="pb-[2px] border-b-[1px] border-[#04203E]">
+                      Download Pdf
+                    </span>
                   </button>
                 </div>
               </div>
