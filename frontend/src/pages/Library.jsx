@@ -1,4 +1,10 @@
 import React from "react";
+
+import LowerComponent from "../components/student/Library/LowerComponent.jsx"
+
+const Library = () => {
+ 
+
 import { Book, Clock, DollarSign } from "lucide-react";
 import BrowseLibrary from "../components/student/Library/BrowseLibrary";
 const cardData = [
@@ -37,6 +43,7 @@ const Card = ({ title, count, description, icon, iconBg }) => {
           <p className="text-[24px] font-semibold text-[#1F1D1D]">{count}</p>
           <p className="text-[12px] text-[#717171]">{description}</p>
         </div>
+  
       </div>
       <div
         className={`w-11 h-11 rounded-full flex items-center justify-center ${iconBg}`}
@@ -69,9 +76,18 @@ const Library = () => {
         ))}
       </div>
 
+      
+      <div className=" bg-[#FAFCFD] w-full h-[644px]">
+        
+        
+      </div>
+//       <section>
+//   <LowerComponent/>
+//   </section>;
       <BrowseLibrary />
     </div>
   );
+
 };
 
 export default Library;

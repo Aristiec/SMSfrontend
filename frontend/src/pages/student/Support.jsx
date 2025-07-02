@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paperclip, FileUp } from "lucide-react";
+import { Paperclip, FileUp, File } from "lucide-react";
 import Dropdown from "../../components/utils/Dropdown";
 
 const tickets = [
@@ -35,39 +35,59 @@ const statusStyles = {
   Resolved: "bg-green-100 text-green-600",
 };
 
-
-
 const dropdown = {
-  sendTo:{
-    placeholder:"Select Category",
-    options:["Admin", "Transport","Faculty"]
-
+  sendTo: {
+    placeholder: "Select Category",
+    options: ["Admin", "Transport", "Faculty"],
   },
-  category:{
-    placeholder:"Select Category",
-    options:["Academic","Administrative", "Technical", "Transport", "Finance", "Others"]
+  category: {
+    placeholder: "Select Category",
+    options: [
+      "Academic",
+      "Administrative",
+      "Technical",
+      "Transport",
+      "Finance",
+      "Others",
+    ],
   },
-  myTicketDropdown1:{
-    placeholder:"All Categories",
-    options:["Academic","Administrative", "Technical", "Transport", "Finance", "Others"]
+  myTicketDropdown1: {
+    placeholder: "All Categories",
+    options: [
+      "Academic",
+      "Administrative",
+      "Technical",
+      "Transport",
+      "Finance",
+      "Others",
+    ],
   },
-  myTicketDropdown2:{
-    placeholder:"All Status",
-    options:["Open", "In Progress", "Resolved"]
-  }
-}
+  myTicketDropdown2: {
+    placeholder: "All Status",
+    options: ["Open", "In Progress", "Resolved"],
+  },
+};
 
 const Support = () => {
   const [sendTo, setSendTo] = useState("");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
-  const [status,setStatus] = useState("");
+  const [status, setStatus] = useState("");
   const [ticketCategory, setTicketCategory] = useState("");
+  const [subject, setSubject] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
-
-  const handleSelect = (option) => {
-    console.log(option);
+  const handleClick = () => {
+    setSendTo("");
+    setCategory("");
+    setMessage("");
+    setSubject("");
+    setSelectedFile(null);
   };
+
+  const handleSelect =()=>{
+    console.log("hello")
+  }
 
   return (
     <div className="bg-[#E9EEF4] p-4 font-[Inter] min-h-screen space-y-6">
@@ -90,13 +110,23 @@ const Support = () => {
               <label className="font-[Inter] font-medium text-[12px] leading-4 tracking-[0] text-[#1F1D1D] flex items-center">
                 Send To
               </label>
-             <Dropdown options={dropdown.sendTo.options} placeholder={dropdown.category.placeholder} onSelect={handleSelect} />
+              <Dropdown
+                options={dropdown.sendTo.options}
+                placeholder={dropdown.sendTo.placeholder}
+                onSelect={(value) => setSendTo(value)}
+                selected={sendTo}
+              />
             </div>
             <div className="flex flex-col gap-2 w-[45%]">
               <label className="font-[Inter] font-medium text-[12px] leading-4 tracking-[0] text-[#1F1D1D] flex items-center">
                 Category
               </label>
-              <Dropdown options={dropdown.category.options} onSelect={handleSelect} placeholder={dropdown.category.placeholder}/>
+              <Dropdown
+                options={dropdown.category.options}
+                onSelect={(value) => setCategory(value)}
+                selected={category}
+                placeholder={dropdown.category.placeholder}
+              />
             </div>
           </div>
 
@@ -106,6 +136,8 @@ const Support = () => {
             </p>
             <input
               type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               placeholder="Brief summary of your request"
               className="border-[0.4px] p-3 w-full rounded-[8px]"
             />
@@ -122,14 +154,40 @@ const Support = () => {
               rows={5}
               placeholder="Please provide details about your request"
             />
-            <div className="flex gap-2 items-center">
+            <button className="flex gap-2 items-center relative w-auto">
+              <input
+                type="file"
+                multiple
+                accept=".pdf"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setSelectedFile(file);
+                  e.target.value = null;
+                }}
+                className={`absolute inset-0 w-[15%]  opacity-0 z-10
+                           pointer-events-auto cursor-pointer
+                        `}
+              />
               <Paperclip size={18} />{" "}
-              <p className="font-medium text-[14px">Attach Files</p>
-            </div>
+              <p className="font-medium text-[14px]">Attach Files</p>
+            </button>
+            {selectedFile && (
+              <div className="flex flex-col gap-[8px]">
+                <div className="flex gap-[8px] rounded-[8px] p-[8px] bg-[#CFDCEB]">
+                  <File />
+                  <p className="font-[400] text-[13.6px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                    {selectedFile?.name}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="flex justify-end gap-3 rounded-[8px]">
-            <button className="bg-[#04203E] flex gap-3 rounded-[8px] px-3 py-2 cursor-pointer">
+            <button
+              onClick={handleClick}
+              className="bg-[#04203E] flex gap-3 rounded-[8px] px-3 py-2 cursor-pointer"
+            >
               <FileUp color="#FAFCFD" />
               <p className="text-[#FAFCFD] fony-[Inter] font-[400] text-[14px] leading-6 text-center">
                 Submit Ticket
@@ -151,13 +209,20 @@ const Support = () => {
                 className="w-full  rounded-[4px] border-1 border-[#717171] py-2 px-2 bg-[#FAFCFD] font-[400] text-[16px] leading-6 text-[#717171]"
                 placeholder="Search tickets..."
               />
-              
-                <div className="w-full">
-                  <Dropdown options={dropdown.myTicketDropdown1.options} placeholder={dropdown.myTicketDropdown1.placeholder} onSelect={handleSelect}/>
-              
-                </div>
+
               <div className="w-full">
-                <Dropdown options={dropdown.myTicketDropdown2.options} placeholder={dropdown.myTicketDropdown2.placeholder} onSelect={handleSelect}/>
+                <Dropdown
+                  options={dropdown.myTicketDropdown1.options}
+                  placeholder={dropdown.myTicketDropdown1.placeholder}
+                  onSelect={handleSelect}
+                />
+              </div>
+              <div className="w-full">
+                <Dropdown
+                  options={dropdown.myTicketDropdown2.options}
+                  placeholder={dropdown.myTicketDropdown2.placeholder}
+                  onSelect={handleSelect}
+                />
               </div>
             </div>
           </div>
@@ -174,9 +239,16 @@ const Support = () => {
               </thead>
               <tbody className="text-gray-700">
                 {tickets.map((ticket, index) => (
-                  <tr key={index} className="border-b border-[#717171] last:border-b-0 font-[Inter]">
-                    <td className="px-4 py-3 font-medium text-[16px] leading-5 text-[#1F1D1D]">{ticket.subject}</td>
-                    <td className="px-4 py-3 font-[Inter] font-[400] text-[14px] leading-[18px]  text-[#1F1D1D] ">{ticket.category}</td>
+                  <tr
+                    key={index}
+                    className="border-b border-[#717171] last:border-b-0 font-[Inter]"
+                  >
+                    <td className="px-4 py-3 font-medium text-[16px] leading-5 text-[#1F1D1D]">
+                      {ticket.subject}
+                    </td>
+                    <td className="px-4 py-3 font-[Inter] font-[400] text-[14px] leading-[18px]  text-[#1F1D1D] ">
+                      {ticket.category}
+                    </td>
                     <td className="px-4 py-3">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -186,7 +258,9 @@ const Support = () => {
                         {ticket.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-[400] text-[14px] leading-4 text-[#1F1D1D]">{ticket.date}</td>
+                    <td className="px-4 py-3 font-[400] text-[14px] leading-4 text-[#1F1D1D]">
+                      {ticket.date}
+                    </td>
                   </tr>
                 ))}
               </tbody>
