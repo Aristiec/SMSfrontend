@@ -35,6 +35,7 @@ import BrowseLibrary from "../components/student/Library/BrowseLibrary";
 import Fines from "../components/student/Library/Fines";
 import IssuedBooks from "../components/student/Library/IssuedBooks";
 import Wishlist from "../components/student/Library/Wishlist";
+import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
 const StudentRoutes = () => {
   return (
     <>
@@ -67,6 +68,7 @@ const StudentRoutes = () => {
         <Route path="library" element={<Library />} />
         <Route path="exam/preexam" element={<Instructions />} />
         <Route path="exam/systemCheck" element={<SystemCheck />} />
+        <Route path="exam/review" element={<ExamReview />} />
         <Route path="instructions" element={<ExamInstructions />} />
         <Route path="offlineExam/admit" element={<AdmitCard />} />
         <Route path="offlineExam/seating" element={<Seating />} />
@@ -75,6 +77,7 @@ const StudentRoutes = () => {
         <Route path="fine" element={<Fines />} />
         <Route path="issued" element={<IssuedBooks />} />
         <Route path="wishlist" element={<Wishlist />} />
+        <Route path="feePayment1" element={<FeePayment1 />} />
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />
