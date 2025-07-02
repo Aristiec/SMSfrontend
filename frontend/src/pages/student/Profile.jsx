@@ -15,7 +15,6 @@ import grade from "../../assets/grade.svg";
 
 const DetailCard = ({ icon, label, value, showRequestUpdate = false }) => {
   return (
-    
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
       className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
@@ -194,10 +193,7 @@ const Profile = () => {
 
           {/* Personal Details Section */}
           <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
-            <div
-              className="w-[126px] h-[28px] text-[#FAFCFD] font-inter font-semibold text-[14px] md:text-[16px]
- leading-[28px]"
-            >
+            <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Personal Details
             </div>
           </div>
@@ -215,7 +211,7 @@ const Profile = () => {
           {/*  Guardian Details Section */}
 
           <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
-            <div className="text-[#FAFCFD] font-semibold text-[16px] md:text-[18px] leading-[28px]">
+            <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Guardian Details
             </div>
           </div>
@@ -252,7 +248,7 @@ const Profile = () => {
             className="w-full
  h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
           >
-            <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[16px] leading-[28px]">
+            <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[20px] leading-[28px]">
               Academic Details
             </div>
           </div>

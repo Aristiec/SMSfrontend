@@ -48,8 +48,8 @@ const Timetable = () => {
 
       <div className="flex justify-center p-4 lg:p-4">
         <div className="w-full  bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
-          <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
-            <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
+          <div className="  py-4 flex items-center justify-between">
+            <h1 className="text-[20px]  font-semibold text-[#1F1D1D]">
               Weekly Class Timetable
             </h1>
             <div className="relative group" ref={tooltipRef}>
@@ -70,7 +70,7 @@ const Timetable = () => {
                 </button>
 
                 {/* Tooltip on hover */}
-                <div className="absolute -left-42 top-full mt-2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-50">
+                <div className="absolute -left-52 -top-7 mt-2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-50">
                   Click to switch between
                   <br /> Weekly and Daily view
                 </div>
