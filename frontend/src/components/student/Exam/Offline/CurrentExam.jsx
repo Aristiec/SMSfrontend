@@ -65,7 +65,7 @@ const CurrentExam = ({ exam, onSystemCheck, onStartExam }) => {
             </button>
 
             <button
-              onClick={() => navigate("/student/seating")}
+              onClick={() => navigate("/student/offlineExam/seating")}
               className="flex-1 px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 bg-[#04203E] text-[#FAFCFD]"
             >
               <Clock className="w-4 h-4" />

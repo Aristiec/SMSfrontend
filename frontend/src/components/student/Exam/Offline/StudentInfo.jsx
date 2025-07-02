@@ -7,7 +7,7 @@ const StudentInfo = ({ student }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate("/student/admit");
+    navigate("/student/offlineExam/admit");
   };
   return (
     <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">
@@ -81,7 +81,7 @@ const StudentInfo = ({ student }) => {
       <div className="mt-5">
         <button
           onClick={handleRedirect}
-          className="w-full flex items-center justify-center gap-2 bg-[#04203E] text-[#FAFCFD] font-[Inter] px-5 py-3 rounded-lg text-[14px] font-[Inter] hover:bg-[#031a32] transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-[#04203E] text-[#FAFCFD]  px-5 py-3 rounded-lg text-[14px] font-[Inter] hover:bg-[#031a32] transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

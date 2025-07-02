@@ -22,7 +22,7 @@ const OnlineExam = () => {
   );
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [subjectiveAnswer, setSubjectiveAnswer] = useState("");
-  const [showSubjective, setShowSubjective] = useState(true);
+  const [showSubjective, setShowSubjective] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const currentSetOfQuestions = showSubjective ? subjectiveQuestion : questions;
   const setCurrentSetOfQuestions = showSubjective
