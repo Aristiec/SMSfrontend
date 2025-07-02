@@ -107,18 +107,18 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
             </div>
 
             <h3 className="text-lg font-semibold text-[#1F1D1D] mb-2">
-              {selectedType === "upcoming"
+              {selectedType === "upcoming" || selectedType === "completed"
                 ? "No Upcoming Exams"
                 : "No Completed Exams"}
             </h3>
 
             <p className="text-[#717171] text-sm max-w-md mx-auto mb-6">
-              {selectedType === "upcoming"
+              {selectedType === "upcoming" || selectedType === "completed"
                 ? "There are no exams scheduled at the moment. Use this time to focus on your coursework or complete pending assignments."
                 : "You haven't completed any exams yet. Once you finish your first exam, it will appear here."}
             </p>
 
-            {selectedType === "upcoming" && (
+            {(selectedType === "upcoming" || selectedType === "completed") && (
               <>
                 <div
                   className="w-full h-px bg-[#71717166] mb-6"

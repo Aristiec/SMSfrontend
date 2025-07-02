@@ -1,11 +1,20 @@
 import React from "react";
 import profilePic from "../../assets/headerBG.png";
 import { FaBuilding, FaPhoneAlt, FaBus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/headerLogo.svg";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getLinkClasses = (path) =>
+    `flex items-center gap-[12px] px-4 py-3 cursor-pointer border-b-2 ${
+      location.pathname.includes(path)
+        ? "border-[#FAFCFD] text-[#FAFCFD] rounded-lg"
+        : "border-transparent"
+    }`;
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#04203E] text-white shadow-md w-full font-semibold">
       <div
@@ -39,7 +48,7 @@ const Header = () => {
           style={{ color: "#FAFCFD" }}
         >
           {/* Hostel */}
-          <div className="flex items-center gap-[12px] px-4 py-3 cursor-pointer">
+          <div className={getLinkClasses("hostel")}>
             <FaBuilding className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Hostel
@@ -48,10 +57,8 @@ const Header = () => {
 
           {/* Transport */}
           <div
-            onClick={() => {
-              navigate("transport");
-            }}
-            className="flex items-center gap-[12px] px-4 py-3 cursor-pointer"
+            onClick={() => navigate("/student/transport")}
+            className={getLinkClasses("transport")}
           >
             <FaBus className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
@@ -61,10 +68,8 @@ const Header = () => {
 
           {/* Support */}
           <div
-            onClick={() => {
-              navigate("support");
-            }}
-            className="flex items-center gap-[12px] px-4 py-3 cursor-pointer"
+            onClick={() => navigate("/student/support")}
+            className={getLinkClasses("support")}
           >
             <FaPhoneAlt className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
@@ -72,7 +77,7 @@ const Header = () => {
             </span>
           </div>
 
-          {/*  Profile */}
+          {/* Profile */}
           <div className="pl-4">
             <div
               onClick={() => navigate("/student/profile")}
@@ -81,7 +86,7 @@ const Header = () => {
               <img
                 src={profilePic}
                 alt="User"
-                className="w-[40px] h-[40px] rounded-full "
+                className="w-[40px] h-[40px] rounded-full"
               />
             </div>
           </div>
