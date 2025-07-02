@@ -20,7 +20,7 @@ import Transport from "../pages/student/Transport.jsx";
 import TransportMap from "../components/student/TransportMap.jsx";
 import Instructions from "../components/student/Exam/Online/preExam/Instructions.jsx";
 import SystemCheck from "../components/student/Exam/Online/preExam/SystemCheck.jsx";
-import Review from "../components/student/Exam/Online/preExam/Review.jsx";
+
 import PreExamSet from "../components/student/Exam/Online/preExam/Instructions";
 import PreExam2 from "../components/student/Exam/Online/preExam/SystemCheck";
 import OfflineExam from "../pages/student/OfflineExam";
