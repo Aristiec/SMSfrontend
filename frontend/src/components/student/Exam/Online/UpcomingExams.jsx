@@ -6,11 +6,12 @@ import {
   FileText,
   BookOpen,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   const examTypes = [
@@ -26,9 +27,20 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
     setSelectedFilter((prev) => (prev === examType ? null : examType));
     setIsDropdownOpen(false);
   };
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+
   const filteredExams = selectedFilter
     ? exams.filter((exam) => exam.type === selectedFilter)
     : exams;
+
+  const totalPages = Math.ceil(filteredExams.length / itemsPerPage);
+
+  const visibleExams = filteredExams.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
 
   return (
     <div className="bg-[#FAFCFD] rounded-lg shadow-sm">
@@ -48,8 +60,8 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
           <button
             className={`pb-2 border-b-2 font-medium text-sm flex items-center space-x-2 ${
               selectedType === "completed"
-                ? "border-slate-800 text-slate-800"
-                : "border-transparent text-gray-500 hover:text-gray-700"
+                ? "border-[#1F1D1D] text-[#1F1D1D]"
+                : "border-transparent text-[#717171] "
             }`}
             onClick={() => onTypeChange("completed")}
           >
@@ -86,7 +98,7 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
                       className={`cursor-pointer px-3 py-2 text-sm rounded ${
                         isSelected
                           ? "bg-[#04203E] text-[#FAFCFD]"
-                          : "text-[#1F1D1D] hover:bg-gray-100"
+                          : "text-[#1F1D1D]"
                       }`}
                     >
                       {type}
@@ -138,84 +150,103 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredExams.map((exam, index) => (
-              <div
-                key={index}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-[#1F1D1D] text-[16px] font-[Inter]">
-                    {exam.title}
-                  </h3>
-                  {exam.backlog && (
-                    <span className="bg-[#FEF2F2] text-[#EF4444] font-[Inter] text-xs px-2 py-1 rounded-full font-medium">
-                      Backlog
+          <div className="relative">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+              disabled={currentPage === 0}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-[#FAFCFD] border border-gray-300 shadow-md p-2 rounded-full disabled:opacity-50"
+            >
+              <ChevronLeft className="w-5 h-5 text-[#1F1D1D]" />
+            </button>
+
+            <div className="flex justify-center gap-x-6 px-10">
+              {visibleExams.map((exam, index) => (
+                <div
+                  key={index}
+                  className="min-w-[360px] max-w-[360px] basis-[360px] flex-shrink-0 border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-[#FAFCFD]"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="font-semibold text-[#1F1D1D] text-[16px] font-[Inter]">
+                      {exam.title}
+                    </h3>
+                    {exam.backlog && (
+                      <span className="bg-[#FEF2F2] text-[#EF4444] font-[Inter] text-xs px-2 py-1 rounded-full font-medium">
+                        Backlog
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-[#1F1D1D] text-[14px] font-[Inter] font-medium mb-3">
+                    {exam.subject}
+                  </p>
+
+                  <div className="space-y-2 text-sm text-[#717171] font-[Inter] font-normal mb-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-4 h-4" />
+                        <span className="">{exam.duration} minutes</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <FileText className="w-4 h-4" />
+                        <span>{exam.questions} questions</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-1">
+                        <BookOpen className="w-4 h-4" />
+                        <span>{exam.type}</span>
+                      </div>
+                      <span>{exam.marks} marks</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-4 border-t pt-4">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <Calendar className="w-4 h-4 text-[#1F1D1D]" />
+                      <span className="text-[#1F1D1D] font-[Inter]">
+                        {exam.date}
+                      </span>
+                    </div>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full font-medium ${
+                        exam.status === "Starting soon"
+                          ? "bg-[#FFF4ED] text-[#F97316]"
+                          : exam.status === "Completed"
+                          ? "bg-[#ECFDF7] text-[#10B981]"
+                          : "text-[#1F1D1D]"
+                      }`}
+                    >
+                      {exam.status}
                     </span>
+                  </div>
+
+                  {selectedType === "upcoming" ? (
+                    <button className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium   flex items-center justify-center space-x-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>Set Reminder</span>
+                    </button>
+                  ) : exam.status === "Completed" && exam.resultAvailable ? (
+                    <button className="w-full bg-[#04203E] text-[#FAFCFD] font-[Inter] py-2 rounded-lg font-medium  flex items-center justify-center space-x-2">
+                      <span>View Result</span>
+                    </button>
+                  ) : (
+                    <button className="w-full bg-[#CFDCEB] text-[#717171] font-[Inter] py-2 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2">
+                      <Clock className="w-4 h-4" />
+                      <span>Awaiting Result</span>
+                    </button>
                   )}
                 </div>
-
-                <p className="text-[#1F1D1D] text-[14px] font-[Inter] font-medium mb-3">
-                  {exam.subject}
-                </p>
-
-                <div className="space-y-2 text-sm text-[#717171] font-[Inter] font-normal mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span className="">{exam.duration} minutes</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <FileText className="w-4 h-4" />
-                      <span>{exam.questions} questions</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <BookOpen className="w-4 h-4" />
-                      <span>{exam.type}</span>
-                    </div>
-                    <span>{exam.marks} marks</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between mb-4 border-t pt-4">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Calendar className="w-4 h-4 text-[#1F1D1D]" />
-                    <span className="text-[#1F1D1D] font-[Inter]">
-                      {exam.date}
-                    </span>
-                  </div>
-                  <span
-                    className={`text-xs px-2 py-1 rounded-full font-medium ${
-                      exam.status === "Starting soon"
-                        ? "bg-[#FFF4ED] text-[#F97316]"
-                        : exam.status === "Completed"
-                        ? "bg-[#ECFDF7] text-[#10B981]"
-                        : "text-[#1F1D1D]"
-                    }`}
-                  >
-                    {exam.status}
-                  </span>
-                </div>
-
-                {selectedType === "upcoming" ? (
-                  <button className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors flex items-center justify-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>Set Reminder</span>
-                  </button>
-                ) : exam.status === "Completed" && exam.resultAvailable ? (
-                  <button className="w-full bg-[#04203E] text-[#FAFCFD] font-[Inter] py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors flex items-center justify-center space-x-2">
-                    <span>View Result</span>
-                  </button>
-                ) : (
-                  <button className="w-full bg-[#CFDCEB] text-[#717171] font-[Inter] py-2 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2">
-                    <Clock className="w-4 h-4" />
-                    <span>Awaiting Result</span>
-                  </button>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
+              }
+              disabled={currentPage >= totalPages - 1}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-[#FAFCFD] border border-gray-300 shadow-md p-2 rounded-full disabled:opacity-50"
+            >
+              <ChevronRight className="w-5 h-5 text-[#1F1D1D]" />
+            </button>
           </div>
         )}
       </div>

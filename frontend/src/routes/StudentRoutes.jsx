@@ -63,7 +63,6 @@ const StudentRoutes = () => (
     </Route>
     <Route path="test" element={<OnlineExam />} />
     <Route path="signin" element={<SignIn />} />
-    <Route path="signup" element={<SignUp />} />
     <Route path="resetpassword" element={<ResetPassword />} />
   </>
 );

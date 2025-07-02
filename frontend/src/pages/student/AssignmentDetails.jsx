@@ -33,7 +33,7 @@ const AssignmentDetails = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0 }}
-      transition={{ duration: 0.4}}
+      transition={{ duration: 0.4 }}
       className="min-h-screen bg-[#E9EEF4] p-4 text-[Inter]"
     >
       <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl px-6 py-4 text-[#FAFCFD] font-[Inter] mx-auto">
@@ -42,7 +42,6 @@ const AssignmentDetails = () => {
         </h1>
       </header>
       <div className="bg-[#FAFCFD] mt-3 rounded-lg border-[#FAFCFD] mb-3">
-
         <div className="w-full  mx-auto px-4">
           <button
             onClick={() => navigate(-1)}
@@ -102,7 +101,7 @@ const AssignmentDetails = () => {
                   className="flex items-center gap-2 bg-[#04203E] text-white px-4 py-2 rounded hover:opacity-90 transition mb-3"
                 >
                   <Upload className="w-4 h-4" />
-                  Unsubmit
+                  Add more files
                 </button>
               </div>
             </div>
