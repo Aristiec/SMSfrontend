@@ -1,6 +1,6 @@
 import React from "react";
 import { Book, Clock, DollarSign } from "lucide-react";
-
+import BrowseLibrary from "../components/student/Library/BrowseLibrary";
 const cardData = [
   {
     id: 1,
@@ -49,7 +49,7 @@ const Card = ({ title, count, description, icon, iconBg }) => {
 
 const Library = () => {
   return (
-    <div className="min-h-screen p-6 bg-[#F9FAFB]">
+    <div className="min-h-screen p-6">
       {/* Header */}
       <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg mb-6">
         <h1 className="text-[24px] font-bold font-[Merriweather]">Library</h1>
@@ -69,11 +69,7 @@ const Library = () => {
         ))}
       </div>
 
-      
-      <div className=" bg-[#FAFCFD] w-full h-[644px]">
-        
-        
-      </div>
+      <BrowseLibrary />
     </div>
   );
 };
