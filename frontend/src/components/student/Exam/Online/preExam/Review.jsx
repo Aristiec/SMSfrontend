@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+
 import {
   Calendar,
   Clock,
@@ -6,6 +8,8 @@ import {
   Upload,
   ChevronLeft,
   File,
+  CircleAlert,
+
 } from "lucide-react";
 import Header from "./Header";
 import Stage from "./Stage";
@@ -180,6 +184,7 @@ const Review = () => {
                     name={item.name}
                     onChange={handleFileChange}
                   />
+
                   {item.btnIcon}
                   <p className="text-[14px] font-medium leading-[21px] ">
                     {item.buttonLabel}
@@ -207,7 +212,7 @@ const Review = () => {
             className="flex justify-center"
           >
             <button className="bg-[#04203E] text-[#FAFCFD] w-full px-8 py-2 rounded-[8px] font-medium text-[16px]">
-              Verify
+              Start Examination
             </button>
           </div>
         </div>
