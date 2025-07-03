@@ -36,6 +36,8 @@ import Fines from "../components/student/Library/Fines";
 import IssuedBooks from "../components/student/Library/IssuedBooks";
 import Wishlist from "../components/student/Library/Wishlist";
 import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
+import CodeSend from "../pages/student/Login/CodeSend";
+import CodeVerify from "../pages/student/Login/CodeVerify";
 const StudentRoutes = () => {
   return (
     <>
@@ -81,6 +83,8 @@ const StudentRoutes = () => {
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />
+      <Route path="code" element={<CodeSend />} />
+      <Route path="codeverify" element={<CodeVerify />} />
       <Route path="resetpassword" element={<ResetPassword />} />
     </>
   );
