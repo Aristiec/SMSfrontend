@@ -3,12 +3,12 @@ import { ShieldCheck, CreditCard } from "lucide-react";
 import credit from "../../../assets/credit.svg";
 import PhonePeIcon from "../../../assets/phonepe.svg";
 import AmazonPayIcon from "../../../assets/amazonpay.svg";
-import sbi from '../../../assets/sbi.svg'
-import hdfc from '../../../assets/hdfc.svg'
-import icici  from '../../../assets/icici.svg'
-import axis  from '../../../assets/axis.svg'
-import kotak  from '../../../assets/kotak.svg'
-import yesbank  from '../../../assets/yesbank.svg'
+import sbi from "../../../assets/sbi.svg";
+import hdfc from "../../../assets/hdfc.svg";
+import icici from "../../../assets/icici.svg";
+import axis from "../../../assets/axis.svg";
+import kotak from "../../../assets/kotak.svg";
+import yesbank from "../../../assets/yesbank.svg";
 
 const formatCardNumber = (value) => {
   const cleaned = value.replace(/\D/g, "").slice(0, 16);
@@ -171,23 +171,29 @@ export const NetBanking = () => {
     { id: 6, name: "Yes Bank", icon: yesbank },
   ];
   return (
-    <div className="flex gap-4 flex-wrap">
-      {netBankingList.map((bank) => (
-        <div
-          key={bank.id}
-          className="flex flex-col items-center justify-center gap-2 rounded-md border border-gray-300 p-3 bg-[#F0F0F0] w-[150px]"
-        >
-          <img src={bank.icon} alt={bank.name} className="h-6 object-contain" />
-          <div className="text-sm font-semibold text-[#100001] font-['Inter']">
-            {bank.name}
+    <div className="flex flex-col ">
+      <div className="grid grid-cols-6 gap-4 ">
+        {netBankingList.map((bank) => (
+          <div
+            key={bank.id}
+            className="flex flex-col items-center justify-center gap-2 rounded-md border border-gray-300 p-3 bg-[#F0F0F0] "
+          >
+            <img
+              src={bank.icon}
+              alt={bank.name}
+              className="h-6 object-contain"
+            />
+            <div className="text-sm font-semibold text-[#100001] font-['Inter']">
+              {bank.name}
+            </div>
           </div>
-        </div>
-      ))}
-      <div className="w-full mt-4">
-        <button className="w-full h-[42px] leading-[24px] py-2 rounded-full bg-[#ECFDF7] text-[#10B981] font-semibold size-[16px]">
-          Proceed
-        </button>
+        ))}
       </div>
+        <div className="w-full mt-4">
+          <button className="w-full h-[42px] leading-[24px] py-2 rounded-full bg-[#ECFDF7] text-[#10B981] font-semibold size-[16px]">
+            Proceed
+          </button>
+        </div>
     </div>
   );
 };
