@@ -57,55 +57,49 @@ const statusColor = {
 const ActivityHistory = () => {
   return (
     <div className="bg-[#FAFCFD] flex flex-col gap-3 py-6 rounded-xl ">
-      <div className="flex flex-col gap-3">
-        {/* header */}
-        <div className="bg-[#F4F7FA] border-b-1 border-[#71717166] grid grid-cols-7 font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171] tracking-normal gap-3 p-5 ">
-          <p className="col-span-2">Books</p>
-          <p>Borrow Date</p>
-          <p>Due Date</p>
-          <p>Return Date</p>
-          <p>Status</p>
-          <p>Fines</p>
-        </div>
-        <div className="flex flex-col">
-          {activityData.map((activity, index) => (
-            <div key={index} className="border-b-1 border-[#71717166] py-5 grid grid-cols-7 ">
-              <div className="col-span-2">
-                <p className="text-[#1F1D1D] font-[Inter] font-medium text-[16px] leading-6 tracking-normal flex items-center">
-                  {activity.book}
-                </p>
-                <p className="text-[#717171] font-[Inter] font-[400] text-[12px] leading-5 tracking-normal">
-                  {activity.isbn}
-                </p>
-              </div>
-              <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                {activity.borrow}
-              </p>
-              <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                {activity.due}
-              </p>
-              <p className="font-[Inter] font-[400] text-[14px] leading-4 tracking-normal flex items-center text-[#1F1D1D]">
-                {activity.returnDate}
-              </p>
-              <div
-                className={` flex  
-                }`}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-separate border-spacing-y-3 font-[Inter]">
+          <thead>
+            <tr className="bg-[#F4F7FA] text-[#717171] text-[14px] font-medium leading-[18px] tracking-normal">
+              <th className="text-left px-5 py-3 col-span-2">Books</th>
+              <th className="text-left px-5 py-3">Borrow Date</th>
+              <th className="text-left px-5 py-3">Due Date</th>
+              <th className="text-left px-5 py-3">Return Date</th>
+              <th className="text-left px-5 py-3">Status</th>
+              <th className="text-left px-5 py-3">Fines</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activityData.map((activity, index) => (
+              <tr
+                key={index}
+                className="border-b border-[#71717166] text-[#1F1D1D] text-[14px] font-normal leading-[18px] tracking-normal"
               >
-                <p
-                  className={`font-[Inter] font-medium text-[12px] leading-4 tracking-normal gap-2 px-3 py-1  rounded-full flex items-center ${
-                    statusColor[activity.status]
-                  }`}
-                >
-                  {activity.status}
-                </p>
-              </div>
-
-              <p className="font-[Inter] font-[400] text-[14px] leading-[18px] tracking-normal flex items-center text-[#1F1D1D]">
-                {activity.fine}
-              </p>
-            </div>
-          ))}
-        </div>
+                <td className="px-5 py-3">
+                  <p className="text-[16px] font-medium leading-6 truncate">
+                    {activity.book}
+                  </p>
+                  <p className="text-[#717171] text-[12px] font-normal leading-5">
+                    {activity.isbn}
+                  </p>
+                </td>
+                <td className="px-5 py-3">{activity.borrow}</td>
+                <td className="px-5 py-3">{activity.due}</td>
+                <td className="px-5 py-3">{activity.returnDate}</td>
+                <td className="px-5 py-3">
+                  <span
+                    className={`text-[12px] font-medium leading-4 tracking-normal px-3 py-1 rounded-full inline-flex items-center ${
+                      statusColor[activity.status]
+                    }`}
+                  >
+                    {activity.status}
+                  </span>
+                </td>
+                <td className="px-5 py-3">{activity.fine}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
