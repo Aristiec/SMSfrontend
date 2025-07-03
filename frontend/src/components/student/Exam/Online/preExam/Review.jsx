@@ -1,11 +1,15 @@
-import React from "react";
+
+import React, { useState } from "react";
+
 import {
   Calendar,
   Clock,
   Camera,
   Upload,
   ChevronLeft,
+  File,
   CircleAlert,
+
 } from "lucide-react";
 import Header from "./Header";
 import Stage from "./Stage";
@@ -16,6 +20,7 @@ const cardData = [
     title: "Webcam Photo",
     description: "Take a photo using your webcam",
     buttonLabel: "Take Photo",
+    name: "webcam",
     icon: <Camera size={16} strokeWidth={2} />,
     btnIcon: <Camera size={12} strokeWidth={2} />,
   },
@@ -23,6 +28,7 @@ const cardData = [
     title: "ID Card Upload",
     description: "Upload a snapshot of your student ID Card",
     buttonLabel: "Upload ID",
+    name: "idCard",
     icon: <Upload size={16} strokeWidth={2} />,
     btnIcon: <Upload size={12} strokeWidth={2} />,
   },
@@ -30,6 +36,21 @@ const cardData = [
 
 const Review = () => {
   const navigate = useNavigate();
+  const [webCamPhoto, setWebCamPhoto] = useState(null);
+  const [idCardPhoto, setIdCardPhoto] = useState(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (e.target.name === "webcam") {
+        setWebCamPhoto(file);
+      } else {
+        setIdCardPhoto(file);
+      }
+    }
+  };
+  console.log(webCamPhoto, idCardPhoto);
+
   return (
     <div
       style={{ boxShadow: "0px 4px 8px 0px #0000003D" }}
@@ -139,7 +160,7 @@ const Review = () => {
             </p>
           </div>
 
-          <div className="flex justify-between gap-8">
+          <div className="flex justify-between  items-start gap-8 ">
             {cardData.map((item, index) => (
               <div
                 key={index}
@@ -156,13 +177,32 @@ const Review = () => {
                   {item.description}
                 </p>
 
-                <label className="flex items-center justify-center gap-2 px-24 py-1 border border-[#717171] rounded-[8px] bg-[#E9EEF4] cursor-pointer">
-                  <input type="file" className="hidden " />
+                <label className="flex items-center justify-center gap-2 px-24 py-1 border border-[#717171] rounded-[8px] bg-[#E9EEF4] cursor-pointer ">
+                  <input
+                    type="file"
+                    className="hidden "
+                    name={item.name}
+                    onChange={handleFileChange}
+                  />
+
                   {item.btnIcon}
                   <p className="text-[14px] font-medium leading-[21px] ">
                     {item.buttonLabel}
                   </p>
                 </label>
+                {(item.name === "webcam" && webCamPhoto) ||
+                (item.name === "idCard" && idCardPhoto) ? (
+                  <div className="flex flex-col gap-[8px]">
+                    <div className="flex gap-[8px] rounded-[8px] p-[8px] bg-[#CFDCEB]">
+                      <File />
+                      <p className="font-[400] text-[13.6px] leading-[24px] tracking-[0] flex items-center text-[#04203E]">
+                        {item.name === "webcam"
+                          ? webCamPhoto?.name
+                          : idCardPhoto?.name}
+                      </p>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
