@@ -38,6 +38,7 @@ import Wishlist from "../components/student/Library/Wishlist";
 import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
 import CodeSend from "../pages/student/Login/CodeSend";
 import CodeVerify from "../pages/student/Login/CodeVerify";
+import TransportService from "../components/student/TransportService.jsx";
 const StudentRoutes = () => {
   return (
     <>
@@ -80,6 +81,7 @@ const StudentRoutes = () => {
         <Route path="issued" element={<IssuedBooks />} />
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="feePayment1" element={<FeePayment1 />} />
+        <Route path="transportService" element={<TransportService />} />
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />
