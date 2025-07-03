@@ -3,6 +3,7 @@ import WelcomeBanner from "../../components/student/dashboard/WelcomeBanner";
 import StatsCard from "../../components/student/dashboard/StatsCard";
 import ExamsTable from "../../components/student/dashboard/ExamsTable";
 import NoticesDashboard from "../../components/student/dashboard/NoticesDashboard";
+import Calendar from "../../components/student/dashboard/Calender";
 const Dashboard = () => {
   return (
     <main className="  mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
@@ -14,7 +15,7 @@ const Dashboard = () => {
             <ExamsTable />
           </div>
           <div className="w-full xl:max-w-sm">
-            <NoticesDashboard />
+            <Calendar />
           </div>
         </div>
       </div>
