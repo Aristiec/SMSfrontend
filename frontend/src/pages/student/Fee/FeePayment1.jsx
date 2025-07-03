@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import HeaderFee from "./HeaderFee";
-import {
-  Check,
-  CreditCard,
-  Landmark,
-  Wallet,
-  ChevronDown,
-} from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Check, CreditCard, Landmark, Wallet, ChevronDown } from "lucide-react";
 import StudentInfoCardHeader from "./StudentInfoCardHeader ";
-import { CreditCardComponent, Upi ,NetBanking} from "./PaymentOption.jsx";
+import { CreditCardComponent, Upi, NetBanking } from "./PaymentOption.jsx";
 
 const FeePayment1 = () => {
   const paymentOptions = [
@@ -35,6 +30,10 @@ const FeePayment1 = () => {
     setOpenId(openId === id ? null : id); // toggle
   };
 
+  const location = useLocation();
+  const feeDetails = location.state;
+  console.log(feeDetails);
+
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
@@ -49,7 +48,7 @@ const FeePayment1 = () => {
                 Grand Total
               </div>
               <div className="text-[14px] font-semibold text-[#10B981] leading-[20px]">
-                Rs. 22756
+                Rs. {feeDetails?.amount}
               </div>
             </div>
             <div className="flex justify-between w-[356px]">
@@ -88,7 +87,7 @@ const FeePayment1 = () => {
                     {item.title}
                   </div>
                   <div className="text-[14px] font-semibold text-[#666666] leading-[20px]">
-                    {item.desc}
+                    {item.title ==="Due date" ? (<span>Till {feeDetails?.date}</span> ): item.desc}
                   </div>
                 </div>
               </div>
@@ -131,7 +130,9 @@ const FeePayment1 = () => {
                 {option.id === 1 && (
                   <div
                     className={`transition-all duration-300 overflow-hidden ${
-                      openId === 1 ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                      openId === 1
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     <CreditCardComponent />
@@ -140,7 +141,9 @@ const FeePayment1 = () => {
                 {option.id === 2 && (
                   <div
                     className={`transition-all duration-300 overflow-hidden ${
-                      openId === 2 ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                      openId === 2
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     <NetBanking />
@@ -150,7 +153,9 @@ const FeePayment1 = () => {
                 {option.id === 4 && (
                   <div
                     className={`transition-all duration-300 overflow-hidden ${
-                      openId === 4 ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                      openId === 4
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     <Upi />

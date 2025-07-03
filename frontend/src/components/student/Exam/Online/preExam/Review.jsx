@@ -6,6 +6,7 @@ import {
   Upload,
   ChevronLeft,
   File,
+  CircleAlert
 } from "lucide-react";
 import Header from "./Header";
 import Stage from "./Stage";
@@ -206,8 +207,9 @@ const Review = () => {
             onClick={() => navigate("/test")}
             className="flex justify-center"
           >
-            <button className="bg-[#04203E] text-[#FAFCFD] w-full px-8 py-2 rounded-[8px] font-medium text-[16px]">
-              Verify
+            <button className="bg-[#04203E] text-[#FAFCFD] w-full px-8 py-3 rounded-[8px] font-[Inter] leading-6 justify-center font-medium text-[16px] flex gap-2 ">
+              <CircleAlert />
+              <p>Start Examination</p>
             </button>
           </div>
         </div>
