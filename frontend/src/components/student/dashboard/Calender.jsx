@@ -109,14 +109,14 @@ const Calendar = () => {
   };
 
   return (
-    <div className="w-[340px] h-[476px] bg-[#FAFCFD] rounded-2xl shadow-lg overflow-hidden flex flex-col">
+    <div className="w-full bg-[#FAFCFD] rounded-2xl shadow-lg overflow-hidden flex flex-col h-[476px]">
       <div className="px-6 py-4">
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => navigateMonth(-1)}
-            className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+            className="p-1 border-2 border-[#04203E] rounded-lg"
           >
-            <ChevronLeft size={20} className="text-[#1F1D1D]" />
+            <ChevronLeft size={15} className="text-[#1F1D1D]" />
           </button>
 
           <h2 className="text-[16px] font-semibold text-[#1F1D1D]">
@@ -125,9 +125,9 @@ const Calendar = () => {
 
           <button
             onClick={() => navigateMonth(1)}
-            className="p-2 hover:bg-gray-200 rounded-full transition-colors mr-[12px]"
+            className="p-1 border-2 border-[#04203E] rounded-lg  mr-[12px]"
           >
-            <ChevronRight size={20} className="text-[#1F1D1D]" />
+            <ChevronRight size={15} className="text-[#1F1D1D]" />
           </button>
         </div>
 
