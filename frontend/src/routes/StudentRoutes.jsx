@@ -80,8 +80,8 @@ const StudentRoutes = () => {
         <Route path="fine" element={<Fines />} />
         <Route path="issued" element={<IssuedBooks />} />
         <Route path="wishlist" element={<Wishlist />} />
-        <Route path="feePayment1" element={<FeePayment1 />} />
         <Route path="transportService" element={<TransportService />} />
+        <Route path="fees/payment" element={<FeePayment1 />} />
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />
