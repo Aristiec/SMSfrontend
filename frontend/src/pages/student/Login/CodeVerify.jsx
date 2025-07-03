@@ -2,7 +2,7 @@ import React from "react";
 import LoginImage from "../../../assets/login_image.svg";
 import { useNavigate } from "react-router-dom";
 
-const ResetPassword = () => {
+const CodeVerify = () => {
   const navigate = useNavigate();
   return (
     <div className="w-full flex h-screen">
@@ -25,39 +25,25 @@ const ResetPassword = () => {
                 Reset password
               </h1>
               <p className="text-[12px] leading-[18px] text-[#04203E] font-[Inter]">
-                Make sure your new password is strong and secure{" "}
+                Please enter the verification code sent to your email address
               </p>
             </div>
 
             {/* Form */}
             <div className="flex flex-col gap-6 font-[Inter]">
               <div className="flex flex-col gap-3">
-                <label className="text-[16px] font-medium text-[#04203E] leading-[14px]">
-                  Password
+                <label className="text-[16px] font-medium text-[#04203E] leading-[14px] ">
+                  Code
                 </label>
                 <input
-                  type="password"
-                  placeholder="Enter new password"
+                  type="text"
+                  placeholder="Enter the code"
                   className="w-full h-[40px] rounded-[8px] px-3 border border-[#717171] focus:outline-none text-[#717171] text-[12px] font-normal italic leading-[40px]"
                 />
+                <button className="w-full h-[32px] rounded-[8px] bg-[#04203E] text-[#FAFCFD] text-[12px] font-bold leading-[32px] font-[Inter]">
+                  Verify
+                </button>
               </div>
-
-              <div className="flex flex-col gap-3">
-                <label className="text-[16px] font-medium text-[#04203E] leading-[14px]">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="w-full h-[40px] rounded-[8px] px-3 border border-[#717171] focus:outline-none text-[#717171] text-[12px] font-normal italic leading-[40px]"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 font-[Inter]">
-              <button className="w-full h-[32px] rounded-[8px] bg-[#04203E] text-[#FAFCFD] text-[12px] font-bold font-[Inter]">
-                Confirm
-              </button>
             </div>
 
             <div className="flex justify-center gap-[4px]">
@@ -78,4 +64,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default CodeVerify;
