@@ -1,34 +1,46 @@
-import React from 'react';
-import HeaderFee from './HeaderFee';
-import { Check, CreditCard, Landmark, Wallet, ChevronDown } from 'lucide-react';
-import StudentInfoCardHeader from './StudentInfoCardHeader ';
+import React, { useState } from "react";
+import HeaderFee from "./HeaderFee";
+import { useLocation } from "react-router-dom";
+import { Check, CreditCard, Landmark, Wallet, ChevronDown } from "lucide-react";
+import StudentInfoCardHeader from "./StudentInfoCardHeader ";
+import { CreditCardComponent, Upi, NetBanking } from "./PaymentOption.jsx";
 
 const FeePayment1 = () => {
   const paymentOptions = [
-    { id: 1, label: 'Credit/Debit Cards', icon: CreditCard },
-    { id: 2, label: 'Net Banking', icon: Landmark },
-    { id: 3, label: 'Wallets', icon: Wallet },
+    { id: 1, label: "Credit/Debit Cards", icon: CreditCard },
+    { id: 2, label: "Net Banking", icon: Landmark },
+    { id: 3, label: "Wallets", icon: Wallet },
+    { id: 4, label: "UPI", icon: Wallet },
   ];
 
   const importantInfo = [
     {
-      title: 'Due date',
-      desc: 'Till 30 Apr, 2025: 09:00 AM',
+      title: "Due date",
+      desc: "Till 30 Apr, 2025: 09:00 AM",
     },
     {
-      title: 'For fees related query',
-      desc: 'Contact - kkartikey80@gmail.com',
+      title: "For fees related query",
+      desc: "Contact - kkartikey80@gmail.com",
     },
   ];
+
+  const [openId, setOpenId] = useState(null);
+
+  const handleOptionClick = (id) => {
+    setOpenId(openId === id ? null : id); // toggle
+  };
+
+  const location = useLocation();
+  const feeDetails = location.state;
+  console.log(feeDetails);
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
         <HeaderFee />
-
         <StudentInfoCardHeader />
 
-        {/* Fee  Section */}
+        {/* Fee Section */}
         <div className="w-full rounded-[8px] border border-[#CCCCCC] bg-[#FFFFFF] p-4 flex flex-col gap-4">
           <div className="rounded-[16px] border border-[#CCCCCC] bg-white p-4 flex flex-col gap-3">
             <div className="flex justify-between w-[356px]">
@@ -36,7 +48,7 @@ const FeePayment1 = () => {
                 Grand Total
               </div>
               <div className="text-[14px] font-semibold text-[#10B981] leading-[20px]">
-                Rs. 22756
+                Rs. {feeDetails?.amount}
               </div>
             </div>
             <div className="flex justify-between w-[356px]">
@@ -59,7 +71,7 @@ const FeePayment1 = () => {
             </div>
           </div>
 
-          {/* Important section */}
+          {/* Important info */}
           <div className="rounded-[16px] border border-[#CCCCCC] bg-white p-4 flex flex-col gap-4 font-[Inter]">
             <div className="text-[14px] font-semibold text-[#000000] leading-[20px] opacity-90">
               Important information
@@ -75,7 +87,7 @@ const FeePayment1 = () => {
                     {item.title}
                   </div>
                   <div className="text-[14px] font-semibold text-[#666666] leading-[20px]">
-                    {item.desc}
+                    {item.title ==="Due date" ? (<span>Till {feeDetails?.date}</span> ): item.desc}
                   </div>
                 </div>
               </div>
@@ -93,7 +105,10 @@ const FeePayment1 = () => {
             const IconComponent = option.icon;
             return (
               <div key={option.id} className="flex flex-col gap-[6px]">
-                <div className="flex items-center justify-between py-4">
+                <div
+                  onClick={() => handleOptionClick(option.id)}
+                  className="cursor-pointer flex items-center justify-between py-4"
+                >
                   <div className="flex gap-4 items-center">
                     <div className="w-[26px] h-[26px] rounded-[4px] p-1 bg-[#F0F0F0] flex items-center justify-center">
                       <IconComponent size={18} strokeWidth={1.8} />
@@ -102,8 +117,52 @@ const FeePayment1 = () => {
                       {option.label}
                     </div>
                   </div>
-                  <ChevronDown size={16} strokeWidth={2} />
+                  <ChevronDown
+                    size={16}
+                    strokeWidth={2}
+                    className={`transition-transform duration-300 ${
+                      openId === option.id ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
                 </div>
+
+                {/* Expanded Content */}
+                {option.id === 1 && (
+                  <div
+                    className={`transition-all duration-300 overflow-hidden ${
+                      openId === 1
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <CreditCardComponent />
+                  </div>
+                )}
+                {option.id === 2 && (
+                  <div
+                    className={`transition-all duration-300 overflow-hidden ${
+                      openId === 2
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <NetBanking />
+                  </div>
+                )}
+
+                {option.id === 4 && (
+                  <div
+                    className={`transition-all duration-300 overflow-hidden ${
+                      openId === 4
+                        ? "max-h-[500px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <Upi />
+                  </div>
+                )}
+
+                {/* Divider */}
                 {option.id !== paymentOptions.length && (
                   <div className="border-t border-[#CCCCCC]"></div>
                 )}
