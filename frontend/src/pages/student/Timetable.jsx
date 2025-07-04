@@ -50,7 +50,7 @@ const Timetable = () => {
     setShowTooltip(true);
     const timer = setTimeout(() => {
       setShowTooltip(false);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
