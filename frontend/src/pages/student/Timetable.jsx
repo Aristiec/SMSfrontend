@@ -50,7 +50,7 @@ const Timetable = () => {
     setShowTooltip(true);
     const timer = setTimeout(() => {
       setShowTooltip(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -62,7 +62,7 @@ const Timetable = () => {
       <div className="flex justify-center p-4 lg:p-4">
         <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
           <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
-            <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
+            <h1 className="text-[20px] font-semibold text-[#1F1D1D] -ml-5">
               Weekly Class Timetable
             </h1>
 
@@ -73,7 +73,7 @@ const Timetable = () => {
 
               <button
                 className="p-2 rounded-lg bg-[#CFDCEB] relative z-50"
-                onClick={() => navigate("/student/academicCal")}
+                onClick={() => navigate("/student/timetable/academicCal")}
               >
                 <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
               </button>
