@@ -141,8 +141,19 @@ const Transport = () => {
         <div className="flex gap-6">
           <div className="flex flex-col gap-6 w-[70%] ">
             <div className=" h-[310px] gap-6 rounded-[12px] p-6 bg-[#FAFCFD] shadow-md flex flex-col">
-              <div className=" font-[Inter] text-[20px] leading-[28px] tracking-[0] text-[#1F1D1D] font-semibold">
-                Transport Details
+              <div className="flex justify-between items-center font-[Inter]">
+                <p className="text-[20px] font-[600] leading-7 text-[#1F1D1D] flex items-center">
+                  Transport Details
+                </p>
+                <button
+                  onClick={() => navigate("/student/transportService")}
+                  className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center"
+                >
+                  <Map size={18} color={"#FAFCFD"} />
+                  <p className="text-[14px] leading-6 font-[600] text-[#FAFCFD]">
+                    Request Transport
+                  </p>
+                </button>
               </div>
               <div className="w-[664px] h-[210px] gap-[20px] flex ">
                 {/* icon div  */}
