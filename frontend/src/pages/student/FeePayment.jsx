@@ -4,6 +4,7 @@ import completed from "../../assets/completed.svg";
 import pending from "../../assets/pending.svg";
 import card from "../../assets/card.svg";
 
+import { useNavigate } from "react-router-dom";
 const feeData = [
   {
     id: 1,
@@ -32,6 +33,8 @@ const feeData = [
 ];
 
 const FeeTab = ({ title, type, amount, status, date }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full rounded-[12px] p-4 gap-2 bg-[#FAFCFD] shadow-md flex flex-col">
       <div className="flex justify-between flex-wrap">
@@ -73,6 +76,12 @@ const FeeTab = ({ title, type, amount, status, date }) => {
         </div>
 
         <button
+          onClick={() =>
+            type !== "Paid" &&
+            navigate("/student/fees/payment", {
+              state: { title, amount, date, status },
+            })
+          }
           className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium ${
             type === "Paid"
               ? "bg-[#FAFCFD] text-[#04203E] border border-[#04203E]"
@@ -92,6 +101,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 };
 
 const FeePayment = () => {
+  const navigate = useNavigate();
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-4 mt-4">
@@ -147,7 +157,14 @@ const FeePayment = () => {
 
         {/* Pay All Dues Button */}
         <div className="flex justify-end">
-          <button className="bg-[#04203E] text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium">
+          <button
+            onClick={() =>
+              navigate("/student/fees/payment", {
+                state: { fees: feeData.filter((f) => f.type === "Pending") },
+              })
+            }
+            className="cursor-pointer bg-[#04203E] text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium"
+          >
             <span>Pay All Dues</span>
             <span>(₹12,000)</span>
           </button>

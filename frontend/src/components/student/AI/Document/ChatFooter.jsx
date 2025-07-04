@@ -1,5 +1,5 @@
 import React from "react";
-import { Paperclip, Send, X } from "lucide-react";
+import { FolderPlus, Send, X } from "lucide-react";
 
 const ChatFooter = ({
   currentMessage,
@@ -56,7 +56,7 @@ const ChatFooter = ({
 
       <div className="flex items-center gap-2">
         <label className="cursor-pointer">
-          <Paperclip size={18} />
+          <FolderPlus size={25} />
           <input
             type="file"
             accept=".pdf"
