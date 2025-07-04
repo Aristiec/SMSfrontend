@@ -1,13 +1,13 @@
 import { Bus } from "lucide-react";
 function TransportService() {
   return (
-    <div className="w-full min-h-[108px] bg-[#E9EEF4] flex flex-col items-center py-8">
-      <div className="w-[1124px] h-[68px] bg-[#04203E] rounded-[12px] flex items-center px-[24px] py-[18px] gap-[10px]">
+    <div className="w-full min-h-[108px] bg-[#E9EEF4] flex flex-col items-center px-4 pt-4">
+      <div className="w-full h-[68px] bg-[#04203E] rounded-[12px] flex items-center px-[24px] py-[18px] gap-[10px]">
         <span className="text-[#FAFCFD] font-['Merriweather,serif'] font-bold text-[24px] leading-[28px]">
           Transport
         </span>
       </div>
-      <div className="w-[1120px] h-[808px] rounded-[12px] bg-[#FAFCFD] p-[24px] gap-[16px] mt-8 flex flex-col items-center justify-center">
+      <div className="w-full h-[808px] rounded-[12px] bg-[#FAFCFD] p-[24px] gap-[16px] mt-8 flex flex-col items-center justify-center">
         <div className="w-[1072px] h-[432px] pb-[200px] gap-[48px]   rounded-[12px] flex flex-col items-center justify-center">
           <div className="w-[1072px] h-[232px] gap-[24px] flex flex-col items-center   ">
             <div className="w-[72px] h-[72px] rounded-full bg-[#F5FAFF] flex items-center justify-center shadow-lg">
