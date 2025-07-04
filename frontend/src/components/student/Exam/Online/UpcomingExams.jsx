@@ -42,6 +42,31 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
     currentPage * itemsPerPage + itemsPerPage
   );
 
+  const handelSetReminder= (exam) =>{
+      const title = encodeURIComponent("Exam Reminder: " + exam.title);
+  const startDate = new Date(exam.date);
+  const endDate = new Date(startDate.getTime() + exam.duration * 60000); 
+
+  const formatmyDate = (date) =>
+    date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+  const start = formatmyDate(startDate);
+  const end = formatmyDate(endDate);
+
+  const details = encodeURIComponent(
+    `Subject: ${exam.subject}\nQuestions: ${exam.questions}\nType: ${exam.type}`
+  );
+ 
+    const path = window.location.pathname;
+   const location = encodeURIComponent(
+    path.includes("/offlineExam") ? "Offline" : "Online"
+  );
+
+  const calendarUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+
+  window.open(calendarUrl, "_blank");
+  }
+
   return (
     <div className="bg-[#FAFCFD] rounded-lg shadow-sm">
       <div className="flex items-center justify-between p-4">
@@ -221,7 +246,7 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
                   </div>
 
                   {selectedType === "upcoming" ? (
-                    <button className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium   flex items-center justify-center space-x-2">
+                    <button onClick={() => handelSetReminder(exam)} className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium   flex items-center justify-center space-x-2">
                       <Calendar className="w-4 h-4" />
                       <span>Set Reminder</span>
                     </button>

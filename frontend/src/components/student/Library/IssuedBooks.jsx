@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, RotateCw, AlertCircle } from "lucide-react";
+import { Clock, RefreshCcw, AlertCircle } from "lucide-react";
 
 const issuedBooks = [
   {
@@ -88,8 +88,8 @@ const IssuedBooks = () => {
             <p className="text-[12px] text-[#717171]">
               Issued: {book.issuedDate}
             </p>
-            <button className="flex items-center gap-1 bg-[#04203E] text-[#FAFCFD] text-xs font-medium px-3 py-1.5 rounded">
-              <RotateCw className="w-4 h-4" />
+            <button className="flex items-center gap-1 bg-[#04203E] text-[#FAFCFD] text-xs font-medium px-3 py-2.5 rounded">
+              <RefreshCcw className="w-4 h-4" />
               Renew
             </button>
           </div>
