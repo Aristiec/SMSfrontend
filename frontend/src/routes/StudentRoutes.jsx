@@ -39,10 +39,18 @@ import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
 import CodeSend from "../pages/student/Login/CodeSend";
 import CodeVerify from "../pages/student/Login/CodeVerify";
 import TransportService from "../components/student/TransportService.jsx";
+import ProtectedRoute from "../components/ProtectedRoute";
 const StudentRoutes = () => {
   return (
     <>
-      <Route path="/student" element={<StudentLayout />}>
+      <Route
+        path="/student"
+        element={
+          <ProtectedRoute>
+            <StudentLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="" element={<StudentDashboard />} />
         <Route path="timetable/academicCal" element={<AcademicCalendar />} />
         <Route path="chat" element={<ChatWidget />} />

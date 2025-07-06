@@ -14,7 +14,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }))
+    dispatch(loginUser({ userName: email, password }))
       .unwrap()
       .then(() => navigate("/student/dashboard"))
       .catch(() => {});

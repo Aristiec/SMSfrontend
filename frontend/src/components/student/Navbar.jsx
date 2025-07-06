@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaRegUser } from "react-icons/fa";
 import profilePic from "../../assets/headerBG.png";
 import {
   Home,
@@ -17,7 +16,9 @@ import {
   LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../features/auth/authSlice";
 
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/student/dashboard" },
@@ -41,7 +42,13 @@ const Navbar = () => {
   const isExamActive =
     location.pathname.startsWith("/student/exam") ||
     location.pathname.startsWith("/student/offlineExam");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/signin");
+  };
   return (
     <div className="h-full bg-[#FAFCFD] flex flex-col justify-between  ">
       <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto overflow-x-hidden">
@@ -154,7 +161,10 @@ const Navbar = () => {
             <p className="text-xs text-gray-500">Student ID: 1RUB203020</p>
           </div>
         </div>
-        <button className=" cursor-pointer flex gap-2 rounded-lg bg-[#FAFCFD] border border-[#71717166] items-center justify-center  ">
+        <button
+          onClick={handleLogout}
+          className="cursor-pointer flex gap-2 rounded-lg bg-[#FAFCFD] border border-[#71717166] items-center justify-center"
+        >
           <LogOut size={14} color="#1F1D1D" />
           <p className="font-[400] text-[14px] font-[Inter] leading-6 tracking-normal flex items-center text-[#1F1D1D]">
             Logout
