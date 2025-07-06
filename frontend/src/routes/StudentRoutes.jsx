@@ -43,14 +43,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 const StudentRoutes = () => {
   return (
     <>
-      <Route
-        path="/student"
-        element={
-          <ProtectedRoute>
-            <StudentLayout />
-          </ProtectedRoute>
-        }
-      >
+      <Route path="/student" element={<StudentLayout />}>
         <Route path="" element={<StudentDashboard />} />
         <Route path="timetable/academicCal" element={<AcademicCalendar />} />
         <Route path="chat" element={<ChatWidget />} />
