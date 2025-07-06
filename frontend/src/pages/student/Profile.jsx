@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import profileIcon from "../../assets/profile_profile.svg";
 import courseIcon from "../../assets/courseIcon_icon_profile.svg";
 import mail from "../../assets/mail.svg";
@@ -11,7 +11,7 @@ import guardian from "../../assets/guardian.svg";
 import admission from "../../assets/admission.svg";
 import school from "../../assets/school.svg";
 import grade from "../../assets/grade.svg";
-
+import { fetchProfileByEmail } from "../../features/auth/authAPI";
 const DetailCard = ({ icon, label, value = false }) => {
   return (
     <div
@@ -35,103 +35,85 @@ const DetailCard = ({ icon, label, value = false }) => {
     </div>
   );
 };
-const details = [
-  { icon: calendar, label: "Date of Birth", value: "15 May 2008" },
-  { icon: gender, label: "Gender", value: "Female" },
-  {
-    icon: mail,
-    label: "Aadhar",
-    value: "1111 2222 3333 4444",
-    showRequestUpdate: true,
-  },
-  { icon: blood, label: "Blood Group", value: "O+" },
-  {
-    icon: phone,
-    label: "Phone",
-    value: "+1 (555) 123-4567",
-    showRequestUpdate: true,
-  },
-  {
-    icon: mail,
-    label: "Email",
-    value: "alex.johnson@example.com",
-    showRequestUpdate: true,
-  },
-  {
-    icon: home,
-    label: "Address",
-    value: "123 School Lane, Education City, EC 12345",
-    showRequestUpdate: true,
-  },
-];
-
-const guardianDetails = [
-  { icon: guardian, label: "Guardian Name", value: "Vijay Singh" },
-  { icon: guardian, label: "Guardian Relation", value: "Father" },
-  { icon: calendar, label: "Date of Birth", value: "15 May 2008" },
-  { icon: gender, label: "Occupation", value: "Government employee" },
-  {
-    icon: phone,
-    label: "Guardian Phone",
-    value: "8089878685",
-    showRequestUpdate: true,
-  },
-  {
-    icon: mail,
-    label: "Guardian Email",
-    value: "vijaysingh2008@example.com",
-    showRequestUpdate: true,
-  },
-  {
-    icon: home,
-    label: "Address",
-    value: "123 School Lane, Education City, EC 12345",
-    showRequestUpdate: true,
-  },
-];
-
-const guardianDetails2 = [
-  { icon: mail, label: "Guardian Name", value: "Sarah Singh" },
-  { icon: phone, label: "Guardian Relation", value: "Mother" },
-  { icon: calendar, label: "Date of Birth", value: "03 May 2012" },
-  { icon: phone, label: "Occupation", value: "Government employee" },
-  {
-    icon: mail,
-    label: "Guardian Phone",
-    value: "8089878685",
-    showRequestUpdate: true,
-  },
-  {
-    icon: mail,
-    label: "Guardian Email",
-    value: "sarahsingh@example.com",
-    showRequestUpdate: true,
-  },
-  {
-    icon: home,
-    label: "Address",
-    value: "123 School Lane, Education City, EC 12345",
-    showRequestUpdate: true,
-  },
-];
-
-const AcademicDetails = [
-  { icon: admission, label: "Admission Date", value: "05 September 2029" },
-  { icon: admission, label: "Start Date", value: "03 November 2029" },
-  { icon: school, label: "Previous School", value: "Lincoln Middle  School" },
-  { icon: school, label: "Board", value: "CBSE" },
-  { icon: admission, label: "Year of Completion", value: "2029" },
-  { icon: grade, label: "Grade", value: "88%" },
-  {
-    icon: home,
-    label: "Address",
-    value: "123 School Lane, Education City, EC 12345",
-  },
-];
 
 const Profile = () => {
-  const isOdd = details.length % 2 !== 0;
-  const lastIndex = details.length - 1;
+  const [student, setStudent] = useState(null);
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    if (email) {
+      fetchProfileByEmail(email)
+        .then((res) => setStudent(res.data))
+        .catch((err) => console.error("Error fetching profile:", err));
+    }
+  }, [email]);
+
+  if (!student) return <div className="text-center mt-10">Loading...</div>;
+  const personalDetails = [
+    { icon: calendar, label: "Date of Birth", value: student.dateOfBirth },
+    { icon: gender, label: "Gender", value: student.gender },
+    { icon: mail, label: "Aadhar", value: student.aadharNumber },
+    { icon: blood, label: "Blood Group", value: student.bloodGroup },
+    { icon: phone, label: "Phone", value: student.mobileNumber },
+    { icon: mail, label: "Email", value: student.email },
+    {
+      icon: home,
+      label: "Address",
+      value: student.address?.[0]
+        ? `${student.address[0].street}, ${student.address[0].city}, ${student.address[0].state}`
+        : "N/A",
+    },
+  ];
+
+  const guardianInfo = student.parentDetails;
+
+  const guardianDetails = [
+    { icon: guardian, label: "Father Name", value: guardianInfo?.fatherName },
+    {
+      icon: calendar,
+      label: "Father Contact",
+      value: guardianInfo?.fatherContact,
+    },
+    { icon: mail, label: "Father Email", value: guardianInfo?.email },
+    { icon: phone, label: "Mother Name", value: guardianInfo?.motherName },
+    {
+      icon: calendar,
+      label: "Mother Contact",
+      value: guardianInfo?.motherContact,
+    },
+  ];
+  const academicDetails = [
+    {
+      icon: admission,
+      label: "Year",
+      value: student.year,
+    },
+    {
+      icon: admission,
+      label: "Course",
+      value: student.course?.courseName,
+    },
+    {
+      icon: school,
+      label: "Previous School",
+      value: student.previousEducation?.[0]?.lastSchoolOrCollege,
+    },
+    {
+      icon: school,
+      label: "Board",
+      value: student.previousEducation?.[0]?.boardOrUniversity,
+    },
+    {
+      icon: admission,
+      label: "Passing Year",
+      value: student.previousEducation?.[0]?.passingYear,
+    },
+    {
+      icon: grade,
+      label: "Grade",
+      value: `${student.previousEducation?.[0]?.percentage}%`,
+    },
+  ];
 
   return (
     <>
@@ -156,7 +138,7 @@ const Profile = () => {
             <div className="flex flex-col gap-[12px]">
               {/* Name */}
               <div className="text-[#FAFCFD] font-bold text-[24px] leading-[36px] font-inter">
-                Asha Singh
+                {student.firstName} {student.lastName}
               </div>
 
               {/* Course and ID */}
@@ -170,13 +152,13 @@ const Profile = () => {
                   className="text-[#FAFCFD] text-[14px] md:text-[16px]
  font-normal font-inter"
                 >
-                  Course: Computer Science
+                  Course: {student.course?.courseName}
                 </span>
                 <span
                   className="text-[#FAFCFD] text-[14px] md:text-[16px]
  font-normal font-inter"
                 >
-                  Student ID: 2023BT01
+                  Student ID: {student.studentCode}
                 </span>
               </div>
             </div>
@@ -190,14 +172,11 @@ const Profile = () => {
           </div>
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-            {details.map((detail, idx) => {
-              const isLastOddItem = isOdd && idx === lastIndex;
-              return (
-                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                  <DetailCard {...detail} />
-                </div>
-              );
-            })}
+            {personalDetails.map((detail, idx) => (
+              <div key={idx}>
+                <DetailCard {...detail} />
+              </div>
+            ))}
           </div>
           {/*  Guardian Details Section */}
 
@@ -210,19 +189,15 @@ const Profile = () => {
           {/* map  guardian1 */}
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-            {guardianDetails.map((detail, idx) => {
-              const isLastOddItem = isOdd && idx === lastIndex;
-              return (
-                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                  <DetailCard {...detail} />
-                </div>
-              );
-            })}
+            {guardianDetails.map((detail, idx) => (
+              <div key={idx}>
+                <DetailCard {...detail} />
+              </div>
+            ))}
           </div>
 
-          <hr className="text-[#04203E33]" />
+          {/* <hr className="text-[#04203E33]" />
 
-          {/* gaurdian2  */}
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
             {guardianDetails2.map((detail, idx) => {
@@ -234,7 +209,7 @@ const Profile = () => {
               );
             })}
           </div>
-
+          */}
           <div
             className="w-full
  h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
@@ -247,14 +222,11 @@ const Profile = () => {
           {/* academic details */}
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
-            {AcademicDetails.map((detail, idx) => {
-              const isLastOddItem = isOdd && idx === lastIndex;
-              return (
-                <div key={idx} className={isLastOddItem ? "md:col-span-2" : ""}>
-                  <DetailCard {...detail} />
-                </div>
-              );
-            })}
+            {academicDetails.map((detail, idx) => (
+              <div key={idx}>
+                <DetailCard {...detail} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

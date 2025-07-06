@@ -33,13 +33,24 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = { token: action.payload };
+
+        localStorage.setItem("token", action.payload);
+
+        try {
+          const [, payloadBase64] = action.payload.split(".");
+          const decodedPayload = JSON.parse(atob(payloadBase64));
+          const email = decodedPayload.sub;
+          localStorage.setItem("email", email);
+        } catch (e) {
+          console.warn("⚠️ Failed to decode JWT:", e);
+        }
       });
   },
 });
