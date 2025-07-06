@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderFee from "./HeaderFee";
 import { useLocation } from "react-router-dom";
 import { Check, CreditCard, Landmark, Wallet, ChevronDown } from "lucide-react";
@@ -25,6 +25,7 @@ const FeePayment1 = () => {
   ];
 
   const [openId, setOpenId] = useState(null);
+  const [amount, setAmount] = useState(null);
 
   const handleOptionClick = (id) => {
     setOpenId(openId === id ? null : id); // toggle
@@ -33,6 +34,24 @@ const FeePayment1 = () => {
   const location = useLocation();
   const feeDetails = location.state;
   console.log(feeDetails);
+  const adder = (feeDetails) => {
+    if (feeDetails?.fees?.length) {
+      const amountArray = feeDetails.fees.map((fee) =>
+        Number(fee.amount.replace(/[^0-9.-]+/g, ""))
+      );
+      const total = amountArray.reduce((acc, curr) => acc + curr, 0);
+        const formattedTotal = total.toLocaleString("en-IN");
+      setAmount(formattedTotal);
+    }
+    else{
+     const numer= Number(feeDetails.amount.replace(/[^0-9.-]+/g, ""))
+       const formattedTotal = numer.toLocaleString("en-IN");
+      setAmount(formattedTotal)
+    }
+  };
+  useEffect(() => {
+    adder(feeDetails);
+  }, [feeDetails]);
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
@@ -48,7 +67,7 @@ const FeePayment1 = () => {
                 Grand Total
               </div>
               <div className="text-[14px] font-semibold text-[#10B981] leading-[20px]">
-                Rs. {feeDetails?.amount}
+                Rs. {amount}
               </div>
             </div>
             <div className="flex justify-between w-[356px]">
@@ -56,7 +75,7 @@ const FeePayment1 = () => {
                 Taxes
               </div>
               <div className="text-[14px] font-semibold text-[#000000] leading-[20px]">
-                Rs. 1000
+                Rs. 1,000
               </div>
             </div>
           </div>
@@ -87,7 +106,11 @@ const FeePayment1 = () => {
                     {item.title}
                   </div>
                   <div className="text-[14px] font-semibold text-[#666666] leading-[20px]">
-                    {item.title ==="Due date" ? (<span>Till {feeDetails?.date}</span> ): item.desc}
+                    {item.title === "Due date" ? (
+                      <span>Till {feeDetails?.date}</span>
+                    ) : (
+                      item.desc
+                    )}
                   </div>
                 </div>
               </div>
