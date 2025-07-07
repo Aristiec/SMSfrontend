@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { House, CircleAlert, Wrench, Book, Phone } from "lucide-react";
+import RulesAndTiming from "./RulesAndTiming";
+
+import HostelAndRooms from "./HostelAndRooms.jsx";
+
 import Maintenance from "./Maintenance";
 import PaymentHistory from "./PaymentHistory";
 import { motion, AnimatePresence } from "framer-motion";
@@ -50,6 +54,9 @@ const LowerSection = () => {
           </button>
         ))}
       </div>
+        {/* <Maintenance/> */}
+        {/* <HostelAndRooms/> */}
+        <RulesAndTiming/>
 
       <AnimatePresence mode="wait">
         <motion.div
