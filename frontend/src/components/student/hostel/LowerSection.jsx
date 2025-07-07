@@ -3,6 +3,7 @@ import { House, CircleAlert, Wrench, Book, Phone } from "lucide-react";
 import Maintenance from "./Maintenance";
 import HostelAndRooms from "./HostelAndRooms";
 import RulesAndTiming from "./RulesAndTiming";
+import { motion, AnimatePresence } from "framer-motion";
 import PaymentHistory from "./PaymentHistory";
 import Contacts from "./Contacts";
 const menuItems = [
@@ -58,20 +59,27 @@ const LowerSection = () => {
           </button>
         ))}
       </div>
-      <div>
-        {selectedIndex === 0 ? (
-          <HostelAndRooms />
-        ) : selectedIndex === 1 ? (
-          <RulesAndTiming />
-        ) : selectedIndex === 2 ? (
-          <Maintenance />
-        ) : selectedIndex === 3 ? (
-          <PaymentHistory />
-        ) : selectedIndex === 4 ? (
+      <AnimatePresence mode="wait">
+        <motion.div
+        animate={{opacity:1, y:0}}
+          initial={{ opacity: 0, y: 10 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          key={selectedIndex}
+        >
+          {selectedIndex === 0 ? (
+            <HostelAndRooms />
+          ) : selectedIndex === 1 ? (
+            <RulesAndTiming />
+          ) : selectedIndex === 2 ? (
+            <Maintenance />
+          ) : selectedIndex === 3 ? (
+            <PaymentHistory />
+          ) : selectedIndex === 4 ? (
           <Contacts />
-        ):
-         null}
-      </div>
+        ): null}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 };
