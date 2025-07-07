@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { House, CircleAlert, Wrench, Book, Phone } from "lucide-react";
 import Maintenance from "./Maintenance";
-
+import HostelAndRooms from "./HostelAndRooms";
+import RulesAndTiming from "./RulesAndTiming";
+import PaymentHistory from "./PaymentHistory";
 const menuItems = [
   {
     icon: <House size={14} />,
@@ -48,7 +50,17 @@ const LowerSection = () => {
           </button>
         ))}
       </div>
-        <Maintenance/>
+      <div>
+        {selectedIndex === 0 ? (
+          <HostelAndRooms />
+        ) : selectedIndex === 1 ? (
+          <RulesAndTiming />
+        ) : selectedIndex === 2 ? (
+          <Maintenance />
+        ) : selectedIndex === 3 ? (
+          <PaymentHistory />
+        ) : null}
+      </div>
     </section>
   );
 };
