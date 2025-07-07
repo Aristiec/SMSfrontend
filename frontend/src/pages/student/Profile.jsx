@@ -82,6 +82,7 @@ const Profile = () => {
       value: guardianInfo?.motherContact,
     },
   ];
+
   const academicDetails = [
     {
       icon: admission,
