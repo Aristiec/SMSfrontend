@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import TimetableHeader from "../../components/Student/TimetableHeader";
+import TimetableHeader from "../../components/student/TimetableHeader";
 import { addWeeks, getDay } from "date-fns";
 import { ArrowRightLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +58,7 @@ const Timetable = () => {
   return (
     <div className="mx-auto flex flex-col gap-8 min-h-screen bg-[#E9EEF4] text-[#1F1D1D] ">
       <div className="flex flex-col px-4 gap-6">
-        <TimetableHeader currentWeek={currentWeek} />
+        <TimetableHeader />
 
         <div className="flex justify-center px-4 lg:px-4">
           {/* <div className="flex flex-col px-4 gap-10"> */}
