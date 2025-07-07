@@ -55,7 +55,7 @@ const FeePayment1 = () => {
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
-      <div className="flex flex-col px-4 gap-4 mt-4">
+      <div className="flex flex-col px-4 gap-10 mt-4">
         <HeaderFee />
         <StudentInfoCardHeader />
 
