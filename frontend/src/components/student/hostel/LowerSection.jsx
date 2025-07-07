@@ -4,6 +4,7 @@ import Maintenance from "./Maintenance";
 import HostelAndRooms from "./HostelAndRooms";
 import RulesAndTiming from "./RulesAndTiming";
 import PaymentHistory from "./PaymentHistory";
+import Contacts from "./Contacts";
 const menuItems = [
   {
     icon: <House size={14} />,
@@ -24,6 +25,7 @@ const menuItems = [
   {
     icon: <Phone size={14} />,
     title: "Contacts",
+    
   },
 ];
 
@@ -37,7 +39,13 @@ const LowerSection = () => {
       <div className="flex gap-8">
         {menuItems.map((item, index) => (
           <button
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => {
+              if (item.link) {
+                window.location.href = item.link;
+              } else {
+                setSelectedIndex(index);
+              }
+            }}
             className={`flex gap-2 rounded-[5px]   p-1   font-medium text-[12px] leading-4 tracking-normal items-center trasition-all duration-300 ease-in ${
               selectedIndex === index
                 ? "text-[#1F1D1D] border-b-1 border-[#1F1D1D]"
@@ -59,10 +67,14 @@ const LowerSection = () => {
           <Maintenance />
         ) : selectedIndex === 3 ? (
           <PaymentHistory />
-        ) : null}
+        ) : selectedIndex === 4 ? (
+          <Contacts />
+        ):
+         null}
       </div>
     </section>
   );
 };
 
 export default LowerSection;
+
