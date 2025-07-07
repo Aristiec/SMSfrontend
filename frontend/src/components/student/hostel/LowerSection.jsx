@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { House, CircleAlert, Wrench, Book, Phone } from "lucide-react";
 import Maintenance from "./Maintenance";
+import PaymentHistory from "./PaymentHistory";
+import { motion, AnimatePresence } from "framer-motion";
 
 const menuItems = [
   {
@@ -48,7 +50,24 @@ const LowerSection = () => {
           </button>
         ))}
       </div>
-        <Maintenance/>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedIndex}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {selectedIndex === 2 ? (
+            <Maintenance />
+          ) : selectedIndex === 3 ? (
+            <PaymentHistory />
+          ) : (
+            "hello"
+          )}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 };
