@@ -1,6 +1,6 @@
 import React from "react";
 import { Book, Clock, DollarSign } from "lucide-react";
-import LowerComponent from "../components/student/Library/LowerComponent.jsx";
+import LowerComponent from "../../components/student/Library/LowerComponent.jsx";
 
 const cardData = [
   {
@@ -51,27 +51,27 @@ const Card = ({ title, count, description, icon, iconBg }) => {
 const Library = () => {
   return (
     <div className="mx-auto flex flex-col gap-8 min-h-screen">
-      <div className="flex flex-col px-4 gap-10 mt-4"> 
-      {/* Header */}
-      <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg">
-        <h1 className="text-[24px] font-bold font-[Merriweather]">Library</h1>
-      </div>
+      <div className="flex flex-col px-4 gap-10 mt-4">
+        {/* Header */}
+        <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg">
+          <h1 className="text-[24px] font-bold font-[Merriweather]">Library</h1>
+        </div>
 
-      {/* Cards Section */}
-      <div className="grid grid-cols-3 gap-10 mb-6">
-        {cardData.map((card) => (
-          <Card
-            key={card.id}
-            title={card.title}
-            count={card.count}
-            description={card.description}
-            icon={card.icon}
-            iconBg={card.iconBg}
-          />
-        ))}
-      </div>
+        {/* Cards Section */}
+        <div className="grid grid-cols-3 gap-10 mb-6">
+          {cardData.map((card) => (
+            <Card
+              key={card.id}
+              title={card.title}
+              count={card.count}
+              description={card.description}
+              icon={card.icon}
+              iconBg={card.iconBg}
+            />
+          ))}
+        </div>
 
-      <LowerComponent />
+        <LowerComponent />
       </div>
     </div>
   );

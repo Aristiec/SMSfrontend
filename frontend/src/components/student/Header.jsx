@@ -58,7 +58,10 @@ const Header = () => {
             </span>
           </div>
           {/* Hostel */}
-          <div className={getLinkClasses("hostel")}>
+          <div
+            onClick={() => navigate("/student/hostel")}
+            className={getLinkClasses("hostel")}
+          >
             <FaBuilding className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Hostel
