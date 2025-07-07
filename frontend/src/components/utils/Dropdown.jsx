@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-const Dropdown = ({ options, onSelect, placeholder, selected }) => {
+const Dropdown = ({ options, onSelect, placeholder, selected,className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -26,7 +26,7 @@ const Dropdown = ({ options, onSelect, placeholder, selected }) => {
     <div className="relative w-full" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center border border-[#1F1D1D] py-3 px-3 rounded-t-[4px] font-[Inter] font-[400] text-[16px] leading-6 tracking-normal text-[#1F1D1D] cursor-pointer"
+        className={`w-full flex justify-between items-center border border-[#1F1D1D] py-3 px-3 rounded-t-[4px] font-[Inter] font-[400] text-[16px] leading-6 tracking-normal text-[#1F1D1D] cursor-pointer ${className}`}
       >
         {selected || <span className="text-[#717171]">{placeholder}</span>}
         <ChevronDown size={20} />
