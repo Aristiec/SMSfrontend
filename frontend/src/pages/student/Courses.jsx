@@ -1,53 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Book, Users } from "lucide-react";
 import SyllabusIcon from "../../assets/Syllabus.svg";
-
-const courses = [
-  {
-    title: "Data Structures and Algorithms",
-    code: "CS201",
-    credits: 4,
-    professor: "Prof. Kowshik",
-  },
-  {
-    title: "Operating Systems",
-    code: "CS204",
-    credits: 3,
-    professor: "Prof. Shalini",
-  },
-  {
-    title: "Database Management System",
-    code: "CS208",
-    credits: 4,
-    professor: "Prof. Rohit Kunwar",
-  },
-  {
-    title: "Computer Networks",
-    code: "CS212",
-    credits: 3,
-    professor: "Prof. Lakshimath Dev",
-  },
-  {
-    title: "Software Engineering",
-    code: "CS215",
-    credits: 3,
-    professor: "Prof. Shashank",
-  },
-  {
-    title: "Artificial Intelligence",
-    code: "CS301",
-    credits: 4,
-    professor: "Prof. Devshankar",
-  },
-  {
-    title: "Web Development",
-    code: "CS305",
-    credits: 3,
-    professor: "Prof. Rajavel",
-  },
-];
+import {
+  fetchProfileByEmail,
+  fetchSubjectsByCourseId,
+} from "../../features/auth/authAPI";
 
 const Courses = () => {
+  const [subjects, setSubjects] = useState([]);
+  const [studentName, setStudentName] = useState("");
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const email = localStorage.getItem("email");
+        const profileRes = await fetchProfileByEmail(email);
+        const courseId = profileRes.data.course.id;
+
+        setStudentName(
+          `${profileRes.data.firstName} ${profileRes.data.lastName}`
+        );
+
+        const subjectRes = await fetchSubjectsByCourseId(courseId);
+        setSubjects(subjectRes.data[0]?.subjects || []);
+      } catch (error) {
+        console.error("Error fetching course subjects:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   const handleDownload = (courseName) => {
     alert(`Downloading syllabus for: ${courseName}`);
   };
@@ -56,7 +39,7 @@ const Courses = () => {
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-7 mt-4">
         {/* Header */}
-        <header className="  sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-4  text-[#FAFCFD]  ">
+        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full h-[68px] px-4 text-[#FAFCFD]">
           <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
             Courses Enrolled
           </h1>
@@ -78,9 +61,9 @@ const Courses = () => {
             </div>
           </div>
 
-          {/* Course Cards */}
+          {/* Dynamic Course Cards */}
           <div className="flex flex-col items-center space-y-4 px-2 md:px-2 py-6">
-            {courses.map((course, index) => (
+            {subjects.map((subject, index) => (
               <div
                 key={index}
                 className="w-full max-w-7xl bg-[#FAFCFD] rounded-[12px] px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg"
@@ -91,29 +74,31 @@ const Courses = () => {
                     <Book className="w-[16px] h-[16px] text-[#04203E]" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#1F1D1D]">{course.title}</p>
+                    <p className="font-medium text-[#1F1D1D]">{subject.name}</p>
                     <p className="text-sm font-bold text-[#1F1D1D]">
-                      {course.code} | Credits: {course.credits}
+                      {subject.code} | Credits: {subject.credit}
                     </p>
                   </div>
                 </div>
 
-                {/* Professor Info */}
-                <div className="flex items-center flex-1 text-sm text-[#1F1D1D]  md:ml-20">
-                  <div className="min-w-[40px] flex justify-center ">
-                    <div className="w-[28px] h-[28px] rounded-full bg-[#FFF4ED] flex items-center justify-center  ">
-                      <Users className="h-[16px] w-[16px] text-[#F97316] " />
+                {/* Professors */}
+                <div className="flex items-center flex-1 text-sm text-[#1F1D1D] lg:ml-30">
+                  <div className="min-w-[40px] flex justify-center">
+                    <div className="w-[28px] h-[28px] rounded-full bg-[#FFF4ED] flex items-center justify-center">
+                      <Users className="h-[16px] w-[16px] text-[#F97316]" />
                     </div>
                   </div>
                   <div className="text-[#1F1D1D] text-[16px] font-normal font-[Inter] pl-2">
-                    {course.professor}
+                    {subject.faculties?.length > 0
+                      ? subject.faculties.map((f) => f.name).join(", ")
+                      : "Not Assigned"}
                   </div>
                 </div>
 
                 {/* Syllabus Download */}
                 <div className="flex justify-end items-center flex-1 mt-4 md:mt-0 md:justify-end">
                   <button
-                    onClick={() => handleDownload(course.title)}
+                    onClick={() => handleDownload(subject.name)}
                     className="flex items-center gap-[12px] text-[16px] text-[#04203E] mb-1"
                   >
                     <img
