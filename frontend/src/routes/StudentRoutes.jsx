@@ -28,7 +28,7 @@ import ResetPassword from "../pages/student/Login/ResetPassword.jsx";
 import Seating from "../components/student/Exam/Offline/Seating";
 import ExamReview from "../components/student/Exam/Online/preExam/Review.jsx";
 import OnlineExam from "../components/student/Exam/Online/examPage/OnlineExam";
-import Library from "../pages/Library";
+import Library from "../pages/student/Library";
 import ActivityHistory from "../components/student/Library/ActivityHistory";
 import BookDetails from "../components/student/Library/BookDetails";
 import BrowseLibrary from "../components/student/Library/BrowseLibrary";
@@ -39,6 +39,7 @@ import FeePayment1 from "../pages/student/Fee/FeePayment1.jsx";
 import CodeSend from "../pages/student/Login/CodeSend";
 import CodeVerify from "../pages/student/Login/CodeVerify";
 import TransportService from "../components/student/TransportService.jsx";
+import Hostel from "../pages/student/Hostel";
 import ProtectedRoute from "../components/ProtectedRoute";
 const StudentRoutes = () => {
   return (
@@ -83,6 +84,7 @@ const StudentRoutes = () => {
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="transportService" element={<TransportService />} />
         <Route path="fees/payment" element={<FeePayment1 />} />
+        <Route path="hostel" element={<Hostel />} />
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />
