@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { House, CircleAlert, Wrench, Book, Phone } from "lucide-react";
-import Maintenance from "./Maintenance";
+import RulesAndTiming from "./RulesAndTiming";
+
+import HostelAndRooms from "./HostelAndRooms.jsx";
 
 const menuItems = [
   {
@@ -48,7 +50,9 @@ const LowerSection = () => {
           </button>
         ))}
       </div>
-        <Maintenance/>
+        {/* <Maintenance/> */}
+        {/* <HostelAndRooms/> */}
+        <RulesAndTiming/>
     </section>
   );
 };
