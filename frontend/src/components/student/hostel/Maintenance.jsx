@@ -46,7 +46,7 @@ const Maintenance = () => {
     Resolved: "bg-[#ECFDF7] text-[#10B981]",
     "In Progress": "bg-[#F4F7FA] text-[#0077FF]",
     Rejected: "bg-red-100 text-red-700",
-  };  
+  };
   const [selectedOption, setSelectedOption] = useState(null);
   return (
     <div className="flex flex-col gap-6 ">
@@ -146,40 +146,45 @@ const Maintenance = () => {
         <p className="font-[Inter] font-[600] text-[16px] leading-7 tracking-normal flex items-center text-[#1F1D1D]">
           Previous Requests
         </p>
-        <table className="table-fixed w-full font-[Inter]">
-          <thead className="bg-[#F4F7FA] border-b border-[#71717166]">
-            <tr className="text-[14px] font-medium leading-4 tracking-normal text-[#717171]">
-              <th className="py-3 text-left w-1/5">Request ID</th>
-              <th className="py-3 text-left w-1/5">Date</th>
-              <th className="py-3 text-left w-1/5">Category</th>
-              <th className="py-3 text-left w-1/5">Description</th>
-              <th className="py-3 text-left w-1/5 px-10">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {maintenanceData.map((item, index) => (
-              <tr
-                key={index}
-                className="border-b border-[#71717166] font-[400] text-[14px] leading-4 tracking-normal text-[#1F1D1D]"
-              >
-                <td className="py-5 w-1/5">{item.id}</td>
-                <td className="py-5 w-1/5">{item.date}</td>
-                <td className="py-5 w-1/5">{item.category}</td>
-                <td className="py-5 w-1/5 truncate">{item.description}</td>
-                <td className="py-5 px-10 w-1/5">
-                  <span
-                    className={`px-2 py-1 rounded text-xs ${
-                      statusClasses[item.status]
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        
+        <div
+          style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
+          className="flex flex-col rounded-[8px] p-6 gap-3 bg-[#FAFCFD]"
+        >
+          <p className="font-[Inter] font-[600] text-[16px] leading-7 tracking-normal flex items-center text-[#1F1D1D]">
+            Previous Requests
+          </p>
+
+          {/* Header */}
+          <div className="grid grid-cols-5 bg-[#F4F7FA] text-[#717171] text-[14px] font-medium px-4 py-3 border-b border-[#E0E0E0]">
+            <p className="text-left">Request ID</p>
+            <p className="text-left">Date</p>
+            <p className="text-left">Category</p>
+            <p className="text-left">Description</p>
+            <p className="text-right px-7">Status</p>
+          </div>
+
+          {/* Body */}
+          {maintenanceData.map((item, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-5 items-center px-4 py-4 border-b border-[#E0E0E0] text-[14px] text-[#1F1D1D]"
+            >
+              <p>{item.id}</p>
+              <p>{item.date}</p>
+              <p>{item.category}</p>
+              <p className="truncate max-w-[180px]">{item.description}</p>
+              <p className="text-right">
+                <span
+                  className={`px-3 py-[2px] rounded-full text-xs font-medium ${
+                    statusClasses[item.status]
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
