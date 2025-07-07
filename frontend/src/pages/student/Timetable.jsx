@@ -1,67 +1,67 @@
-  import React, { useState, useRef, useEffect } from "react";
-  import TimetableHeader from "../../components/faculty/TimetableHeader";
-  import { addWeeks, getDay } from "date-fns";
-  import { ArrowRightLeft } from "lucide-react";
-  import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import TimetableHeader from "../../components/Student/TimetableHeader";
+import { addWeeks, getDay } from "date-fns";
+import { ArrowRightLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-  const Timetable = () => {
-    const [currentWeek, setCurrentWeek] = useState(0);
-    const navigate = useNavigate();
+const Timetable = () => {
+  const [currentWeek, setCurrentWeek] = useState(0);
+  const navigate = useNavigate();
 
-    const [showTooltip, setShowTooltip] = useState(false);
-    const tooltipRef = useRef(null);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
 
-    const days = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ];
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
-    const timeSlots = [
-      "9:00 - 9:45 AM",
-      "9:45 - 10:30 AM",
-      "10:30 - 10:45 AM",
-      "10:45 - 11:30 AM",
-      "11:30 - 12:15 AM",
-      "12:15 - 1:15 AM",
-      "1:15 - 2:00 AM",
-      "2:00 - 2:45 AM",
-    ];
+  const timeSlots = [
+    "9:00 - 9:45 AM",
+    "9:45 - 10:30 AM",
+    "10:30 - 10:45 AM",
+    "10:45 - 11:30 AM",
+    "11:30 - 12:15 AM",
+    "12:15 - 1:15 AM",
+    "1:15 - 2:00 AM",
+    "2:00 - 2:45 AM",
+  ];
 
-    const today = addWeeks(new Date(), currentWeek);
-    const jsDayIndex = getDay(today);
-    const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
+  const today = addWeeks(new Date(), currentWeek);
+  const jsDayIndex = getDay(today);
+  const selectedDayIndex = jsDayIndex === 0 ? 6 : jsDayIndex - 1;
 
-    useEffect(() => {
-      const handleClickOutside = (e) => {
-        if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
-          setShowTooltip(false);
-        }
-      };
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-    useEffect(() => {
-      setShowTooltip(true);
-      const timer = setTimeout(() => {
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
         setShowTooltip(false);
-      }, 1000);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-      return () => clearTimeout(timer);
-    }, []);
+  useEffect(() => {
+    setShowTooltip(true);
+    const timer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 1000);
 
-    return (
-      <div className="mx-auto flex flex-col gap-8 min-h-screen bg-[#E9EEF4] text-[#1F1D1D] ">
-        <div className="flex flex-col px-4 gap-6"> 
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="mx-auto flex flex-col gap-8 min-h-screen bg-[#E9EEF4] text-[#1F1D1D] ">
+      <div className="flex flex-col px-4 gap-6">
         <TimetableHeader currentWeek={currentWeek} />
 
-        <div className="flex justify-center p-4 lg:p-4">
-        {/* <div className="flex flex-col px-4 gap-10"> */}
+        <div className="flex justify-center px-4 lg:px-4">
+          {/* <div className="flex flex-col px-4 gap-10"> */}
           <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
             <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
               <h1 className="text-[20px] font-semibold text-[#1F1D1D] -ml-5">
@@ -138,9 +138,9 @@
             </table>
           </div>
         </div>
-        </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default Timetable;
+export default Timetable;
