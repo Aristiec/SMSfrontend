@@ -5,7 +5,35 @@ const Wishlist = ({ wishlist, onViewDetails, onRemove }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {wishlist.length === 0 ? (
-        <p className="text-gray-500 col-span-full">Your wishlist is empty.</p>
+        <div className="col-span-full flex flex-col items-center justify-center min-h-[400px] text-center">
+          {/* Bookmark Icon */}
+          <div className="w-16 h-16 bg-[#F4F7FA] shadow-lg rounded-full flex items-center justify-center mb-6">
+            <svg
+              className="w-8 h-8 text-[#0077FF]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+              />
+            </svg>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-[16px] font-[Inter] font-semibold text-[#111827] mb-2">
+            Your wishlist is empty
+          </h3>
+
+          {/* Description */}
+          <p className="text-[#4B5563] text-[14px] font-[Inter] max-w-md">
+            Browse the library and add books to your wishlist to keep track of
+            titles you're interested in.
+          </p>
+        </div>
       ) : (
         wishlist.map((book) => (
           <div
