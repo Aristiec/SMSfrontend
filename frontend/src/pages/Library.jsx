@@ -50,9 +50,10 @@ const Card = ({ title, count, description, icon, iconBg }) => {
 
 const Library = () => {
   return (
-    <div className="min-h-screen p-6">
+    <div className="mx-auto flex flex-col gap-8 min-h-screen">
+      <div className="flex flex-col px-4 gap-10 mt-4"> 
       {/* Header */}
-      <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg mb-6">
+      <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg">
         <h1 className="text-[24px] font-bold font-[Merriweather]">Library</h1>
       </div>
 
@@ -71,6 +72,7 @@ const Library = () => {
       </div>
 
       <LowerComponent />
+      </div>
     </div>
   );
 };
