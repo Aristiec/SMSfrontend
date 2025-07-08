@@ -114,7 +114,7 @@ const Assignments = () => {
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       {/* Header */}
-      <div className="flex flex-col px-4 gap-4 mt-4">
+      <div className="flex flex-col px-4 gap-1 mt-4">
         <header className=" sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather]">
             Assignments
@@ -122,7 +122,7 @@ const Assignments = () => {
         </header>
 
         {/* Filters */}
-        <div className="w-full max-w-7xl mx-auto mt-6 mb-6 ">
+        <div className="w-full max-w-7xl mx-auto mt-3 mb-3 ">
           <div className="flex flex-wrap gap-2 text-[#04203E] text-sm bg-[#FAFCFD] p-3 rounded-[12px]">
             {filters.map((filter) => (
               <button
@@ -144,7 +144,7 @@ const Assignments = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-[1fr_357px] gap-6 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[1fr_357px] gap-1 max-w-7xl mx-auto">
           <div className="flex-1 flex-col pr-6">
             <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] pr-2 scrollbar-hide">
               {filteredAssignments.map((assignment) => (
