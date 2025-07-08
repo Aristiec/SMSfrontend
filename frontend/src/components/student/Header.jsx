@@ -9,9 +9,9 @@ const Header = () => {
   const location = useLocation();
 
   const getLinkClasses = (path) =>
-    `flex items-center gap-[12px] px-4 py-3 cursor-pointer border-b-2 ${
+    `flex items-center gap-[12px] px-4 py-3 cursor-pointer border-b-1 ${
       location.pathname.includes(path)
-        ? "border-[#FAFCFD] text-[#FAFCFD] rounded-lg"
+        ? "border-[#FAFCFD] text-[#FAFCFD] "
         : "border-transparent"
     }`;
 

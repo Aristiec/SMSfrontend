@@ -20,7 +20,7 @@ const paymentHistory = [
     date: "Jul 12, 2023",
     amount: "₹45000",
     period: "Jan - Jul 2023",
-    status: "Pending",
+    status: "Paid",
   },
 ];
 
@@ -29,45 +29,44 @@ const PaymentHistory = () => {
     Pending: "bg-yellow-100 text-yellow-800",
     Paid: "bg-[#ECFDF7] text-[#10B981]",
   };
+
   return (
-    <div className="flex flex-col gap-10 font-[Inter] ">
-      <div className="flex flex-col gap-3 bg-[#FAFCFD]">
-        <p className="font-medium text-[20px] leading-7 tracking-normal flex items-center text-[#1F1D1D]">
+    <div className="flex flex-col gap-6 font-[Inter]">
+      <div className="flex flex-col gap-3 bg-[#FAFCFD] rounded-[8px] p-6">
+        <p className="font-medium text-[20px] leading-7 tracking-normal text-[#1F1D1D]">
           Payment History
         </p>
-        <table className="table-fixed w-full font-[Inter]">
-          <thead className="border-b border-[#71717166] bg-[#F4F7FA]">
-            <tr className="font-medium text-[14px] leading-4 tracking-normal text-[#717171]">
-              <th className="py-5 px-4 w-1/5 text-left">Receipt No</th>
-              <th className="py-5 px-4 w-1/5 text-left">Date</th>
-              <th className="py-5 px-4 w-1/5 text-left">Amount</th>
-              <th className="py-5 px-4 w-1/5 text-left">Period</th>
-              <th className="py-5 px-4 w-1/5 text-left">Status</th>
-            </tr>
-          </thead>
-          <tbody className="border-b border-[#71717166]">
-            {paymentHistory.map((item, index) => (
-              <tr
-                key={index}
-                className="border-b border-[#71717166] font-[400] text-[14px] leading-4 tracking-normal text-[#1F1D1D]"
+
+        {/* Header */}
+        <div className="grid grid-cols-5 text-[14px] font-medium text-[#717171] bg-[#F4F7FA] px-4 py-3 border-b border-[#E0E0E0]">
+          <p className="text-left">Receipt No</p>
+          <p className="text-left">Date</p>
+          <p className="text-left">Amount</p>
+          <p className="text-left">Period</p>
+          <p className="text-right px-7">Status</p>
+        </div>
+
+        {/* Body */}
+        {paymentHistory.map((item, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-5 items-center text-[14px] text-[#1F1D1D] font-normal px-4 py-4 border-b border-[#E0E0E0]"
+          >
+            <p>{item.receiptNo}</p>
+            <p>{item.date}</p>
+            <p>{item.amount}</p>
+            <p>{item.period}</p>
+            <p className="text-right px-5">
+              <span
+                className={`px-3 py-[2px] rounded-full text-xs font-medium ${
+                  statusClasses[item.status]
+                }`}
               >
-                <td className="py-5 px-4 w-1/5">{item.receiptNo}</td>
-                <td className="py-5 px-4 w-1/5">{item.date}</td>
-                <td className="py-5 px-4 w-1/5">{item.amount}</td>
-                <td className="py-5 px-4 w-1/5 ">{item.period}</td>
-                <td className="py-5 px-4  w-1/5">
-                  <span
-                    className={`px-2 py-1 rounded text-xs ${
-                      statusClasses[item.status]
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                {item.status}
+              </span>
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
