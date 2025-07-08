@@ -41,7 +41,8 @@ import CodeVerify from "../pages/student/Login/CodeVerify";
 import TransportService from "../components/student/TransportService.jsx";
 import Hostel from "../pages/student/Hostel";
 import ProtectedRoute from "../components/ProtectedRoute";
-
+import TransportDetail from "../components/student/transport/TransportDetail.jsx";
+import TD from "../components/student/transport/TD";
 const StudentRoutes = () => {
   return (
     <>
@@ -86,7 +87,8 @@ const StudentRoutes = () => {
         <Route path="transportService" element={<TransportService />} />
         <Route path="fees/payment" element={<FeePayment1 />} />
         <Route path="hostel" element={<Hostel />} />
-        
+        <Route path="detailss" element={<TransportDetail />} />
+        <Route path="tdetailss" element={<TD />} />
       </Route>
       <Route path="test" element={<OnlineExam />} />
       <Route path="signin" element={<SignIn />} />

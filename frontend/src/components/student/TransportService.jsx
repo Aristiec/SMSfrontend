@@ -1,5 +1,9 @@
 import { Bus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 function TransportService() {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full min-h-[108px] bg-[#E9EEF4] flex flex-col items-center px-4 pt-4">
       <div className="w-full h-[68px] bg-[#04203E] rounded-[12px] flex items-center px-[24px] py-[18px] gap-[10px]">
@@ -26,6 +30,7 @@ function TransportService() {
                 </span>
               </div>
               <button
+                onClick={() => navigate("/student/tdetailss")}
                 className="w-[150px] h-[40px] rounded-[8px] px-[12px] py-[8px] bg-[#04203E] flex items-center justify-center font-inter font-semibold text-[14px] leading-[24px] tracking-[0] text-white text-center"
                 type="button"
               >
