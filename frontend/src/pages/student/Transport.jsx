@@ -1,382 +1,155 @@
-import React from "react";
-import { Map, MapPin, Clock, Calendar, Phone, User, Bus } from "lucide-react";
-import { MdErrorOutline } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import {
-  FaBus,
-  FaRegClock,
-  FaCalendarAlt,
-  FaPhoneAlt,
-  FaUser,
-  FaBell,
-} from "react-icons/fa";
+import React, { useState } from "react";
+import { UserRoundCheck, Phone } from "lucide-react";
+import Dropdown from "../../components/utils/Dropdown";
 
-const busRouteStops = [
-  {
-    stopName: "Laxmi Nagar Metro Station",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:10 AM",
-  },
-  {
-    stopName: "Preet Vihar Opp. PVR",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:18 AM",
-  },
-  {
-    stopName: "AIIMS Gate 1",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:25 AM",
-  },
-  {
-    stopName: "Nirman Vihar Red Light",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:32 AM",
-  },
-  {
-    stopName: "Karkardooma Court",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: true,
-    time: "7:39 AM",
-  },
-  {
-    stopName: "Welcome Metro Station",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:46 AM",
-  },
-  {
-    stopName: "ISBT Kashmere Gate",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:53 AM",
-  },
-  {
-    stopName: "Rajiv Chowk Gate 5",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:00 AM",
-  },
-  {
-    stopName: "Mandi House Circle",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:07 AM",
-  },
-  {
-    stopName: "India Gate Stop",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:14 AM",
-  },
-  {
-    stopName: "Khan Market Metro",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:21 AM",
-  },
-];
 
-const updates = [
-  {
-    id: 1,
-    title: "Bus B205 Delay",
-    description:
-      "Bus B205 will be delayed by approximately 15 minutes this morning due to road construction.",
-    time: "Today, 6:30 AM",
-    bg: "#FEF2F2",
-    iconColor: "#EF4444",
+const dropdown = {
+  department: {
+    placeholder: "Select Course/Department",
+    options: ["Computer Science", "Information Technology", "Electronics", "Mechanical"],
   },
-  {
-    id: 2,
-    title: "Route Change",
-    description:
-      "Starting next week, the East Delhi Circular Route will include a stop at Science Building.",
-    time: "1 day ago, 10:00 AM",
-    bg: "#F4F7FA",
-    iconColor: "#1F1D1D",
+  semester: {
+    placeholder: "Select your semester",
+    options: ["Semester 1", "Semester 2", "Semester 3", "Semester 4"],
   },
-  {
-    id: 3,
-    title: "Holiday Schedule",
-    description:
-      "Please note that buses will operate on a reduced schedule during the upcoming holiday weekend.",
-    time: "2 days ago, 10:00 AM",
-    bg: "#F4F7FA",
-    iconColor: "#1F1D1D",
-  },
-];
-const Transport = () => {
-  const [showMap, setShowMap] = React.useState(false);
+};
 
-  const navigate = useNavigate();
-  const handleOverlayClick = (e) => {
-    if (e.target.id === "overlay") {
-      setShowMap(false);
-    }
-  };
+const Transport = ({
+  
+}) => {
+  const [course, setCourse] = useState("");
+  const [semester, setSemester] = useState("");
 
   return (
-    <div className="mx-auto flex flex-col bg-[#E9EEF4] font-[Inter] min-h-screen">
+    <div className="mx-auto flex flex-col font-[Inter] min-h-screen">
       <div className="flex flex-col px-4 gap-1 mt-4">
-        <div id="main-content-area" className="flex flex-col gap-6">
-          <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto mb-4">
-            <h1 className="text-[24px] font-bold font-[Merriweather]">
-              Transport
-            </h1>
-          </header>
-          <div className="flex gap-6">
-            <div className="flex flex-col gap-6 w-[70%] ">
-              <div className=" h-[310px] gap-6 rounded-[12px] p-6 bg-[#FAFCFD] shadow-md flex flex-col">
-                <div className="flex justify-between items-center font-[Inter]">
-                  <p className="text-[20px] font-[600] leading-7 text-[#1F1D1D] flex items-center">
-                    Transport Details
-                  </p>
-                  <button
-                    onClick={() => navigate("/student/transportService")}
-                    className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center"
-                  >
-                    <p className="text-[14px] leading-6 font-[600] text-[#FAFCFD]">
-                      Request Transport
-                    </p>
-                  </button>
-                </div>
-                <div className="w-[664px] h-[210px] gap-[20px] flex ">
-                  {/* icon div  */}
-                  <div className="w-[174px] h-[46px] flex items-center gap-[12px]">
-                    <div className="w-[40px] h-[40px] rounded-full bg-[#E9EEF4] flex items-center justify-center">
-                      <Bus className="w-5 h-5 border-[1.25px]rounded-[2px]" />
-                    </div>
-                    <div className=" h-[46px] flex flex-col gap-[4px] justify-center">
-                      <div className="text-[#1F1D1D] font-bold text-[16px] leading-[24px] Font-[Inter]">
-                        B205
-                      </div>
-                      <div className="text-[#717171] font-normal text-[14px] leading-[18px]">
-                        East Delhi Circular
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" h-[144px] flex gap-[24px]">
-                  <div className="w-full h-[144px] bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
-                    {/* Header */}
-                    <div className="flex items-center gap-[8px]">
-                      <FaRegClock className="w-[16px] h-[16px] " />
-                      <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
-                        Schedule
-                      </div>
-                    </div>
+        <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto mb-4">
+          <h1 className="text-[24px] font-bold font-[Merriweather]">Transport</h1>
+        </header>
 
-                    <div className="flex gap-[120px]">
-                      <div className="flex flex-col gap-[8px] w-[56px] font-[Inter]">
-                        <div className="text-[12px] leading-[16px] text-[#717171] ">
-                          Pickup
-                        </div>
-                        <div className="text-[14px] leading-[18px] font-medium text-[#1F1D1D]">
-                          7:45 AM
-                        </div>
-                      </div>
+        <section
+          style={{ boxShadow: "0px 4px 8px 0px #0000003D" }}
+          className="flex flex-col rounded-[12px] p-6 gap-6 bg-[#FAFCFD] w-full"
+        >
+          {/* header */}
+          <div className="flex flex-col gap-[8px]">
+            <div className="font-[Inter] font-semibold text-[20px] leading-[28px]">
+              Request Transport Service
+            </div>
+            <div className="font-[Inter] font-[400] text-[14px] leading-[20px] text-[#4B5563]">
+              Fill out the form below to request campus transportation
+            </div>
+          </div>
 
-                      <div className="flex flex-col gap-[8px] w-[56px] font-[Inter]">
-                        <div className="text-[12px] leading-[16px] text-[#717171]">
-                          Return
-                        </div>
-                        <div className="text-[14px] leading-[18px] font-medium text-[#1F1D1D]">
-                          5:30 PM
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-[8px]">
-                      <Calendar className="w-[15px] h-[18px] " />
-                      <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-[Inter]">
-                        Monday - Friday
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="w-full bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
-                    {/* Header */}
-                    <div className="flex items-center gap-[8px]">
-                      <User className="w-[16px] h-[20px] text-[#1F1D1D]" />
-                      <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
-                        Driver Information
-                      </div>
-                    </div>
-
-                    <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-medium">
-                      Michael Johnson
-                    </div>
-                    <div className="flex items-center gap-[8px]">
-                      <Phone className="w-[16px] h-[16px] " />
-                      <div className="text-[12px] leading-[18px] text-[#1F1D1D] font-[Inter] font-[400]">
-                        555-123-4567
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-                className="flex flex-col gap-6 p-6 bg-[#FAFCFD] scrollbar-hide  rounded-[12px]"
-              >
-                <div className="flex justify-between items-center font-[Inter]">
-                  <p className="text-[20px] font-[600] leading-7 text-[#1F1D1D] flex items-center">
-                    Route Stops
-                  </p>
-                  <button
-                    onClick={() => setShowMap(true)}
-                    className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center"
-                  >
-                    <Map size={18} color={"#FAFCFD"} />
-                    <p className="text-[14px] leading-6 font-[600] text-[#FAFCFD]">
-                      Route Map
-                    </p>
-                  </button>
-                </div>
-                <div className="flex flex-col gap-2 scrollbar-hide h-[50vh] overflow-y-scroll ">
-                  {busRouteStops.map((stop, index) => (
-                    <div
-                      style={{
-                        background: stop.isCurrentStop
-                          ? "#cfdceb"
-                          : index % 2 === 0
-                          ? "var(--Sec-50, #F4F7FA)"
-                          : "#FAFCFD",
-                      }}
-                      className="py-3 px-6 rounded-[8px]  flex flex-col gap-2 "
-                    >
-                      <div className="flex justify-between ">
-                        <div className="flex gap-3 items-center">
-                          <div
-                            className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                              stop.isCurrentStop
-                                ? "bg-[#04203E]"
-                                : "bg-[#FAFCFD]"
-                            }`}
-                          >
-                            <MapPin
-                              size={16}
-                              color={stop.isCurrentStop ? "#FAFCFD" : "#1F1D1D"}
-                            />
-                          </div>
-                          <p className="font-[500] text-[14px] leading-4 text-[#1F1D1D] tracking-normal">
-                            {stop.stopName}
-                          </p>
-                        </div>
-                        <div className="flex gap-2 font-[Inter] items-center">
-                          <Clock size={12} />
-                          <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal flex items-center">
-                            {stop.time}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-start">
-                        <div className="flex flex-col gap-2 justify-center">
-                          <div className="flex flex-col pl-7 justify-center">
-                            <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal">
-                              <span>Distance:</span> {stop.distance}
-                            </p>
-                          </div>
-
-                          <div className="pl-1">
-                            <div className="flex gap-2 pl-7 items-center border-[#717171] border-dashed border-l-1">
-                              <Clock size={12} />
-                              <p className="font-[400] text-[12px] leading-4 text-[#717171] tracking-normal">
-                                {stop.duration}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        {stop.isCurrentStop && (
-                          <button className="bg-[#04203E] py-1 px-4 gap-2 flex font-[Inter] rounded-full ">
-                            <p className="text-[12px] leading-4 font-medium tracking-normal text-[#FAFCFD] flex items-center">
-                              Your Stop
-                            </p>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          {/* Personal Details */}
+          <div className="flex flex-col gap-[16px]">
+            <div className="flex items-center gap-[12px]">
+              <UserRoundCheck className="w-[16px] h-[16px]" />
+              <div className="font-[Inter] text-[16px] leading-[24px] font-semibold text-[#000000]">
+                Personal Details
               </div>
             </div>
 
-            {/* right side content  */}
-            <div className="  gap-[24px] rounded-[12px] pt-[24px] pr-[16px] pb-[24px] pl-[16px] bg-[#FAFCFD] shadow-[0px_4px_8px_0px_#0000001F] flex flex-col">
-              {/* Header */}
-              <div className="flex items-center gap-[8px] w-[206.5px] h-[28px]">
-                <FaBell className="w-[16.5px] h-[18.34px] " />
-                <div className="text-[#1F1D1D] font-semibold text-[20px] leading-[28px]">
-                  Transport Updates
-                </div>
+            <div className="flex justify-between flex-wrap gap-y-6">
+             
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Full Name</label>
+                <input 
+                  type="text"
+                  placeholder="Enter your full name"
+                  className="w-full rounded-[8px] border border-[#717171] text-[16px] text-[#111827] px-6 py-2 placeholder-[#111827]"
+                />
               </div>
 
-              {/* Cards */}
-              <div className=" flex flex-col gap-[24px]">
-                {updates.map((item) => (
-                  <div
-                    key={item.id}
-                    className={` rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
-                    style={{ backgroundColor: item.bg }}
-                  >
-                    <div className="flex items-center gap-[12px] ">
-                      <MdErrorOutline
-                        className="w-[18px] h-[18px]"
-                        style={{ color: item.iconColor }}
-                      />
-                      <div className="text-[#1F1D1D] font-medium text-[16px] leading-[18px]">
-                        {item.title}
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-[12px] w-[328px] h-[60px]">
-                      <div className="text-[#1F1D1D] text-[12px] leading-[16px]">
-                        {item.description}
-                      </div>
-                      <div className="text-[#717171] text-[12px] leading-[16px]">
-                        {item.time}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+             
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Student ID</label>
+                <input
+                  type="text"
+                  placeholder="Enter student ID"
+                  className="w-full rounded-[8px] border border-[#717171] px-6 py-2 text-[16px] text-[#111827] placeholder-[#111827]"
+                />
+              </div>
+
+             
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Course/Department</label>
+                <Dropdown 
+                   options={dropdown.department.options}
+                  selected={course}
+                  onSelect={setCourse}
+                  placeholder={dropdown.department.placeholder}
+                  
+                />
+              </div>
+
+             
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Semester</label>
+                <Dropdown
+                  options={dropdown.semester.options}
+                  selected={semester}
+                  onSelect={setSemester}
+                  placeholder={dropdown.semester.placeholder}
+                />
               </div>
             </div>
           </div>
 
-          {showMap && (
-            <div
-              id="overlay"
-              onClick={handleOverlayClick}
-              className="fixed top-[68px] left-[240px] right-0 bottom-0 bg-[#1F1D1D]/40 z-40 flex items-center justify-center"
-            >
-              <div className="w-[594px] rounded-[12px] p-6 bg-[#FAFCFD] shadow-md flex flex-col gap-2 items-center justify-center">
-                <h2 className="text-[20px] leading-[28px] font-medium text-[#1F1D1D] text-center font-[Inter]">
-                  Interactive Map Coming Soon
-                </h2>
-                <p className="text-[16px] leading-[24px] font-normal text-[#717171] text-center font-[Inter]">
-                  Live tracking and detailed route information will be available
-                  soon
-                </p>
+          {/*  Contact Details */}
+          <div className="flex flex-col gap-6 mt-8">
+            <div className="flex items-center gap-[12px]">
+              <Phone className="w-[16px] h-[16px]" />
+              <div className="font-[Inter] text-[16px] leading-[24px] font-semibold text-[#000000]">
+                Contact Details
               </div>
             </div>
-          )}
-        </div>
+
+            <div className="flex justify-between flex-wrap gap-y-6">
+              
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Mobile Number</label>
+                <input
+                  type="text"
+                  placeholder="Enter your phone number"
+                  className="w-full rounded-[8px] border border-[#717171] px-6 py-2 placeholder-[#111827]"
+                />
+              </div>
+
+           
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Email ID</label>
+                <input
+                  type="email"
+                  placeholder="Enter your e-mail address"
+                  className="w-full rounded-[8px] border border-[#717171] px-6 py-2 placeholder-[#111827]"
+                />
+              </div>
+
+             
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">Emergency Contact Number</label>
+                <input
+                  type="text"
+                  placeholder="Enter emergency contact"
+                  className="w-full rounded-[8px] border border-[#717171] px-6 py-2 placeholder-[#111827]"
+                />
+              </div>
+
+           
+              <div className="flex flex-col gap-2 w-[45%]">
+                <label className="text-[12px] font-medium text-[#374151]">
+                  Emergency Contact Number <span className="text-[#6B7280]">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter emergency contact"
+                  className="w-full rounded-[8px] border border-[#717171] px-6 py-2 placeholder-[#111827]"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
