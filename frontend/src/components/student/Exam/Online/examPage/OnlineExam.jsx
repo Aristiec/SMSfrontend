@@ -20,6 +20,7 @@ const OnlineExam = () => {
   const [subjectiveQuestion, setSubjectiveQuestion] = useState(
     mockSubjectiveQuestions
   );
+  const [dropdown,setDropdown]=useState("Section A - MCQ")
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [subjectiveAnswer, setSubjectiveAnswer] = useState("");
   const [showSubjective, setShowSubjective] = useState(false);
@@ -164,9 +165,8 @@ const OnlineExam = () => {
     if (index === 0) {
       setShowSubjective(false);
     } else setShowSubjective(true);
+    setDropdown(selectedAnswer)
   };
-
-
   return (
     <div className="bg-[#FAFCFD] py-10 px-12">
       <div className="px-6 flex gap-60  border border-[#71717199] rounded-[8px] justify-between">
@@ -213,8 +213,10 @@ const OnlineExam = () => {
           </div>
           <Dropdown
             options={["Section A - MCQ", "Section B - Subjective"]}
-            placeholder={"Section A - MCQ"}
+            // placeholder={"Section A - MCQ"}
             onSelect={handleSelect}
+            selected={dropdown}
+          
           />
           <div className="flex flex-col gap-6">
             <p className="font-[Inter] font-medium text-[16px] leading-6 tracking-normal text-[#1F1D1D]">
@@ -224,7 +226,18 @@ const OnlineExam = () => {
               {currentSetOfQuestions.map((question, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentQuestion(index + 1)}
+                  onClick={() => {
+                    setCurrentQuestion(index + 1);
+
+                    if (!showSubjective) {
+                      const selected = questions[index]?.selectedAnswer || null;
+                      setSelectedAnswer(selected);
+                    } else {
+                      const q = subjectiveQuestion[index];
+                      setSubjectiveAnswer(q?.subjectiveAnswer || "");
+                      setSelectedFile(q?.file || null);
+                    }
+                  }}
                   className={`flex items-center justify-center rounded-[8px] py-2 px-4 border-2 gap-2 font-[Inter] font-medium text-[16px] leading-6 tracking-normal
    
     ${
@@ -315,10 +328,13 @@ const OnlineExam = () => {
                     {showSubjective && (
                       <div className="flex flex-col gap-4">
                         <textarea
-                        key={currentQuestion}
-                          value={subjectiveAnswer || subjectiveQuestion.find(
-                        (q) => q.id === currentQuestion - 1
-                      )?.answer}  
+                          key={currentQuestion}
+                          value={
+                            subjectiveAnswer ||
+                            subjectiveQuestion.find(
+                              (q) => q.id === currentQuestion - 1
+                            )?.answer
+                          }
                           onChange={(e) => setSubjectiveAnswer(e.target.value)}
                           placeholder="Write your answer in the given space"
                           className="w-full p-4 h-[256px] resize-none overflow-y-scroll scrollbar-hide rounded-[8px] border border-[#717171] text-[16px] font-[400] leading-6 tracking-normal text-[#717171] "
