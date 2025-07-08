@@ -5,18 +5,23 @@ import { useLocation } from "react-router-dom";
 
 const Recheck = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [message, setMessage] = useState("");
   const { state } = useLocation();
-  const result = state?.result; 
+  const result = state?.result;
   const navigate = useNavigate();
 
   const handleFileSelect = (event) => {
     const files = Array.from(event.target.files);
-    if (files.length && assignment.status !== "overdue") {
+    if (files) {
       const newFiles = [...selectedFiles, ...files];
       setSelectedFiles(newFiles);
       onFileUpload(newFiles);
     }
   };
+  const handleSubmit = ()=>{
+    setSelectedFiles([]);
+    setMessage("")
+  }
 
   return (
     <div className=" bg-[#FAFCFD] flex flex-col gap-8 min-h-screen font-[Inter] rounded-[12px] mt-4 mx-5">
@@ -76,6 +81,8 @@ const Recheck = () => {
             Reason for Recheck *
           </div>
           <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Please explain why you're requesting a recheck (max 250 characters)"
             maxLength={250}
             className="h-[204px] rounded-[8px] border border-[#717171] bg-[#F4F7FA] p-3 text-[16px] leading-[24px] text-[#717171] resize-none"
@@ -186,6 +193,7 @@ const Recheck = () => {
           </button>
 
           <button
+            onClick={handleSubmit}
             className="w-[129px] h-[40px] rounded-[8px] bg-[#04203E] 
     text-[#FAFCFD] font-[Inter] font-[400] text-[14px] leading-[24px] text-center"
           >
