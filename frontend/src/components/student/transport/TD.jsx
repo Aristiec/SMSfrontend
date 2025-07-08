@@ -144,7 +144,7 @@ const TD = ({}) => {
           </div>
 
           {/*  Contact Details */}
-          <div className="flex flex-col gap-6 mt-8">
+          <div className="flex flex-col gap-6 mt-2">
             <div className="flex items-center gap-[12px]">
               <Phone className="w-[16px] h-[16px]" />
               <div className="font-[Inter] text-[16px] leading-[24px] font-semibold text-[#000000]">
@@ -430,6 +430,56 @@ const TD = ({}) => {
                       ))}
                     </div>
                   </div>
+                  {/* <<!-- Transport Policy Section --> */}
+                  <div class="w-full bg-[#E9EEF4] p-4 rounded-lg">
+                    <div class=" text-[#1F1D1D] text-[12px] leading-[18px] font-bold font-['Inter'] h-[18px] px-2 flex items-center">
+                      Transport Policy:
+                    </div>
+                    <ul class="mt-2 space-y-[2px] text-[12px] leading-[18px] font-normal font-['Inter'] text-black list-disc list-inside">
+                      <li>
+                        Campus buses operate on fixed routes with predefined
+                        stops.
+                      </li>
+                      <li>Pickup times are fixed and cannot be changed.</li>
+                      <li>
+                        Transport services are available only on working days
+                        unless specifically approved.
+                      </li>
+                      <li>
+                        In case of route or schedule changes, students will be
+                        notified in advance.
+                      </li>
+                      <li>
+                        Transport requests are subject to approval and seat
+                        availability. You'll receive a notification once your
+                        request is processed.
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* <!-- Agreement Section --> */}
+                  <div class="w-[543px] h-[18px] mt-1 flex items-center gap-3 text-[12px] leading-[18px] font-normal font-['Inter'] text-black">
+                    <input
+                      type="checkbox"
+                      id="agree"
+                      class="w-[14px] h-[14px] accent-black"
+                    />
+                    <label for="agree">
+                      I understand and agree to the Transport Policy and confirm
+                      the above details are accurate.
+                    </label>
+                  </div>
+                </div>
+                <div class="w-full h-[36px] flex gap-6  mt-4 items-center justify-end">
+                  {/* <!-- Cancel Button --> */}
+                  <button class="w-[64px] h-[36px] px-3 py-2 rounded-lg bg-[#CFDCEB] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-black">
+                    Cancel
+                  </button>
+
+                  {/* <!-- Submit Request Button --> */}
+                  <button class="w-[114px] h-[36px] px-3 py-2 rounded-lg bg-[#04203E] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-white">
+                    Submit Request
+                  </button>
                 </div>
               </div>
             </div>

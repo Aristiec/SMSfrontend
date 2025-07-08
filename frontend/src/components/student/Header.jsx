@@ -8,12 +8,21 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // const getLinkClasses = (path) =>
+  //   `flex items-center gap-[12px] px-4 py-3 cursor-pointer border-b-1  ${
+  //     location.pathname.includes(path)
+  //       ? "border-[#FAFCFD] text-[#FAFCFD] "
+  //       : "border-transparent"
+  //   }`;
   const getLinkClasses = (path) =>
-    `flex items-center gap-[12px] px-4 py-3 cursor-pointer border-b-1 ${
-      location.pathname.includes(path)
-        ? "border-[#FAFCFD] text-[#FAFCFD] "
-        : "border-transparent"
-    }`;
+  `relative flex items-center gap-[12px] px-4 py-3 cursor-pointer 
+   after:content-[''] after:absolute after:bottom-0 after:left-[8.5%]
+   after:h-[1px] after:bg-[#FAFCFD] 
+   ${location.pathname.includes(path)
+     ? 'after:w-[83%]'
+     : 'after:w-0'} transition-all duration-300`;
+
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#04203E] text-white shadow-md w-full font-semibold">
