@@ -144,7 +144,7 @@ const TD = ({}) => {
           </div>
 
           {/*  Contact Details */}
-          <div className="flex flex-col gap-6 mt-8">
+          <div className="flex flex-col gap-6 mt-2">
             <div className="flex items-center gap-[12px]">
               <Phone className="w-[16px] h-[16px]" />
               <div className="font-[Inter] text-[16px] leading-[24px] font-semibold text-[#000000]">
@@ -470,25 +470,21 @@ const TD = ({}) => {
                     </label>
                   </div>
                 </div>
-  <div class="w-full h-[36px] flex gap-6  mt-4 items-center justify-end">
-  {/* <!-- Cancel Button --> */}
-  <button class="w-[64px] h-[36px] px-3 py-2 rounded-lg bg-[#CFDCEB] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-black">
-    Cancel
-  </button>
+                <div class="w-full h-[36px] flex gap-6  mt-4 items-center justify-end">
+                  {/* <!-- Cancel Button --> */}
+                  <button class="w-[64px] h-[36px] px-3 py-2 rounded-lg bg-[#CFDCEB] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-black">
+                    Cancel
+                  </button>
 
-  {/* <!-- Submit Request Button --> */}
-  <button class="w-[114px] h-[36px] px-3 py-2 rounded-lg bg-[#04203E] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-white">
-    Submit Request
-  </button>
-</div>
-
-
+                  {/* <!-- Submit Request Button --> */}
+                  <button class="w-[114px] h-[36px] px-3 py-2 rounded-lg bg-[#04203E] text-[12px] leading-[20px] text-center font-normal font-['Inter'] text-white">
+                    Submit Request
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </section>
-     
-
       </div>
     </div>
   );
