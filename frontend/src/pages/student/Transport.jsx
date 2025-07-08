@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, MapPin, Clock, Calendar, Phone, User, Bus } from "lucide-react";
+import { Map, MapPin, Clock } from "lucide-react";
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import {
@@ -159,7 +159,7 @@ const Transport = () => {
                   {/* icon div  */}
                   <div className="w-[174px] h-[46px] flex items-center gap-[12px]">
                     <div className="w-[40px] h-[40px] rounded-full bg-[#E9EEF4] flex items-center justify-center">
-                      <Bus className="w-5 h-5 border-[1.25px]rounded-[2px]" />
+                      <FaBus className="w-[20px] h-[13.75px] border-[1.25px]rounded-[2px]" />
                     </div>
                     <div className=" h-[46px] flex flex-col gap-[4px] justify-center">
                       <div className="text-[#1F1D1D] font-bold text-[16px] leading-[24px] Font-[Inter]">
@@ -202,7 +202,7 @@ const Transport = () => {
                     </div>
 
                     <div className="flex items-center gap-[8px]">
-                      <Calendar className="w-[15px] h-[18px] " />
+                      <FaCalendarAlt className="w-[15px] h-[18px] " />
                       <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-[Inter]">
                         Monday - Friday
                       </div>
@@ -212,7 +212,7 @@ const Transport = () => {
                   <div className="w-full bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
                     {/* Header */}
                     <div className="flex items-center gap-[8px]">
-                      <User className="w-[16px] h-[20px] text-[#1F1D1D]" />
+                      <FaUser className="w-[16px] h-[20px] text-[#1F1D1D]" />
                       <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
                         Driver Information
                       </div>
@@ -222,7 +222,7 @@ const Transport = () => {
                       Michael Johnson
                     </div>
                     <div className="flex items-center gap-[8px]">
-                      <Phone className="w-[16px] h-[16px] " />
+                      <FaPhoneAlt className="w-[16px] h-[16px] " />
                       <div className="text-[12px] leading-[18px] text-[#1F1D1D] font-[Inter] font-[400]">
                         555-123-4567
                       </div>
@@ -243,7 +243,6 @@ const Transport = () => {
                     onClick={() => setShowMap(true)}
                     className="py-2 px-3 flex gap-3 rounded-[8px] bg-[#04203E] cursor-pointer items-center"
                   >
-                    <Map size={18} color={"#FAFCFD"} />
                     <p className="text-[14px] leading-6 font-[600] text-[#FAFCFD]">
                       Route Map
                     </p>

@@ -150,7 +150,7 @@ const DailyClassTimetable = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-3xl mx-auto bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden font-[Inter]">
+    <div className="mx-auto bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden font-[Inter]">
       {/* Header */}
       <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
         <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
