@@ -3,6 +3,7 @@ import profilePic from "../../assets/headerBG.png";
 import { FaBuilding, FaPhoneAlt, FaBus } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/headerLogo.svg";
+import { BookOpenText  } from "lucide-react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ const Header = () => {
             onClick={() => navigate("/student/library")}
             className={getLinkClasses("library")}
           >
-            <FaBuilding className="w-[16px] h-[16px]" />
+            <BookOpenText  className="w-[20px] h-[20px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Library
             </span>
