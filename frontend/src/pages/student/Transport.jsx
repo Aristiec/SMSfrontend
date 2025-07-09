@@ -1,14 +1,10 @@
 import React from "react";
-import { Map, MapPin, Clock } from "lucide-react";
+import { Map, MapPin, Clock, Bus, Calendar, User, Phone, Bell } from "lucide-react";
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import {
-  FaBus,
+  
   FaRegClock,
-  FaCalendarAlt,
-  FaPhoneAlt,
-  FaUser,
-  FaBell,
 } from "react-icons/fa";
 
 const busRouteStops = [
@@ -159,7 +155,7 @@ const Transport = () => {
                   {/* icon div  */}
                   <div className="w-[174px] h-[46px] flex items-center gap-[12px]">
                     <div className="w-[40px] h-[40px] rounded-full bg-[#E9EEF4] flex items-center justify-center">
-                      <FaBus className="w-[20px] h-[13.75px] border-[1.25px]rounded-[2px]" />
+                      <Bus className="w-[20px] h-[20px] border-[1.25px]rounded-[2px]" />
                     </div>
                     <div className=" h-[46px] flex flex-col gap-[4px] justify-center">
                       <div className="text-[#1F1D1D] font-bold text-[16px] leading-[24px] Font-[Inter]">
@@ -202,7 +198,7 @@ const Transport = () => {
                     </div>
 
                     <div className="flex items-center gap-[8px]">
-                      <FaCalendarAlt className="w-[15px] h-[18px] " />
+                      <Calendar  className="w-[15px] h-[18px] " />
                       <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-[Inter]">
                         Monday - Friday
                       </div>
@@ -212,7 +208,7 @@ const Transport = () => {
                   <div className="w-full bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
                     {/* Header */}
                     <div className="flex items-center gap-[8px]">
-                      <FaUser className="w-[16px] h-[20px] text-[#1F1D1D]" />
+                      <User  className="w-[16px] h-[20px] text-[#1F1D1D]" />
                       <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
                         Driver Information
                       </div>
@@ -222,7 +218,7 @@ const Transport = () => {
                       Michael Johnson
                     </div>
                     <div className="flex items-center gap-[8px]">
-                      <FaPhoneAlt className="w-[16px] h-[16px] " />
+                      <Phone className="w-[16px] h-[16px] " />
                       <div className="text-[12px] leading-[18px] text-[#1F1D1D] font-[Inter] font-[400]">
                         555-123-4567
                       </div>
@@ -321,7 +317,7 @@ const Transport = () => {
             <div className="  gap-[24px] rounded-[12px] pt-[24px] pr-[16px] pb-[24px] pl-[16px] bg-[#FAFCFD] shadow-[0px_4px_8px_0px_#0000001F] flex flex-col">
               {/* Header */}
               <div className="flex items-center gap-[8px] w-[206.5px] h-[28px]">
-                <FaBell className="w-[16.5px] h-[18.34px] " />
+                <Bell className="w-[16.5px] h-[18.34px] " />
                 <div className="text-[#1F1D1D] font-semibold text-[20px] leading-[28px]">
                   Transport Updates
                 </div>
