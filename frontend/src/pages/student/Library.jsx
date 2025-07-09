@@ -32,7 +32,7 @@ const cardData = [
 const Card = ({ title, count, description, icon, iconBg }) => {
   return (
     <div className="f-full flex items-center justify-between rounded-[12px] border border-[#E5E7EB] shadow-md bg-[#FAFCFD] px-6 py-8 gap-3">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 -mb-1.5">
         <p className="text-[12px] font-semibold text-[#1F1D1D]">{title}</p>
         <div className="flex flex-col gap-1">
           <p className="text-[24px] font-semibold text-[#1F1D1D]">{count}</p>
