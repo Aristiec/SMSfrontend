@@ -58,7 +58,7 @@ const Library = () => {
         </div>
 
         {/* Cards Section */}
-        <div className="grid grid-cols-3 gap-10 mb-6">
+        <div className="grid grid-cols-3 gap-10 mb-1.5">
           {cardData.map((card) => (
             <Card
               key={card.id}
