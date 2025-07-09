@@ -41,7 +41,7 @@ const AssignmentDetails = () => {
           Assignments
         </h1>
       </header>
-      <div className="bg-[#FAFCFD] mt-3 rounded-lg border-[#FAFCFD] mb-3">
+      <div className="bg-[#FAFCFD] mt-3 mx-2 rounded-lg border-[#FAFCFD] mb-3">
         <div className="w-full  mx-auto px-4">
           <button
             onClick={() => navigate(-1)}

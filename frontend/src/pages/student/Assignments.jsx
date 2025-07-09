@@ -145,146 +145,158 @@ const Assignments = () => {
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-[1fr_357px] gap-1 max-w-7xl mx-auto">
-          <div className="flex-1 flex-col pr-6">
+          <div className="flex-1 flex flex-col pr-6">
             <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] pr-2 scrollbar-hide">
-              {filteredAssignments.map((assignment) => (
-                <div
-                  key={assignment.id}
-                  className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-6"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-[16px] font-medium text-[#1F1D1D] mb-1">
-                        {assignment.title}
-                      </h3>
-                      <p className="text-[#1F1D1D] text-[16px] font-normal mb-2">
-                        {assignment.subject}
-                      </p>
-                      <p className="text-[#1F1D1D] text-[12px] mb-4">
-                        {assignment.description}
-                      </p>
-                    </div>
-                    <div
-                      className={`flex items-center gap-2 px-3 py-1 rounded-full`}
-                    >
-                      {getStatusIcon(assignment.status)}
-                      <span
-                        className={`font-medium capitalize ${getStatusColor(
-                          assignment.status
-                        )}`}
-                      >
-                        {assignment.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-6 text-sm text-[#1F1D1D] mb-4">
-                    <div className="flex items-center gap-1">
-                      <Clock
-                        className={`w-4 h-4 ${
-                          assignment.status === "overdue"
-                            ? "text-[#EF4444]"
-                            : ""
-                        }`}
-                      />
-                      <span
-                        className={
-                          assignment.status === "overdue"
-                            ? "text-[#EF4444]"
-                            : ""
-                        }
-                      >
-                        Due: {assignment.dueDate}
-                      </span>
-                    </div>
-                    {assignment.maxMarks && (
-                      <div>
-                        <span>Max Marks: {assignment.maxMarks}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {assignment.status === "overdue" && (
-                    <div className="my-[8px]">
-                      <div className="flex rounded-[8px] gap-[8px] p-[8px] items-center bg-[#FEF2F2]">
-                        <Ban size={16} className="text-[#EF4444]" />
-                        <p className="font-[Inter] font-[400] text-[16px] leading-[0] text-center text-[#EF4444]">
-                          Late submissions are not allowed
+              {filteredAssignments.length > 0 ? (
+                filteredAssignments.map((assignment) => (
+                  <div
+                    key={assignment.id}
+                    className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-6"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-[16px] font-medium text-[#1F1D1D] mb-1">
+                          {assignment.title}
+                        </h3>
+                        <p className="text-[#1F1D1D] text-[16px] font-normal mb-2">
+                          {assignment.subject}
+                        </p>
+                        <p className="text-[#1F1D1D] text-[12px] mb-4">
+                          {assignment.description}
                         </p>
                       </div>
+                      <div
+                        className={`flex items-center gap-2 px-3 py-1 rounded-full`}
+                      >
+                        {getStatusIcon(assignment.status)}
+                        <span
+                          className={`font-medium capitalize ${getStatusColor(
+                            assignment.status
+                          )}`}
+                        >
+                          {assignment.status}
+                        </span>
+                      </div>
                     </div>
-                  )}
 
-                  <div className="flex gap-3">
-                    {assignment.status === "pending" && (
-                      <button
-                        onClick={() => handleOpenAssignment(assignment)}
-                        className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2"
-                      >
-                        <FileUp className="w-4 h-4" />
-                        Submit Assignment
-                      </button>
+                    <div className="flex items-center gap-6 text-sm text-[#1F1D1D] mb-4">
+                      <div className="flex items-center gap-1">
+                        <Clock
+                          className={`w-4 h-4 ${
+                            assignment.status === "overdue"
+                              ? "text-[#EF4444]"
+                              : ""
+                          }`}
+                        />
+                        <span
+                          className={
+                            assignment.status === "overdue"
+                              ? "text-[#EF4444]"
+                              : ""
+                          }
+                        >
+                          Due: {assignment.dueDate}
+                        </span>
+                      </div>
+                      {assignment.maxMarks && (
+                        <div>
+                          <span>Max Marks: {assignment.maxMarks}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {assignment.status === "overdue" && (
+                      <div className="my-[8px]">
+                        <div className="flex rounded-[8px] gap-[8px] p-[8px] items-center bg-[#FEF2F2]">
+                          <Ban size={16} className="text-[#EF4444]" />
+                          <p className="font-[Inter] font-[400] text-[16px] leading-[0] text-center text-[#EF4444]">
+                            Late submissions are not allowed
+                          </p>
+                        </div>
+                      </div>
                     )}
-                    {(assignment.status === "overdue" ||
-                      assignment.status === "submitted") && (
-                      <button
-                        onClick={() => handleOpenAssignment(assignment)}
-                        className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
-                      >
-                        <Eye className="w-4 h-4" />
-                        View Details
-                      </button>
-                    )}
+
+                    <div className="flex gap-3">
+                      {assignment.status === "pending" && (
+                        <button
+                          onClick={() => handleOpenAssignment(assignment)}
+                          className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2"
+                        >
+                          <FileUp className="w-4 h-4" />
+                          Submit Assignment
+                        </button>
+                      )}
+                      {(assignment.status === "overdue" ||
+                        assignment.status === "submitted") && (
+                        <button
+                          onClick={() => handleOpenAssignment(assignment)}
+                          className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                        >
+                          <Eye className="w-4 h-4" />
+                          View Details
+                        </button>
+                      )}
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] flex justify-center items-center w-[880px] h-full min-h-[600px]">
+                  <p className="text-[#04203E] text-lg font-semibold animate-pulse">
+                    {loading
+                      ? "Loading assignments..."
+                      : "No assignments found."}
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
-            <div className="flex justify-center mt-2">
-              <div className="flex items-center gap-2 px-4 py-2 ">
-                {/* Previous Button */}
-                <button
-                  onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-                  disabled={page === 0}
-                  className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                    page === 0
-                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                  }`}
-                >
-                  Previous
-                </button>
-
-                {/* Page Numbers */}
-                {Array.from({ length: totalPages }, (_, index) => (
+            {filteredAssignments.length > 0 && (
+              <div className="flex justify-center mt-2">
+                <div className="flex items-center gap-2 px-4 py-2">
+                  {/* Previous Button */}
                   <button
-                    key={index}
-                    onClick={() => setPage(index)}
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+                    disabled={page === 0}
                     className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                      page === index
-                        ? "bg-[#04203E] text-white"
-                        : "text-[#04203E] hover:bg-[#E9EEF4]"
+                      page === 0
+                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        : "bg-[#04203E] text-white hover:bg-[#02172c]"
                     }`}
                   >
-                    {index + 1}
+                    Previous
                   </button>
-                ))}
 
-                {/* Next Button */}
-                <button
-                  onClick={() =>
-                    setPage((prev) => Math.min(prev + 1, totalPages - 1))
-                  }
-                  disabled={page === totalPages - 1}
-                  className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                    page === totalPages - 1
-                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                  }`}
-                >
-                  Next
-                </button>
+                  {/* Page Numbers */}
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setPage(index)}
+                      className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
+                        page === index
+                          ? "bg-[#04203E] text-white"
+                          : "text-[#04203E] hover:bg-[#E9EEF4]"
+                      }`}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() =>
+                      setPage((prev) => Math.min(prev + 1, totalPages - 1))
+                    }
+                    disabled={page === totalPages - 1}
+                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
+                      page === totalPages - 1
+                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        : "bg-[#04203E] text-white hover:bg-[#02172c]"
+                    }`}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right Section: Sidebar */}
