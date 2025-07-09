@@ -1,12 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUserAPI } from "./authAPI";
+import { loginUserAPI, fetchProfileByEmail } from "./authAPI";
 
+// Thunk to login
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await loginUserAPI(credentials);
-      return response.data;
+      const token = response.data;
+
+      // Decode email from token
+      const [, payloadBase64] = token.split(".");
+      const decodedPayload = JSON.parse(atob(payloadBase64));
+      const email = decodedPayload.sub;
+
+      // Get student profile by email
+      const profileResponse = await fetchProfileByEmail(email, token);
+      const studentId = profileResponse.data.id;
+
+      // Save everything in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
+      localStorage.setItem("studentId", studentId);
+
+      return {
+        token,
+        email,
+        studentId,
+      };
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Login failed");
     }
@@ -23,8 +44,9 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.user = null;
-      localStorage.removeItem("user");
       localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("studentId");
     },
   },
   extraReducers: (builder) => {
@@ -39,18 +61,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = { token: action.payload };
-
-        localStorage.setItem("token", action.payload);
-
-        try {
-          const [, payloadBase64] = action.payload.split(".");
-          const decodedPayload = JSON.parse(atob(payloadBase64));
-          const email = decodedPayload.sub;
-          localStorage.setItem("email", email);
-        } catch (e) {
-          console.warn("⚠️ Failed to decode JWT:", e);
-        }
+        state.user = action.payload; // { token, email, studentId }
       });
   },
 });
