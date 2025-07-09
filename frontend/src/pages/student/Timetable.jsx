@@ -89,7 +89,7 @@ const Timetable = () => {
                 )}
 
                 <button
-                  className="p-2 rounded-lg bg-[#CFDCEB] relative z-50"
+                  className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 -mr-6"
                   onClick={() => navigate("/student/timetable/academicCal")}
                 >
                   <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
@@ -155,7 +155,7 @@ const Timetable = () => {
                             >
                               {match ? (
                                 <div className="flex flex-col items-center justify-center h-full text-center">
-                                  <div className="text-[12px] font-[Inter] font-semibold text-[#04203E]">
+                                  <div className="text-[12px] font-[Inter] font-semibold text-[#1F1D1D]">
                                     {match.subjectName}
                                   </div>
                                   <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
@@ -163,8 +163,8 @@ const Timetable = () => {
                                   </div>
                                 </div>
                               ) : (
-                                <div className="flex items-center justify-center text-[#999] text-[12px]">
-                                  -
+                                <div className="flex items-center justify-center text-[#1F1D1D] text-[12px]">
+                                  No class
                                 </div>
                               )}
                             </td>

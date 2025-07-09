@@ -22,7 +22,7 @@ import { logout } from "../../features/auth/authSlice";
 
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/student/dashboard" },
-  { name: "Schedule", icon: Calendar, path: "/student/timetable" },
+  { name: "Schedule", icon: Calendar, path: "/student/timetable/academicCal" },
   { name: "Courses", icon: BookOpen, path: "/student/courses" },
   { name: "Results", icon: ChartNoAxesColumn, path: "/student/results" },
   { name: "Exams", icon: Calculator, path: "/student/exam" },
