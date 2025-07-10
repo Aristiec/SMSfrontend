@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ArrowRightLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { fetchDailyTimetableByDay } from "../../../features/auth/authAPI";
@@ -7,7 +7,25 @@ const DailyClassTimetable = () => {
   const [selectedDay, setSelectedDay] = useState("Monday");
   const [dailyData, setDailyData] = useState([]);
   const navigate = useNavigate();
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
+        setShowTooltip(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
+  useEffect(() => {
+    setShowTooltip(true);
+    const timer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
   const days = [
     "Monday",
     "Tuesday",
@@ -48,12 +66,25 @@ const DailyClassTimetable = () => {
         <h1 className="text-[16px] font-semibold text-[#1F1D1D]">
           Daily Class Timetable
         </h1>
-        <button
-          className="p-2 rounded-lg bg-[#CFDCEB]"
-          onClick={() => navigate("/student/timetable")}
-        >
-          <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
-        </button>
+        <div className="relative" ref={tooltipRef}>
+          {showTooltip && (
+            <div className="fixed inset-0 bg-[#1F1D1D]/20 z-40 pointer-events-none" />
+          )}
+
+          <button
+            className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 "
+            onClick={() => navigate("/student/timetable")}
+          >
+            <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
+          </button>
+
+          {showTooltip && (
+            <div className="absolute right-full mr-4 top-1/3 -translate-y-1/2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md z-50 whitespace-nowrap">
+              Click to switch between
+              <br /> Weekly and Daily view
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Day Tabs */}
