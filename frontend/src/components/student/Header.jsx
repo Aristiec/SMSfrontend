@@ -1,9 +1,14 @@
 import React from "react";
 import profilePic from "../../assets/headerBG.png";
-import { FaBuilding, FaPhoneAlt, FaBus } from "react-icons/fa";
+import { FaBuilding, FaPhoneAlt } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/headerLogo.svg";
-import { BookOpenText  } from "lucide-react";
+
+import LibraryLogo from "../../assets/LibraryIcon.svg";
+import HostelLogo from "../../assets/HostelLogo.png";
+import TransportLogo from "../../assets/TransportLogo.svg";
+
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -62,7 +67,8 @@ const Header = () => {
             onClick={() => navigate("/student/library")}
             className={getLinkClasses("library")}
           >
-            <BookOpenText  className="w-[20px] h-[20px]" />
+            <img src={LibraryLogo} alt="Library Icon" className="w-[20px] h-[20px]" />
+
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Library
             </span>
@@ -72,7 +78,7 @@ const Header = () => {
             onClick={() => navigate("/student/hostel")}
             className={getLinkClasses("hostel")}
           >
-            <FaBuilding className="w-[16px] h-[16px]" />
+            <img src={HostelLogo} alt="Library Icon" className="w-[16px] h-[20px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Hostel
             </span>
@@ -83,7 +89,7 @@ const Header = () => {
             onClick={() => navigate("/student/transport")}
             className={getLinkClasses("transport")}
           >
-            <FaBus className="w-[16px] h-[16px]" />
+            <img src={TransportLogo} alt="Library Icon" className="w-[22px] h-[22px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
               Transport
             </span>
