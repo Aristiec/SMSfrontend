@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/headerLogo.svg";
 
 import LibraryLogo from "../../assets/LibraryIcon.svg";
-import HostelLogo from "../../assets/HostelLogo.png";
+import HostelLogo from "../../assets/HostelLogo2.svg";
 import TransportLogo from "../../assets/TransportLogo.svg";
 
 
