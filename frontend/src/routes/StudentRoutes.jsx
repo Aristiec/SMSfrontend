@@ -48,13 +48,13 @@ const StudentRoutes = () => {
     <>
       <Route path="/student" element={<StudentLayout />}>
         <Route path="" element={<StudentDashboard />} />
-        <Route path="timetable/academicCal" element={<AcademicCalendar />} />
+        <Route path="academicCal" element={<AcademicCalendar />} />
         <Route path="chat" element={<ChatWidget />} />
         <Route path="exam" element={<Exam />} />
         <Route path="offlineExam" element={<OfflineExam />} />
         <Route path="dashboard" element={<StudentDashboard />} />
         <Route path="dashboard" element={<StudentDashboard />} />
-        <Route path="timetable" element={<Timetable />} />
+        <Route path="academicCal/timetable" element={<Timetable />} />
         <Route path="courses" element={<Courses />} />
         <Route path="notices" element={<Notices />} />
         <Route path="assignments" element={<Assignments />} />

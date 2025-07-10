@@ -90,7 +90,7 @@ const Timetable = () => {
 
                 <button
                   className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 -mr-6"
-                  onClick={() => navigate("/student/timetable/academicCal")}
+                  onClick={() => navigate("/student/academicCal")}
                 >
                   <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
                 </button>
@@ -110,14 +110,14 @@ const Timetable = () => {
               <table className="min-w-full border-collapse">
                 <thead>
                   <tr>
-                    <th className="text-[16px] font-normal text-center border border-[#04203E] w-32 h-16"></th>
+                    <th className="text-[16px] font-normal text-center border-2 border-[rgba(113,113,113,0.4)] w-32 h-16"></th>
                     {timeSlots.map((slot, index) => (
                       <th
                         key={index}
-                        className="text-[14px] md:text-[16px] font-[Inter]  font-normal text-center border border-[#04203E] leading-tight w-28 h-16"
+                        className="text-[14px]  font-[Inter]  font-medium text-center border-2 border-[rgba(113,113,113,0.4)] leading-tight w-28 h-16"
                       >
                         {" "}
-                        {slot.start} -<br /> {slot.end}
+                        {slot.start} - {slot.end}
                       </th>
                     ))}
                   </tr>
@@ -136,7 +136,7 @@ const Timetable = () => {
                         key={dayIndex}
                         className={isSelected ? "bg-[#E9EEF4]" : ""}
                       >
-                        <td className="font-bold text-center font-[Inter] text-[16px] border border-[#04203E] w-32 h-20">
+                        <td className="font-bold  text-left pl-5 font-[Inter] text-[16px] border-2 border-[rgba(113,113,113,0.4)] w-32 h-20">
                           {day}
                         </td>
 
@@ -151,20 +151,20 @@ const Timetable = () => {
                           return (
                             <td
                               key={timeIndex}
-                              className="border border-[#04203E] w-28 h-20"
+                              className="border-2 border-[rgba(113,113,113,0.4)] w-28 h-20"
                             >
                               {match ? (
-                                <div className="flex flex-col items-center justify-center h-full text-center">
-                                  <div className="text-[12px] font-[Inter] font-semibold text-[#1F1D1D]">
-                                    {match.subjectName}
+                                <div className="flex flex-col pl-4 text-left items-left justify-center h-full text-center p-2">
+                                  <div className="text-[12px] font-[Inter] font-medium text-[#1F1D1D]">
+                                    {match.code}
                                   </div>
-                                  <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
+                                  <div className="text-[12px] font-light font-[Inter] text-[#1F1D1D]">
                                     {match.facultyName}
                                   </div>
                                 </div>
                               ) : (
                                 <div className="flex items-center justify-center text-[#1F1D1D] text-[12px]">
-                                  No class
+                                  No Class
                                 </div>
                               )}
                             </td>
