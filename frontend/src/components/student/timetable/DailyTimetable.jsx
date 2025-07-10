@@ -73,7 +73,7 @@ const DailyClassTimetable = () => {
 
           <button
             className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 "
-            onClick={() => navigate("/student/timetable")}
+            onClick={() => navigate("/student/academicCal/timetable")}
           >
             <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
           </button>
