@@ -63,23 +63,53 @@ const Profile = () => {
         : "N/A",
     },
   ];
-
   const guardianInfo = student.parentDetails;
 
-  const guardianDetails = [
-    { icon: guardian, label: "Father Name", value: guardianInfo?.fatherName },
-    {
-      icon: calendar,
-      label: "Father Contact",
-      value: guardianInfo?.fatherContact,
-    },
-    { icon: mail, label: "Father Email", value: guardianInfo?.email },
-    { icon: phone, label: "Mother Name", value: guardianInfo?.motherName },
-    {
-      icon: calendar,
-      label: "Mother Contact",
-      value: guardianInfo?.motherContact,
-    },
+  const guardianSections = [
+    [
+      { icon: guardian, label: "Father Name", value: guardianInfo?.fatherName },
+      {
+        icon: phone,
+        label: "Father Contact",
+        value: guardianInfo?.fatherContact,
+      },
+      { icon: mail, label: "Father Email", value: guardianInfo?.email },
+      {
+        icon: admission,
+        label: "Father Occupation",
+        value: guardianInfo?.fatherOccupation,
+      },
+    ],
+    [
+      { icon: guardian, label: "Mother Name", value: guardianInfo?.motherName },
+      {
+        icon: phone,
+        label: "Mother Contact",
+        value: guardianInfo?.motherContact,
+      },
+      {
+        icon: admission,
+        label: "Mother Occupation",
+        value: guardianInfo?.motherOccupation,
+      },
+    ],
+    [
+      {
+        icon: guardian,
+        label: "Guardian Name",
+        value: guardianInfo?.guardianName,
+      },
+      {
+        icon: phone,
+        label: "Guardian Contact",
+        value: guardianInfo?.guardianContact,
+      },
+      {
+        icon: mail,
+        label: "Guardian Relation",
+        value: guardianInfo?.guardianRelation,
+      },
+    ],
   ];
 
   const academicDetails = [
@@ -191,7 +221,10 @@ const Profile = () => {
           </div>
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {personalDetails.map((detail, idx) => (
-              <div key={idx}>
+              <div
+                key={idx}
+                className={detail.label === "Address" ? "md:col-span-2" : ""}
+              >
                 <DetailCard {...detail} />
               </div>
             ))}
@@ -205,15 +238,21 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* map  guardian1 */}
-
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
-            {guardianDetails.map((detail, idx) => (
-              <div key={idx}>
-                <DetailCard {...detail} />
-              </div>
-            ))}
-          </div>
+          {/* ✅ Loop through each guardian */}
+          {guardianSections?.map((details, idx) => (
+            <div
+              key={idx}
+              className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px]   rounded-b-[12px] bg-[#FAFCFD] p-5"
+            >
+              {details.map((detail, detailIdx) => (
+                <DetailCard key={detailIdx} {...detail} />
+              ))}
+              {/* Divider for multiple guardians */}
+              {idx < guardianSections.length - 1 && (
+                <hr className="col-span-2 border-t border-[#04203E33] mt-3" />
+              )}
+            </div>
+          ))}
 
           {/* <hr className="text-[#04203E33]" />
 
