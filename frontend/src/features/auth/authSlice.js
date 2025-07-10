@@ -16,17 +16,21 @@ export const loginUser = createAsyncThunk(
 
       // Get student profile by email
       const profileResponse = await fetchProfileByEmail(email, token);
-      const studentId = profileResponse.data.id;
-
+      const { id, course } = profileResponse.data;
+      const courseId = course?.id;
+      const sem = profileResponse.data.sem || 1;
       // Save everything in localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
-      localStorage.setItem("studentId", studentId);
-
+      localStorage.setItem("studentId", id);
+      localStorage.setItem("courseId", courseId);
+      localStorage.setItem("sem", sem);
       return {
         token,
         email,
-        studentId,
+        studentId: id,
+        courseId,
+        sem,
       };
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Login failed");
@@ -47,6 +51,8 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("studentId");
+      localStorage.removeItem("courseId");
+      localStorage.removeItem("sem");
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +67,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; // { token, email, studentId }
+        state.user = action.payload; // { token, email, studentId, courseId, sem }
       });
   },
 });

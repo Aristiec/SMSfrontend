@@ -8,7 +8,8 @@ import {
   FileUp,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { fetchAssignments } from "../../features/auth/authAPI";
+import { fetchAssignmentsByCourseAndSem } from "../../features/auth/authAPI";
+import { useSelector } from "react-redux";
 
 const upcomingAssignments = [
   {
@@ -33,19 +34,40 @@ const Assignments = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-
+  const [size, setSize] = useState(10);
+  const { user } = useSelector((state) => state.auth);
+  const courseId = user?.courseId;
+  const sem = user?.sem || 1;
+  console.log("CourseID:", courseId, "Sem:", sem);
   const getAssignmentStatus = (assignment) => {
     const today = new Date();
     const dueDate = new Date(assignment.dueDate);
-    if (assignment.attempted) return "submitted";
-    if (!assignment.attempted && dueDate < today) return "overdue";
+
+    if (assignment.submissionMode === "OFFLINE") {
+      if (assignment.completed) return "completed";
+      if (dueDate < today) return "overdue";
+      return "pending";
+    }
+
+    if (assignment.submissionMode === "ONLINE") {
+      if (assignment.attempted) return "submitted";
+      if (dueDate < today) return "overdue";
+      return "pending";
+    }
+
     return "pending";
   };
 
   useEffect(() => {
     const getAssignments = async () => {
+      if (!courseId || !sem) return;
       try {
-        const data = await fetchAssignments(page);
+        const data = await fetchAssignmentsByCourseAndSem(
+          courseId,
+          sem,
+          page,
+          size
+        );
         const updated = data.content.map((assignment) => ({
           ...assignment,
           subject: assignment.subjectName,
@@ -61,7 +83,35 @@ const Assignments = () => {
       }
     };
     getAssignments();
-  }, [page]);
+  }, [courseId, sem, page, size]);
+  const handleMarkAsCompleted = async (assignment) => {
+    try {
+      // Call your API
+      await fetch(
+        "https://f7da-103-16-29-169.ngrok-free.app/api/v1/submission/submit-offline",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // If needed, add token here
+          },
+          body: JSON.stringify({
+            assignmentId: assignment.id,
+            studentId: user?.id, // adjust if different
+          }),
+        }
+      );
+
+      // Update status locally
+      setAssignments((prev) =>
+        prev.map((a) =>
+          a.id === assignment.id ? { ...a, completed: true } : a
+        )
+      );
+    } catch (err) {
+      console.error("Error marking as completed:", err);
+    }
+  };
 
   const filteredAssignments = assignments.filter((assignment) => {
     if (activeFilter === "All") return true;
@@ -144,20 +194,27 @@ const Assignments = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-[1fr_357px] gap-1 max-w-7xl mx-auto">
-          <div className="flex-1 flex flex-col pr-6">
-            <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] pr-2 scrollbar-hide">
+        <div className="grid lg:grid-cols-[1fr_357px] gap-1 max-w-7xl mx-auto w-full">
+          <div className="flex flex-col w-full">
+            <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] scrollbar-hide w-full">
               {filteredAssignments.length > 0 ? (
                 filteredAssignments.map((assignment) => (
                   <div
                     key={assignment.id}
-                    className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-6"
+                    className="w-full bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-6"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
-                        <h3 className="text-[16px] font-medium text-[#1F1D1D] mb-1">
-                          {assignment.title}
+                        <h3>
+                          {assignment.title}{" "}
+                          <span
+                            className="ml-2 px-2 py-0.5 rounded text-xs font-medium 
+    bg-[#E5E7EB] text-[#374151]"
+                          >
+                            {assignment.submissionMode}
+                          </span>
                         </h3>
+
                         <p className="text-[#1F1D1D] text-[16px] font-normal mb-2">
                           {assignment.subject}
                         </p>
@@ -217,24 +274,45 @@ const Assignments = () => {
                     )}
 
                     <div className="flex gap-3">
-                      {assignment.status === "pending" && (
-                        <button
-                          onClick={() => handleOpenAssignment(assignment)}
-                          className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2"
-                        >
-                          <FileUp className="w-4 h-4" />
-                          Submit Assignment
-                        </button>
-                      )}
-                      {(assignment.status === "overdue" ||
-                        assignment.status === "submitted") && (
-                        <button
-                          onClick={() => handleOpenAssignment(assignment)}
-                          className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
-                        >
-                          <Eye className="w-4 h-4" />
-                          View Details
-                        </button>
+                      {assignment.submissionMode === "OFFLINE" ? (
+                        <>
+                          {assignment.status === "pending" && (
+                            <button className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2">
+                              Mark as Completed
+                            </button>
+                          )}
+                          {assignment.status === "completed" && (
+                            <button
+                              onClick={() => handleOpenAssignment(assignment)}
+                              className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                            >
+                              <Eye className="w-4 h-4" />
+                              View Details
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {assignment.status === "pending" && (
+                            <button
+                              onClick={() => handleOpenAssignment(assignment)}
+                              className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium  flex items-center gap-2"
+                            >
+                              <FileUp className="w-4 h-4" />
+                              Submit Assignment
+                            </button>
+                          )}
+                          {(assignment.status === "submitted" ||
+                            assignment.status === "overdue") && (
+                            <button
+                              onClick={() => handleOpenAssignment(assignment)}
+                              className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                            >
+                              <Eye className="w-4 h-4" />
+                              View Details
+                            </button>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
@@ -294,6 +372,28 @@ const Assignments = () => {
                   >
                     Next
                   </button>
+                  <div className="flex items-center gap-2">
+                    <label
+                      htmlFor="pageSize"
+                      className="text-sm text-[#04203E]"
+                    >
+                      Page size:
+                    </label>
+                    <select
+                      id="pageSize"
+                      value={size}
+                      onChange={(e) => {
+                        setSize(parseInt(e.target.value, 10));
+                        setPage(0); // reset to first page when page size changes
+                      }}
+                      className="border border-[#04203E] rounded px-2 py-1 text-sm"
+                    >
+                      <option value={2}>2</option>
+                      <option value={4}>4</option>
+                      <option value={6}>6</option>
+                      <option value={10}>10</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             )}

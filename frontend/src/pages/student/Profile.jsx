@@ -19,7 +19,6 @@ const DetailCard = ({ icon, label, value = false }) => {
       className="flex flex-col sm:flex-row justify-between rounded-[12px] px-[16px] sm:px-[24px] py-[12px] gap-[12px] bg-[#FAFCFD] items-start sm:items-center"
     >
       <div className="flex gap-[12px] items-center">
-        <img className="w-[12px] h-[16px]" src={icon} />
         <div className="flex flex-col gap-[8px] font-[Inter]">
           <p className=" text-[12px] leading-[16px] tracking-[0] text-[#04203E] font-medium">
             {label}
@@ -161,27 +160,46 @@ const Profile = () => {
                 >
                   Student ID: {student.studentCode}
                 </span>
+                <span
+                  className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+                >
+                  Section: {student.section}
+                </span>
+                <span
+                  className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+                >
+                  Level: {student.level}
+                </span>
+                <span
+                  className="text-[#FAFCFD] text-[14px] md:text-[16px]
+ font-normal font-inter"
+                >
+                  Year of joining: {student.year}
+                </span>
               </div>
             </div>
           </div>
 
           {/* Personal Details Section */}
-          <div className="w-full h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
+
+          <div className="w-full h-[52px] bg-[#04203E] rounded-t-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center">
             <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Personal Details
             </div>
           </div>
-
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {personalDetails.map((detail, idx) => (
               <div key={idx}>
                 <DetailCard {...detail} />
               </div>
             ))}
           </div>
+
           {/*  Guardian Details Section */}
 
-          <div className="w-full h-auto bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
+          <div className="w-full h-auto bg-[#04203E] rounded-t-[12px] p-[12px] mt-[24px] shadow-md flex items-center">
             <div className="text-[#FAFCFD] font-semibold text-[20px] md:text-[18px] leading-[28px]">
               Guardian Details
             </div>
@@ -189,7 +207,7 @@ const Profile = () => {
 
           {/* map  guardian1 */}
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {guardianDetails.map((detail, idx) => (
               <div key={idx}>
                 <DetailCard {...detail} />
@@ -213,7 +231,7 @@ const Profile = () => {
           */}
           <div
             className="w-full
- h-[52px] bg-[#04203E] rounded-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
+ h-[52px] bg-[#04203E] rounded-t-[12px] p-[12px] mt-[24px] shadow-[0px_4px_8px_0px_#00000033] flex items-center"
           >
             <div className="w-full h-[28px] text-[#FAFCFD] font-[inter] font-semibold text-[20px] leading-[28px]">
               Academic Details
@@ -222,7 +240,7 @@ const Profile = () => {
 
           {/* academic details */}
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] mt-5 mb-5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px]  bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {academicDetails.map((detail, idx) => (
               <div key={idx}>
                 <DetailCard {...detail} />
