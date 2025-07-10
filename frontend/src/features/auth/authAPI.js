@@ -29,3 +29,20 @@ export const fetchDailyTimetableByDay = async (day) => {
   });
   return response.data;
 };
+
+export const fetchAssignmentsByCourseAndSem = async (
+  courseId,
+  sem,
+  page = 0,
+  size = 6
+) => {
+  const response = await api.get(`/assignments/by-course-sem`, {
+    params: {
+      courseId,
+      sem,
+      page: page,
+      size,
+    },
+  });
+  return response.data;
+};

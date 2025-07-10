@@ -157,6 +157,37 @@ const ViewDetails = () => {
         >
           <div className="flex flex-col gap-1">
             <h3 className="font-[700]">Assignment Instruction:</h3>
+            {assignment.instructions ? (
+              <p>{assignment.instructions}</p>
+            ) : (
+              <p>Instructions not provided.</p>
+            )}
+          </div>
+
+          {assignment.resources && assignment.resources.length > 0 && (
+            <div className="flex flex-col py-[12px] gap-[12px]">
+              <p className="font-[700] text-[14px]">Resources</p>
+              <div className="flex flex-col gap-[8px]">
+                {assignment.resources.map((resource, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-[8px] rounded-[8px] p-[8px] bg-[#CFDCEB]"
+                  >
+                    <img src={page} alt="resource" />
+                    <p className="text-[#04203E] text-[13.6px]">{resource}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        {/*<div
+          ref={contentRef}
+          style={{ maxHeight }}
+          className="overflow-hidden transition-all duration-300 ease-in-out text-[#1F1D1D] text-[14px] leading-[24px] gap-[12px]"
+        >
+          <div className="flex flex-col gap-1">
+            <h3 className="font-[700]">Assignment Instruction:</h3>
             <p>Read the full play with focus on key scenes...</p>
             <ul className="list-disc list-inside">
               <li>Theme (e.g., ambition, guilt, fate vs free will)</li>
@@ -185,7 +216,7 @@ const ViewDetails = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* View More Toggle */}
         <button

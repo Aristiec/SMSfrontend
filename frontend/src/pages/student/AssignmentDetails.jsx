@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import AssignmentCard from "../../components/student/assignments/AssignmentCard";
 import UploadSection from "../../components/student/assignments/UploadSection";
 import CommentSection from "../../components/student/assignments/CommentSection";
 import SubmitButton from "../../components/student/assignments/SubmitButton";
 import assignments from "../../data/mockAssignments.js";
 import { ArrowLeft, Upload, File } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const AssignmentDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
   const [assignment, setAssignment] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const found = assignments.find((a) => a.id === id);
-    setAssignment(found);
-  }, [id]);
+    // ✅ Use passed assignment if available
+    if (location.state?.assignment) {
+      setAssignment(location.state.assignment);
+    } else {
+      // fallback to mock lookup by ID
+      const found = assignments.find((a) => String(a.id) === String(id));
+      setAssignment(found);
+    }
+  }, [id, location.state]);
 
   if (!assignment) {
     return (
