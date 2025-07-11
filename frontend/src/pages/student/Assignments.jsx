@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { fetchAssignmentsByCourseAndSem } from "../../features/auth/authAPI";
 import { useSelector } from "react-redux";
+import Dropdown from "../../components/utils/Dropdown";
 
 const upcomingAssignments = [
   {
@@ -38,6 +39,17 @@ const Assignments = () => {
   const { user } = useSelector((state) => state.auth);
   const courseId = user?.courseId;
   const sem = user?.sem || 1;
+   const [selectedSubject, setSelectedSubject] = useState("All Subjects");
+
+  //  dropdown for subject 
+  const subjectOptions = [
+    "Engineering Mathematics",
+    "Engineering Physics",
+    "Engineering Chemistry",
+    "Intro to Programming",
+    "Math",
+  ]
+
   console.log("CourseID:", courseId, "Sem:", sem);
   const getAssignmentStatus = (assignment) => {
     const today = new Date();
@@ -173,7 +185,8 @@ const Assignments = () => {
 
         {/* Filters */}
         <div className="w-full max-w-7xl mx-auto mt-3 mb-3 ">
-          <div className="flex flex-wrap gap-2 text-[#04203E] text-sm bg-[#FAFCFD] p-3 rounded-[12px]">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[#04203E] text-sm bg-[#FAFCFD] p-3 rounded-[12px]">
+            <div className="flex flex-wrap gap-2">
             {filters.map((filter) => (
               <button
                 key={filter}
@@ -190,6 +203,16 @@ const Assignments = () => {
                 {filter}
               </button>
             ))}
+          </div>
+          {/* dropdowm  */}
+            <div className="w-[150px] mr-2 ">
+              <Dropdown
+                options={subjectOptions}
+                placeholder="Subject"
+                selected={selectedSubject}
+                onSelect={setSelectedSubject}
+              />
+            </div>
           </div>
         </div>
 
