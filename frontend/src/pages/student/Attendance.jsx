@@ -193,7 +193,7 @@ const AttendanceTable = () => {
                   <th className="p-3 font-semibold ">Status</th>
                 </tr>
               </thead>
-              <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px]">
+              <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px] ">
                 {attendanceData.map((item, index) => {
                   const statusColor =
                     item.status === "Outstanding"
@@ -223,7 +223,7 @@ const AttendanceTable = () => {
                         {item.attendance}%
                       </td>
                       <td
-                        className={`py-3 text-[14px] font-[Inter] font-medium ${statusColor}`}
+                        className={`py-3 text-[11px] sm:text-[14px] font-[Inter] font-medium ${statusColor}`}
                       >
                         {item.status}
                       </td>

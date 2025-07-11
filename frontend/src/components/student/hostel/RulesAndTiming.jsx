@@ -26,9 +26,9 @@ const RulesAndTiming = () => {
     <div className="flex flex-col gap-8 bg-[#FAFCFD] font-[Inter] p-6">
 
       
-      <div className="flex gap-8">
+      <div className="flex flex-col md:flex-row gap-8 ">
         {/* Timings Card */}
-        <div className="bg-[#FAFCFD] shadow-md rounded-lg p-6 gap-6 w-1/2">
+        <div className="bg-[rgb(250,252,253)] shadow-md rounded-lg p-6 gap-6 w-1/2  md:w-full w-full">
           <h2 className="text-[#1F1D1D] font-semibold text-[16px] leading-[24px] mb-4">
             Hostel Timings
           </h2>
@@ -48,7 +48,7 @@ const RulesAndTiming = () => {
         </div>
 
         {/* Rules Card */}
-        <div className="bg-[#FAFCFD] shadow-md rounded-lg p-6 w-1/2">
+        <div className="bg-[#FAFCFD] shadow-md rounded-lg p-6 w-1/2  md:w-full w-full">
           <h2 className="text-[#1F1D1D] font-semibold text-[16px] leading-[24px] mb-4">
             Hostel Rules
           </h2>
