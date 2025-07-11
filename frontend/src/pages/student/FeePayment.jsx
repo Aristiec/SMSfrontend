@@ -37,7 +37,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
 
   return (
     <div className="w-full rounded-[12px] p-4 gap-2 bg-[#FAFCFD] shadow-md flex flex-col">
-      <div className="flex justify-between flex-wrap">
+      <div className="flex justify-between flex-wrap ">
         <div className="flex gap-6 items-center">
           <h3 className="text-[#1F1D1D] font-medium text-base">{title}</h3>
           <span
@@ -53,7 +53,7 @@ const FeeTab = ({ title, type, amount, status, date }) => {
         <div className="text-[#1F1D1D] font-medium text-base">{amount}</div>
       </div>
 
-      <div className="flex justify-between flex-wrap items-center">
+      <div className="flex justify-between flex-wrap gap-3 items-center">
         <div className="flex gap-6 flex-wrap items-center text-sm">
           <div className="flex items-center gap-2">
             <span className="text-[#1F1D1D]">Due Date:</span>
