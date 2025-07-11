@@ -52,16 +52,10 @@ export const submitAssignmentOnline = async (
   studentId,
   answer
 ) => {
-  const response = await api.post(
-    `/submission/submit-online`,
-    {}, // empty JSON body if your backend does not use it
-    {
-      params: {
-        assignmentId,
-        studentId,
-        answer,
-      },
-    }
-  );
+  const response = await api.post(`/submission/submit-online`, {
+    assignmentId,
+    studentId,
+    answer,
+  });
   return response.data;
 };
