@@ -1,7 +1,7 @@
 import React from "react";
 import { AlertCircle, Bell } from "lucide-react";
 const ExamUpdatesSidebar = ({ updates }) => (
-  <div className="bg-white rounded-lg p-6 shadow-sm h-full flex flex-col">
+  <div className="bg-white rounded-lg p-6 shadow-sm  flex flex-col">
     <div className="flex items-center space-x-2 mb-6">
       <Bell className="w-5 h-5 text-[#1F1D1D]" />
       <h2 className="text-[20px] font-[Inter] font-semibold text-[#1F1D1D]">
@@ -9,7 +9,7 @@ const ExamUpdatesSidebar = ({ updates }) => (
       </h2>
     </div>
 
-    <div className="space-y-4">
+    <div className="space-y-4 overflow-y-auto  ">
       {updates.map((update, index) => (
         <div
           key={index}
