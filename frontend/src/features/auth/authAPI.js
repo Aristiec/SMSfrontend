@@ -59,3 +59,8 @@ export const submitAssignmentOnline = async (
   });
   return response.data;
 };
+
+export const fetchExams = async () => {
+  const response = await api.get(`/exams/get`);
+  return response.data;
+};
