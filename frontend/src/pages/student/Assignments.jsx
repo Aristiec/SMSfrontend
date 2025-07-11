@@ -88,7 +88,7 @@ const Assignments = () => {
     try {
       // Call your API
       await fetch(
-        "https://f7da-103-16-29-169.ngrok-free.app/api/v1/submission/submit-offline",
+        "https://ebaf0b43591f.ngrok-free.app/api/v1/submission/submit-offline",
         {
           method: "POST",
           headers: {

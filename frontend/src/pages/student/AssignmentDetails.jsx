@@ -7,12 +7,15 @@ import SubmitButton from "../../components/student/assignments/SubmitButton";
 import assignments from "../../data/mockAssignments.js";
 import { ArrowLeft, Upload, File } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { useSelector } from "react-redux";
+import { submitAssignmentOnline } from "../../features/auth/authAPI";
 const AssignmentDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const [assignment, setAssignment] = useState(null);
   const navigate = useNavigate();
+  const [answer, setAnswer] = useState("");
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // ✅ Use passed assignment if available
@@ -73,6 +76,20 @@ const AssignmentDetails = () => {
           <div className="mt-2">
             {!isSubmitted && <CommentSection assignmentId={assignment.id} />}
           </div>
+          {isPending && (
+            <div className="mt-4">
+              <label className="block mb-2 text-sm font-medium text-[#1F1D1D]">
+                Answer
+              </label>
+              <textarea
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                rows={5}
+                placeholder="Write your answer here..."
+                className="w-full border border-[#04203E] rounded px-3 py-2 text-sm"
+              />
+            </div>
+          )}
 
           {/* Submitted Section - Show uploaded files and Unsubmit Button */}
           {isSubmitted && (
@@ -134,9 +151,26 @@ const AssignmentDetails = () => {
                 >
                   <SubmitButton
                     disabled={isOverdue}
-                    onSubmit={() => {
-                      alert("Assignment submitted!");
-                      setAssignment({ ...assignment, status: "submitted" });
+                    onSubmit={async () => {
+                      try {
+                        const response = await submitAssignmentOnline(
+                          assignment.id,
+                          user?.id, // studentId
+                          "This is my answer" // or your actual answer value
+                        );
+                        console.log("Submission success:", response);
+
+                        // ✅ Update local assignment status
+                        setAssignment({
+                          ...assignment,
+                          status: "submitted",
+                          attempted: true,
+                          submittedAt: response.submittedAt, // optional
+                        });
+                      } catch (err) {
+                        console.error("Submission failed:", err);
+                        alert("Submission failed: " + err.message);
+                      }
                     }}
                   />
                 </div>

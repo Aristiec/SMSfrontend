@@ -163,7 +163,7 @@ const Timetable = () => {
                                   </div>
                                 </div>
                               ) : (
-                                <div className="flex items-center justify-center text-[#1F1D1D] text-[12px]">
+                                <div className="flex items-center  justify-center text-[#1F1D1D] text-[12px]">
                                   No Class
                                 </div>
                               )}

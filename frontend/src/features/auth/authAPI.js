@@ -46,3 +46,22 @@ export const fetchAssignmentsByCourseAndSem = async (
   });
   return response.data;
 };
+
+export const submitAssignmentOnline = async (
+  assignmentId,
+  studentId,
+  answer
+) => {
+  const response = await api.post(
+    `/submission/submit-online`,
+    {}, // empty JSON body if your backend does not use it
+    {
+      params: {
+        assignmentId,
+        studentId,
+        answer,
+      },
+    }
+  );
+  return response.data;
+};
