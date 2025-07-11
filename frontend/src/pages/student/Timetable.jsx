@@ -3,7 +3,7 @@ import TimetableHeader from "../../components/student/TimetableHeader";
 import { addWeeks, getDay } from "date-fns";
 import { ArrowRightLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import api from "../../Services/api.js"; // 👈 Your Axios instance
+import api from "../../Services/api.js";
 
 const Timetable = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
@@ -14,14 +14,7 @@ const Timetable = () => {
   const [timetable, setTimetable] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const timeSlots = [
     { start: "08:00", end: "08:50" },
@@ -72,14 +65,14 @@ const Timetable = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col gap-8 min-h-screen bg-[#E9EEF4] text-[#1F1D1D]">
+    <div className="mx-auto flex flex-col gap-6 min-h-screen bg-[#E9EEF4] text-[#1F1D1D]">
       <div className="flex flex-col px-4 gap-6">
         <TimetableHeader />
 
-        <div className="flex justify-center px-4 lg:px-4">
-          <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
-            <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
-              <h1 className="text-[20px] font-semibold text-[#1F1D1D] -ml-5">
+        <div className="flex justify-center px-2 sm:px-4 lg:px-6">
+          <div className="w-full max-w-7xl bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6">
+            <div className="bg-gray-50 px-4 md:px-6 py-4 flex items-center justify-between">
+              <h1 className="text-lg md:text-xl font-semibold text-[#1F1D1D]">
                 Weekly Class Timetable
               </h1>
 
@@ -89,14 +82,14 @@ const Timetable = () => {
                 )}
 
                 <button
-                  className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 -mr-6"
+                  className="p-2 rounded-lg bg-[#CFDCEB] relative z-50"
                   onClick={() => navigate("/student/academicCal")}
                 >
                   <ArrowRightLeft className="w-5 h-5 text-[#1F1D1D]" />
                 </button>
 
                 {showTooltip && (
-                  <div className="absolute right-full mr-4 top-1/3 -translate-y-1/2 bg-[#FAFCFD] border border-[#FAFCFD] text-[16px] text-[#1F1D1D] px-3 py-1 rounded shadow-md z-50 whitespace-nowrap">
+                  <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#FAFCFD] border border-[#FAFCFD] text-sm md:text-base text-[#1F1D1D] px-3 py-1 rounded shadow-md z-50 whitespace-nowrap">
                     Click to switch between
                     <br /> Weekly and Daily view
                   </div>
@@ -107,74 +100,72 @@ const Timetable = () => {
             {loading ? (
               <p className="p-4 text-center">Loading timetable...</p>
             ) : (
-              <table className="min-w-full border-collapse">
-                <thead>
-                  <tr>
-                    <th className="text-[16px] font-normal text-center border-2 border-[rgba(113,113,113,0.4)] w-32 h-16"></th>
-                    {timeSlots.map((slot, index) => (
-                      <th
-                        key={index}
-                        className="text-[14px]  font-[Inter]  font-medium text-center border-2 border-[rgba(113,113,113,0.4)] leading-tight w-28 h-16"
-                      >
-                        {" "}
-                        {slot.start} - {slot.end}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {days.map((day, dayIndex) => {
-                    const isSelected = dayIndex === selectedDayIndex;
+              <div className="overflow-x-auto">
+                <table className="min-w-[900px] w-full border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-sm md:text-base font-normal text-center border-2 border-[rgba(113,113,113,0.4)] w-28 md:w-32 h-14 md:h-16"></th>
+                      {timeSlots.map((slot, index) => (
+                        <th
+                          key={index}
+                          className="text-xs md:text-sm font-medium text-center border-2 border-[rgba(113,113,113,0.4)] leading-tight w-24 md:w-28 h-14 md:h-16 px-1"
+                        >
+                          {slot.start} - {slot.end}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {days.map((day, dayIndex) => {
+                      const isSelected = dayIndex === selectedDayIndex;
+                      const dayData = timetable?.slots.find(
+                        (d) => d.day.toLowerCase() === day.toLowerCase()
+                      );
 
-                    // Get slots for the current day
-                    const dayData = timetable?.slots.find(
-                      (d) => d.day.toLowerCase() === day.toLowerCase()
-                    );
+                      return (
+                        <tr
+                          key={dayIndex}
+                          className={isSelected ? "bg-[#E9EEF4]" : ""}
+                        >
+                          <td className="font-bold text-left px-3 md:px-5 text-sm md:text-base border-2 border-[rgba(113,113,113,0.4)] w-28 md:w-32 h-16 md:h-20">
+                            {day}
+                          </td>
 
-                    return (
-                      <tr
-                        key={dayIndex}
-                        className={isSelected ? "bg-[#E9EEF4]" : ""}
-                      >
-                        <td className="font-bold  text-left pl-5 font-[Inter] text-[16px] border-2 border-[rgba(113,113,113,0.4)] w-32 h-20">
-                          {day}
-                        </td>
+                          {timeSlots.map((slot, timeIndex) => {
+                            const match = dayData?.slots.find(
+                              (s) =>
+                                s.startTime === slot.start &&
+                                s.endTime === slot.end
+                            );
 
-                        {timeSlots.map((slot, timeIndex) => {
-                          // Find matching slot for this time range
-                          const match = dayData?.slots.find(
-                            (s) =>
-                              s.startTime === slot.start &&
-                              s.endTime === slot.end
-                          );
-
-                          return (
-                            <td
-                              key={timeIndex}
-                              className="border-2 border-[rgba(113,113,113,0.4)] w-28 h-20"
-                            >
-                              {match ? (
-                                <div className="flex flex-col pl-4 text-left items-left justify-center h-full text-center p-2">
-                                  <div className="text-[12px] font-[Inter] font-medium text-[#1F1D1D]">
-                                    {match.code}
+                            return (
+                              <td
+                                key={timeIndex}
+                                className="border-2 border-[rgba(113,113,113,0.4)] w-24 md:w-28 h-16 md:h-20"
+                              >
+                                {match ? (
+                                  <div className="flex flex-col text-left justify-center h-full px-2 py-1 text-center">
+                                    <div className="text-xs md:text-sm font-medium text-[#1F1D1D] truncate">
+                                      {match.code}
+                                    </div>
+                                    <div className="text-[11px] md:text-sm font-light text-[#1F1D1D] truncate">
+                                      {match.facultyName}
+                                    </div>
                                   </div>
-                                  <div className="text-[12px] font-light font-[Inter] text-[#1F1D1D]">
-                                    {match.facultyName}
+                                ) : (
+                                  <div className="flex items-center justify-center text-[#1F1D1D] text-xs md:text-sm">
+                                    No Class
                                   </div>
-                                </div>
-                              ) : (
-                                <div className="flex items-center  justify-center text-[#1F1D1D] text-[12px]">
-                                  No Class
-                                </div>
-                              )}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>
