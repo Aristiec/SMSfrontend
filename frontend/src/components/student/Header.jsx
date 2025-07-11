@@ -50,7 +50,9 @@ const Header = () => {
           </div>
 
           <span
-            className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]"
+            className="text-[18px] leading-[28px] tracking-[-0.01em] font-[700] font-[Merriweather] text-[#FAFCFD]
+             sm:text-[18px] sm:leading-[32px] sm:tracking-[-0.015em]
+             md:text-[24px] md:leading-[38.4px] md:tracking-[-0.02em]"
             style={{ color: "#FAFCFD" }}
           >
             Student Dashboard
