@@ -174,7 +174,7 @@ const Recheck = () => {
         </div>
 
         {/* last recheck content  */}
-        <div className="h-[43px] rounded-[12px] p-[12px] bg-[#CFDCEB]">
+        <div className="h-[full] rounded-[12px] p-[12px] bg-[#CFDCEB]">
           <p className="text-[12px] leading-[18px] font-[Inter] text-[#1F1D1D]">
             <span className="font-bold">Recheck Fee:</span> A processing fee of
             $15 will be applied to your student account if the recheck request
