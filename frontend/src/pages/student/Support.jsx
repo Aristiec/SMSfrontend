@@ -201,13 +201,13 @@ const Support = () => {
           style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
           className="font-[Inter] bg-[#FAFCFD] rounded-[12px] flex flex-col gap-6 p-6 "
         >
-          <div className="flex justify-between">
-            <p className="w-1/2 font-medium text-[24px] leading-6 flex items-center text-[#1F1D1D] ">
+          <div className="flex lg:justify-between gap-2">
+            <p className="lg:w-1/2 font-medium lg:text-[24px] text-[12px]  leading-6 flex items-center text-[#1F1D1D] ">
               My Tickets
             </p>
-            <div className="flex gap-4 w-1/2 ">
+            <div className="flex gap-4 lg:w-1/2 ">
               <input
-                className="w-full  rounded-[4px] border-1 border-[#717171] py-2 px-2 bg-[#FAFCFD] font-[400] text-[16px] leading-6 text-[#717171]"
+                className="w-full  rounded-[4px] border-1 border-[#717171] py-2 px-2 bg-[#FAFCFD] font-[400] lg:text-[16px] text-[12px] leading-0 lg:leading-6 text-[#717171]"
                 placeholder="Search tickets..."
               />
 
