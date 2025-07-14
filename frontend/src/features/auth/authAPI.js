@@ -52,15 +52,42 @@ export const submitAssignmentOnline = async (
   studentId,
   answer
 ) => {
-  const response = await api.post(`/submission/submit-online`, {
-    assignmentId,
-    studentId,
-    answer,
-  });
-  return response.data;
+  if (!studentId) throw new Error("Student ID is missing");
+  return await api.post(
+    `/submission/submit-online`,
+    {
+      file: "string",
+    },
+    {
+      params: {
+        assignmentId,
+        studentId,
+        answer,
+      },
+    }
+  );
 };
 
 export const fetchExams = async () => {
   const response = await api.get(`/exams/get`);
+  return response.data;
+};
+
+export const fetchLibrarySummary = async (studentId) => {
+  const response = await api.get(
+    `/library/borrow/student/${studentId}/library-summary`
+  );
+  return response.data;
+};
+
+export const fetchIssuedBooks = async (studentId) => {
+  const response = await api.get(`/library/borrow/student/${studentId}/issued`);
+  return response.data;
+};
+
+export const searchBooks = async (keyword) => {
+  const response = await api.get(`/library/books/search`, {
+    params: { keyword },
+  });
   return response.data;
 };

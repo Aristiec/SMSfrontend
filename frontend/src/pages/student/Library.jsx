@@ -1,33 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Book, Clock, DollarSign } from "lucide-react";
 import LowerComponent from "../../components/student/Library/LowerComponent.jsx";
-
-const cardData = [
-  {
-    id: 1,
-    title: "Books Issued",
-    count: "4",
-    description: "Books currently issued to you",
-    icon: <Book className="w-5 h-5 text-[#4B5563]" />,
-    iconBg: "bg-[#E9EEF4]",
-  },
-  {
-    id: 2,
-    title: "Due Soon",
-    count: "1",
-    description: "Next due: July 15",
-    icon: <Clock className="w-5 h-5 text-[#FB923C]" />,
-    iconBg: "bg-[#FEF4ED]",
-  },
-  {
-    id: 3,
-    title: "Fine Balance",
-    count: "₹250",
-    description: "Clear fines to continue borrowing",
-    icon: <DollarSign className="w-5 h-5 text-[#34D399]" />,
-    iconBg: "bg-[#ECFDF7]",
-  },
-];
+import { fetchLibrarySummary } from "../../features/auth/authAPI.js";
 
 const Card = ({ title, count, description, icon, iconBg }) => {
   return (
@@ -49,21 +23,80 @@ const Card = ({ title, count, description, icon, iconBg }) => {
 };
 
 const Library = () => {
+  const [cardData, setCardData] = useState([
+    {
+      id: 1,
+      title: "Books Issued",
+      count: "--",
+      description: "Books currently issued to you",
+      icon: <Book className="w-5 h-5 text-[#4B5563]" />,
+      iconBg: "bg-[#E9EEF4]",
+    },
+    {
+      id: 2,
+      title: "Due Soon",
+      count: "--",
+      description: "Next due: --",
+      icon: <Clock className="w-5 h-5 text-[#FB923C]" />,
+      iconBg: "bg-[#FEF4ED]",
+    },
+    {
+      id: 3,
+      title: "Fine Balance",
+      count: "--",
+      description: "Clear fines to continue borrowing",
+      icon: <DollarSign className="w-5 h-5 text-[#34D399]" />,
+      iconBg: "bg-[#ECFDF7]",
+    },
+  ]);
+
+  useEffect(() => {
+    const getLibrarySummary = async () => {
+      try {
+        const studentId = localStorage.getItem("studentId");
+        const data = await fetchLibrarySummary(studentId);
+
+        setCardData([
+          {
+            id: 1,
+            title: "Books Issued",
+            count: data.totalBooksIssued,
+            description: "Books currently issued to you",
+            icon: <Book className="w-5 h-5 text-[#4B5563]" />,
+            iconBg: "bg-[#E9EEF4]",
+          },
+          {
+            id: 2,
+            title: "Due Soon",
+            count: data.dueSoonCount,
+            description: `Next due: ${data.nextDueDate || "--"}`,
+            icon: <Clock className="w-5 h-5 text-[#FB923C]" />,
+            iconBg: "bg-[#FEF4ED]",
+          },
+          {
+            id: 3,
+            title: "Fine Balance",
+            count: `₹${data.totalFine}`,
+            description: "Clear fines to continue borrowing",
+            icon: <DollarSign className="w-5 h-5 text-[#34D399]" />,
+            iconBg: "bg-[#ECFDF7]",
+          },
+        ]);
+      } catch (error) {
+        console.error("Failed to fetch library summary:", error);
+      }
+    };
+
+    getLibrarySummary();
+  }, []);
+
   return (
     <div className="mx-auto flex flex-col gap-8 min-h-screen">
       <div className="flex flex-col px-4 gap-6 mt-4">
-        {/* Header */}
-        {/* <div className="bg-[#04203E] text-[#FAFCFD] p-6 rounded-lg">
+        <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather]">Library</h1>
-        </div> */}
+        </header>
 
-        <header className="bg-[#04203E] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-4 text-[#FAFCFD] mx-auto">
-        <h1 className="text-[24px] font-bold font-[Merriweather]">
-          Library
-        </h1>
-      </header>
-
-        {/* Cards Section */}
         <div className="grid grid-cols-3 gap-10 mb-1.5">
           {cardData.map((card) => (
             <Card

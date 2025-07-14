@@ -19,7 +19,17 @@ export const loginUser = createAsyncThunk(
       const { id, course } = profileResponse.data;
       const courseId = course?.id;
       const sem = profileResponse.data.sem || 1;
+
+      const user = {
+        token,
+        email,
+        studentId: id,
+        courseId,
+        sem,
+      };
+
       // Save everything in localStorage
+      localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
       localStorage.setItem("studentId", id);
@@ -46,6 +56,9 @@ const authSlice = createSlice({
     error: null,
   },
   reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
     logout(state) {
       state.user = null;
       localStorage.removeItem("token");
@@ -72,5 +85,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 export default authSlice.reducer;
