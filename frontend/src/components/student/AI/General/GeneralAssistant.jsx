@@ -53,7 +53,7 @@ const GeneralAssistant = ({
           </p>
         </div>
       </div>
-      <div className="w-full  mx-auto mt-7 flex flex-col gap-4 px-[24px]">
+      <div className="w-full  mx-auto mt-7 flex flex-col gap-4 px-[24px] overflow-y-auto">
         {suggestions.map((item, index) => (
           <div
             key={index}

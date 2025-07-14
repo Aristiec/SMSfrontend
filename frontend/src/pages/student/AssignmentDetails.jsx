@@ -72,10 +72,10 @@ const AssignmentDetails = () => {
             }
           />
 
-          {/* Comment Section */}
           <div className="mt-2">
             {!isSubmitted && <CommentSection assignmentId={assignment.id} />}
           </div>
+          {/* 
           {isPending && (
             <div className="mt-4">
               <label className="block mb-2 text-sm font-medium text-[#1F1D1D]">
@@ -89,7 +89,7 @@ const AssignmentDetails = () => {
                 className="w-full border border-[#04203E] rounded px-3 py-2 text-sm"
               />
             </div>
-          )}
+          )} */}
 
           {/* Submitted Section - Show uploaded files and Unsubmit Button */}
           {isSubmitted && (
@@ -155,7 +155,7 @@ const AssignmentDetails = () => {
                       try {
                         const response = await submitAssignmentOnline(
                           assignment.id,
-                          user?.id, // studentId
+                          user?.studentId, // studentId
                           "This is my answer" // or your actual answer value
                         );
                         console.log("Submission success:", response);
