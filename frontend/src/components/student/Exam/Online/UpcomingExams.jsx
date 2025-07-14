@@ -68,7 +68,7 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
   }
 
   return (
-    <div className="bg-[#FAFCFD] rounded-lg shadow-sm">
+    <div className="bg-[#FAFCFD] rounded-lg shadow-sm ">
       <div className="flex items-center justify-between p-4">
         <div className="flex space-x-6">
           <button
@@ -95,7 +95,7 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
           </button>
         </div>
 
-        <div className="relative">
+        <div className="relative ">
           <button
             className="text-sm border border-[#1F1D1D] rounded-lg px-3 py-2 bg-[#FAFCFD] flex items-center space-x-2 min-w-[150px]"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -184,11 +184,11 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
               <ChevronLeft className="w-5 h-5 text-[#1F1D1D]" />
             </button>
 
-            <div className="flex justify-center gap-x-6 px-10">
+            <div className="flex justify-center gap-x-6 px-10 overflow-x-hidden">
               {visibleExams.map((exam, index) => (
                 <div
                   key={index}
-                  className="min-w-[360px] max-w-[360px] basis-[360px] flex-shrink-0 border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-[#FAFCFD]"
+                  className=" min-w-[360px] max-w-[360px] basis-[360px] flex-shrink-0 border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow bg-[#FAFCFD]"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-semibold text-[#1F1D1D] text-[16px] font-[Inter]">
