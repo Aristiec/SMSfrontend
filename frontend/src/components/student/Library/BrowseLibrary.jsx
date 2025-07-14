@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Search, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BookDetails from "./BookDetails";
+import { searchBooks } from "../../../features/auth/authAPI.js";
 import book1 from "../../../assets/bd7ef330bde6a8f16ed147ce73e81a9992bb7d70.png";
 import book2 from "../../../assets/4fa4fa216f04b58ac64bde3c5b1453b97396f08a.png";
 import book3 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
@@ -158,11 +159,35 @@ const CustomDropdown = ({ label, options, value, onChange }) => {
 };
 const BrowseLibrary = ({ wishlist, setWishlist }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [semesterFilter, setSemesterFilter] = useState("All");
   const [courseFilter, setCourseFilter] = useState("All");
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      if (searchQuery.trim() === "") {
+        setSearchResults([]); // Clear results if empty
+        return;
+      }
+      try {
+        setLoading(true);
+        const results = await searchBooks(searchQuery.trim());
+        setSearchResults(results);
+      } catch (error) {
+        console.error("Error searching books:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const debounceTimeout = setTimeout(fetchSearchResults, 500); // debounce
+
+    return () => clearTimeout(debounceTimeout);
+  }, [searchQuery]);
+
   const handleAddToWishlist = (book) => {
     if (!wishlist.find((b) => b.id === book.id)) {
       setWishlist([...wishlist, book]);
@@ -175,12 +200,9 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
 
   // Filter books based on search and filters
   const filteredBooks = useMemo(() => {
-    return mockBooks.filter((book) => {
-      const matchesSearch =
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.isbn.includes(searchQuery);
+    const booksToFilter = searchQuery.trim() ? searchResults : mockBooks;
 
+    return booksToFilter.filter((book) => {
       const matchesCategory =
         categoryFilter === "All" || book.category === categoryFilter;
       const matchesSemester =
@@ -188,18 +210,29 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
       const matchesCourse =
         courseFilter === "All" || book.course === courseFilter;
 
-      return (
-        matchesSearch && matchesCategory && matchesSemester && matchesCourse
-      );
+      return matchesCategory && matchesSemester && matchesCourse;
     });
-  }, [searchQuery, categoryFilter, semesterFilter, courseFilter]);
+  }, [
+    searchResults,
+    searchQuery,
+    categoryFilter,
+    semesterFilter,
+    courseFilter,
+  ]);
+  {
+    loading && (
+      <div className="text-center text-[#717171] text-sm mb-4">
+        Searching books...
+      </div>
+    );
+  }
 
   const BookCard = ({ book, onViewDetails }) => (
     <div className="w-full h-[240px] bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden border border-[#71717166] flex flex-col justify-between">
       <div className="flex px-4 pt-4">
         <div className="flex-shrink-0 mr-4">
           <img
-            src={book.cover}
+            src={book.cover || book.imageUrl}
             alt={book.title}
             className="w-[96px] h-[128px] object-cover rounded shadow-lg"
           />
@@ -233,8 +266,9 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
 
       <div className="border-t border-[#71717166] bg-[#E9EEF4] px-4 py-2 flex justify-between items-center">
         <span className="text-[12px] text-[#717171] font-[Inter]">
-          {book.semester}
+          {book.semester || "N/A"}
         </span>
+
         <button
           onClick={() => onViewDetails(book)}
           className="bg-[#04203E] text-[#FAFCFD] text-xs w-[130px] h-[32px] font-[Inter] rounded flex items-center justify-center gap-1"
