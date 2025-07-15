@@ -9,10 +9,8 @@ export const loginUser = createAsyncThunk(
       const response = await loginUserAPI(credentials);
       const token = response.data;
 
-      // Decode email from token
-      const [, payloadBase64] = token.split(".");
-      const decodedPayload = JSON.parse(atob(payloadBase64));
-      const email = decodedPayload.sub;
+      // ✅ Use email directly from the login form
+      const email = credentials.userName;
 
       // Get student profile by email
       const profileResponse = await fetchProfileByEmail(email, token);
@@ -28,20 +26,14 @@ export const loginUser = createAsyncThunk(
         sem,
       };
 
-      // Save everything in localStorage
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
       localStorage.setItem("studentId", id);
       localStorage.setItem("courseId", courseId);
       localStorage.setItem("sem", sem);
-      return {
-        token,
-        email,
-        studentId: id,
-        courseId,
-        sem,
-      };
+
+      return user;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Login failed");
     }

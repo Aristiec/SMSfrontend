@@ -72,7 +72,7 @@ const ExamSchedule = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-[#FAFCFD] h-[476px] rounded-xl shadow-lg overflow-hidden">
+    <div className="w-full max-w-4xl mx-auto bg-[#FAFCFD] h-full rounded-xl shadow-lg overflow-hidden">
       <div className="bg-[#04203E] text-white px-8 py-4">
         <h1 className="text-[18px] font-[Merriweather] font-semibold">
           Upcoming Exams & Assignment
