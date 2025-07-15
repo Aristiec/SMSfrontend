@@ -41,7 +41,7 @@ const IssuedBooks = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-6 bg-[#FAFCFD] rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-6 p-6 bg-[#FAFCFD] rounded-lg">
       {issuedBooks.map((book) => (
         <div
           key={book.id}

@@ -45,16 +45,20 @@ const Header = () => {
             <img
               src={headerLogo}
               alt="Profile Icon"
-              className="w-[40px] h-[40px] rounded-full bg-[#FAFCFD]"
+              className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] md:w-[36px] md:h-[36px] lg:w-[40px] lg:h-[40px] 
+                 rounded-full bg-[#FAFCFD] transition-all duration-200"
             />
           </div>
 
-          <span
-            className="text-[24px] leading-[38.4px] font-[700] font-[Merriweather] tracking-[-0.02em]"
-            style={{ color: "#FAFCFD" }}
-          >
-            Student Dashboard
-          </span>
+         <span
+    className="text-[16px] sm:text-[18px] md:text-[18px] lg:text-[24px] xl:text-[24px]
+               leading-[25.6px] sm:leading-[28.8px] md:leading-[28.8px] lg:leading-[38.4px] xl:leading-[38.4px]
+               font-[700] font-[Merriweather] tracking-[-0.02em] transition-all duration-200"
+    style={{ color: "#FAFCFD" }}
+  >
+    <span className="hidden sm:inline">Student Dashboard</span>
+    <span className="sm:hidden">Dashboard</span>
+  </span>
         </div>
 
         {/* Right Side */}
