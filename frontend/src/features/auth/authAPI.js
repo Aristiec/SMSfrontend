@@ -91,3 +91,13 @@ export const searchBooks = async (keyword) => {
   });
   return response.data;
 };
+export const fetchBookById = (id, token) =>
+  api.get(`/library/book/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+export const getAllBooks = async () => {
+  const response = await api.get(`/library/books/all`);
+  return response.data;
+};
