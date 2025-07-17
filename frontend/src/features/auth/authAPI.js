@@ -198,3 +198,14 @@ export const fetchEmergencyContacts = async (token) => {
   });
   return response.data;
 };
+
+export const fetchAnnouncementsByStudentId = async (studentId) => {
+  const response = await api.get(`/announcements/student/${studentId}`);
+  return response.data;
+};
+
+export const fetchAttendanceStats = (studentId) =>
+  api.get(`/attendance/overall?studentId=${studentId}`);
+
+export const fetchSubjectwiseAttendance = (studentId) =>
+  api.get(`/attendance/subjectwise?studentId=${studentId}`);

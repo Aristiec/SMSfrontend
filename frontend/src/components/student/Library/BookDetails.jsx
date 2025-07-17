@@ -3,18 +3,16 @@ import { Book, MapPin, Tag, Calendar, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../../../features/librarySlice";
 
-const BookDetails = ({ book, onBack, onAddToWishlist }) => {
+const BookDetails = ({ book, onBack, setSelectedIndex, onAddToWishlist }) => {
   if (!book) return null;
   const dispatch = useDispatch();
   const studentId = useSelector((state) => state.auth.user?.studentId);
   const token = useSelector((state) => state.auth.user?.token);
 
-  const handleWishlist = () => {
-    if (!studentId || !token) {
-      console.error("Student ID or token missing");
-      return;
-    }
-    onAddToWishlist(book);
+  const handleWishlist = async () => {
+    if (!studentId || !token) return;
+    await dispatch(addToWishlist({ studentId, bookId: book.bookId, token }));
+    setSelectedIndex(3);
   };
 
   return (

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaBookOpen, FaCalendarAlt } from "react-icons/fa";
-
-const noticesData = [
+import { fetchAnnouncementsByStudentId } from "../../features/auth/authAPI";
+const notices = [
   {
     id: 1,
     type: "Alert",
@@ -102,7 +102,75 @@ const noticesData = [
 ];
 
 const Notices = () => {
+  const [noticesData, setNoticesData] = useState([]);
   const [expandedIds, setExpandedIds] = useState([]);
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const studentId = localStorage.getItem("studentId");
+        const data = await fetchAnnouncementsByStudentId(studentId);
+
+        const mappedNotices = data.map((notice, index) => {
+          let icon, labelColor, bgColor;
+          switch (notice.type) {
+            case "GENERAL":
+              icon = (
+                <FaBookOpen className="text-[#1D4ED8] w-[15px] h-[15px]" />
+              );
+              labelColor = "text-[#1D4ED8]";
+              bgColor = "bg-[#F4F7FA]";
+              break;
+            case "SPORT":
+              icon = (
+                <FaCalendarAlt className="text-[#059669] w-[15px] h-[15px]" />
+              );
+              labelColor = "text-[#059669]";
+              bgColor = "bg-[#ECFDF7]";
+              break;
+            case "EVENT":
+              icon = (
+                <FaCalendarAlt className="text-[#059669] w-[15px] h-[15px]" />
+              );
+              labelColor = "text-[#059669]";
+              bgColor = "bg-[#ECFDF7]";
+              break;
+            case "ALERT":
+            default:
+              icon = (
+                <FiAlertCircle className="text-[#EF4444] w-[15px] h-[15px]" />
+              );
+              labelColor = "text-[#EF4444]";
+              bgColor = "bg-[#FEF2F2]";
+          }
+
+          const date = new Date(notice.createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          });
+
+          return {
+            id: index + 1,
+            type: notice.type,
+            icon,
+            labelColor,
+            date,
+            title: notice.title,
+            description: notice.message,
+            plaindescription: notice.message,
+            bgColor,
+            postedBy: notice.postedBy,
+          };
+        });
+
+        setNoticesData(mappedNotices);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchNotices();
+  }, []);
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) =>
@@ -187,7 +255,7 @@ const Notices = () => {
                       Posted by:
                     </span>
                     <span className="text-[#1F1D1D] text-xs font-light font-[Inter]">
-                      Academic Office
+                      {notice.postedBy}
                     </span>
                   </div>
                 </div>

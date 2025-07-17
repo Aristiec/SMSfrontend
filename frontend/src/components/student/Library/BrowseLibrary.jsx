@@ -165,6 +165,7 @@ const BrowseLibrary = ({
   setWishlist,
   selectedBook,
   setSelectedBook,
+  setSelectedIndex,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -377,6 +378,7 @@ const BrowseLibrary = ({
             setSelectedBook(null);
           }}
           onAddToWishlist={handleAddToWishlist}
+          setSelectedIndex={setSelectedIndex}
         />
       )}
     </div>

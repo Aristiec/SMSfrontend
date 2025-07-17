@@ -66,6 +66,7 @@ const LowerComponent = () => {
             setWishlist={setWishlist}
             selectedBook={selectedBook}
             setSelectedBook={setSelectedBook}
+            setSelectedIndex={setSelectedIndex}
           />
         ) : selectedIndex === 2 ? (
           <Fines />
