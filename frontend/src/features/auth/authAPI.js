@@ -91,13 +91,110 @@ export const searchBooks = async (keyword) => {
   });
   return response.data;
 };
-export const fetchBookById = (id, token) =>
-  api.get(`/library/book/${id}`, {
+
+export const fetchBookById = async (id, token) => {
+  console.log("API Call: GET /library/books/", id);
+  return await api.get(`/library/book/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const getAllBooks = async () => {
+  const response = await api.get(`/library/books/all`);
+  return response.data;
+};
+
+export const fetchBorrowActivity = async (studentId) => {
+  const response = await api.get(
+    `/library/borrow/student/${studentId}/activity`
+  );
+  return response.data;
+};
+
+export const addBookToWishlist = async (studentId, bookId, token) => {
+  return await api.post(
+    `/library/wishlist/${studentId}/book/${bookId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const fetchWishlist = async (studentId, token) => {
+  return await api.get(`/library/wishlist/${studentId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const removeBookFromWishlist = async (studentId, bookId, token) => {
+  return await api.delete(`/library/wishlist/${studentId}/book/${bookId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-export const getAllBooks = async () => {
-  const response = await api.get(`/library/books/all`);
+};
+
+export const fetchRoomDetailById = async (studentId, token) => {
+  const response = await api.get(
+    `/room-allocations/room-details/student/${studentId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const fetchHostelDetailById = async (studentId, token) => {
+  const response = await api.get(`/hostel/student/${studentId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const submitMaintenanceRequest = async (studentId, data, token) => {
+  return await api.post(`/maintenance-request/submit/${studentId}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const fetchPreviousMaintenanceRequests = async (studentId, token) => {
+  return await api.get(`/maintenance-request/student/prev-requests`, {
+    params: { studentId },
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const fetchStudentAmenities = async (studentId, token) => {
+  return await api.get(`/room-allocations/students/${studentId}/amenities`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const fetchHostelStaffByStudentId = async (studentId, token) => {
+  const response = await api.get(`/hostel-staff/important/${studentId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const fetchEmergencyContacts = async (token) => {
+  const response = await api.get(`/contacts/emergency`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };

@@ -2,12 +2,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import { Search, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BookDetails from "./BookDetails";
-import {
-  getAllBooks,
-  searchBooks,
-  fetchBookById,
-} from "../../../features/auth/authAPI";
-
+import { getAllBooks, searchBooks } from "../../../features/auth/authAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { getBookById, clearBookDetails } from "../../../features/librarySlice";
 import book1 from "../../../assets/bd7ef330bde6a8f16ed147ce73e81a9992bb7d70.png";
 import book2 from "../../../assets/4fa4fa216f04b58ac64bde3c5b1453b97396f08a.png";
 import book3 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
@@ -163,7 +160,12 @@ const CustomDropdown = ({ label, options, value, onChange }) => {
   );
 };
 
-const BrowseLibrary = ({ wishlist, setWishlist }) => {
+const BrowseLibrary = ({
+  wishlist,
+  setWishlist,
+  selectedBook,
+  setSelectedBook,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -171,8 +173,10 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
   const [semesterFilter, setSemesterFilter] = useState("All");
   const [courseFilter, setCourseFilter] = useState("All");
   const navigate = useNavigate();
-  const [selectedBook, setSelectedBook] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
+  const bookDetails = useSelector((state) => state.library.bookDetails);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchAllBooks = async () => {
@@ -253,14 +257,10 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
     courseFilter,
   ]);
 
-  const handleViewDetails = async (book) => {
-    try {
-      const token = localStorage.getItem("token");
-      const bookData = await fetchBookById(book.id, token);
-      setSelectedBook(bookData);
-    } catch (error) {
-      console.error("Failed to fetch book details:", error);
-    }
+  const handleViewDetails = (book) => {
+    const token = localStorage.getItem("token");
+    dispatch(getBookById({ id: book.id, token }));
+    setSelectedBook(book.id);
   };
 
   const BookCard = ({ book }) => (
@@ -312,7 +312,7 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-[#FAFCFD] rounded-lg min-h-screen mx-10">
-      {!selectedBook ? (
+      {!selectedBook || !bookDetails ? (
         <>
           <div className="relative mb-6">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -371,8 +371,11 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
         </>
       ) : (
         <BookDetails
-          book={selectedBook}
-          onBack={() => setSelectedBook(null)}
+          book={bookDetails}
+          onBack={() => {
+            dispatch(clearBookDetails());
+            setSelectedBook(null);
+          }}
           onAddToWishlist={handleAddToWishlist}
         />
       )}

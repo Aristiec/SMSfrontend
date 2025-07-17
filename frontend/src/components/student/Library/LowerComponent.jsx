@@ -5,6 +5,12 @@ import Fines from "./Fines.jsx";
 import BrowseLibrary from "./BrowseLibrary.jsx";
 import Wishlist from "./Wishlist.jsx";
 import IssuedBooks from "./IssuedBooks.jsx";
+import { useDispatch } from "react-redux";
+import {
+  getBookById,
+  removeFromWishlist,
+} from "../../../features/librarySlice";
+
 const menuItems = [
   {
     icon: <Book size={14} />,
@@ -31,7 +37,8 @@ const menuItems = [
 const LowerComponent = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [wishlist, setWishlist] = useState([]);
-
+  const [selectedBook, setSelectedBook] = useState(null);
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col gap-6 p-6 bg-[#FAFCFD] rounded-t-xl">
       <div className="flex gap-8">
@@ -54,19 +61,32 @@ const LowerComponent = () => {
         {selectedIndex === 0 ? (
           <IssuedBooks />
         ) : selectedIndex === 1 ? (
-          <BrowseLibrary wishlist={wishlist} setWishlist={setWishlist} />
+          <BrowseLibrary
+            wishlist={wishlist}
+            setWishlist={setWishlist}
+            selectedBook={selectedBook}
+            setSelectedBook={setSelectedBook}
+          />
         ) : selectedIndex === 2 ? (
           <Fines />
         ) : selectedIndex === 3 ? (
           <Wishlist
             wishlist={wishlist}
-            onViewDetails={(book) => {
+            onViewDetails={(bookId) => {
+              // Call Redux to get full book details
+              const token = localStorage.getItem("token");
+              dispatch(getBookById({ id: bookId, token }));
+              // Switch to BrowseLibrary tab and set selected book
               setSelectedIndex(1);
-              setSelectedBook(book);
+              setSelectedBook(bookId);
             }}
-            onRemove={(bookId) =>
-              setWishlist((prev) => prev.filter((b) => b.id !== bookId))
-            }
+            onRemove={(bookId) => {
+              const token = localStorage.getItem("token");
+              const studentId = JSON.parse(
+                localStorage.getItem("user")
+              )?.studentId;
+              dispatch(removeFromWishlist({ studentId, bookId, token }));
+            }}
           />
         ) : selectedIndex === 4 ? (
           <ActivityHistory />

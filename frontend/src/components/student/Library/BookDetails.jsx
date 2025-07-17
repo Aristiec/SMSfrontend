@@ -1,14 +1,22 @@
 import React from "react";
 import { Book, MapPin, Tag, Calendar, X } from "lucide-react";
-import { mockBooks } from "../../../data/mockBooks";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist } from "../../../features/librarySlice";
+
 const BookDetails = ({ book, onBack, onAddToWishlist }) => {
   if (!book) return null;
+  const dispatch = useDispatch();
+  const studentId = useSelector((state) => state.auth.user?.studentId);
+  const token = useSelector((state) => state.auth.user?.token);
+
   const handleWishlist = () => {
-    if (onAddToWishlist) {
-      onAddToWishlist(book);
-      onBack();
+    if (!studentId || !token) {
+      console.error("Student ID or token missing");
+      return;
     }
+    onAddToWishlist(book);
   };
+
   return (
     <div className=" px-8 py-6 max-w-[1024px] mx-auto">
       <div className="flex items-center justify-between mb-6">
@@ -81,11 +89,10 @@ const BookDetails = ({ book, onBack, onAddToWishlist }) => {
                   Shelf Location
                 </div>
                 <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
-                  Section P, Row 12
+                  {book.shelfLocation || "Not specified"}
                 </div>
               </div>
             </div>
-
             <div className="flex items-start gap-2">
               <Calendar className="w-4 h-4 mt-2 text-[#1F1D1D]" />
               <div>
@@ -93,7 +100,7 @@ const BookDetails = ({ book, onBack, onAddToWishlist }) => {
                   Edition
                 </div>
                 <div className="text-[12px] font-[Inter] text-[#1F1D1D]">
-                  1st Edition, 2012
+                  {book.edition || "Not specified"}
                 </div>
               </div>
             </div>
@@ -104,15 +111,7 @@ const BookDetails = ({ book, onBack, onAddToWishlist }) => {
               Description
             </h3>
             <p className="text-[14px] font-[Inter] text-[#1F1D1D] w-[570px]">
-              "Clean Code" is a must-read for every developer who cares about
-              writing readable, maintainable, and efficient code. Authored by
-              Robert C. Martin, this book dives deep into principles, patterns,
-              and best practices of agile software development. Through
-              real-world examples and detailed refactoring strategies, it
-              teaches you how to transform messy, complex codebases into elegant
-              and scalable solutions. Whether you're a beginner or a seasoned
-              engineer, this book will sharpen your coding mindset and elevate
-              your craftsmanship..
+              {book.description}
             </p>
           </div>
           {book.available && (
