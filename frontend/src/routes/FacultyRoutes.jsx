@@ -22,7 +22,7 @@ const FacultyRoutes = () => (
       <Route path="courses" element={<MyCourses />} />
       <Route path="report" element={<Report />} />
       <Route path="students" element={<Students />} />
-      <Route path="create" element={<CreateAssignmentForm />} />
+      <Route path="assignments/create" element={<CreateAssignmentForm />} />
     </Route>
   </>
 );

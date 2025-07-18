@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Search, CircleCheckBig, Calendar, Eye,Timer,CircleAlert,Clock } from "lucide-react";
+import {
+  Search,
+  CircleCheckBig,
+  Calendar,
+  Eye,
+  Timer,
+  CircleAlert,
+  Clock,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const assignmentData = [
   {
@@ -49,22 +58,26 @@ const assignmentData = [
 const Assignments = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const tabs = ["All", "Active", "Past"];
   return (
     <section className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col">
-        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
+        <header className=" top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather] leading-7 tracking-normal">
             Assignments
           </h1>
-          <button className="bg-[#FAFCFD] py-2 px-3 gap-2 rounded-[8px] font-[Inter] font-[400] leading-6 tracking-normal flex items-center justify-center text-[#1F1D1D]">
+          <button
+            onClick={() => navigate("/faculty/assignments/create")}
+            className="bg-[#FAFCFD] py-2 px-3 gap-2 rounded-[8px] font-[Inter] font-[400] leading-6 tracking-normal flex items-center justify-center text-[#1F1D1D]"
+          >
             Create New
           </button>
         </header>
         <div
           style={{ boxShadow: "0px 0px 8px 0px #0000001F" }}
-          className="bg-[#FAFCFD] rounded-[8px] flex justify-between py-3 px-6 "
+          className="bg-[#FAFCFD] rounded-[8px] flex justify-between py-3 px-6 mt-4"
         >
           <div className="flex gap-4">
             {tabs.map((tab, index) => (
@@ -150,20 +163,34 @@ const Assignments = () => {
               <div className="flex gap-10">
                 {Object.entries(assignment?.status).map((status, index) => (
                   <div key={index} className="flex gap-2">
-                  {console.log("status:", status)}
+                    {console.log("status:", status)}
                     <div
-                      className={`size-8 rounded-full  flex items-center justify-center ${status[0] === "submitted" ? "bg-[#ECFDF7]" : status[0] === "pending" ? "bg-[#FFF4ED]" : status[0] === "overdue" ? "bg-[#FFF4ED]" : "bg-[#E9EEF4]"}`}
+                      className={`size-8 rounded-full  flex items-center justify-center ${
+                        status[0] === "submitted"
+                          ? "bg-[#ECFDF7]"
+                          : status[0] === "pending"
+                          ? "bg-[#FFF4ED]"
+                          : status[0] === "overdue"
+                          ? "bg-[#FFF4ED]"
+                          : "bg-[#E9EEF4]"
+                      }`}
                     >
-                    {status[0] === "submitted" ? ( <CircleCheckBig size={16} color="#10B981" />): status[0] === "pending" ? ( <Timer size={16} color="#F97316" />): status[0] === "overdue" ? ( <CircleAlert size={16} color="#EF4444" />): <Clock size={16} color="#0077FF" />}
-                     
+                      {status[0] === "submitted" ? (
+                        <CircleCheckBig size={16} color="#10B981" />
+                      ) : status[0] === "pending" ? (
+                        <Timer size={16} color="#F97316" />
+                      ) : status[0] === "overdue" ? (
+                        <CircleAlert size={16} color="#EF4444" />
+                      ) : (
+                        <Clock size={16} color="#0077FF" />
+                      )}
                     </div>
                     <div className="flex flex-col gap-1">
                       <p className="Font-[400] text-[12px] leading-4 tracking-normal items-center  text-[#717171]">
                         {status[0].charAt(0).toUpperCase() + status[0].slice(1)}
                       </p>
                       <p className="font-[500] text-[14px] leading-5 tracking-normal items-center  text-[#1F1D1D]">
-                       {status[1]}
-                        
+                        {status[1]}
                       </p>
                     </div>
                   </div>
