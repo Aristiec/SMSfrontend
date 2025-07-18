@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Eye, Trash2 } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getWishlist,
+  clearBookDetails,
+  getBookById,
+} from "../../../features/librarySlice";
+const Wishlist = ({ onViewDetails, onRemove }) => {
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.library.wishlist);
+  const loading = useSelector((state) => state.library.loading);
+  const studentId = useSelector((state) => state.auth.user?.studentId);
+  const token = useSelector((state) => state.auth.user?.token);
 
-const Wishlist = ({ wishlist, onViewDetails, onRemove }) => {
+  useEffect(() => {
+    if (studentId && token) {
+      dispatch(getWishlist({ studentId, token }));
+    }
+  }, [dispatch, studentId, token]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-      {wishlist.length === 0 ? (
+      {!loading && wishlist.length === 0 ? (
         <div className="col-span-full flex flex-col items-center justify-center min-h-[400px] text-center">
           {/* Bookmark Icon */}
           <div className="w-16 h-16 bg-[#F4F7FA] shadow-lg rounded-full flex items-center justify-center mb-6">
@@ -37,14 +54,14 @@ const Wishlist = ({ wishlist, onViewDetails, onRemove }) => {
       ) : (
         wishlist.map((book) => (
           <div
-            key={book.id}
+            key={book.bookId}
             className="w-full h-auto bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden border border-[#71717166] flex flex-col justify-between"
           >
             {/* Book Info */}
             <div className="flex px-4 pt-4">
               <div className="flex-shrink-0 mr-4">
                 <img
-                  src={book.cover}
+                  src={book.imageUrl}
                   alt={book.title}
                   className="w-[96px] h-[128px] object-cover rounded shadow-lg"
                 />
@@ -82,7 +99,7 @@ const Wishlist = ({ wishlist, onViewDetails, onRemove }) => {
                 {book.semester || "N/A"}
               </span>
               <button
-                onClick={() => onViewDetails(book)}
+                onClick={() => onViewDetails(book.bookId)}
                 className="bg-[#04203E] text-[#FAFCFD] text-xs w-[130px] h-[32px] font-[Inter] rounded flex items-center justify-center gap-1"
               >
                 <Eye className="w-3.5 h-3.5" />
@@ -93,7 +110,7 @@ const Wishlist = ({ wishlist, onViewDetails, onRemove }) => {
             {/* Remove Button Below Footer */}
             <div className="px-4 pb-4 pt-2">
               <button
-                onClick={() => onRemove(book.id)}
+                onClick={() => onRemove(book.bookId)}
                 className="w-full bg-[#FAFCFD] border border-[#000000] text-[#EF4444] text-[12px]  px-3 py-2 font-[Inter] rounded flex items-center justify-center gap-1 "
               >
                 <Trash2 className="w-3.5 h-3.5" />

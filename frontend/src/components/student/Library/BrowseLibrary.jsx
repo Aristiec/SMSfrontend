@@ -2,7 +2,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import { Search, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BookDetails from "./BookDetails";
-import { searchBooks } from "../../../features/auth/authAPI.js";
+import { getAllBooks, searchBooks } from "../../../features/auth/authAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { getBookById, clearBookDetails } from "../../../features/librarySlice";
 import book1 from "../../../assets/bd7ef330bde6a8f16ed147ce73e81a9992bb7d70.png";
 import book2 from "../../../assets/4fa4fa216f04b58ac64bde3c5b1453b97396f08a.png";
 import book3 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
@@ -13,7 +15,6 @@ import book7 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png"
 import book8 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
 import book9 from "../../../assets/6c2f231b0ddc4cebf10707d6f4a7344966b911b5.png";
 
-// Mock data
 const mockBooks = [
   {
     id: 1,
@@ -115,6 +116,7 @@ const mockBooks = [
     cover: book9,
   },
 ];
+
 const CustomDropdown = ({ label, options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -157,7 +159,14 @@ const CustomDropdown = ({ label, options, value, onChange }) => {
     </div>
   );
 };
-const BrowseLibrary = ({ wishlist, setWishlist }) => {
+
+const BrowseLibrary = ({
+  wishlist,
+  setWishlist,
+  selectedBook,
+  setSelectedBook,
+  setSelectedIndex,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -165,11 +174,43 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
   const [semesterFilter, setSemesterFilter] = useState("All");
   const [courseFilter, setCourseFilter] = useState("All");
   const navigate = useNavigate();
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [allBooks, setAllBooks] = useState([]);
+  const bookDetails = useSelector((state) => state.library.bookDetails);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchAllBooks = async () => {
+      try {
+        const results = await getAllBooks();
+        if (results && results.length > 0) {
+          const normalized = results.map((book, idx) => ({
+            id: book.bookId ?? idx + 1,
+            title: book.title ?? "Untitled",
+            author: book.author ?? "Unknown",
+            isbn: book.isbn ?? "",
+            category: book.category ?? "All",
+            semester: book.semester ?? "All",
+            course: book.course ?? "All",
+            available: book.available ?? true,
+            cover: book.imageUrl ?? mockBooks[idx % mockBooks.length].cover,
+          }));
+          setAllBooks(normalized);
+        } else {
+          setAllBooks(mockBooks);
+        }
+      } catch (error) {
+        console.error("Error fetching all books:", error);
+        setAllBooks(mockBooks);
+      }
+    };
+    fetchAllBooks();
+  }, []);
+
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchQuery.trim() === "") {
-        setSearchResults([]); // Clear results if empty
+        setSearchResults([]);
         return;
       }
       try {
@@ -183,9 +224,8 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
       }
     };
 
-    const debounceTimeout = setTimeout(fetchSearchResults, 500); // debounce
-
-    return () => clearTimeout(debounceTimeout);
+    const debounce = setTimeout(fetchSearchResults, 500);
+    return () => clearTimeout(debounce);
   }, [searchQuery]);
 
   const handleAddToWishlist = (book) => {
@@ -193,15 +233,13 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
       setWishlist([...wishlist, book]);
     }
   };
-  // Get unique filter options
-  const categories = [...new Set(mockBooks.map((book) => book.category))];
-  const semesters = [...new Set(mockBooks.map((book) => book.semester))];
-  const courses = [...new Set(mockBooks.map((book) => book.course))];
 
-  // Filter books based on search and filters
+  const categories = ["All", ...new Set(allBooks.map((b) => b.category))];
+  const semesters = ["All", ...new Set(allBooks.map((b) => b.semester))];
+  const courses = ["All", ...new Set(allBooks.map((b) => b.course))];
+
   const filteredBooks = useMemo(() => {
-    const booksToFilter = searchQuery.trim() ? searchResults : mockBooks;
-
+    const booksToFilter = searchQuery.trim() ? searchResults : allBooks;
     return booksToFilter.filter((book) => {
       const matchesCategory =
         categoryFilter === "All" || book.category === categoryFilter;
@@ -209,35 +247,33 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
         semesterFilter === "All" || book.semester === semesterFilter;
       const matchesCourse =
         courseFilter === "All" || book.course === courseFilter;
-
       return matchesCategory && matchesSemester && matchesCourse;
     });
   }, [
+    allBooks,
     searchResults,
     searchQuery,
     categoryFilter,
     semesterFilter,
     courseFilter,
   ]);
-  {
-    loading && (
-      <div className="text-center text-[#717171] text-sm mb-4">
-        Searching books...
-      </div>
-    );
-  }
 
-  const BookCard = ({ book, onViewDetails }) => (
+  const handleViewDetails = (book) => {
+    const token = localStorage.getItem("token");
+    dispatch(getBookById({ id: book.id, token }));
+    setSelectedBook(book.id);
+  };
+
+  const BookCard = ({ book }) => (
     <div className="w-full h-[240px] bg-[#FAFCFD] rounded-lg shadow-lg overflow-hidden border border-[#71717166] flex flex-col justify-between">
       <div className="flex px-4 pt-4">
         <div className="flex-shrink-0 mr-4">
           <img
-            src={book.cover || book.imageUrl}
+            src={book.cover}
             alt={book.title}
             className="w-[96px] h-[128px] object-cover rounded shadow-lg"
           />
         </div>
-
         <div className="flex flex-col justify-between flex-1 min-w-0 py-2 px-2">
           <div>
             <h3 className="text-[14px] font-[Inter] font-medium text-[#1F1D1D] mb-1 line-clamp-2">
@@ -263,14 +299,9 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
           </div>
         </div>
       </div>
-
-      <div className="border-t border-[#71717166] bg-[#E9EEF4] px-4 py-2 flex justify-between items-center">
-        <span className="text-[12px] text-[#717171] font-[Inter]">
-          {book.semester || "N/A"}
-        </span>
-
+      <div className="border-t border-[#71717166] bg-[#E9EEF4] px-4 py-2 flex justify-end items-center">
         <button
-          onClick={() => onViewDetails(book)}
+          onClick={() => handleViewDetails(book)}
           className="bg-[#04203E] text-[#FAFCFD] text-xs w-[130px] h-[32px] font-[Inter] rounded flex items-center justify-center gap-1"
         >
           <Eye className="w-3.5 h-3.5" />
@@ -282,9 +313,8 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-[#FAFCFD] rounded-lg min-h-screen mx-10">
-      {!selectedBook ? (
+      {!selectedBook || !bookDetails ? (
         <>
-          {/* Search */}
           <div className="relative mb-6">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search className="h-5 w-5 text-[#71717166]" />
@@ -298,7 +328,6 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
             />
           </div>
 
-          {/* Filters */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <CustomDropdown
               label="Category"
@@ -320,23 +349,16 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
             />
           </div>
 
-          {/* Results Count */}
           <div className="text-right text-sm text-[#717171] font-[Inter] font-medium mb-4">
             Showing {filteredBooks.length} Results
           </div>
 
-          {/* Book Grid */}
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
             {filteredBooks.map((book) => (
-              <BookCard
-                key={book.id}
-                book={book}
-                onViewDetails={setSelectedBook}
-              />
+              <BookCard key={book.id} book={book} />
             ))}
           </div>
 
-          {/* No Results */}
           {filteredBooks.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg">
@@ -350,9 +372,13 @@ const BrowseLibrary = ({ wishlist, setWishlist }) => {
         </>
       ) : (
         <BookDetails
-          book={selectedBook}
-          onBack={() => setSelectedBook(null)}
+          book={bookDetails}
+          onBack={() => {
+            dispatch(clearBookDetails());
+            setSelectedBook(null);
+          }}
           onAddToWishlist={handleAddToWishlist}
+          setSelectedIndex={setSelectedIndex}
         />
       )}
     </div>

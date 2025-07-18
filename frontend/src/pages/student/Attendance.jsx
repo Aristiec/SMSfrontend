@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import calendarIcon from "../../assets/calendar.svg";
 import progressBar from "../../assets/progressBar.svg";
 import checkIcon from "../../assets/completed.svg";
 import missedIcon from "../../assets/missedIcon.svg";
+import {
+  fetchAttendanceStats,
+  fetchSubjectwiseAttendance,
+} from "../../features/auth/authAPI";
 
 const attendanceData = [
   {
@@ -64,6 +68,45 @@ const attendanceData = [
 ];
 
 const AttendanceTable = () => {
+  const [overallStats, setOverallStats] = useState(null);
+  const [subjectAttendance, setSubjectAttendance] = useState([]);
+
+  useEffect(() => {
+    const getAttendance = async () => {
+      try {
+        const studentId = localStorage.getItem("studentId");
+        const [overallRes, subjectwiseRes] = await Promise.all([
+          fetchAttendanceStats(studentId),
+          fetchSubjectwiseAttendance(studentId),
+        ]);
+
+        setOverallStats(overallRes.data);
+
+        const subjectData = subjectwiseRes.data.map((item) => {
+          let status = "";
+          if (item.attendancePercentage >= 85) status = "Outstanding";
+          else if (item.attendancePercentage >= 75) status = "Satisfactory";
+          else if (item.attendancePercentage >= 60) status = "Poor";
+          else status = "Critical";
+
+          return {
+            subject: item.subjectName,
+            attended: item.presentLectures,
+            total: item.totalLectures,
+            missed: item.missedLectures,
+            attendance: item.attendancePercentage.toFixed(1),
+            status: status,
+          };
+        });
+
+        setSubjectAttendance(subjectData);
+      } catch (error) {
+        console.error("Failed to fetch attendance:", error);
+      }
+    };
+
+    getAttendance();
+  }, []);
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-6 mt-4">
@@ -94,13 +137,20 @@ const AttendanceTable = () => {
 
               <div className="flex flex-col gap-[10px] mt-4">
                 <div className="font-bold text-[#1F1D1D] text-[24px] leading-[36px]">
-                  86.0%
+                  {overallStats
+                    ? `${overallStats.attendancePercentage.toFixed(1)}%`
+                    : "Loading..."}
                 </div>
-                <img
-                  src={progressBar}
-                  alt="progress"
-                  className="w-full h-[8px] rounded-[4px]"
-                />
+                <div className="w-full bg-gray-200 rounded-[4px] h-[8px] overflow-hidden">
+                  <div
+                    className="h-full bg-[#04203E]"
+                    style={{
+                      width: overallStats
+                        ? `${overallStats.attendancePercentage.toFixed(1)}%`
+                        : "0%",
+                    }}
+                  ></div>
+                </div>
               </div>
             </div>
 
@@ -122,14 +172,19 @@ const AttendanceTable = () => {
               <div className="flex flex-col gap-[4px] mt-4">
                 <div className="flex gap-[8px] items-baseline">
                   <span className="text-[#027A48] font-bold text-[24px] leading-[36px]">
-                    271
+                    {overallStats ? overallStats.presentLectures : "--"}
                   </span>
                   <span className="text-[#1F1D1D] text-[14px] leading-[20px]">
-                    of 315 classes
+                    of {overallStats ? overallStats.totalLectures : "--"}{" "}
+                    classes
                   </span>
                 </div>
                 <div className="text-[#1F1D1D] text-[12px] leading-[18px]">
-                  86.0% of total classes
+                  {overallStats
+                    ? `${overallStats.attendancePercentage.toFixed(
+                        1
+                      )}% of total classes`
+                    : ""}
                 </div>
               </div>
             </div>
@@ -155,14 +210,19 @@ const AttendanceTable = () => {
               <div className="flex flex-col gap-[4px] mt-4">
                 <div className="flex gap-[8px] items-baseline">
                   <span className="text-[#EF4444] font-bold text-[24px] leading-[36px]">
-                    44
+                    {overallStats ? overallStats.missedLectures : "--"}
                   </span>
                   <span className="text-[#1F1D1D] text-[14px] leading-[20px]">
-                    of 265 classes
+                    of {overallStats ? overallStats.totalLectures : "--"}{" "}
+                    classes{" "}
                   </span>
                 </div>
                 <div className="text-[#1F1D1D] text-[12px] leading-[18px]">
-                  14.0% of total classes
+                  {overallStats
+                    ? `${(100 - overallStats.attendancePercentage).toFixed(
+                        1
+                      )}% of total classes`
+                    : ""}
                 </div>
               </div>
             </div>
@@ -194,42 +254,48 @@ const AttendanceTable = () => {
                 </tr>
               </thead>
               <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px] ">
-                {attendanceData.map((item, index) => {
-                  const statusColor =
-                    item.status === "Outstanding"
-                      ? "text-[#10B981]"
-                      : item.status === "Satisfactory"
-                      ? "text-[#04203E]"
-                      : item.status === "Poor"
-                      ? "text-[#F97316]"
-                      : "text-[#EF4444]";
+                {subjectAttendance.length > 0 ? (
+                  subjectAttendance.map((item, index) => {
+                    const statusColor =
+                      item.status === "Outstanding"
+                        ? "text-[#10B981]"
+                        : item.status === "Satisfactory"
+                        ? "text-[#04203E]"
+                        : item.status === "Poor"
+                        ? "text-[#F97316]"
+                        : "text-[#EF4444]";
 
-                  return (
-                    <tr
-                      key={index}
-                      style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
-                      className="px-[12px] rounded-[12px] py-[24px] align-middle"
-                    >
-                      <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
-                        {item.subject}
-                      </td>
-                      <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
-                        {item.attended} / {item.total}
-                      </td>
-                      <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
-                        {item.missed}
-                      </td>
-                      <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
-                        {item.attendance}%
-                      </td>
-                      <td
-                        className={`py-3 text-[11px] sm:text-[14px] font-[Inter] font-medium ${statusColor}`}
+                    return (
+                      <tr
+                        key={index}
+                        style={{ boxShadow: "0px 4px 8px 0px #0000001F" }}
+                        className="px-[12px] rounded-[12px] py-[24px] align-middle"
                       >
-                        {item.status}
-                      </td>
-                    </tr>
-                  );
-                })}
+                        <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle ">
+                          {item.subject}
+                        </td>
+                        <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                          {item.attended} / {item.total}
+                        </td>
+                        <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                          {item.missed}
+                        </td>
+                        <td className="py-3 px-4 font-normal text-[#1F1D1D] font-[Inter] text-left text-[14px] align-middle">
+                          {item.attendance}%
+                        </td>
+                        <td
+                          className={`py-3 text-[11px] sm:text-[14px] font-[Inter] font-medium ${statusColor}`}
+                        >
+                          {item.status}
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan="5">Loading...</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
