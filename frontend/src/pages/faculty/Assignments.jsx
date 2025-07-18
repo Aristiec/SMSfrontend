@@ -54,7 +54,7 @@ const Assignments = () => {
   return (
     <section className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col">
-        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
+        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full  h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather] leading-7 tracking-normal">
             Assignments
           </h1>
