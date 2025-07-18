@@ -209,3 +209,6 @@ export const fetchAttendanceStats = (studentId) =>
 
 export const fetchSubjectwiseAttendance = (studentId) =>
   api.get(`/attendance/subjectwise?studentId=${studentId}`);
+
+export const getSupportTicketsByStudentId = (studentId) =>
+  api.get(`/student-support/student/${studentId}`);
