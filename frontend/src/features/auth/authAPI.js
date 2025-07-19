@@ -52,9 +52,12 @@ export const submitAssignmentOnline = async (
   studentId,
   answer
 ) => {
-  const response = await api.post(
+  if (!studentId) throw new Error("Student ID is missing");
+  return await api.post(
     `/submission/submit-online`,
-    {}, // empty JSON body if your backend does not use it
+    {
+      file: "string",
+    },
     {
       params: {
         assignmentId,
@@ -63,5 +66,28 @@ export const submitAssignmentOnline = async (
       },
     }
   );
+};
+
+export const fetchExams = async () => {
+  const response = await api.get(`/exams/get`);
+  return response.data;
+};
+
+export const fetchLibrarySummary = async (studentId) => {
+  const response = await api.get(
+    `/library/borrow/student/${studentId}/library-summary`
+  );
+  return response.data;
+};
+
+export const fetchIssuedBooks = async (studentId) => {
+  const response = await api.get(`/library/borrow/student/${studentId}/issued`);
+  return response.data;
+};
+
+export const searchBooks = async (keyword) => {
+  const response = await api.get(`/library/books/search`, {
+    params: { keyword },
+  });
   return response.data;
 };
