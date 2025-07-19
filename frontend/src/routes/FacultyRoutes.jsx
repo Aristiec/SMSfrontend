@@ -10,6 +10,7 @@ import MyCourses from "../pages/faculty/MyCourses";
 import Report from "../pages/faculty/Report";
 import Students from "../pages/faculty/Students";
 import CreateAssignmentForm from "../components/faculty/CreateAssignment";
+import AssignmentDetail from "../pages/faculty/AssignmentDetail";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
@@ -23,6 +24,7 @@ const FacultyRoutes = () => (
       <Route path="report" element={<Report />} />
       <Route path="students" element={<Students />} />
       <Route path="assignments/create" element={<CreateAssignmentForm />} />
+      <Route path="assignments/detail" element={<AssignmentDetail />} />
     </Route>
   </>
 );
