@@ -212,3 +212,10 @@ export const fetchSubjectwiseAttendance = (studentId) =>
 
 export const getSupportTicketsByStudentId = (studentId) =>
   api.get(`/student-support/student/${studentId}`);
+
+export const fetchTransportAssignment = (studentCode, token) =>
+  api.get(`/transport/assignments/student/${studentCode}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
