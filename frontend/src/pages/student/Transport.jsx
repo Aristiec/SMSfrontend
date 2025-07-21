@@ -12,7 +12,10 @@ import {
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa";
-import { fetchTransportAssignment } from "../../features/auth/authAPI";
+import {
+  fetchTransportAssignment,
+  fetchDriverByVehicle,
+} from "../../features/auth/authAPI";
 const busRouteStops = [
   {
     stopName: "Laxmi Nagar Metro Station",
@@ -126,6 +129,7 @@ const Transport = () => {
   const [showMap, setShowMap] = React.useState(false);
   const [busRouteStops, setBusRouteStops] = useState([]);
   const [routeDetails, setRouteDetails] = useState(null);
+  const [driverInfo, setDriverInfo] = useState(null);
   const navigate = useNavigate();
   const handleOverlayClick = (e) => {
     if (e.target.id === "overlay") {
@@ -149,7 +153,7 @@ const Transport = () => {
       fetchTransportAssignment(studentCode, token)
         .then((res) => {
           console.log("API response:", res);
-          const data = res.data[0]; // assuming 1 assignment
+          const data = res.data[0];
           setRouteDetails(data);
           const stops = data.allRouteStoppages.map((stop) => ({
             stopName: stop.name,
@@ -158,11 +162,19 @@ const Transport = () => {
             time: stop.arrivalTime,
             isCurrentStop: stop.dropOff,
           }));
-          console.log("stops:", stops);
           setBusRouteStops(stops);
+
+          // 🚩 NEW: Get vehicleId and fetch driver
+          const vehicleId = data.vehicle.id; // or data.vehicleId
+          console.log("Vehicle ID:", vehicleId);
+          return fetchDriverByVehicle(vehicleId, token);
+        })
+        .then((res) => {
+          console.log("Driver Info:", res);
+          setDriverInfo(res.data[0]); // assuming API returns array
         })
         .catch((err) => {
-          console.error("Error fetching transport assignment:", err);
+          console.error("Error fetching:", err);
         });
     } else {
       console.log("studentCode or token missing — API not called.");
@@ -258,12 +270,12 @@ const Transport = () => {
                     </div>
 
                     <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-medium">
-                      Michael Johnson
+                      {driverInfo?.name || "Loading..."}
                     </div>
                     <div className="flex items-center gap-[8px]">
                       <Phone className="w-[16px] h-[16px] " />
                       <div className="text-[12px] leading-[18px] text-[#1F1D1D] font-[Inter] font-[400]">
-                        555-123-4567
+                        {driverInfo?.contact || "-"}
                       </div>
                     </div>
                   </div>
