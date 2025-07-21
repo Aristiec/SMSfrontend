@@ -8,6 +8,7 @@ import {
   CircleAlert,
   Clock,
 } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
 const assignmentData = [
@@ -129,7 +130,14 @@ const Assignments = () => {
                     </p>
                   </div>
                   <div className="flex gap-3 items-center  ">
-                    <button className="flex py-2 px-3 gap-3 rounded-[8px] border items-center border-[#04203E] ">
+                    <button
+                      onClick={() =>
+                        navigate("detail", {
+                          state: { assignment },
+                        })
+                      }
+                      className="flex py-2 px-3 gap-3 rounded-[8px] border items-center border-[#04203E] "
+                    >
                       <Eye size={16} color="#04203E" />
                       <p className=" flex font-[400] text-[14px] leading-6 tracking-normal text-[#04203E] items-center">
                         View Details

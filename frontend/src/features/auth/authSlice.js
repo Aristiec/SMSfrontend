@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk(
 
       // Get student profile by email
       const profileResponse = await fetchProfileByEmail(email, token);
-      const { id, course } = profileResponse.data;
+      const { id, course, studentCode } = profileResponse.data;
       const courseId = course?.id;
       const sem = profileResponse.data.sem || 1;
 
@@ -24,6 +24,7 @@ export const loginUser = createAsyncThunk(
         studentId: id,
         courseId,
         sem,
+        studentCode,
       };
 
       localStorage.setItem("user", JSON.stringify(user));
@@ -32,6 +33,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("studentId", id);
       localStorage.setItem("courseId", courseId);
       localStorage.setItem("sem", sem);
+      localStorage.setItem("studentCode", studentCode);
 
       return user;
     } catch (err) {
@@ -58,6 +60,7 @@ const authSlice = createSlice({
       localStorage.removeItem("studentId");
       localStorage.removeItem("courseId");
       localStorage.removeItem("sem");
+      localStorage.removeItem("studentCode");
     },
   },
   extraReducers: (builder) => {

@@ -1,12 +1,18 @@
-import React from "react";
-import { Map, MapPin, Clock, Bus, Calendar, User, Phone, Bell } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import {
+  Map,
+  MapPin,
+  Clock,
+  Bus,
+  Calendar,
+  User,
+  Phone,
+  Bell,
+} from "lucide-react";
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import {
-  
-  FaRegClock,
-} from "react-icons/fa";
-
+import { FaRegClock } from "react-icons/fa";
+import { fetchTransportAssignment } from "../../features/auth/authAPI";
 const busRouteStops = [
   {
     stopName: "Laxmi Nagar Metro Station",
@@ -118,13 +124,50 @@ const updates = [
 ];
 const Transport = () => {
   const [showMap, setShowMap] = React.useState(false);
-
+  const [busRouteStops, setBusRouteStops] = useState([]);
+  const [routeDetails, setRouteDetails] = useState(null);
   const navigate = useNavigate();
   const handleOverlayClick = (e) => {
     if (e.target.id === "overlay") {
       setShowMap(false);
     }
   };
+  useEffect(() => {
+    if (!localStorage.getItem("studentCode")) {
+      localStorage.setItem("studentCode", "BTECH2025001");
+    }
+    if (!localStorage.getItem("token")) {
+      localStorage.setItem("token", "FAKE_TOKEN");
+    }
+    const studentCode = localStorage.getItem("studentCode");
+    const token = localStorage.getItem("token");
+
+    console.log("studentCode:", studentCode);
+    console.log("token:", token);
+
+    if (studentCode && token) {
+      fetchTransportAssignment(studentCode, token)
+        .then((res) => {
+          console.log("API response:", res);
+          const data = res.data[0]; // assuming 1 assignment
+          setRouteDetails(data);
+          const stops = data.allRouteStoppages.map((stop) => ({
+            stopName: stop.name,
+            distance: `${stop.distance} km`,
+            duration: stop.duration,
+            time: stop.arrivalTime,
+            isCurrentStop: stop.dropOff,
+          }));
+          console.log("stops:", stops);
+          setBusRouteStops(stops);
+        })
+        .catch((err) => {
+          console.error("Error fetching transport assignment:", err);
+        });
+    } else {
+      console.log("studentCode or token missing — API not called.");
+    }
+  }, []);
 
   return (
     <div className="mx-auto flex flex-col bg-[#E9EEF4] font-[Inter] min-h-screen">
@@ -198,7 +241,7 @@ const Transport = () => {
                     </div>
 
                     <div className="flex items-center gap-[8px]">
-                      <Calendar  className="w-[15px] h-[18px] " />
+                      <Calendar className="w-[15px] h-[18px] " />
                       <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-[Inter]">
                         Monday - Friday
                       </div>
@@ -208,7 +251,7 @@ const Transport = () => {
                   <div className="w-full bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
                     {/* Header */}
                     <div className="flex items-center gap-[8px]">
-                      <User  className="w-[16px] h-[20px] text-[#1F1D1D]" />
+                      <User className="w-[16px] h-[20px] text-[#1F1D1D]" />
                       <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
                         Driver Information
                       </div>
