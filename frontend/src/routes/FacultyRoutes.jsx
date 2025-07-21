@@ -10,8 +10,8 @@ import MyCourses from "../pages/faculty/MyCourses";
 import Report from "../pages/faculty/Report";
 import Students from "../pages/faculty/Students";
 import CreateAssignmentForm from "../components/faculty/CreateAssignment";
-import AssignmentReviewPage from "../pages/faculty/AssignmentReviewPage";
-import AssignmentDetail from "../pages/faculty/AssignmentDetail";
+import AssignmentReviewPage from "../components/faculty/AssignmentReviewPage";
+import AssignmentDetail from "../components/faculty/AssignmentDetail";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>

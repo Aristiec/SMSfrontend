@@ -11,9 +11,9 @@ import {
   File,
   Download,
   Eye,
-  ChevronUp
+  ChevronUp,
 } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useReducedMotion } from "framer-motion";
 
 const submissions = [
@@ -83,6 +83,8 @@ const AssignmentDetail = () => {
   const tabs = ["All", "Submitted", "Pending", "Overdue"];
   const contentRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
   const getStatusBadge = (status) => {
     if (status === "Submitted") return "bg-[#ECFDF7] text-[#10B981]";
     if (status === "Pending") return "bg-[#FFF4ED] text-[#F97316]";
@@ -90,24 +92,23 @@ const AssignmentDetail = () => {
   };
 
   const filterSubmissions = (status) => {
-  let result = submissions;
+    let result = submissions;
 
-  if (status !== "All") {
-    result = result.filter((submission) => submission.status === status);
-  }
+    if (status !== "All") {
+      result = result.filter((submission) => submission.status === status);
+    }
 
-  if (searchQuery.trim() !== "") {
-    const query = searchQuery.toLowerCase();
-    result = result.filter(
-      (submission) =>
-        submission.name.toLowerCase().includes(query) ||
-        submission.id.toLowerCase().includes(query)
-    );
-  }
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (submission) =>
+          submission.name.toLowerCase().includes(query) ||
+          submission.id.toLowerCase().includes(query)
+      );
+    }
 
-  return result;
-};
-
+    return result;
+  };
 
   const [activeTab, setactiveTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -131,7 +132,10 @@ const AssignmentDetail = () => {
         </header>
       </div>
       <div className="flex flex-col p-6 gap-6 rounded-[12px]  bg-[#FAFCFD]">
-        <button className="flex gap-2 items-center">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex gap-2 items-center"
+        >
           <ArrowLeft size={16} strokeWidth={2} color="#04203E" />
           <p className="font-[400] text-[14px] leading-6 tracking-normal items-center justify-center text-[#04203E]">
             Back
@@ -158,7 +162,10 @@ const AssignmentDetail = () => {
                   </p>
                 </div>
                 <div className="flex items-start justify-center">
-                  <button className="flex gap-2 rounded-[8px] py-2 px-3 border border-[#04203E] items-center justify-center">
+                  <button
+                    onClick={() => navigate("/faculty/assignments/create")}
+                    className="flex gap-2 rounded-[8px] py-2 px-3 border border-[#04203E] items-center justify-center"
+                  >
                     <Pencil size={13} color="#04203E" />
                     <p className="font-[400] text-[14px] leading-6 tracking-normal flex items-center justify-center text-[#04203E]">
                       Edit
@@ -306,7 +313,11 @@ const AssignmentDetail = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex gap-2 rounded-[8px] items-center "
               >
-                {isOpen ? <ChevronUp size={16} color="#04203E" /> : <ChevronDown size={16} color="#04203E" />}
+                {isOpen ? (
+                  <ChevronUp size={16} color="#04203E" />
+                ) : (
+                  <ChevronDown size={16} color="#04203E" />
+                )}
                 <p className="font-[400] text-[14px] leading-6 tracking-normal flex items-center justify-between text-[#04203E]">
                   {isOpen ? "View less" : "View more"}
                 </p>
@@ -325,7 +336,7 @@ const AssignmentDetail = () => {
                 {tabs.map((tab, index) => (
                   <div key={index} className="flex gap-3 rounded-lg   ">
                     <button
-                    onClick={() => setactiveTab(tab)}
+                      onClick={() => setactiveTab(tab)}
                       className={`flex gap-3 rounded-[8px]  py-2 px-3 gap border border-[#1F1D1D] font-[400] text-[14px] leading-6 tracking-normal items-center justify-center ${
                         activeTab === tab
                           ? "text-[#FAFCFD] bg-[#04203E]"
@@ -447,7 +458,13 @@ const AssignmentDetail = () => {
                     <td>
                       <div className="flex gap-2">
                         <Download size={20} color="#717171" />
-                        <Eye size={20} color="#04203E" />
+                        <Eye
+                          onClick={() =>
+                            navigate("/faculty/assignments/review")
+                          }
+                          size={20}
+                          color="#04203E"
+                        />
                       </div>
                     </td>
                   </tr>
