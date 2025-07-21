@@ -460,10 +460,16 @@ const AssignmentDetail = () => {
                         <Download size={20} color="#717171" />
                         <Eye
                           onClick={() =>
-                            navigate("/faculty/assignments/review")
+                            navigate("/faculty/assignments/review", {
+                              state: { 
+                                submission: submission,
+                                assignment: assignment 
+                              }
+                            })
                           }
                           size={20}
                           color="#04203E"
+                          className="cursor-pointer"
                         />
                       </div>
                     </td>

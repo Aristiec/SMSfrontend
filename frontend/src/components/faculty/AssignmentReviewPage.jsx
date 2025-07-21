@@ -9,11 +9,42 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import frame from "../../assets/Frame.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AssignmentReviewPage() {
   const [value, setValue] = useState("");
+  const [grade, setGrade] = useState("");
+  const [feedback, setFeedback] = useState("");
   const navigate = useNavigate();
+  const { state } = useLocation();
+  
+  const { submission, assignment } = state || {};
+
+  // If no data is passed, show default/placeholder data
+  const assignmentData = assignment || {
+    title: "Database Design Project",
+    subject: "Computer Science",
+    dueDate: "Jul 22, 2024",
+    dueTime: "09:15 PM",
+    maxMarks: "50"
+  };
+
+  const submissionData = submission || {
+    name: "Asha Singh",
+    id: "18UBD3020",
+    status: "Submitted",
+    date: "Feb 3, 2024",
+    time: "10:23 AM",
+    file: "macbeth_analysis_asha.pdf",
+    size: "2.4 MB"
+  };
+
+  const getStatusColor = (status) => {
+    if (status === "Submitted") return "#10B981";
+    if (status === "Pending") return "#F97316";
+    if (status === "Overdue") return "#EF4444";
+    return "#717171";
+  };
   return (
     <section className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       {/* Header */}
@@ -61,7 +92,7 @@ export default function AssignmentReviewPage() {
                     Title
                   </p>
                   <p className="font-medium text-[16px] leading-6 tracking-normal text-[#1F1D1D]">
-                    Database Design Project
+                    {assignmentData?.title}
                   </p>
                 </div>
 
@@ -70,7 +101,7 @@ export default function AssignmentReviewPage() {
                     Course
                   </p>
                   <p className="font-[400] text-[14px] leading-5 tracking-normal text-[#1F1D1D]">
-                    Computer Science
+                    {assignmentData?.subject}
                   </p>
                 </div>
 
@@ -81,7 +112,7 @@ export default function AssignmentReviewPage() {
                   <div className="flex items-center gap-2">
                     <Calendar size={16} color="#717171" />
                     <p className="font-[400] text-[12px] leading-5 tracking-normal text-[#1F1D1D]">
-                      Jul 22, 2024, 09:15 PM
+                      {assignmentData?.dueDate}, {assignmentData?.dueTime}
                     </p>
                   </div>
                 </div>
@@ -91,7 +122,7 @@ export default function AssignmentReviewPage() {
                     Max Marks
                   </p>
                   <p className="font-[400] text-[14px] leading-5 tracking-normal text-[#1F1D1D]">
-                    50
+                    {assignmentData?.maxMarks}
                   </p>
                 </div>
               </div>
@@ -107,15 +138,15 @@ export default function AssignmentReviewPage() {
                 <div className="flex items-center gap-3">
                   <div className="size-8 rounded-full bg-[#E9EEF4] flex items-center justify-center">
                     <span className="font-[500] text-[14px] text-[#04203E]">
-                      A
+                      {submissionData?.name?.charAt(0) || "A"}
                     </span>
                   </div>
                   <div className="flex flex-col gap-1">
                     <p className="font-medium text-[16px] leading-6 tracking-normal text-[#1F1D1D]">
-                      Asha Singh
+                      {submissionData?.name}
                     </p>
                     <p className="font-[400] text-[12px] leading-4 tracking-normal text-[#717171]">
-                      18UBD3020
+                      {submissionData?.id}
                     </p>
                   </div>
                 </div>
@@ -125,9 +156,9 @@ export default function AssignmentReviewPage() {
                     Status
                   </p>
                   <div className="flex items-center gap-2">
-                    <CheckCircle size={16} color="#10B981" />
-                    <p className="font-[400] text-[12px] leading-5 tracking-normal text-[#10B981]">
-                      Submitted
+                    <CheckCircle size={16} color={getStatusColor(submissionData?.status)} />
+                    <p className="font-[400] text-[12px] leading-5 tracking-normal" style={{color: getStatusColor(submissionData?.status)}}>
+                      {submissionData?.status}
                     </p>
                   </div>
                 </div>
@@ -139,7 +170,7 @@ export default function AssignmentReviewPage() {
                   <div className="flex items-center gap-2">
                     <Clock size={12} color="#717171" />
                     <p className="font-[400] text-[12px] leading-5 tracking-normal text-[#1F1D1D]">
-                      Feb 3, 2024, 10:23 AM
+                      {submissionData?.date !== "-" ? `${submissionData?.date}, ${submissionData?.time}` : "-"}
                     </p>
                   </div>
                 </div>
@@ -159,10 +190,10 @@ export default function AssignmentReviewPage() {
               <File size={20} color="#0077FF" />
               <div className="flex flex-col gap-1">
                 <p className="font-medium text-[16px] leading-6 tracking-normal text-[#1F1D1D]">
-                  macbeth_analysis_asha.pdf
+                  {submissionData?.file || "macbeth_analysis_asha.pdf"}
                 </p>
                 <p className="font-[400] text-[12px] leading-4 tracking-normal text-[#717171]">
-                  2.4 MB
+                  {submissionData?.size || "2.4 MB"}
                 </p>
               </div>
             </div>
@@ -203,14 +234,16 @@ export default function AssignmentReviewPage() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="font-[400] text-[12px] leading-4 tracking-normal text-[#717171]">
-                Grade (out of 50)
+                Grade (out of {assignmentData?.maxMarks})
               </label>
               <input
                 type="number"
-                placeholder="Enter grade (0-50)"
+                placeholder={`Enter grade (0-${assignmentData?.maxMarks})`}
                 className="bg-[#FAFCFD] rounded-[8px] py-2 px-3 border border-[#717171] font-[400] text-[14px] leading-5 tracking-normal text-[#1F1D1D] outline-none focus:border-[#04203E] transition-all duration-300"
                 min="0"
-                max="50"
+                max={assignmentData?.maxMarks}
+                value={grade}
+                onChange={(e) => setGrade(e.target.value)}
               />
             </div>
 
@@ -222,6 +255,8 @@ export default function AssignmentReviewPage() {
                 placeholder="Enter feedback for the student"
                 rows={6}
                 className="bg-[#FAFCFD] rounded-[8px] py-2 px-3 border border-[#717171] font-[400] text-[14px] leading-5 tracking-normal text-[#1F1D1D] outline-none focus:border-[#04203E] transition-all duration-300 resize-vertical"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
               ></textarea>
             </div>
 
