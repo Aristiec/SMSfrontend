@@ -226,3 +226,13 @@ export const fetchDriverByVehicle = (vehicleId, token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const fetchTransportNotifications = (routeId, vehicleId, token) =>
+  api.get(
+    `/transport-notifications/by-route-vehicle?routeId=${routeId}&vehicleId=${vehicleId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
