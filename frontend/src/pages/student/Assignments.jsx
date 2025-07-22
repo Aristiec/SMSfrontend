@@ -100,7 +100,7 @@ const Assignments = () => {
   const handleMarkAsCompleted = async (assignment) => {
     try {
       await fetch(
-        "https://ebaf0b43591f.ngrok-free.app/api/v1/submission/submit-offline",
+        "https://39bd5ed85d57.ngrok-free.app/api/v1/submission/submit-offline",
         {
           method: "POST",
           headers: {
