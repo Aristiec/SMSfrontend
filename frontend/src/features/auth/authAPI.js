@@ -219,3 +219,20 @@ export const fetchTransportAssignment = (studentCode, token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const fetchDriverByVehicle = (vehicleId, token) =>
+  api.get(`/transport/drivers/vehicle/${vehicleId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const fetchTransportNotifications = (routeId, vehicleId, token) =>
+  api.get(
+    `/transport-notifications/by-route-vehicle?routeId=${routeId}&vehicleId=${vehicleId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
