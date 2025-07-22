@@ -24,9 +24,8 @@ const Header = () => {
           </span>
         </div>
 
-        {/* Right Side */}
+        {/* Right Side 
         <div className="flex items-center">
-          {/* Grades */}
           <div className="flex items-center gap-[12px] px-4 py-3">
             <FaClipboardCheck className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
@@ -34,7 +33,6 @@ const Header = () => {
             </span>
           </div>
 
-          {/* Query */}
           <div className="flex items-center gap-[12px] px-4 py-3">
             <MdHelpOutline className="w-[16px] h-[16px]" />
             <span className="text-[16px] font-[400] leading-[20px] font-[Inter]">
@@ -42,7 +40,6 @@ const Header = () => {
             </span>
           </div>
 
-          {/* Profile */}
           <div className="flex items-center gap-[12px] pl-4">
             <img
               src={profilePic}
@@ -53,7 +50,9 @@ const Header = () => {
               Profile
             </span>
           </div>
+        
         </div>
+        */}
       </div>
     </header>
   );

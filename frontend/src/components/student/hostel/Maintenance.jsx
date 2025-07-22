@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropdown from "../../utils/Dropdown.jsx";
 import { FileUp } from "lucide-react";
+import {
+  submitMaintenanceRequest,
+  fetchPreviousMaintenanceRequests,
+} from "../../../features/auth/authAPI";
+import { useSelector } from "react-redux";
 
 const maintenanceData = [
   {
@@ -48,6 +53,60 @@ const Maintenance = () => {
     Rejected: "bg-red-100 text-red-700",
   };
   const [selectedOption, setSelectedOption] = useState(null);
+  const [description, setDescription] = useState("");
+  const [requests, setRequests] = useState([]);
+  const user = useSelector((state) => state.auth.user);
+  const studentId = user?.studentId;
+  const token = user?.token;
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        if (!studentId) return;
+        const response = await fetchPreviousMaintenanceRequests(
+          studentId,
+          token
+        );
+        console.log("Fetched requests:", response.data);
+        setRequests(response.data);
+      } catch (err) {
+        console.error("Failed to fetch previous maintenance requests:", err);
+      }
+    };
+    fetchRequests();
+  }, [studentId, token]);
+
+  const handleSubmit = async () => {
+    try {
+      if (!selectedOption || !description) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      await submitMaintenanceRequest(
+        studentId,
+        {
+          category: selectedOption.toUpperCase(),
+          description: description,
+        },
+        token
+      );
+
+      alert("Maintenance request submitted successfully.");
+
+      // ✅ Clear the form
+      setSelectedOption(null);
+      setDescription("");
+
+      // ✅ Re-fetch the latest requests to update the list
+      const response = await fetchPreviousMaintenanceRequests(studentId, token);
+      setRequests(response.data);
+    } catch (error) {
+      console.error("Error submitting request:", error);
+      alert("Failed to submit request");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-6 ">
       <div className="flex gap-10 ">
@@ -62,7 +121,7 @@ const Maintenance = () => {
             <div className="flex juctify-between">
               <div className="flex flex-col gap-2 w-full">
                 <label
-                  for="category"
+                  htmlFor="category"
                   className="font-[Inter] font-medium text-[12px] leading-5 tracking-normal text-[#1F1D1D] flex items-center"
                 >
                   Category
@@ -85,6 +144,8 @@ const Maintenance = () => {
               </p>
               <textarea
                 rows={6}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className="resize-none  rounded-[8px] border-[0.8px] py-3 px-3 gap-2 bg-[#F4F7FA] border-[#717171] font-[Inter] font-[400] text-[16px] leading-4 tracking-normal text-[#717171]"
                 placeholder="Please provide details about your request"
               />
@@ -92,7 +153,10 @@ const Maintenance = () => {
           </div>
 
           <div className="flex items-center justify-end">
-            <button className="bg-[#04203E] flex gap-2 px-3 py-2 rounded-[8px]  rounded-2 ">
+            <button
+              onClick={handleSubmit}
+              className="bg-[#04203E] flex gap-2 px-3 py-2 rounded-[8px]  rounded-2 "
+            >
               <FileUp size={18} color="#FAFCFD" />
               <p className="text-[#FAFCFD] font-[Inter] font-[400] text-[14px] leading-6 tracking-normal">
                 Submit Request
@@ -164,13 +228,13 @@ const Maintenance = () => {
           </div>
 
           {/* Body */}
-          {maintenanceData.map((item, index) => (
+          {requests.map((item) => (
             <div
-              key={index}
+              key={item.requestId}
               className="grid grid-cols-5 items-center px-4 py-4 border-b border-[#E0E0E0] text-[14px] text-[#1F1D1D]"
             >
-              <p>{item.id}</p>
-              <p>{item.date}</p>
+              <p>{item.requestId}</p>
+              <p>{item.requestDate}</p>
               <p>{item.category}</p>
               <p className="truncate max-w-[180px]">{item.description}</p>
               <p className="text-right">
