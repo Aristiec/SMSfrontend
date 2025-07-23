@@ -1,12 +1,22 @@
-import React from "react";
-import { Map, MapPin, Clock, Bus, Calendar, User, Phone, Bell } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import {
+  Map,
+  MapPin,
+  Clock,
+  Bus,
+  Calendar,
+  User,
+  Phone,
+  Bell,
+} from "lucide-react";
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { FaRegClock } from "react-icons/fa";
 import {
-  
-  FaRegClock,
-} from "react-icons/fa";
-
+  fetchTransportAssignment,
+  fetchDriverByVehicle,
+  fetchTransportNotifications,
+} from "../../features/auth/authAPI";
 const busRouteStops = [
   {
     stopName: "Laxmi Nagar Metro Station",
@@ -118,13 +128,75 @@ const updates = [
 ];
 const Transport = () => {
   const [showMap, setShowMap] = React.useState(false);
-
+  const [busRouteStops, setBusRouteStops] = useState([]);
+  const [routeDetails, setRouteDetails] = useState(null);
+  const [driverInfo, setDriverInfo] = useState(null);
+  const [updates, setUpdates] = useState([]);
   const navigate = useNavigate();
   const handleOverlayClick = (e) => {
     if (e.target.id === "overlay") {
       setShowMap(false);
     }
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("studentCode")) {
+      localStorage.setItem("studentCode", "BTECH2025001");
+    }
+    if (!localStorage.getItem("token")) {
+      localStorage.setItem("token", "FAKE_TOKEN");
+    }
+    const studentCode = localStorage.getItem("studentCode");
+    const token = localStorage.getItem("token");
+
+    if (studentCode && token) {
+      fetchTransportAssignment(studentCode, token)
+        .then((res) => {
+          const data = res.data[0];
+          setRouteDetails(data);
+
+          const stops = data.allRouteStoppages.map((stop) => ({
+            stopName: stop.name,
+            distance: `${stop.distance} km`,
+            duration: stop.duration,
+            time: stop.arrivalTime,
+            isCurrentStop: stop.dropOff,
+          }));
+          setBusRouteStops(stops);
+
+          const vehicleId = data.vehicle.id;
+          const routeId = data.route.id;
+
+          return Promise.all([
+            fetchDriverByVehicle(vehicleId, token),
+            fetchTransportNotifications(routeId, vehicleId, token),
+          ]);
+        })
+        .then(([driverRes, notificationsRes]) => {
+          const driver = driverRes.data[0];
+          const notifications = notificationsRes.data;
+
+          setDriverInfo(driver);
+          setUpdates(
+            notifications.map((item) => ({
+              title: item.title,
+              description: item.description,
+              time: new Date(item.createdAt).toLocaleString(),
+              bg: "#F4F7FA",
+              iconColor: "#1F1D1D",
+            }))
+          );
+        })
+
+        .catch((err) => {
+          console.error("Error fetching transport data:", err);
+        });
+    }
+  }, []);
+
+  const pickupTime = busRouteStops.length > 0 ? busRouteStops[0].time : "-";
+  const returnStop = busRouteStops.find((stop) => stop.isCurrentStop);
+  const returnTime = returnStop ? returnStop.time : "-";
 
   return (
     <div className="mx-auto flex flex-col bg-[#E9EEF4] font-[Inter] min-h-screen">
@@ -158,11 +230,13 @@ const Transport = () => {
                       <Bus className="w-[20px] h-[20px] border-[1.25px]rounded-[2px]" />
                     </div>
                     <div className=" h-[46px] flex flex-col gap-[4px] justify-center">
-                      <div className="text-[#1F1D1D] font-bold text-[16px] leading-[24px] Font-[Inter]">
-                        B205
+                      <div className="text-[#1F1D1D] font-bold text-[16px] leading-[24px] font-[Inter]">
+                        {routeDetails?.vehicle?.number || "Loading..."}
                       </div>
                       <div className="text-[#717171] font-normal text-[14px] leading-[18px]">
-                        East Delhi Circular
+                        {routeDetails?.route?.name
+                          ? `Route - ${routeDetails.route.name}`
+                          : "-"}
                       </div>
                     </div>
                   </div>
@@ -177,28 +251,28 @@ const Transport = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-[120px]">
-                      <div className="flex flex-col gap-[8px] w-[56px] font-[Inter]">
+                    <div className="flex justify-between flex-wrap gap-4">
+                      <div className="flex flex-col gap-[8px] min-w-[56px] font-[Inter]">
                         <div className="text-[12px] leading-[16px] text-[#717171] ">
                           Pickup
                         </div>
-                        <div className="text-[14px] leading-[18px] font-medium text-[#1F1D1D]">
-                          7:45 AM
+                        <div className="text-[12px] leading-[18px] font-medium text-[#1F1D1D]">
+                          {pickupTime}
                         </div>
                       </div>
 
-                      <div className="flex flex-col gap-[8px] w-[56px] font-[Inter]">
+                      <div className="flex flex-col gap-[8px] min-w-[56px] font-[Inter]">
                         <div className="text-[12px] leading-[16px] text-[#717171]">
                           Return
                         </div>
-                        <div className="text-[14px] leading-[18px] font-medium text-[#1F1D1D]">
-                          5:30 PM
+                        <div className="text-[12px] leading-[18px] font-medium text-[#1F1D1D]">
+                          {returnTime}
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-[8px]">
-                      <Calendar  className="w-[15px] h-[18px] " />
+                      <Calendar className="w-[15px] h-[18px] " />
                       <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-[Inter]">
                         Monday - Friday
                       </div>
@@ -208,19 +282,19 @@ const Transport = () => {
                   <div className="w-full bg-[#F4F7FA] rounded-[8px] p-[16px] flex flex-col gap-[16px]">
                     {/* Header */}
                     <div className="flex items-center gap-[8px]">
-                      <User  className="w-[16px] h-[20px] text-[#1F1D1D]" />
+                      <User className="w-[16px] h-[20px] text-[#1F1D1D]" />
                       <div className="font-semibold text-[16px] leading-[24px] text-[#1F1D1D] font-[Inter]">
                         Driver Information
                       </div>
                     </div>
 
                     <div className="text-[14px] leading-[18px] text-[#1F1D1D] font-medium">
-                      Michael Johnson
+                      {driverInfo?.name || "Loading..."}
                     </div>
                     <div className="flex items-center gap-[8px]">
                       <Phone className="w-[16px] h-[16px] " />
                       <div className="text-[12px] leading-[18px] text-[#1F1D1D] font-[Inter] font-[400]">
-                        555-123-4567
+                        {driverInfo?.contact || "-"}
                       </div>
                     </div>
                   </div>
@@ -325,10 +399,10 @@ const Transport = () => {
 
               {/* Cards */}
               <div className=" flex flex-col gap-[24px]">
-                {updates.map((item) => (
+                {updates.map((item, index) => (
                   <div
-                    key={item.id}
-                    className={` rounded-[8px] p-[12px] flex flex-col gap-[16px]`}
+                    key={index}
+                    className="rounded-[8px] p-[12px] flex flex-col gap-[16px]"
                     style={{ backgroundColor: item.bg }}
                   >
                     <div className="flex items-center gap-[12px] ">

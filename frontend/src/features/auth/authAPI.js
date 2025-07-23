@@ -212,3 +212,27 @@ export const fetchSubjectwiseAttendance = (studentId) =>
 
 export const getSupportTicketsByStudentId = (studentId) =>
   api.get(`/student-support/student/${studentId}`);
+
+export const fetchTransportAssignment = (studentCode, token) =>
+  api.get(`/transport/assignments/student/${studentCode}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const fetchDriverByVehicle = (vehicleId, token) =>
+  api.get(`/transport/drivers/vehicle/${vehicleId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const fetchTransportNotifications = (routeId, vehicleId, token) =>
+  api.get(
+    `/transport-notifications/by-route-vehicle?routeId=${routeId}&vehicleId=${vehicleId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
