@@ -219,7 +219,7 @@ const Profile = () => {
               Personal Details
             </div>
           </div>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[30px] bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {personalDetails.map((detail, idx) => (
               <div
                 key={idx}
@@ -242,14 +242,14 @@ const Profile = () => {
           {guardianSections?.map((details, idx) => (
             <div
               key={idx}
-              className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px]   rounded-b-[12px] bg-[#FAFCFD] p-5"
+              className="w-full grid grid-cols-1 md:grid-cols-2 gap-[30px]   rounded-b-[12px] bg-[#FAFCFD] p-5"
             >
               {details.map((detail, detailIdx) => (
                 <DetailCard key={detailIdx} {...detail} />
               ))}
               {/* Divider for multiple guardians */}
               {idx < guardianSections.length - 1 && (
-                <hr className="col-span-2 border-t border-[#04203E33] mt-3" />
+                <hr className="col-span-2 border-t-1 border-[#04203E3] mt-3" />
               )}
             </div>
           ))}
@@ -279,7 +279,7 @@ const Profile = () => {
 
           {/* academic details */}
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[24px]  bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[30px]  bg-[#FAFCFD]  rounded-b-[12px] p-5 mb-5">
             {academicDetails.map((detail, idx) => (
               <div key={idx}>
                 <DetailCard {...detail} />
