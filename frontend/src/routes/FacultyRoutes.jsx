@@ -12,6 +12,7 @@ import Students from "../pages/faculty/Students";
 import CreateAssignmentForm from "../components/faculty/CreateAssignment";
 import AssignmentReviewPage from "../components/faculty/AssignmentReviewPage";
 import AssignmentDetail from "../components/faculty/AssignmentDetail";
+import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
@@ -27,6 +28,7 @@ const FacultyRoutes = () => (
       <Route path="assignments/create" element={<CreateAssignmentForm />} />
       <Route path="assignments/review" element={<AssignmentReviewPage />} />
       <Route path="assignments/detail" element={<AssignmentDetail />} />
+       <Route path="offline" element={<OfflineExam />} />
     </Route>
   </>
 );
