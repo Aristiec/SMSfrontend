@@ -10,7 +10,7 @@ const StudentInfo = ({ student }) => {
     navigate("/student/offlineExam/admit");
   };
   return (
-    <div className="bg-[#FAFCFD] rounded-lg p-6 shadow-sm ">
+    <div className="bg-[#FAFCFD] w-full rounded-lg p-6 shadow-sm ">
       <div className="flex items-center space-x-4">
         <img
           src={profilePic}
@@ -78,28 +78,8 @@ const StudentInfo = ({ student }) => {
           </span>
         </div>
       </div>
-      <div className="mt-5">
-        <button
-          onClick={handleRedirect}
-          className="w-full flex items-center justify-center gap-2 bg-[#04203E] text-[#FAFCFD]  px-5 py-3 rounded-lg text-[14px] font-[Inter] hover:bg-[#031a32] transition-colors"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
-            />
-          </svg>
-          Download Admit Card
-        </button>
-      </div>
+      
+       
     </div>
   );
 };
