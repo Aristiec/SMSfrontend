@@ -236,3 +236,29 @@ export const fetchTransportNotifications = (routeId, vehicleId, token) =>
       },
     }
   );
+
+export const fetchExamNotificationsAPI = (courseId, semester, token) =>
+  api.get(`/exam-notifications/course/${courseId}/semester/${semester}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const fetchUpcomingExamsAPI = (
+  courseId,
+  subjectId,
+  startDate,
+  endDate,
+  token
+) =>
+  api.get(`/onlineexams/available`, {
+    params: {
+      courseId,
+      subjectId,
+      startDate,
+      endDate,
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
