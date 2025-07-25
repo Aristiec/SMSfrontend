@@ -10,30 +10,29 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
+const UpcomingExams = ({ exams, selectedType, onTypeChange, subjects }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState("All Subjects");
 
-  const examTypes = [
-    "Formative",
-    "Summative",
-    "Lab",
-    "Viva",
-    "Quiz",
-    "Backlog",
+  const subjectOptions = [
+    "Engineering Mathematics",
+    "Engineering Physics",
+    "Engineering Chemistry",
+    "Intro to Programming",
+    "Math",
   ];
-
-  const handleFilterChange = (examType) => {
-    setSelectedFilter((prev) => (prev === examType ? null : examType));
+  const handleSubjectChange = (subject) => {
+    setSelectedSubject(subject);
     setIsDropdownOpen(false);
   };
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3;
 
-  const filteredExams = selectedFilter
-    ? exams.filter((exam) => exam.type === selectedFilter)
-    : exams;
+  const filteredExams =
+    selectedSubject && selectedSubject !== "All Subjects"
+      ? exams.filter((exam) => exam.subject === selectedSubject)
+      : exams;
 
   const totalPages = Math.ceil(filteredExams.length / itemsPerPage);
 
@@ -42,30 +41,30 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
     currentPage * itemsPerPage + itemsPerPage
   );
 
-  const handelSetReminder= (exam) =>{
-      const title = encodeURIComponent("Exam Reminder: " + exam.title);
-  const startDate = new Date(exam.date);
-  const endDate = new Date(startDate.getTime() + exam.duration * 60000); 
+  const handelSetReminder = (exam) => {
+    const title = encodeURIComponent("Exam Reminder: " + exam.title);
+    const startDate = new Date(exam.date);
+    const endDate = new Date(startDate.getTime() + exam.duration * 60000);
 
-  const formatmyDate = (date) =>
-    date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const formatmyDate = (date) =>
+      date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
-  const start = formatmyDate(startDate);
-  const end = formatmyDate(endDate);
+    const start = formatmyDate(startDate);
+    const end = formatmyDate(endDate);
 
-  const details = encodeURIComponent(
-    `Subject: ${exam.subject}\nQuestions: ${exam.questions}\nType: ${exam.type}`
-  );
- 
+    const details = encodeURIComponent(
+      `Subject: ${exam.subject}\nQuestions: ${exam.questions}\nType: ${exam.type}`
+    );
+
     const path = window.location.pathname;
-   const location = encodeURIComponent(
-    path.includes("/offlineExam") ? "Offline" : "Online"
-  );
+    const location = encodeURIComponent(
+      path.includes("/offlineExam") ? "Offline" : "Online"
+    );
 
-  const calendarUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+    const calendarUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
 
-  window.open(calendarUrl, "_blank");
-  }
+    window.open(calendarUrl, "_blank");
+  };
 
   return (
     <div className="bg-[#FAFCFD] rounded-lg shadow-sm ">
@@ -97,11 +96,11 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
 
         <div className="relative ">
           <button
-            className="text-sm border border-[#1F1D1D] rounded-lg px-3 py-2 bg-[#FAFCFD] flex items-center space-x-2 min-w-[150px]"
+            className="text-sm border border-[#1F1D1D] rounded-lg px-3 py-2 bg-[#FAFCFD] flex items-center space-x-2 min-w-[180px]"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             <span className="font-[Inter] text-[#1F1D1D]">
-              {selectedFilter ? selectedFilter : "Select Exam Type"}
+              {selectedSubject}
             </span>
 
             <ChevronDown
@@ -114,19 +113,19 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
           {isDropdownOpen && (
             <div className="absolute top-full mt-1 right-0 bg-[#FAFCFD] border border-gray-200 rounded-lg shadow-lg z-10 w-full">
               <div className="p-2 space-y-1">
-                {examTypes.map((type) => {
-                  const isSelected = selectedFilter === type;
+                {subjectOptions.map((subject) => {
+                  const isSelected = selectedSubject === subject;
                   return (
                     <div
-                      key={type}
-                      onClick={() => handleFilterChange(type)}
+                      key={subject}
+                      onClick={() => handleSubjectChange(subject)}
                       className={`cursor-pointer px-3 py-2 text-sm rounded ${
                         isSelected
                           ? "bg-[#04203E] text-[#FAFCFD]"
                           : "text-[#1F1D1D]"
                       }`}
                     >
-                      {type}
+                      {subject}
                     </div>
                   );
                 })}
@@ -202,26 +201,27 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
                   </div>
 
                   <p className="text-[#1F1D1D] text-[14px] font-[Inter] font-medium mb-3">
-                    {exam.subject}
+                    {subjects[exam.subjectId] || "Loading..."}
                   </p>
 
                   <div className="space-y-2 text-sm text-[#717171] font-[Inter] font-normal mb-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Clock className="w-4 h-4" />
-                        <span className="">{exam.duration} minutes</span>
+                        <span className="">
+                          {exam.durationInMinutes} minutes
+                        </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <FileText className="w-4 h-4" />
-                        <span>{exam.questions} questions</span>
+                        <span>{exam.totalQuestions} questions</span>
                       </div>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <BookOpen className="w-4 h-4" />
-                        <span>{exam.type}</span>
+                        <span>{exam.totalMarks} marks</span>
                       </div>
-                      <span>{exam.marks} marks</span>
                     </div>
                   </div>
 
@@ -229,7 +229,7 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
                     <div className="flex items-center space-x-2 text-sm">
                       <Calendar className="w-4 h-4 text-[#1F1D1D]" />
                       <span className="text-[#1F1D1D] font-[Inter]">
-                        {exam.date}
+                        {new Date(exam.startTime).toLocaleString()}
                       </span>
                     </div>
                     <span
@@ -246,7 +246,10 @@ const UpcomingExams = ({ exams, selectedType, onTypeChange }) => {
                   </div>
 
                   {selectedType === "upcoming" ? (
-                    <button onClick={() => handelSetReminder(exam)} className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium   flex items-center justify-center space-x-2">
+                    <button
+                      onClick={() => handelSetReminder(exam)}
+                      className="w-full bg-[#04203E] text-[#FAFCFD] py-2 rounded-lg font-medium   flex items-center justify-center space-x-2"
+                    >
                       <Calendar className="w-4 h-4" />
                       <span>Set Reminder</span>
                     </button>
