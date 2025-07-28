@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import StudentInfo from "../../components/student/Exam/Offline/StudentInfo";
+
 import ExamDatesheet from "../../components/student/Exam/Offline/ExamDatesheet";
+
 import {
   studentData,
   ongoingExamData,
@@ -69,12 +71,15 @@ const Exam = () => {
         </div>
 
         <div className="w-full">
+
           <div className="mb-4">
             <StudentInfo student={studentData} />
           </div>
 
           <ExamDatesheet />
+
         </div>
+       
       </div>
     </div>
   );

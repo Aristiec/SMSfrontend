@@ -14,12 +14,14 @@ import AssignmentReviewPage from "../components/faculty/AssignmentReviewPage";
 import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
+import AcademicCalendar from "../pages/faculty/AcedmicCalender";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
       <Route index element={<Timetable />} />
       <Route path="dashboard" element={<Dashboard />} />
-      <Route path="timetable" element={<Timetable />} />{" "}
+      {/* <Route path="timetable" element={<Timetable />} />{" "} */}
+      <Route path="timetable" element={<AcademicCalendar />} />{" "}
       <Route path="dailytimetable" element={<DailyTimeTable />} />
       <Route path="assignments" element={<Assignments />} />
       <Route path="notice" element={<Notices />} />
