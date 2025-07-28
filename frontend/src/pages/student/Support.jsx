@@ -111,7 +111,7 @@ const Support = () => {
       console.log("Submitting FormData:", formData);
 
       const response = await axios.post(
-        `https://ebaf0b43591f.ngrok-free.app/api/v1/student-support/submit/${studentId}`,
+        `https://9fc889467b12.ngrok-free.app/api/v1/student-support/submit/${studentId}`,
         formData,
         {
           headers: {

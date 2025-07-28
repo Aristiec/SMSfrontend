@@ -7,34 +7,13 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await loginUserAPI(credentials);
-      const token = response.data;
-
-      // ✅ Use email directly from the login form
-      const email = credentials.userName;
-
-      // Get student profile by email
-      const profileResponse = await fetchProfileByEmail(email, token);
-      const { id, course, studentCode } = profileResponse.data;
-      const courseId = course?.id;
-      const sem = profileResponse.data.sem || 1;
-
-      const user = {
-        token,
-        email,
-        studentId: id,
-        courseId,
-        sem,
-        studentCode,
-      };
-
+      const token = response.data.token || response.data;
+      const userName = credentials.userName;
+      // Store only userName and token
+      const user = { userName, token };
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
-      localStorage.setItem("email", email);
-      localStorage.setItem("studentId", id);
-      localStorage.setItem("courseId", courseId);
-      localStorage.setItem("sem", sem);
-      localStorage.setItem("studentCode", studentCode);
-
+      localStorage.setItem("userName", userName);
       return user;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Login failed");

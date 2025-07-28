@@ -16,7 +16,7 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginUser({ userName: email, password }))
       .unwrap()
-      .then(() => navigate("/student/dashboard"))
+      .then(() => navigate("/student"))
       .catch(() => {});
   };
 
