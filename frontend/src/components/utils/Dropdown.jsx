@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-const Dropdown = ({ options, onSelect, placeholder, selected, className }) => {
+const Dropdown = ({ options, onSelect, placeholder, selected, className,spanClassName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -29,7 +29,7 @@ const Dropdown = ({ options, onSelect, placeholder, selected, className }) => {
         className={`w-full flex justify-between items-center border border-[#1F1D1D] py-3 px-3 rounded-t-[4px] font-[Inter] font-[400] text-[16px] leading-6 tracking-normal text-[#1F1D1D] cursor-pointer ${className} 
         text-left truncate sm:text-[15px] sm:px-2 sm:py-2`}
       >
-        <span className="truncate w-[90%]">
+        <span className={`truncate w-[90%] ${spanClassName}`}>
           {selected || <span className="text-[#717171]">{placeholder}</span>}
         </span>
         <ChevronDown size={20} className="ml-2" />
