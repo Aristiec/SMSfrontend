@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../../redux/authSlice";
+import { useLoginMutation } from "../../../redux/api";
 import LoginImage from "../../../assets/login_image.svg";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [login, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ userName: email, password }))
-      .unwrap()
-      .then(() => navigate("/student/dashboard"))
-      .catch(() => {});
+    try {
+      const result = await login({ userName : email, password }).unwrap();
+      dispatch(setToken(result.token));
+      navigate("/student/dashboard"); // Change to your desired route
+    } catch (err) {
+      // error handled by RTK Query
+    }
   };
 
   return (
@@ -78,15 +81,19 @@ const SignIn = () => {
           </div>
 
           {/* Error */}
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-sm text-center">
+              {error.data?.message || "Login failed"}
+            </p>
+          )}
 
           {/* Sign In Button */}
           <button
             type="submit"
             className="bg-[#04203E] text-white text-sm font-bold py-2 rounded"
-            disabled={loading}
+            disabled={isLoading}
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {isLoading ? "Signing In..." : "Sign In"}
           </button>
 
           {/* Forgot Password */}
