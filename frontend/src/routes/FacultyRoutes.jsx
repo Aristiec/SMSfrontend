@@ -15,7 +15,10 @@ import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
 import AcademicCalendar from "../pages/faculty/AcedmicCalender";
-import OnlineExam from "../components/faculty/Exams/online/OnlineExam";
+
+import OnlineExam from "../components/faculty/Exams/Offline/OnlineExam";
+import Attendacnce from "../pages/faculty/Attendacnce";
+// import Reports from "../pages/faculty/Reports";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
@@ -32,10 +35,12 @@ const FacultyRoutes = () => (
       <Route path="assignments/create" element={<CreateAssignmentForm />} />
       <Route path="assignments/review" element={<AssignmentReviewPage />} />
       <Route path="assignments/detail" element={<AssignmentDetail />} />
-       <Route path="offline" element={<OfflineExam />} />
-       <Route path="online" element={<OnlineExam />} />
-       <Route path="exam" element={<OfflineExam />} />
-       <Route path="examManagement" element={<ExamMangement />} />
+      <Route path="offline" element={<OfflineExam />} />
+      <Route path="online" element={<OnlineExam />} />
+      <Route path="exam" element={<OfflineExam />} />
+      <Route path="examManagement" element={<ExamMangement />} />
+      <Route path="attendance" element={<Attendacnce />} />
+      {/* <Route path="report" element={<Reports />} /> */}
     </Route>
   </>
 );
