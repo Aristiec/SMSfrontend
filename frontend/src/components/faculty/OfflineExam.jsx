@@ -18,12 +18,12 @@ function OfflineExam() {
   };
 
   return (
-    <section className="mx-auto absolute top-[100px] bg-[#E9EEF4] flex flex-col gap-8 mt-138px font-[Inter] px-4">
+    <section className="mx-auto    bg-[#E9EEF4] flex flex-col gap-8 mt-138px font-[Inter] px-4">
       
 
       {/* Main Content Container */}
       <div
-        className="w-[1072px] h-[104px]  rounded-[12px] p-[16px] gap-[16px] bg-[#FAFCFD] flex justify-between items-center"
+        className="w-full h-full rounded-[12px] p-[16px] gap-[16px] bg-[#FAFCFD] flex justify-between items-center"
         style={{
           opacity: 1,
           border: "1px solid #CCCCCC",
@@ -51,10 +51,10 @@ function OfflineExam() {
       </div>
 
       {/* Stats Cards Container */}
-      <div className="flex gap-9 justify-start">
+      <div className="flex w-full h-full gap-[36px] justify-start">
         {/* Total Exams Card */}
         <div 
-          className="w-[240px] h-[163px] rounded-[12px] p-[16px] gap-[24px] bg-[#FFFFFF] flex flex-col"
+          className="w-full  h-full rounded-[12px] p-[16px] gap-[20px] bg-[#FFFFFF] flex flex-col"
           style={{
             opacity: 1,
             boxShadow: "0px 4px 8px 0px #00000033"
@@ -77,7 +77,7 @@ function OfflineExam() {
 
         {/* Scheduled Today Card */}
         <div 
-          className="w-[240px] h-[163px] rounded-[12px] p-[16px] gap-[28px] bg-[#FFFFFF] flex flex-col"
+          className="w-full h-full rounded-[12px] p-[16px] gap-[22px] bg-[#FFFFFF] flex flex-col"
           style={{
             opacity: 1,
             boxShadow: "0px 4px 8px 0px #00000033"
@@ -101,7 +101,7 @@ function OfflineExam() {
 
         {/* Students Enrolled Card */}
         <div 
-          className="w-[240px] h-[163px] rounded-[12px] p-[16px] gap-[34px] bg-[#FFFFFF] flex flex-col"
+          className="w-full h-full rounded-[12px] p-[16px] gap-[32px] bg-[#FFFFFF] flex flex-col"
           style={{
             opacity: 1,
             boxShadow: "0px 4px 8px 0px #00000033"
@@ -124,7 +124,7 @@ function OfflineExam() {
 
         {/* Average Score Card */}
         <div 
-          className="w-[240px] h-[163px] rounded-[12px] p-[16px] gap-[34px] bg-[#FFFFFF] flex flex-col"
+          className="w-full h-full rounded-[12px] p-[16px] gap-[32px] bg-[#FFFFFF] flex flex-col"
           style={{
             opacity: 1,
             boxShadow: "0px 4px 8px 0px #00000033"
