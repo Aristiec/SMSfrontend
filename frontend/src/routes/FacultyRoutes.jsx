@@ -15,8 +15,7 @@ import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
 import AcademicCalendar from "../pages/faculty/AcedmicCalender";
-
-import OnlineExam from "../components/faculty/Exams/Offline/OnlineExam";
+import OnlineExam from "../components/faculty/Exams/online/OnlineExam";
 import Attendacnce from "../pages/faculty/Attendacnce";
 // import Reports from "../pages/faculty/Reports";
 const FacultyRoutes = () => (
