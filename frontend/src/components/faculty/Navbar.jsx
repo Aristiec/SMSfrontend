@@ -14,6 +14,8 @@ import {
   ChevronDown,
   ChevronUp,
   LogOut,
+  TableProperties ,
+  
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -26,7 +28,10 @@ const menuItems = [
   { name: "Courses", icon: BookOpen, path: "/faculty/courses" },
   { name: "Exams", icon: Calculator, path: "/faculty/exam" },
   { name: "Assignments", icon: ClipboardCheck, path: "/faculty/assignments" },
-  { name: "Reports", icon: UserCheck, path: "/faculty/report" },
+  { name: "Attendance", icon: UserCheck, path: "/faculty/attendance" }, 
+  { name: "Result", icon: TableProperties , path: "/faculty/result" },
+  
+  { name: "Reports", icon: ChartNoAxesColumn, path: "/faculty/report" },
   { name: "Notices", icon: Bell, path: "/faculty/notice" },
   { name: "Student Queries", icon: CreditCard, path: "/faculty/students" },
 ];

@@ -15,6 +15,8 @@ import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
 import AcademicCalendar from "../pages/faculty/AcedmicCalender";
+import Attendacnce from "../pages/faculty/Attendacnce";
+import Result from "../pages/faculty/Result";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
@@ -33,6 +35,8 @@ const FacultyRoutes = () => (
       <Route path="assignments/detail" element={<AssignmentDetail />} />
        <Route path="offline" element={<OfflineExam />} />
        <Route path="examManagement" element={<ExamMangement />} />
+      <Route path="attendance" element={<Attendacnce />} />
+       <Route path="result" element={<Result />} />
     </Route>
   </>
 );
