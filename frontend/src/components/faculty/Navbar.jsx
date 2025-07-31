@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ChevronUp,
   LogOut,
+  TableProperties,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -26,7 +27,9 @@ const menuItems = [
   { name: "Courses", icon: BookOpen, path: "/faculty/courses" },
   { name: "Exams", icon: Calculator, path: "/faculty/exam" },
   { name: "Assignments", icon: ClipboardCheck, path: "/faculty/assignments" },
-  { name: "Reports", icon: UserCheck, path: "/faculty/report" },
+  { name: "Attendance", icon: UserCheck, path: "/faculty/attendance" }, 
+  { name: "Result", icon: TableProperties, path: "/faculty/result" },
+  { name: "Reports", icon: ChartNoAxesColumn, path: "/faculty/report" },
   { name: "Notices", icon: Bell, path: "/faculty/notice" },
   { name: "Student Queries", icon: CreditCard, path: "/faculty/students" },
 ];
@@ -35,12 +38,25 @@ const examMenuItems = [
   { name: "Online Exam", path: "/faculty/exam" },
   { name: "Offline Exam", path: "/faculty/offlineExam" },
 ];
+
+const scheduleMenuItems = [
+  { name: "Weekly Timetable", path: "/faculty/timetable" },
+  { name: "Daily Timetable", path: "/faculty/dailyTimetable" },
+];
+
 const Navbar = () => {
   const location = useLocation();
   const [isExamOpen, setIsExamOpen] = useState(false);
+  const [isScheduleOpen, setIsScheduleOpen] = useState(false);
+  
   const isExamActive =
     location.pathname.startsWith("/faculty/exam") ||
     location.pathname.startsWith("/faculty/offlineExam");
+  
+  const isScheduleActive =
+    location.pathname.startsWith("/faculty/timetable") ||
+    location.pathname.startsWith("/faculty/dailyTimetable");
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,15 +64,15 @@ const Navbar = () => {
     dispatch(logout());
     navigate("/signin");
   };
+
   return (
-    <div className="h-full bg-[#FAFCFD] flex flex-col justify-between  ">
+    <div className="h-full bg-[#FAFCFD] flex flex-col justify-between">
       <ul className="pt-4 flex flex-col space-y-2 flex-1 overflow-y-auto overflow-x-hidden">
         {menuItems.map(({ name, icon: Icon, path }) => {
           const isActive = location.pathname.startsWith(path);
-          if (name !== "Exams") {
+          if (name !== "Exams" && name !== "Schedule") {
             return (
               <Link to={path} key={name}>
-                {console.log(isActive, path)}
                 <li
                   className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
                     isActive
@@ -75,7 +91,67 @@ const Navbar = () => {
                 </li>
               </Link>
             );
-          } else {
+          } else if (name === "Schedule") {
+            return (
+              <div key={name}>
+                <li
+                  className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
+                    isScheduleActive
+                      ? "bg-[#04203E] text-white"
+                      : "hover:bg-[#FAFCFD] text-[#1F1D1D]"
+                  }`}
+                >
+                  <div
+                    onClick={() => setIsScheduleOpen(!isScheduleOpen)}
+                    className="flex items-center justify-between gap-3 px-5 text-[16px] w-full"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon className="w-[20px] h-[20px]" />
+                      {name}
+                    </div>
+                    {isScheduleOpen ? (
+                      <ChevronUp className="w-[16px] h-[16px]" />
+                    ) : (
+                      <ChevronDown className="w-[16px] h-[16px]" />
+                    )}
+                  </div>
+                </li>
+
+                <AnimatePresence>
+                  {isScheduleOpen && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex flex-col space-y-2 overflow-hidden"
+                    >
+                      {scheduleMenuItems.map(({ name, path }, index) => {
+                        const isActive = location.pathname.startsWith(path);
+                        return (
+                          <Link to={path} key={index}>
+                            <li
+                              className={`py-3 px-0 cursor-pointer transition-all duration-200 ${
+                                isActive
+                                  ? "bg-[#CFDCEB] text-[#1F1D1D]"
+                                  : "bg-[#FAFCFD] text-[#1F1D1D]"
+                              }`}
+                            >
+                              <div
+                                className={`flex items-center gap-3 px-10 text-[16px] transition-all duration-200`}
+                              >
+                                {name}
+                              </div>
+                            </li>
+                          </Link>
+                        );
+                      })}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          } else if (name === "Exams") {
             return (
               <div key={name}>
                 <li
@@ -122,9 +198,7 @@ const Navbar = () => {
                               }`}
                             >
                               <div
-                                className={`flex items-center gap-3 px-10 text-[16px] ${
-                                  isActive ? "" : ""
-                                } transition-all duration-200`}
+                                className={`flex items-center gap-3 px-10 text-[16px] transition-all duration-200`}
                               >
                                 {name}
                               </div>
@@ -147,9 +221,9 @@ const Navbar = () => {
             "linear-gradient(90deg, #FAFCFD 0%, #717171 50%, #FAFCFD 100%)",
           borderImageSlice: 1,
         }}
-        className="flex flex-col  border-t p-4 mb-3 gap-3 "
+        className="flex flex-col border-t p-4 mb-3 gap-3"
       >
-        <div className="flex items-center gap-3  flex-shrink-0">
+        <div className="flex items-center gap-3 flex-shrink-0">
           <img
             src={profilePic}
             alt="Profile"
