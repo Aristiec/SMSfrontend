@@ -34,6 +34,7 @@ const FacultyRoutes = () => (
       <Route path="assignments/review" element={<AssignmentReviewPage />} />
       <Route path="assignments/detail" element={<AssignmentDetail />} />
        <Route path="offline" element={<OfflineExam />} />
+       <Route path="online" element={<OnlineExam />} />
        <Route path="examManagement" element={<ExamMangement />} />
       <Route path="attendance" element={<Attendacnce />} />
        <Route path="result" element={<Result />} />
