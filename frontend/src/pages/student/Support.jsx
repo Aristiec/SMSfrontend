@@ -171,7 +171,6 @@ const Support = () => {
                   options={dropdown.sendTo.options}
                   placeholder={dropdown.sendTo.placeholder}
                   onSelect={(value) => {
-                    console.log("Selected sendTo:", value);
                     setSendTo(value);
                   }}
                   selected={sendTo}
@@ -184,7 +183,6 @@ const Support = () => {
                 <Dropdown
                   options={dropdown.category.options}
                   onSelect={(value) => {
-                    console.log("Selected category:", value);
                     setCategory(value);
                   }}
                   selected={category}
