@@ -17,8 +17,7 @@ import AcademicCalendar from "../pages/faculty/AcedmicCalender";
 import OnlineExam from "../components/faculty/Exams/online/OnlineExam";
 import Attendacnce from "../pages/faculty/Attendacnce";
 import Result from "../pages/faculty/Result";
-import OnlineExam from "../components/faculty/Exams/Offline/OnlineExam";
-import Attendacnce from "../pages/faculty/Attendacnce";
+import OfflineExam from "../components/faculty/Exams/Offline/OnlineExam";
 // import Reports from "../pages/faculty/Reports";
 const FacultyRoutes = () => (
   <>
