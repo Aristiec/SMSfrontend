@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Search, Eye } from "lucide-react";
 import Dropdown from "../../components/utils/Dropdown";
+import PendingQuery from "../../components/faculty/Query/PendingQuery";
+import InProgressQuery from "../../components/faculty/Query/InProgressQuery";
 
 const Students = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedStatus, setSelectedStatus] = useState("All Status");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState("pending"); // "pending" or "inProgress"
 
   // Sample ticket data
   const ticketsData = [
@@ -123,6 +128,34 @@ const Students = () => {
     return matchesCategory && matchesStatus && matchesSearch;
   });
 
+  // Handle view button click
+  const handleViewClick = (ticket) => {
+    setSelectedTicket(ticket);
+    setModalType(ticket.status === "In Progress" ? "inProgress" : "pending");
+    setShowModal(true);
+  };
+
+  // Handle modal close
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedTicket(null);
+    setModalType("pending");
+  };
+
+  // Handle start working
+  const handleStartWorking = () => {
+    // Update ticket status to "In Progress" and switch to InProgressQuery modal
+    setModalType("inProgress");
+    console.log("Starting work on ticket:", selectedTicket);
+  };
+
+  // Handle submit resolution
+  const handleSubmitResolution = (comment) => {
+    // Add logic to resolve the ticket
+    console.log("Resolving ticket:", selectedTicket, "with comment:", comment);
+    handleCloseModal();
+  };
+
   return (
     <section className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col">
@@ -239,7 +272,10 @@ const Students = () => {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <button className="flex items-center gap-1 font-[Inter] font-medium text-[12px] leading-[16px] text-[#0077FF] hover:underline">
+                    <button 
+                      onClick={() => handleViewClick(ticket)}
+                      className="flex items-center gap-1 font-[Inter] font-medium text-[12px] leading-[16px] text-[#0077FF] hover:underline"
+                    >
                       <Eye className="w-3 h-3" />
                       View
                     </button>
@@ -256,6 +292,28 @@ const Students = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
+          <div className="relative z-50 ml-[300px] mt-[62px] max-h-[100vh] overflow-y-auto pb-8">
+            {modalType === "pending" ? (
+              <PendingQuery
+                ticket={selectedTicket}
+                onClose={handleCloseModal}
+                onStartWorking={handleStartWorking}
+              />
+            ) : (
+              <InProgressQuery
+                ticket={selectedTicket}
+                onClose={handleCloseModal}
+                onSubmit={handleSubmitResolution}
+              />
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
