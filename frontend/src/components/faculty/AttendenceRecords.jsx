@@ -42,31 +42,29 @@ export default function AttendenceRecords() {
               <Search size={14} className="text-[#717171]" />
             </div>
           </div>
-      <div className="flex flex-row mt-[24px] p-[16px] bg-[#04203E]  border rounded-tl-[12px] rounded-tr-[12px] font-[Inter] font-[500] text-[16px]  tracking-[0%] text-[#FAFCFD]">
-        <div className="gap-[12px]">Student's Name</div>
-        <div className="ml-[238px]">Present</div>
-        <div className="ml-[238px]" >Absent</div>
-        <div className="ml-[238px]">Delay</div>
-        
+      <div className="flex items-center justify-between mt-[24px] p-[16px] bg-[#04203E] border rounded-tl-[12px] rounded-tr-[12px] font-[Inter] font-[500] text-[16px] tracking-[0%] text-[#FAFCFD]">
+        <div className="flex-1">Student's Name</div>
+        <div className="flex-1 text-center">Present</div>
+        <div className="flex-1 text-center">Absent</div>
+        <div className="flex-1 text-center">Delay</div>
       </div>
 
-      <div className="bg-[#FFFFFF] flex flex-col  mb-32px">
+      <div className="bg-[#FFFFFF] flex flex-col mb-32px">
         {attendanceData.map((student) => (
           <div 
             key={student.id} 
-            className="flex flex-row ml-[16px] mt-[32px] mb-[21px]    font-[400] text-[16px] tracking-[0%] text-[#1F1D1D] items-center"
+            className="flex items-center justify-between p-[16px] mt-[16px] mb-[5px] font-[400] text-[16px] tracking-[0%] text-[#1F1D1D] border-b border-gray-100"
           >
-            <div className="flex flex-row items-center gap-6">
-                <input 
+            <div className="flex-1 flex items-center gap-3">
+              <input 
                 type="checkbox" 
-                className="w-4 h-4 "
-              />{student.name}</div>
-            <div className="ml-[238px]">{student.present}</div>
-            <div className="ml-[282px]">{student.absent}</div>
-            <div className="ml-[268px]">{student.delay}</div>
-            <div>
-              
+                className="w-4 h-4"
+              />
+              <span>{student.name}</span>
             </div>
+            <div className="flex-1 text-center">{student.present}</div>
+            <div className="flex-1 text-center">{student.absent}</div>
+            <div className="flex-1 text-center">{student.delay}</div>
           </div>
         ))}
       </div>
