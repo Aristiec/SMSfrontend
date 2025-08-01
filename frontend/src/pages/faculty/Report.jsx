@@ -88,7 +88,7 @@ const Report = () => {
   const semesterOptions = ["Sem I", "Sem II", "Sem III", "Sem IV", "Sem V", "Sem VI"];
   const sectionOptions = ["Section A", "Section B", "Section C", "Section D"];
   const subjectOptions = ["Web Development", "Data Structures", "Database Management", "Software Engineering"];
-  const reportTypeOptions = ["Attendance", "Assignments", "Exams"];
+  const reportTypeOptions = ["Attendance",  "Exams"];
   const examTypeOptions = ["All Exams", "Mid Term", "Final Examination", "Class Test"];
 
   return (
