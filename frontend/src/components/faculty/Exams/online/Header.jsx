@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Dropdown from "../../../utils/Dropdown";
 
-const   Header = () => {
+const Header = ({
+  totalQuestions,
+  setTotalQuestions,
+  currentQuestionIndex,
+}) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [selected, setSelected] = useState(null);
   const [inputValue, setInputValue] = useState(null);
   const [marks, setMarks] = useState(null);
   return (
@@ -30,6 +33,7 @@ const   Header = () => {
               options={["MCQ", "Subjective"]}
               placeholder="Select question type"
               onSelect={(value) => setSelectedOption(value)}
+              disabled={totalQuestions !== currentQuestionIndex}
               selected={selectedOption}
               spanClassName="py-3"
               className="py-2 px-3 rounded-b-[8px] rounded-t-[8px] border-[#CCCCCC] font-[Inter] font-medium text-[20px] leading-[30%] tracking-normal text-[#CCCCCC]"
@@ -40,9 +44,18 @@ const   Header = () => {
             <input
               type="number"
               placeholder="Enter total number of question"
-              value={inputValue || ""}
-              onChange={(e) => setInputValue(e.target.value)}
-              className="rounded-[8px] outline-none border py-2 px-3 border-[#CCCCCC] gap-2 font-[Inter] font-medium text-[20px] leading-[30px] tracking-normal  text-[#CCCCCC] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none "
+              disabled={selectedOption === null}
+              value={totalQuestions || ""}
+              onChange={(e) => setTotalQuestions(e.target.value)}
+              className={`rounded-[8px] outline-none border py-2 px-3 border-[#CCCCCC] gap-2 font-[Inter] font-medium text-[20px] leading-[30px] tracking-normal appearance-none
+    text-black placeholder:text-[#CCCCCC]
+    [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
+    ${
+      selectedOption === null
+        ? "bg-gray-100 text-[#999999] cursor-not-allowed"
+        : "bg-white"
+    }
+  `}
             />
           </div>
           <div className="flex flex-col gap-4 font-[Inter] font-medium text-[20px] leading-[100%] tracking-normal text-[#1F1D1D] w-full">
