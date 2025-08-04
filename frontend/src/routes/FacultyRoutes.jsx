@@ -18,6 +18,7 @@ import OnlineExam from "../components/faculty/Exams/online/OnlineExam";
 import Attendacnce from "../pages/faculty/Attendacnce";
 import Result from "../pages/faculty/Result";
 import OfflineExam from "../components/faculty/Exams/Offline/OnlineExam";
+import Timetable2 from "../pages/faculty/Timetable2";
 // import Reports from "../pages/faculty/Reports";
 const FacultyRoutes = () => (
   <>
@@ -29,18 +30,18 @@ const FacultyRoutes = () => (
       <Route path="dailytimetable" element={<DailyTimeTable />} />
       <Route path="assignments" element={<Assignments />} />
       <Route path="notice" element={<Notices />} />
-      <Route path="courses" element={<MyCourses />} />
+      <Route path="courses" element={<Timetable2 />} />
       <Route path="report" element={<Report />} />
       <Route path="students" element={<Students />} />
       <Route path="assignments/create" element={<CreateAssignmentForm />} />
       <Route path="assignments/review" element={<AssignmentReviewPage />} />
       <Route path="assignments/detail" element={<AssignmentDetail />} />
-       <Route path="offlineExam" element={<OfflineExam />} />
-       <Route path="online" element={<OnlineExam />} />
-       <Route path="examManagement" element={<ExamMangement />} />
+      <Route path="offlineExam" element={<OfflineExam />} />
+      <Route path="online" element={<OnlineExam />} />
+      <Route path="examManagement" element={<ExamMangement />} />
       <Route path="attendance" element={<Attendacnce />} />
-       <Route path="result" element={<Result />} />
-       <Route path ="exam" element={<OnlineExam />} />
+      <Route path="result" element={<Result />} />
+      <Route path="exam" element={<OnlineExam />} />
     </Route>
   </>
 );
