@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Search, ChevronDown, Users } from "lucide-react";
+import StudentList from "../../components/faculty/result/StudentList";
 
 const Result = () => {
   const examResults = [
@@ -32,6 +33,16 @@ const Result = () => {
       marks: 100,
     },
   ];
+
+   const [isFormOpen, setIsFormOpen] = useState(false);
+    
+      const handleOpenForm = () => {
+        setIsFormOpen(true);
+      };
+    
+      const handleCloseForm = () => {
+        setIsFormOpen(false);
+      };
 
   return (
     <div className="bg-[#FFFFFF] rounded-xl shadow-md p-6 space-y-6">
@@ -103,12 +114,21 @@ const Result = () => {
                   <span>Total Marks: {exam.marks}</span>
                 </div>
               </div>
-              <div className="bg-[#E9EEF4] rounded-md px-4 py-2 text-[16px] font-[Inter] text-[#1F1D1D] text-center cursor-pointer">
+              <div onClick={handleOpenForm} className="bg-[#E9EEF4] rounded-md px-4 py-2 text-[16px] font-[Inter] text-[#1F1D1D] text-center cursor-pointer">
                 View Answer Sheet
               </div>
             </div>
           ))}
         </div>
+          {/* Add Exam Form Modal - Fixed overlay structure */}
+      {isFormOpen && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
+          <div className="relative z-50 ml-[450px] mt-[100px]">
+            <StudentList isOpen={isFormOpen} onClose={handleCloseForm} />
+          </div>
+        </div>
+      )}
       </div>
     // </div>
   );
