@@ -3,6 +3,7 @@ import { Search, Eye } from "lucide-react";
 import Dropdown from "../../components/utils/Dropdown";
 import PendingQuery from "../../components/faculty/Query/PendingQuery";
 import InProgressQuery from "../../components/faculty/Query/InProgressQuery";
+import StudentChat from "../../components/faculty/Query/StudentChat";
 
 const Students = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
@@ -11,6 +12,7 @@ const Students = () => {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("pending"); // "pending" or "inProgress"
+  const [showChat, setShowChat] = useState(false);
 
   // Sample ticket data
   const ticketsData = [
@@ -154,6 +156,12 @@ const Students = () => {
     // Add logic to resolve the ticket
     console.log("Resolving ticket:", selectedTicket, "with comment:", comment);
     handleCloseModal();
+    setShowChat(true); // Open chat sidebar
+  };
+
+  // Handle close chat
+  const handleCloseChat = () => {
+    setShowChat(false);
   };
 
   return (
@@ -297,7 +305,7 @@ const Students = () => {
       {showModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
           <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
-          <div className="relative z-50 ml-[300px] mt-[62px] max-h-[100vh] overflow-y-auto pb-8">
+          <div className="relative z-50 ml-[330px] mt-[62px] max-h-[100vh] overflow-y-auto pb-8">
             {modalType === "pending" ? (
               <PendingQuery
                 ticket={selectedTicket}
@@ -311,6 +319,20 @@ const Students = () => {
                 onSubmit={handleSubmitResolution}
               />
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Student Chat Sidebar */}
+      {showChat && (
+        <div className="fixed inset-0 z-50">
+          <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
+          <div className="relative z-50">
+            <StudentChat 
+              isOpen={showChat}
+              onClose={handleCloseChat}
+              ticket={selectedTicket}
+            />
           </div>
         </div>
       )}
