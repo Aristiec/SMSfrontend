@@ -10,48 +10,203 @@ const DailyClassTimetable = () => {
   // Static timetable data
   const timetableData = {
     Monday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Data Structures", facultyName: "Lab 2" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "Operating Systems", facultyName: "Room 101" },
-      { startTime: "11:15", endTime: "12:00", subjectName: "DBMS", facultyName: "Room 101" },
-      { startTime: "12:00", endTime: "12:45", subjectName: "Computer Networks", facultyName: "Lab 2" },
-      { startTime: "1:30", endTime: "2:15", subjectName: "Software Engineering", facultyName: "Room 102" },
-      { startTime: "2:15", endTime: "3:00", subjectName: "Artificial Intelligence", facultyName: "Room 103" },
-      { startTime: "3:00", endTime: "3:45", subjectName: "Web Development", facultyName: "Lab 1" }
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Data Structures",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "Operating Systems",
+        facultyName: "Room 101",
+      },
+      {
+        startTime: "11:15",
+        endTime: "12:00",
+        subjectName: "DBMS",
+        facultyName: "Room 101",
+      },
+      {
+        startTime: "12:00",
+        endTime: "12:45",
+        subjectName: "Computer Networks",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "1:30",
+        endTime: "2:15",
+        subjectName: "Software Engineering",
+        facultyName: "Room 102",
+      },
+      {
+        startTime: "2:15",
+        endTime: "3:00",
+        subjectName: "Artificial Intelligence",
+        facultyName: "Room 103",
+      },
+      {
+        startTime: "3:00",
+        endTime: "3:45",
+        subjectName: "Web Development",
+        facultyName: "Lab 1",
+      },
     ],
     Tuesday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Mathematics", facultyName: "Room 201" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "Physics", facultyName: "Lab 3" },
-      { startTime: "11:15", endTime: "12:00", subjectName: "Chemistry", facultyName: "Lab 4" },
-      { startTime: "12:00", endTime: "12:45", subjectName: "English", facultyName: "Room 105" },
-      { startTime: "1:30", endTime: "2:15", subjectName: "Computer Graphics", facultyName: "Lab 2" },
-      { startTime: "2:15", endTime: "3:00", subjectName: "Machine Learning", facultyName: "Room 106" }
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Mathematics",
+        facultyName: "Room 201",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "Physics",
+        facultyName: "Lab 3",
+      },
+      {
+        startTime: "11:15",
+        endTime: "12:00",
+        subjectName: "Chemistry",
+        facultyName: "Lab 4",
+      },
+      {
+        startTime: "12:00",
+        endTime: "12:45",
+        subjectName: "English",
+        facultyName: "Room 105",
+      },
+      {
+        startTime: "1:30",
+        endTime: "2:15",
+        subjectName: "Computer Graphics",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "2:15",
+        endTime: "3:00",
+        subjectName: "Machine Learning",
+        facultyName: "Room 106",
+      },
     ],
     Wednesday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Data Structures", facultyName: "Lab 2" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "Operating Systems", facultyName: "Room 101" },
-      { startTime: "11:15", endTime: "12:00", subjectName: "DBMS", facultyName: "Room 101" },
-      { startTime: "12:00", endTime: "12:45", subjectName: "Computer Networks", facultyName: "Lab 2" },
-      { startTime: "1:30", endTime: "2:15", subjectName: "Software Engineering", facultyName: "Room 102" },
-      { startTime: "2:15", endTime: "3:00", subjectName: "Artificial Intelligence", facultyName: "Room 103" },
-      { startTime: "3:00", endTime: "3:45", subjectName: "Web Development", facultyName: "Lab 1" }
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Data Structures",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "Operating Systems",
+        facultyName: "Room 101",
+      },
+      {
+        startTime: "11:15",
+        endTime: "12:00",
+        subjectName: "DBMS",
+        facultyName: "Room 101",
+      },
+      {
+        startTime: "12:00",
+        endTime: "12:45",
+        subjectName: "Computer Networks",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "1:30",
+        endTime: "2:15",
+        subjectName: "Software Engineering",
+        facultyName: "Room 102",
+      },
+      {
+        startTime: "2:15",
+        endTime: "3:00",
+        subjectName: "Artificial Intelligence",
+        facultyName: "Room 103",
+      },
+      {
+        startTime: "3:00",
+        endTime: "3:45",
+        subjectName: "Web Development",
+        facultyName: "Lab 1",
+      },
     ],
     Thursday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Algorithms", facultyName: "Room 107" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "System Design", facultyName: "Room 108" },
-      { startTime: "11:15", endTime: "12:00", subjectName: "Database Design", facultyName: "Lab 5" },
-      { startTime: "12:00", endTime: "12:45", subjectName: "Network Security", facultyName: "Room 109" },
-      { startTime: "1:30", endTime: "2:15", subjectName: "Mobile Development", facultyName: "Lab 6" }
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Algorithms",
+        facultyName: "Room 107",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "System Design",
+        facultyName: "Room 108",
+      },
+      {
+        startTime: "11:15",
+        endTime: "12:00",
+        subjectName: "Database Design",
+        facultyName: "Lab 5",
+      },
+      {
+        startTime: "12:00",
+        endTime: "12:45",
+        subjectName: "Network Security",
+        facultyName: "Room 109",
+      },
+      {
+        startTime: "1:30",
+        endTime: "2:15",
+        subjectName: "Mobile Development",
+        facultyName: "Lab 6",
+      },
     ],
     Friday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Project Work", facultyName: "Lab 2" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "Lab Session", facultyName: "Lab 1" },
-      { startTime: "11:15", endTime: "12:00", subjectName: "Seminar", facultyName: "Auditorium" },
-      { startTime: "1:30", endTime: "2:15", subjectName: "Industry Talk", facultyName: "Conference Room" }
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Project Work",
+        facultyName: "Lab 2",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "Lab Session",
+        facultyName: "Lab 1",
+      },
+      {
+        startTime: "11:15",
+        endTime: "12:00",
+        subjectName: "Seminar",
+        facultyName: "Auditorium",
+      },
+      {
+        startTime: "1:30",
+        endTime: "2:15",
+        subjectName: "Industry Talk",
+        facultyName: "Conference Room",
+      },
     ],
     Saturday: [
-      { startTime: "9:30", endTime: "10:15", subjectName: "Extra Classes", facultyName: "Room 101" },
-      { startTime: "10:15", endTime: "11:00", subjectName: "Doubt Session", facultyName: "Room 102" }
-    ]
+      {
+        startTime: "9:30",
+        endTime: "10:15",
+        subjectName: "Extra Classes",
+        facultyName: "Room 101",
+      },
+      {
+        startTime: "10:15",
+        endTime: "11:00",
+        subjectName: "Doubt Session",
+        facultyName: "Room 102",
+      },
+    ],
   };
 
   useEffect(() => {
@@ -92,7 +247,10 @@ const DailyClassTimetable = () => {
           updatedData.push(data[i]);
           if (data[i].endTime === "11:00") {
             updatedData.push({ isBreak: true, type: "BREAK" });
-          } else if (data[i].endTime === "12:45" || data[i].endTime === "12:10") {
+          } else if (
+            data[i].endTime === "12:45" ||
+            data[i].endTime === "12:10"
+          ) {
             updatedData.push({ isBreak: true, type: "LUNCH" });
           }
         }
@@ -120,10 +278,7 @@ const DailyClassTimetable = () => {
           Daily Class Timetable
         </h1>
         <div className="relative" ref={tooltipRef}>
-          {showTooltip && (
-            <div className="fixed inset-0 bg-[#1F1D1D]/20 z-40 pointer-events-none" />
-          )}
-
+        
           <button
             className="p-2 rounded-lg bg-[#CFDCEB] relative z-50 "
             onClick={handleSwitchView}
