@@ -11,7 +11,7 @@ const Dashboard = () => {
       <section className="p-10 flex flex-col gap-10 h-full">
         <Header />
         <Cards />
-        <div className="w-full flex gap-10  h-[58vh]">
+        <div className="w-full flex gap-10  h-full max-h-[68vh] overflow-hidden">
           <div className="flex  w-[60%]">
             <TodaySchedule />
           </div>
@@ -19,7 +19,7 @@ const Dashboard = () => {
             <Notification />
           </div>
         </div>
-        <div className="w-full flex gap-10 ">
+        <div className="w-full flex gap-10 max-h-[45vh] overflow-hidden">
           <div className="flex  w-[60%]">
             <Course />
           </div>

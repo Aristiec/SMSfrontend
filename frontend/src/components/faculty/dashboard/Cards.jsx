@@ -13,7 +13,7 @@ const tab = [
     subtitle: "Across 4 courses this semester",
   },
   {
-    title: "Pending Assignments",
+    title: "Pending\nAssignments",
     number: 20,
     subtitle: "Assignment evaluations due",
   },
@@ -25,23 +25,23 @@ const tab = [
 ];
 const Cards = () => {
   return (
-    <div className="flex gap-10 w-full">
+    <div className="flex gap-5 w-full flex-wrap md:flex-nowrap">
       {tab.map((item, index) => (
         <div
         key={index}
           style={{ boxShadow: "4px 4px 8px 0px #00000033" }}
-          className="flex flex-col rounded-[12px] border border-[#FAFCFD] py-8 px-7 gap-2 bg-[#FAFCFD] w-full"
+          className="flex flex-col rounded-[12px] border border-[#FAFCFD] py-6 px-6 gap-2 bg-[#FAFCFD] w-full min-w-[200px]"
         >
-          <div className="flex gap-2 justify-between  ">
-            <div className="flex items-start flex-col gap-5">
-              <p className="font-[Inter] font-[600] text-[12px] leading-[20%] tracking-normal flex items-center text-[#1F1D1D]">
+          <div className="flex gap-2 justify-between w-full">
+            <div className="flex items-start flex-col gap-5 max-w-[70%]">
+              <p className="font-[Inter] font-[600] text-[12px] leading-[16px] tracking-normal text-[#1F1D1D] w-full break-words">
                 {item?.title}
               </p>
               <div className="flex flex-col gap-4">
-                <p className="font-[Inter] font-[600] text-[27px] leading-[32px] tracking-normal flex items-center text-[#1F1D1D]">
+                <p className="font-[Inter] font-[600] text-[27px] leading-[32px] tracking-normal text-[#1F1D1D]">
                   {item?.number}
                 </p>
-                <p className="font-[Inter] font-[400] text-[12px] tracking-normal  items-center text-[#717171] break-words ">
+                <p className="font-[Inter] font-[400] text-[12px] leading-[16px] tracking-normal text-[#717171] break-words">
                   {item?.subtitle}
                 </p>
               </div>

@@ -24,7 +24,7 @@ import { logout } from "../../features/auth/authSlice";
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/faculty/dashboard" },
   { name: "Schedule", icon: Calendar, path: "/faculty/timetable" },
-  { name: "Courses", icon: BookOpen, path: "/faculty/courses" },
+
   { name: "Exams", icon: Calculator, path: "/faculty/exam" },
   { name: "Assignments", icon: ClipboardCheck, path: "/faculty/assignments" },
   { name: "Attendance", icon: UserCheck, path: "/faculty/attendance" }, 
