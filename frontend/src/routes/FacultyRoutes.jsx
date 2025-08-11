@@ -14,7 +14,7 @@ import AssignmentReviewPage from "../components/faculty/AssignmentReviewPage";
 import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
 import AcademicCalendar from "../pages/faculty/AcedmicCalender";
-// import OnlineExam from "../components/faculty/Exams/Offline/OnlineExam";
+import OnlineExam from "../components/faculty/Exams/Offline/OnlineExam";
 import Attendacnce from "../pages/faculty/Attendacnce";
 import Result from "../pages/faculty/Result";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
