@@ -27,7 +27,7 @@ const Timetable = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] lg:mx-[40px]">
+    <div className="min-h-screen w-full bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] ">
        <div className="flex justify-center px-4 lg:px-4 mt-4 sticky top-20 z-100 sticky">
       <header className="bg-[#04203e] flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-lg w-full max-w-7xl px-6 py-4 text-[#FAFCFD] font-[Inter]">
         <h1 className="text-[20px] sm:text-[24px] font-bold font-[Merriweather] mb-2 sm:mb-0">

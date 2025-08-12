@@ -129,7 +129,7 @@ function Addexam({ isOpen, onClose }) {
 
           <button
             type="button"
-            className="w-[460px] h-[43px] rounded-[8px] bg-[#0077FF] text-white font-medium text-[16px] hover:bg-[#0066CC] transition-all"
+            className="w-[460px] h-[43px] rounded-[8px] bg-[#04203E] text-white font-medium text-[16px] hover:bg-[#0066CC] transition-all"
           >
             Schedule New Exam
           </button>
