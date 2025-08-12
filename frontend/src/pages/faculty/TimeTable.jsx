@@ -28,7 +28,7 @@ const Timetable = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#E9EEF4] text-[#1F1D1D]  sm:mx-[20px] md:mx-[20px] ">
-       <div className="flex justify-center px-4 lg:px-4 mt-4 sticky top-20 z-100 sticky">
+       <div className="flex justify-center px-4 lg:px-4 mt-4  top-20 ">
       <header className="bg-[#04203e] flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-lg w-full max-w-7xl px-6 py-4 text-[#FAFCFD] font-[Inter]">
         <h1 className="text-[20px] sm:text-[24px] font-bold font-[Merriweather] mb-2 sm:mb-0">
           Schedule
@@ -38,7 +38,7 @@ const Timetable = () => {
 
       <div className="flex justify-center p-4 lg:p-4">
         <div className="w-full  bg-[#FAFCFD] rounded-lg shadow-md border border-white p-4 md:p-6 overflow-auto">
-         <div className="bg-[#F9FAFB] px-6 py-4 flex items-center justify-between">
+         <div className="bg-[#F9FAFB] pl-6 pb-4 flex items-center justify-between">
   {/* Heading */}
   <h1 className="text-[20px] font-semibold leading-[28px] text-[#1F1D1D] font-[Inter]">
     Weekly Class Timetable
@@ -49,7 +49,7 @@ const Timetable = () => {
     <input
       type="text"
       placeholder="Search by name"
-      className="px-6 py-2 rounded-md border border-[#CCCCCC] text-[#717171] text-[14px] leading-[18px] font-[Inter] focus:outline-none"
+      className="px-6 py-3 rounded-md border border-[#CCCCCC] text-[#717171] text-[14px] leading-[18px] font-[Inter] focus:outline-none"
     />
 
     {/* Dropdown */}

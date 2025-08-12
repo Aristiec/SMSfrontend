@@ -31,7 +31,7 @@ const menuItems = [
   { name: "Result", icon: TableProperties, path: "/faculty/result" },
   { name: "Reports", icon: ChartNoAxesColumn, path: "/faculty/report" },
   { name: "Notices", icon: Bell, path: "/faculty/notice" },
-  { name: "Student Queries", icon: CreditCard, path: "/faculty/students" },
+  { name: "Queries", icon: CreditCard, path: "/faculty/students" },
 ];
 
 const examMenuItems = [
