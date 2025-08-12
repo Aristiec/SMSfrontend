@@ -14,11 +14,16 @@ import AssignmentReviewPage from "../components/faculty/AssignmentReviewPage";
 import AssignmentDetail from "../components/faculty/AssignmentDetail";
 import ExamMangement from "../components/faculty/Exams/Offline/ExamMangement";
 import AcademicCalendar from "../pages/faculty/AcedmicCalender";
+
 import OnlineExamManagement from "../components/faculty/Exams/Offline/OnlineExam";
 import OnlineExamCreation from "../components/faculty/Exams/online/OnlineExam";
+
 import Attendacnce from "../pages/faculty/Attendacnce";
 import Result from "../pages/faculty/Result";
 import OfflineExam from "../components/faculty/Exams/Offline/OfflineExam";
+import StudentList from "../components/faculty/result/StudentList";
+import DatabaseMangement from "../components/faculty/result/DatabaseMangement";
+import ApplyMarks from "../components/faculty/result/ApplyMarks";
 const FacultyRoutes = () => (
   <>
     <Route path="/faculty" element={<FacultyLayout />}>
@@ -41,8 +46,16 @@ const FacultyRoutes = () => (
        <Route path="examManagement" element={<ExamMangement />} />
       <Route path="attendance" element={<Attendacnce />} />
        <Route path="result" element={<Result />} />
+
        <Route path ="exam" element={<OnlineExamManagement />} />
+
+       <Route path ="studentList" element={<StudentList />} />
+      
+       <Route path ="applyMarks" element={<ApplyMarks />} />
+
     </Route>
+     <Route path ="databaseManagement" element={<DatabaseMangement />} />
+    
   </>
 );
 
