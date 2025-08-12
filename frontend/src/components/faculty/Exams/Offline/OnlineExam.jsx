@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Addexam from "../../Addexam";
 import {
   Plus,
@@ -58,7 +59,7 @@ const examData = [
     marks: "Total Marks: 100",
   },
   {
-    subject: "Physics",
+    subject: "Chemistry",
     status: "Scheduled",
     notification: "Send Notification",
     code: "CS-301",
@@ -70,7 +71,7 @@ const examData = [
     marks: "Total Marks: 100",
   },
   {
-    subject: "Physics",
+    subject: "Mathematics",
     status: "Scheduled",
     notification: "Send Notification",
     code: "CS-301",
@@ -85,6 +86,7 @@ const examData = [
 
 const OnlineExam = () => {
       const [isFormOpen, setIsFormOpen] = useState(false);
+      const navigate = useNavigate();
   
     const handleOpenForm = () => {
       setIsFormOpen(true);
@@ -92,6 +94,14 @@ const OnlineExam = () => {
   
     const handleCloseForm = () => {
       setIsFormOpen(false);
+    };
+
+    const handleCreateQuestionPaper = (examData) => {
+      navigate('/faculty/online/create', { 
+        state: { 
+          examData: examData
+        }
+      });
     };
   return (
     <div className="p-6 space-y-6 bg-[#FFFFFF]">
@@ -232,7 +242,10 @@ const OnlineExam = () => {
               </div>
               
             </div>
-                 <div className="w-full mt-1 flex items-center justify-center  gap-[12px] bg-[#E9EEF4] rounded-[8px] px-[12px] py-[12px] text-[#1F1D1D] font-[Inter] text-[16px] font-normal cursor-pointer leading-[100%]">
+                 <div 
+                   onClick={() => handleCreateQuestionPaper(exam)}
+                   className="w-full mt-1 flex items-center justify-center  gap-[12px] bg-[#E9EEF4] rounded-[8px] px-[12px] py-[12px] text-[#1F1D1D] font-[Inter] text-[16px] font-normal cursor-pointer leading-[100%] hover:bg-[#D1D9E6] transition-colors"
+                 >
       <Plus size={13} className="text-[#1F1D1D]" />
       <span>Create Question Paper</span>
     </div> 
