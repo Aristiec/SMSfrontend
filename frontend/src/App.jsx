@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes } from "react-router-dom";
 
 import StudentRoutes from "./routes/StudentRoutes";
 import FacultyRoutes from "./routes/FacultyRoutes";
+import AdminRoutes from "./routes/AdminRoutes";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./features/auth/authSlice";
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         {StudentRoutes()}
         {FacultyRoutes()}
+        {AdminRoutes()}
       </Routes>
     </Router>
   );
