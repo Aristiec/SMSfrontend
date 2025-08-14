@@ -55,7 +55,7 @@ const StudentList = ({ isOpen, onClose }) => {
         </div>
 
         {/* View All Button */}
-        <button className="bg-[#0077FF] text-[#FAFCFD] text-[16px] font-medium font-[Inter] w-full py-2 rounded-md">
+        <button className="bg-[#04203E] text-[#FAFCFD] text-[16px] font-medium font-[Inter] w-full py-2 rounded-md">
           View All
         </button>
       </div>

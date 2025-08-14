@@ -172,8 +172,8 @@ const databaseMangement = () => {
     setDropdown(selectedAnswer)
   };
   return (
-    <div className="bg-[#FAFCFD] py-10 px-12">
-      <div className="px-6 flex gap-60  border border-[#71717199] rounded-[8px] justify-between">
+    <div className="bg-[#FAFCFD] py-5 px-12">
+      <div className="px-6 flex gap-20  border border-[#71717199] rounded-[8px] justify-between">
         <div className="py-4 flex gap-9 ">
           {/* <div className="flex gap-4  ">
             <Clock3 size={20} color="#10B981" />
@@ -205,8 +205,8 @@ const databaseMangement = () => {
           </button> */}
         </div>
       </div>
-      <div className="w-full flex gap-36">
-        <div className=" w-1/4 flex flex-col gap-[60px] pt-10">
+      <div className="w-full flex gap-20">
+        <div className=" w-1/4 flex flex-col gap-[26px] ">
           <div className="flex justify-between">
             {/* <p className=" text-[16px] font-[Inter] font-medium leading-6 tracking-normal text-[#1F1D1D]">
               Progress
@@ -286,7 +286,7 @@ const databaseMangement = () => {
             </div>
           </div>
         </div>
-        <div className="pt-10 gap-10  flex flex-col w-full">
+        <div className=" gap-6  flex flex-col w-full">
           <div className="w-full flex items-center justify-end">
             {/* <button
               onClick={handleReview}

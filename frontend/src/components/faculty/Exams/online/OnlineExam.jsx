@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Mcq from "./Mcq";
 import SubjectiveQuestion from "./SubjectiveQuestion";
@@ -7,6 +7,7 @@ import FullPaperPreview from "./FullPaperPreview";
 
 const OnlineExam = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const examData = location.state?.examData;
   
   // Default data if no exam data is passed
@@ -32,7 +33,7 @@ const OnlineExam = () => {
   ]);
   const [showFullPreview, setShowFullPreview] = useState(false);
 
-  const handleCreateFirstQuestion = (sectionId) => {
+  const handleCreateFirstQuestion = useCallback((sectionId) => {
     setSections(prevSections => 
       prevSections.map(section => 
         section.id === sectionId && section.selectedOption && section.inputValue && section.marks
@@ -40,9 +41,9 @@ const OnlineExam = () => {
           : section
       )
     );
-  };
+  }, []);
 
-  const handleAddNewSection = () => {
+  const handleAddNewSection = useCallback(() => {
     const newSection = {
       id: sections.length + 1,
       selectedOption: null,
@@ -52,9 +53,9 @@ const OnlineExam = () => {
       questions: []
     };
     setSections(prevSections => [...prevSections, newSection]);
-  };
+  }, [sections.length]);
 
-  const updateSectionData = (sectionId, field, value) => {
+  const updateSectionData = useCallback((sectionId, field, value) => {
     setSections(prevSections =>
       prevSections.map(section =>
         section.id === sectionId
@@ -62,9 +63,9 @@ const OnlineExam = () => {
           : section
       )
     );
-  };
+  }, []);
 
-  const updateQuestionData = (sectionId, questionIndex, questionData) => {
+  const updateQuestionData = useCallback((sectionId, questionIndex, questionData) => {
     setSections(prevSections =>
       prevSections.map(section => {
         if (section.id === sectionId) {
@@ -75,7 +76,7 @@ const OnlineExam = () => {
         return section;
       })
     );
-  };
+  }, []);
 
   const renderQuestions = (section) => {
     if (!section.isStarted || !section.inputValue) return null;
@@ -118,8 +119,33 @@ const OnlineExam = () => {
   };
 
   return (
-    <section className="flex pt-8 sm:pt-12 lg:pt-20 px-4 sm:px-8 lg:px-14 gap-6 sm:gap-8 lg:gap-12 bg-[#fafcfd] w-full min-h-screen justify-center">
-      <div className="flex flex-col gap-6 sm:gap-8 lg:gap-12 w-full max-w-6xl">
+    <section className="flex pt-6 px-4 sm:px-8 lg:px-14 gap-6 sm:gap-8 lg:gap-12 bg-[#fafcfd] border border-[#fafcfd] rounded-[8px] w-full min-h-screen justify-center">
+      <div className="flex flex-col gap-6 sm:gap-8 lg:gap-8 w-full max-w-6xl">
+        {/* Back Button */}
+        <div className="flex items-center">
+          <button
+            onClick={() => navigate('/faculty/exam')}
+            className="flex items-center gap-2 px-4 py-2 text-[#04203E] hover:bg-[#04203E] hover:text-white rounded-[8px] border border-[#04203E] transition-colors font-[Inter] font-medium"
+          >
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current"
+            >
+              <path 
+                d="M19 12H5M5 12L12 19M5 12L12 5" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            Back to Online Exams
+          </button>
+        </div>
+        
         {/* Exam Info Header - Show only once */}
         <div className="flex flex-col sm:flex-row rounded-[8px] bg-[#04203E] font-[Inter] text-[#FAFCFD] font-[600] text-sm sm:text-base lg:text-lg xl:text-xl leading-[100%] tracking-normal overflow-hidden">
           <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 flex items-center justify-center flex-1 border-b sm:border-b-0 sm:border-r border-[#ffffff20]">

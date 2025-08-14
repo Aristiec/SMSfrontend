@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PreviewModal from './PreviewModal';
 
 function SubjectiveQuestion({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, onAddNewSection, onQuestionDataChange, initialData }) {
   const [questionText, setQuestionText] = useState(initialData?.question || '');
   const [questionDescription, setQuestionDescription] = useState(initialData?.description || '');
   const [showPreview, setShowPreview] = useState(false);
+  
+  // Use ref to track if we should call onQuestionDataChange
+  const isInitialMount = useRef(true);
 
-  // Update parent whenever data changes
+  // Update parent whenever data changes, but avoid initial call
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+    
     if (onQuestionDataChange) {
       onQuestionDataChange({
         type: 'Subjective',
@@ -16,7 +24,7 @@ function SubjectiveQuestion({ questionNumber = 1, totalQuestions = 1, isLastQues
         questionNumber
       });
     }
-  }, [questionText, questionDescription, questionNumber, onQuestionDataChange]);
+  }, [questionText, questionDescription, questionNumber]);
 
   const handlePreview = () => {
     setShowPreview(true);

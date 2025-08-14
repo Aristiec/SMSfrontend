@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Plus } from "lucide-react";
 import PreviewModal from './PreviewModal';
 
@@ -7,9 +7,17 @@ const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, o
   const [options, setOptions] = useState(initialData?.options || [""]);
   const [question, setQuestion] = useState(initialData?.question || "");
   const [showPreview, setShowPreview] = useState(false);
+  
+  // Use ref to track if we should call onQuestionDataChange
+  const isInitialMount = useRef(true);
 
-  // Update parent whenever data changes
+  // Update parent whenever data changes, but avoid initial call
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+    
     if (onQuestionDataChange) {
       onQuestionDataChange({
         type: 'MCQ',
@@ -18,7 +26,7 @@ const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, o
         questionNumber
       });
     }
-  }, [question, options, questionNumber, onQuestionDataChange]);
+  }, [question, options, questionNumber]);
 
   const handleAddOption = () => {
     setOptions([...options, ""]);

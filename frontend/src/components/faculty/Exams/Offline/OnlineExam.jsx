@@ -182,74 +182,71 @@ const OnlineExam = () => {
 
           {/* Exam Cards */}
           {examData.map((exam, index) => (
-            <> 
-            <div
-              key={index}
-              className="border border-[#CCCCCC] rounded-[12px] p-4 flex flex-col gap-4"
-            >
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                <div className="flex flex-wrap gap-4 sm:gap-8 items-center text-[#717171]">
-                  <span className="text-[16px] font-semibold font-[Inter] text-[#717171] leading-[100%]">
-                    {exam.subject}
-                  </span>
-                  <div className="bg-[#FFF4ED] text-[#F97316] px-3 py-1 rounded-full text-[16px] font-[Inter]">
-                    {exam.status}
-                  </div>
-                  {index === 0 && (
+            <React.Fragment key={`exam-${index}`}>
+              <div className="border border-[#CCCCCC] rounded-[12px] p-4 flex flex-col gap-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <div className="flex flex-wrap gap-4 sm:gap-8 items-center text-[#717171]">
+                    <span className="text-[16px] font-semibold font-[Inter] text-[#717171] leading-[100%]">
+                      {exam.subject}
+                    </span>
                     <div className="bg-[#FFF4ED] text-[#F97316] px-3 py-1 rounded-full text-[16px] font-[Inter]">
-                      {exam.notification}
+                      {exam.status}
                     </div>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-7 mt-2 sm:mt-0">
-                   <div className="flex items-center gap-2 text-[#0077FF] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
-                  <Eye  size={17} /> view
-                </div>
-                  <div className="flex items-center gap-2 text-[#717171] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
-                    <Pencil size={17} /> Edit
+                    {index === 0 && (
+                      <div className="bg-[#FFF4ED] text-[#F97316] px-3 py-1 rounded-full text-[16px] font-[Inter]">
+                        {exam.notification}
+                      </div>
+                    )}
                   </div>
-                  <div className="flex items-center gap-2 text-[#EF4444] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
-                    <CircleX size={16} /> Cancel
+
+                  <div className="flex items-center gap-7 mt-2 sm:mt-0">
+                     <div className="flex items-center gap-2 text-[#0077FF] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
+                    <Eye  size={17} /> view
+                  </div>
+                    <div className="flex items-center gap-2 text-[#717171] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
+                      <Pencil size={17} /> Edit
+                    </div>
+                    <div className="flex items-center gap-2 text-[#EF4444] cursor-pointer text-[16px] font-[Inter] leading-[100%] font-normal">
+                      <CircleX size={16} /> Cancel
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="h-[1px] bg-[#D9D9D9] w-full" />
+                <div className="h-[1px] bg-[#D9D9D9] w-full" />
 
-              <div className="flex flex-wrap text-[#717171] text-[16px] font-[Inter] gap-[98px] leading-[100%] font-normal">
-                <div className="flex items-center gap-3">
-                  <FileText size={14} /> {exam.code}
+                <div className="flex flex-wrap text-[#717171] text-[16px] font-[Inter] gap-[98px] leading-[100%] font-normal">
+                  <div className="flex items-center gap-3">
+                    <FileText size={14} /> {exam.code}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CalendarDays size={16} /> {exam.date}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock size={16} /> {exam.time}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Landmark size={16} /> {exam.room}
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <CalendarDays size={16} /> {exam.date}
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock size={16} /> {exam.time}
-                </div>
-                <div className="flex items-center gap-3">
-                  <Landmark size={16} /> {exam.room}
-                </div>
-              </div>
 
-              <div className="flex flex-wrap gap-[40px] text-[#1F1D1D] text-[16px] font-[Inter]">
-                <div className="flex items-center gap-2">
-                  <User size={16} /> {exam.students}
+                <div className="flex flex-wrap gap-[40px] text-[#1F1D1D] text-[16px] font-[Inter]">
+                  <div className="flex items-center gap-2">
+                    <User size={16} /> {exam.students}
+                  </div>
+                  <div>{exam.duration}</div>
+                  <div>{exam.marks}</div>
+                  
                 </div>
-                <div>{exam.duration}</div>
-                <div>{exam.marks}</div>
                 
               </div>
-              
-            </div>
-                 <div 
-                   onClick={() => handleCreateQuestionPaper(exam)}
-                   className="w-full mt-1 flex items-center justify-center  gap-[12px] bg-[#E9EEF4] rounded-[8px] px-[12px] py-[12px] text-[#1F1D1D] font-[Inter] text-[16px] font-normal cursor-pointer leading-[100%] hover:bg-[#D1D9E6] transition-colors"
-                 >
-      <Plus size={13} className="text-[#1F1D1D]" />
-      <span>Create Question Paper</span>
-    </div> 
-            </>
+              <div 
+                onClick={() => handleCreateQuestionPaper(exam)}
+                className="w-full mt-1 flex items-center justify-center  gap-[12px] bg-[#E9EEF4] rounded-[8px] px-[12px] py-[12px] text-[#1F1D1D] font-[Inter] text-[16px] font-normal cursor-pointer leading-[100%] hover:bg-[#D1D9E6] transition-colors"
+              >
+                <Plus size={13} className="text-[#1F1D1D]" />
+                <span>Create Question Paper</span>
+              </div> 
+            </React.Fragment>
           ))}
         </div>
       </div>
