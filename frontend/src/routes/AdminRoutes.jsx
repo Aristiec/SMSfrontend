@@ -9,7 +9,7 @@ import OfflineExam from "../pages/admin/OfflineExam";
 import Assignments from "../pages/admin/Assignments";
 import Attendance from "../pages/admin/Attendance";
 import Notices from "../pages/admin/Notices";
-import Users from "../pages/admin/Users";
+import Users from "../pages/admin/UserManagement";
 import Settings from "../pages/admin/Settings";
 import Library from "../pages/admin/Library";
 import Hostel from "../pages/admin/Hostel";

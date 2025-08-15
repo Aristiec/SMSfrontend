@@ -78,7 +78,7 @@ const OnlineExam = () => {
     );
   }, []);
 
-  const renderQuestions = (section) => {
+  const renderQuestions = (section, sectionIndex) => {
     if (!section.isStarted || !section.inputValue) return null;
 
     const numQuestions = parseInt(section.inputValue);
@@ -95,7 +95,9 @@ const OnlineExam = () => {
             questionNumber={i} 
             totalQuestions={numQuestions}
             isLastQuestion={isLastQuestion}
+            isLastSection={sectionIndex === sections.length - 1}
             onAddNewSection={handleAddNewSection}
+            onFullPaperPreview={() => setShowFullPreview(true)}
             onQuestionDataChange={(data) => updateQuestionData(section.id, questionIndex, data)}
             initialData={section.questions?.[questionIndex]}
           />
@@ -107,7 +109,9 @@ const OnlineExam = () => {
             questionNumber={i} 
             totalQuestions={numQuestions}
             isLastQuestion={isLastQuestion}
+            isLastSection={sectionIndex === sections.length - 1}
             onAddNewSection={handleAddNewSection}
+            onFullPaperPreview={() => setShowFullPreview(true)}
             onQuestionDataChange={(data) => updateQuestionData(section.id, questionIndex, data)}
             initialData={section.questions?.[questionIndex]}
           />
@@ -147,14 +151,14 @@ const OnlineExam = () => {
         </div>
         
         {/* Exam Info Header - Show only once */}
-        <div className="flex flex-col sm:flex-row rounded-[8px] bg-[#04203E] font-[Inter] text-[#FAFCFD] font-[600] text-sm sm:text-base lg:text-lg xl:text-xl leading-[100%] tracking-normal overflow-hidden">
-          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 flex items-center justify-center flex-1 border-b sm:border-b-0 sm:border-r border-[#ffffff20]">
+        <div className="flex flex-col sm:flex-row  font-[Inter] text-[#04203E] rounded-[8px] border border-[gray] font-[600] text-sm sm:text-base lg:text-lg xl:text-xl leading-[100%] tracking-normal overflow-hidden">
+          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 flex items-center justify-center flex-1 border-b sm:border-b-0 sm:border-r border-[gray]">
             <p className="whitespace-nowrap text-center">{currentExam.subject} - {currentExam.code}</p>
           </div>
-          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 border-b sm:border-b-0 sm:border-r border-[#ffffff20] flex items-center justify-center flex-1">
+          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 border-b sm:border-b-0 sm:border-r border-[gray] flex items-center justify-center flex-1">
             <p className="whitespace-nowrap text-center">Date - {currentExam.date}</p>
           </div>
-          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 border-b sm:border-b-0 sm:border-r border-[#ffffff20] flex items-center justify-center flex-1">
+          <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 border-b sm:border-b-0 sm:border-r border-[gray] flex items-center justify-center flex-1">
             <p className="whitespace-nowrap text-center">Duration - {currentExam.duration}</p>
           </div>
           <div className="px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 flex items-center justify-center flex-1">
@@ -163,7 +167,7 @@ const OnlineExam = () => {
         </div>
 
         {sections.map((section, index) => (
-          <div key={section.id} className="flex flex-col gap-6 sm:gap-8 lg:gap-12">
+          <div key={section.id} className="flex flex-col gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
             {/* Section Header */}
             {index > 0 && (
               <div className="flex items-center justify-center py-4">
@@ -186,21 +190,9 @@ const OnlineExam = () => {
               isFirstSection={index === 0}
             />
             
-            {renderQuestions(section)}
+            {renderQuestions(section, index)}
           </div>
         ))}
-        
-        {/* Full Paper Preview Button - Show only if there are started sections */}
-        {sections.some(section => section.isStarted) && (
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={() => setShowFullPreview(true)}
-              className="px-8 py-4 bg-[#04203E] text-[#FAFCFD] rounded-[8px] font-[Inter] font-medium text-lg hover:bg-[#062952] transition-colors shadow-lg"
-            >
-              Full Paper Preview
-            </button>
-          </div>
-        )}
       </div>
       
       {showFullPreview && (

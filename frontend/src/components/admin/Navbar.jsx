@@ -27,12 +27,12 @@ const menuItems = [
   { name: "Dashboard", icon: Home, path: "/admin/dashboard" },
   { name: "Schedule", icon: Calendar, path: "/admin/schedule" },
   { name: "Courses", icon: BookOpen, path: "/admin/courses" },
+  { name: "User Management", icon: Users, path: "/admin/users" },
   { name: "Results", icon: ChartNoAxesColumn, path: "/admin/results" },
   { name: "Exams", icon: Calculator, path: "/admin/exam" },
   { name: "Assignments", icon: ClipboardCheck, path: "/admin/assignments" },
   { name: "Attendance", icon: UserCheck, path: "/admin/attendance" },
   { name: "Notices", icon: Bell, path: "/admin/notices" },
-  { name: "Users", icon: Users, path: "/admin/users" },
   { name: "Settings", icon: Settings, path: "/admin/settings" },
 ];
 

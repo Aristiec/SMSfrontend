@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Plus } from "lucide-react";
 import PreviewModal from './PreviewModal';
 
-const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, onAddNewSection, onQuestionDataChange, initialData }) => {
+const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, isLastSection = false, onAddNewSection, onFullPaperPreview, onQuestionDataChange, initialData }) => {
   const [options, setOptions] = useState(initialData?.options || [""]);
   const [question, setQuestion] = useState(initialData?.question || "");
   const [showPreview, setShowPreview] = useState(false);
@@ -63,7 +63,7 @@ const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, o
         </span>
       </div>
       
-      <div className="gap-6 sm:gap-10 flex w-full items-start flex-col sm:flex-row">
+      <div className="gap-3 flex w-full items-start flex-col sm:flex-row">
         <p className="font-medium text-lg sm:text-xl leading-[30px] tracking-normal py-2 text-[#000000] sm:min-w-[20px]">
           {questionNumber}.
         </p>
@@ -100,7 +100,7 @@ const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, o
               </div>
             ))}
 
-            <div className="flex">
+            <div className="flex justify-between w-full">
               <button
                 onClick={handleAddOption}
                 className="flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center hover:bg-gray-50 transition-colors"
@@ -110,30 +110,43 @@ const Mcq = ({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, o
                   Add Option
                 </p>
               </button>
+              
+              <button 
+                onClick={handlePreview}
+                disabled={!isFormValid}
+                className="flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                  Preview
+                </p>
+              </button>
             </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row justify-between w-full gap-4 sm:gap-7">
-            <button 
-              onClick={handlePreview}
-              disabled={!isFormValid}
-              className="w-full flex py-3 px-4 sm:px-7 gap-2 bg-[#04203E] rounded-[8px] items-center justify-center hover:bg-[#062952] transition-colors"
-            >
-              <p className="font-[Inter] font-medium text-base sm:text-lg lg:text-xl leading-6 tracking-normal text-[#FAFCFD]">
-                Preview
-              </p>
-            </button>
-            {isLastQuestion && onAddNewSection && (
+          {/* Bottom buttons - Conditional rendering based on question position */}
+          {isLastQuestion && (
+            <div className="flex gap-4 w-full">
+              {onAddNewSection && (
+                <button 
+                  onClick={onAddNewSection}
+                  className="flex-1 flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                    Add New Section
+                  </p>
+                </button>
+              )}
+              
               <button 
-                onClick={onAddNewSection}
-                className="w-full flex py-3 px-4 sm:px-7 gap-2 bg-[#04203E] rounded-[8px] items-center justify-center hover:bg-[#062952] transition-colors"
+                onClick={onFullPaperPreview}
+                className="flex-1 flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <p className="font-[Inter] font-medium text-base sm:text-lg lg:text-xl leading-6 tracking-normal text-[#FAFCFD]">
-                  Add New Section
+                <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                  Full Paper Preview
                 </p>
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       
