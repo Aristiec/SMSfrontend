@@ -399,14 +399,18 @@ const Courses = () => {
         <div className="flex flex-row justify-between items-center mb-8">
           {/* Search Box - Left side */}
           <div className="relative">
+
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#717171]" />
+
             <input
               type="text"
               placeholder="Search courses by name or code..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-[300px] h-[48px] border border-[#E5E5E5] rounded-[8px] pl-4 pr-12 py-3 font-[Inter] font-normal text-[14px] leading-[20px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#04203e]"
+
+              className="w-[320px] h-[48px] border border-[#E5E5E5] rounded-[8px] pl-12 pr-4 py-3 font-[Inter] font-normal text-[14px] leading-[20px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#0077FF] focus:ring-1 focus:ring-[#0077FF]"
             />
-            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#717171]" />
+
           </div>
           
           {/* Filters - Right side */}

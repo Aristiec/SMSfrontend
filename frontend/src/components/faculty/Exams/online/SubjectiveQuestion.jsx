@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PreviewModal from './PreviewModal';
 
-function SubjectiveQuestion({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, onAddNewSection, onQuestionDataChange, initialData }) {
+function SubjectiveQuestion({ questionNumber = 1, totalQuestions = 1, isLastQuestion = false, isLastSection = false, onAddNewSection, onFullPaperPreview, onQuestionDataChange, initialData }) {
   const [questionText, setQuestionText] = useState(initialData?.question || '');
   const [questionDescription, setQuestionDescription] = useState(initialData?.description || '');
   const [showPreview, setShowPreview] = useState(false);
@@ -71,25 +71,42 @@ function SubjectiveQuestion({ questionNumber = 1, totalQuestions = 1, isLastQues
           />
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-6">
+          <div className="flex justify-end w-full">
             <button
               onClick={handlePreview}
               disabled={!isFormValid}
-              className="w-full h-[44px] rounded-[8px] bg-[#04203E] py-2 px-4 font-[Inter] font-medium text-sm sm:text-base leading-[24px] tracking-[0%] text-[#FAFCFD] hover:bg-[#062952] transition-colors border-0"
-              style={{ fontWeight: 500 }}
+              className="flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
-              Preview
+              <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                Preview
+              </p>
             </button>
-            {isLastQuestion && onAddNewSection && (
-              <button
-                onClick={onAddNewSection}
-                className="w-full h-[44px] rounded-[8px] bg-[#04203E] py-2 px-4 font-[Inter] font-medium text-sm sm:text-base leading-[24px] tracking-[0%] text-[#FAFCFD] hover:bg-[#062952] transition-colors border-0"
-                style={{ fontWeight: 500 }}
-              >
-                Add New Section
-              </button>
-            )}
           </div>
+          
+          {/* Bottom buttons - Conditional rendering based on question position */}
+          {isLastQuestion && (
+            <div className="flex gap-4 w-full">
+              {onAddNewSection && (
+                <button 
+                  onClick={onAddNewSection}
+                  className="flex-1 flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                    Add New Section
+                  </p>
+                </button>
+              )}
+              
+              <button 
+                onClick={onFullPaperPreview}
+                className="flex-1 flex py-2 px-4 sm:px-7 gap-2 border border-[#CCCCCC] rounded-[8px] bg-[#FFFFFF] items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+              >
+                <p className="font-[500] text-sm sm:text-base leading-[24px] tracking-normal text-[#717171]">
+                  Full Paper Preview
+                </p>
+              </button>
+            </div>
+          )}
         </div>
       </div>
       
