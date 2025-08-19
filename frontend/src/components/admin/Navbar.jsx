@@ -26,7 +26,7 @@ import { logout } from "../../features/auth/authSlice";
 
 const menuItems = [
   { name: "Dashboard", icon: Home, path: "/admin/dashboard" },
-  { name: "Schedule", icon: Calendar, path: "/admin/schedule" },
+  { name: "Timetable", icon: Calendar, path: "/admin/Timetable" },
   { name: "Courses", icon: BookOpen, path: "/admin/courses" },
 
   { name: "User Management", icon: Users, path: "/admin/users" },
