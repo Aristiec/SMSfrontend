@@ -17,6 +17,7 @@ import {
   Users,
   Settings,
   Database,
+  CircleUserRound
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -29,6 +30,7 @@ const menuItems = [
   { name: "Courses", icon: BookOpen, path: "/admin/courses" },
 
   { name: "User Management", icon: Users, path: "/admin/users" },
+  { name: "Faculty Management", icon: CircleUserRound, path: "/admin/faculty" },
 
   { name: "Results", icon: ChartNoAxesColumn, path: "/admin/results" },
   { name: "Exams", icon: Calculator, path: "/admin/exam" },
