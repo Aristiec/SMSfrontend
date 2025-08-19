@@ -409,7 +409,7 @@ const FacultyManagement = () => {
                   </div>
                   <div className="w-full bg-[#E5E5E5] rounded-full h-2">
                     <div 
-                      className="bg-[#0077FF] h-2 rounded-full transition-all duration-300" 
+                      className="bg-[#04203E] h-2 rounded-full transition-all duration-300" 
                       style={{ width: `${faculty.profileCompletion}%` }}
                     ></div>
                   </div>
