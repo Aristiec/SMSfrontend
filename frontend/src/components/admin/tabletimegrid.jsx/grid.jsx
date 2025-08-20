@@ -40,21 +40,21 @@ export default function TimetableGrid() {
     <div className="p-6 bg-white min-h-screen">
       {/* Action Buttons */}
       <div className="flex justify-between items-center mb-4">
-        <button className="px-4 py-2 font-medium border-2 rounded-lg shadow-sm bg-white hover:bg-gray-100">
+        <button className="px-4 py-2  border-1 font-[14px] border-[#1F1D1D] rounded-lg shadow-sm bg-white hover:bg-gray-100">
           <Eye size={16} className="inline mr-2" />
           Preview
         </button>
 
         <div className="flex gap-4">
-          <button className="px-4 py-2 font-medium border-2 rounded-md shadow-sm bg-white hover:bg-gray-100">
+          <button className="px-4 py-2 font-[14px] border-1 border-[#1F1D1D] rounded-md shadow-sm bg-white hover:bg-gray-100">
             <FileText size={16} className="inline mr-2" />
             Export to PDF
           </button>
-          <button className="px-4 py-2 font-medium border-2 rounded-md shadow-sm bg-white hover:bg-gray-100">
+          <button className="px-4 py-2 font-[14px] border-1 border-[#1F1D1D] rounded-md shadow-sm bg-white hover:bg-gray-100">
             <Save size={16} className="inline mr-2" />
             Save Draft
           </button>
-          <button className="px-4 py-2 font-medium rounded-md shadow bg-[#0A2A47] text-white hover:bg-[#0A2A47]">
+          <button className="px-4 py-2 font-[14px] rounded-md shadow bg-[#0A2A47] text-white hover:bg-[#0A2A47]">
             <Send size={16} className="inline mr-2" />
             Publish Timetable
           </button>
@@ -134,7 +134,7 @@ export default function TimetableGrid() {
         </button>
       </div>
       {isEdit && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-none z-50">
           <div className="bg-white rounded-2xl shadow-lg w-full max-w-lg p-6 relative">
             {/* Close Button */}
             <button

@@ -7,7 +7,7 @@ const EditTimeSlot = () => {
   const [faculty, setFaculty] = useState("");
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
+    <div className="max-w-md mx-auto p-1 bg-white ">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit Time Slot</h1>
 
       <div className="space-y-6">
