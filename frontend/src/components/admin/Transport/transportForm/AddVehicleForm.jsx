@@ -147,16 +147,39 @@ function AddVehicleForm({ onClose, onAddVehicle }) {
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-end">
-            <button
-              type="submit"
-              className="w-auto px-6 h-[40px] rounded-[8px] bg-[#04203E] text-white font-medium text-[14px] hover:bg-[#052a4d] transition-all flex items-center justify-center gap-2"
-              onClick={handleFormClick} // Prevent event bubbling
-            >
-              <Save className="w-4 h-4" />
-              <span>Save</span>
-            </button>
+          {/* Upload PVC and RC Documents */}
+          <div className="flex flex-col gap-[8px]">
+            <label className="font-[Inter] text-[14px] text-[#717171]">Upload PVC and RC of Vehicle</label>
+            <div className="flex justify-between items-center gap-4">
+              <input
+                type="file"
+                id="vehicle-documents"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png"
+                className="hidden"
+                onChange={(e) => {
+                  // Handle file upload logic here
+                  console.log('Files selected:', e.target.files);
+                }}
+              />
+              <label
+                htmlFor="vehicle-documents"
+                className="w-auto px-6 h-[48px] rounded-[8px] border border-[#717171] text-[14px] text-[#717171] cursor-pointer hover:border-[#04203e] transition-colors flex items-center justify-center gap-2"
+                onClick={handleFormClick}
+              >
+                Upload Documents
+              </label>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-auto px-6 h-[48px] rounded-[8px] bg-[#04203E] text-white font-medium text-[14px] hover:bg-[#052a4d] transition-all flex items-center justify-center gap-2"
+                onClick={handleFormClick}
+              >
+                <Save className="w-4 h-4" />
+                <span>Save</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

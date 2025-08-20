@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Edit, Trash2, Phone, Mail, Clock, Droplets } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import DriverDetails from "./transportForm/DriverDetails";
 
 const driversData = [
   {
@@ -43,6 +45,21 @@ const driversData = [
 ];
 
 const Driver = () => {
+  const [showDriverDetails, setShowDriverDetails] = useState(false);
+  const [selectedDriver, setSelectedDriver] = useState(null);
+
+  // Handle view details button click
+  const handleViewDetails = (driver) => {
+    console.log('View details clicked for driver:', driver);
+    setSelectedDriver(driver);
+    setShowDriverDetails(true);
+  };
+
+  // Handle modal close
+  const handleDetailsClose = () => {
+    setShowDriverDetails(false);
+    setSelectedDriver(null);
+  };
   return (
     <div className="flex flex-col bg-[#FAFCFD] font-[Inter] rounded-[12px]">
       {/* Header */}
@@ -141,7 +158,10 @@ const Driver = () => {
             </div>
 
             {/* View Full Details Button */}
-            <button className="w-full py-2 px-4 mt-2 rounded-md border border-[#71717166] bg-white hover:bg-[#F0F8FF] transition-colors">
+            <button 
+              className="w-full py-2 px-4 mt-2 rounded-md border border-[#71717166] bg-white hover:bg-[#F0F8FF] transition-colors"
+              onClick={() => handleViewDetails(driver)}
+            >
               <span className="font-[Inter] font-medium text-[12px] leading-[16px] text-[#0077FF]">
                 View Full Details
               </span>
@@ -149,6 +169,38 @@ const Driver = () => {
           </div>
         ))}
       </div>
+
+      {/* Driver Details Modal */}
+      <AnimatePresence>
+        {showDriverDetails && selectedDriver && (
+          <div className="fixed inset-0 z-50 overflow-y-auto">
+            <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40" onClick={handleDetailsClose}></div>
+            <div className="relative z-50 flex items-center justify-center min-h-screen px-4 max-sm:py-2 max-sm:px-2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={handleDetailsClose}
+                  className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 text-xl leading-none bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md"
+                >
+                  ×
+                </button>
+
+                {/* Driver Details Content */}
+                <div className="p-6">
+                  <DriverDetails driverData={selectedDriver} />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

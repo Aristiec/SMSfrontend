@@ -138,11 +138,30 @@ function EditVehicleForm({ onClose, onUpdateVehicle, vehicleData }) {
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-end">
+          {/* Upload Documents and Submit Buttons */}
+          <div className="flex justify-between items-center gap-4">
+            <input
+              type="file"
+              id="edit-vehicle-documents"
+              multiple
+              accept=".pdf,.jpg,.jpeg,.png"
+              className="hidden"
+              onChange={(e) => {
+                // Handle file upload logic here
+                console.log('Files selected:', e.target.files);
+              }}
+            />
+            <label
+              htmlFor="edit-vehicle-documents"
+              className="w-auto px-6 h-[48px] rounded-[8px] border border-[#717171] text-[14px] text-[#717171] cursor-pointer hover:border-[#04203e] transition-colors flex items-center justify-center gap-2"
+            >
+              Upload Documents
+            </label>
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-auto px-6 h-[40px] rounded-[8px] bg-[#04203E] text-white font-medium text-[14px] hover:bg-[#052a4d] transition-all flex items-center justify-center gap-2"
+              className="w-auto px-6 h-[48px] rounded-[8px] bg-[#04203E] text-white font-medium text-[14px] hover:bg-[#052a4d] transition-all flex items-center justify-center gap-2"
             >
               <Save className="w-4 h-4" />
               <span>Update</span>
