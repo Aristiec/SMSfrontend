@@ -18,75 +18,78 @@ export default function Timetable() {
       {/* Filters */}
 
       <div className="bg-white mt-4 p-6 rounded-lg shadow">
-        <div className="flex flex-wrap items-center gap-6">
-          {/* Course Dropdown */}
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Course
-            </label>
-            <div className="flex items-center gap-2">
-              <Dropdown
-                options={["B.Tech", "M.Tech", "MBA", "BBA"]}
-                onSelect={(value) => setCourse(value)}
-                placeholder="Select Course"
-                selected={course}
-                className="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                spanClassName="truncate"
-              />
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* Left side: Dropdowns */}
+          <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
+            {/* Course Dropdown */}
+            <div className="w-full sm:w-auto min-w-[160px]">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Course
+              </label>
+              <div className="flex items-center">
+                <Dropdown
+                  options={["B.Tech", "M.Tech", "MBA", "BBA"]}
+                  onSelect={(value) => setCourse(value)}
+                  placeholder="Select Course"
+                  selected={course}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  spanClassName="truncate"
+                />
+              </div>
+            </div>
+
+            {/* Section Dropdown */}
+            <div className="w-full sm:w-auto min-w-[120px]">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Section
+              </label>
+              <div className="flex items-center">
+                <Dropdown
+                  options={["A", "B", "C", "D"]}
+                  onSelect={(value) => setSection(value)}
+                  placeholder="Select Section"
+                  selected={section}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  spanClassName="truncate"
+                />
+              </div>
+            </div>
+
+            {/* Semester Dropdown */}
+            <div className="w-full sm:w-auto min-w-[140px]">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Semester
+              </label>
+              <div className="flex items-center">
+                <Dropdown
+                  options={[
+                    "Semester 1",
+                    "Semester 2",
+                    "Semester 3",
+                    "Semester 4",
+                  ]}
+                  onSelect={(value) => setSemester(value)}
+                  placeholder="Select Semester"
+                  selected={semester}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  spanClassName="truncate"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Section Dropdown */}
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Section
-            </label>
-            <div className="flex items-center gap-2">
-              <Dropdown
-                options={["A", "B", "C", "D"]}
-                onSelect={(value) => setSection(value)}
-                placeholder="Select Section"
-                selected={section}
-                className="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                spanClassName="truncate"
-              />
-            </div>
-          </div>
-
-          {/* Semester Dropdown */}
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Semester
-            </label>
-            <div className="flex items-center gap-2">
-              <Dropdown
-                options={[
-                  "Semester 1",
-                  "Semester 2",
-                  "Semester 3",
-                  "Semester 4",
-                ]}
-                onSelect={(value) => setSemester(value)}
-                placeholder="Select Semester"
-                selected={semester}
-                className="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                spanClassName="truncate"
-              />
-            </div>
-          </div>
-
-          {/* Generate Grid Button */}
-          <div className="self-end flex flex-col">
+          {/* Right side: Generate Grid Button */}
+          <div className="flex md:justify-end mt-2 md:mt-0">
             <button
               disabled={!course || !section || !semester}
-              className={`px-6 py-2 rounded-md shadow font-medium ${
+              className={`px-5 py-2 rounded-md shadow font-medium text-sm flex items-center ${
                 course && section && semester
                   ? "bg-[#0A2A47] text-white hover:bg-[#0A2A47]"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               }`}
               onClick={() => setGrid(true)}
             >
-              <Calendar size={16} className="inline mr-2" />
+              <Calendar size={16} className="mr-2" />
               Generate Grid
             </button>
           </div>
