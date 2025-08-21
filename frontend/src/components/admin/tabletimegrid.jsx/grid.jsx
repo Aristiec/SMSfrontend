@@ -66,7 +66,7 @@ export default function TimetableGrid() {
         <table className="border border-gray-300 w-full text-sm text-center">
           <thead className="bg-white">
             <tr>
-              <th className="border border-gray-400 font-medium px-4 py-2 text-lg text-gray-400 text-left w-28">
+              <th className="border border-gray-400 font-semibold px-4 py-2 text-lg text-[#717171] text-left w-22">
                 Time
               </th>
               {timeSlots.map((slot, i) => {
@@ -74,7 +74,7 @@ export default function TimetableGrid() {
                 return (
                   <th
                     key={i}
-                    className="border border-gray-400 text-lg text-gray-400  font-medium px-2 py-2 relative align-top"
+                    className="border border-gray-400 text-[18px] font-semibold  text-[#717171]  px-2 py-2 relative align-top"
                   >
                     <div className="flex flex-col items-start leading-tight">
                       <span>{start.trim()} -</span>
@@ -82,7 +82,7 @@ export default function TimetableGrid() {
                     </div>
 
                     <button
-                      className="absolute top-4 font-bold right-10 text-gray-400 hover:text-gray-600"
+                      className="absolute top-4  right-10 text-[#717171]"
                       onClick={() => setIsEdit(true)}
                     >
                       <SquarePen size={24} />
@@ -95,24 +95,46 @@ export default function TimetableGrid() {
           <tbody>
             {days.map((day) => (
               <tr key={day} className="border">
-                <td className="border border-gray-400 text-gray-400  text-lg px-4 py-2  font-medium bg-white">
+                <td className="border border-gray-400 font-semibold text-[#717171] text-lg px-4 py-2   bg-white">
                   {day}
                 </td>
                 {timeSlots.map((_, i) => (
                   <td
                     key={i}
                     onClick={() => handleAssign(day, i)}
-                    className="border border-gray-400 px-2 py-6 cursor-pointer"
+                    className="border border-[#717171]  px-2 py-6 cursor-pointer"
                   >
                     {grid[day][i] ? (
                       <span className="text-blue-700 font-bold">
                         {grid[day][i]}
                       </span>
                     ) : (
-                      <div className="border text-lg border-dashed border-gray-400 text-gray-500 py-4 rounded">
-                        <span>Click to</span>
-                        <br />
-                        <span>assign</span>
+                      <div className="inline-block text-center leading-tight">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="140"
+                          height="60"
+                          className="rounded"
+                        >
+                          <rect
+                            x="2"
+                            y="2"
+                            width="136"
+                            height="56"
+                            rx="6"
+                            ry="6"
+                            fill="none"
+                            stroke="#717171"
+                            strokeWidth="1.5"
+                            strokeDasharray="6,4"
+                          />
+                          <foreignObject x="0" y="0" width="140" height="60">
+                            <div className="flex flex-col items-center justify-center h-full text-[#717171] text-base">
+                              <span>Click to</span>
+                              <span>assign</span>
+                            </div>
+                          </foreignObject>
+                        </svg>
                       </div>
                     )}
                   </td>
@@ -126,10 +148,10 @@ export default function TimetableGrid() {
       {/* Add Time Slot Button */}
       <div className="flex justify-end mt-4">
         <button
-          className="text-gray-600 flex items-center gap-1 hover:text-gray-900"
+          className="text-gray-600 flex items-center font-medium gap-1 hover:text-gray-900"
           // onClick={() => alert("Add Time Slot functionality")}
         >
-          <Plus size={20} />
+          <Plus size={22} />
           Add Time Slot
         </button>
       </div>
@@ -139,7 +161,7 @@ export default function TimetableGrid() {
             {/* Close Button */}
             <button
               onClick={() => setIsEdit(false)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-black"
+              className="absolute top-3 right-3  text-black hover:text-black"
             >
               ✖
             </button>
