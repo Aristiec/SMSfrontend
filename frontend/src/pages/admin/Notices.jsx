@@ -110,6 +110,7 @@ const notices = [
 const Notices = () => {
   const [expandedIds, setExpandedIds] = useState([]);
   const [announcementType, setAnnouncementType] = useState(false);
+  const [noticesList, setNoticesList] = useState(notices);
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) =>
@@ -145,7 +146,7 @@ const Notices = () => {
 
         {/* Notices Container */}
         <div className="mt-5 space-y-6">
-          {notices.map((notice) => {
+          {noticesList.map((notice) => {
             const isExpanded = expandedIds.includes(notice.id);
             const shouldTruncate =
               notice.plaindescription?.split(" ").length > 30;
@@ -225,7 +226,16 @@ const Notices = () => {
 
             {/* Your Component */}
             <ErrorBoundary>
-              <AddAnnouncement onClose={() => setAnnouncementType(false)} />
+              <AddAnnouncement
+                onClose={() => setAnnouncementType(false)}
+                onAdd={(newNotice) => {
+                  setNoticesList((prev) => [
+                    { ...newNotice, id: prev.length + 1 }, // unique id
+                    ...prev,
+                  ]);
+                  setAnnouncementType(false); // modal band karna
+                }}
+              />
             </ErrorBoundary>
           </div>
         </div>
