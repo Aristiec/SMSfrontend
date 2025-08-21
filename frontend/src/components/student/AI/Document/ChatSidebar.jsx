@@ -7,7 +7,7 @@ import {
   fetchHistory,
   removeSession,
   changeTitle,
-} from "../../../../features/chatpdf/chatPdfSlice";
+} from "../../../../features/chatpdf/chatpdfSlice";
 
 const ChatSidebar = ({ onClose }) => {
   const dispatch = useDispatch();

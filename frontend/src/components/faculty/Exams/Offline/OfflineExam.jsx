@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Addexam from "../../Addexam";
+import Addexam from "../../AddExam";
 import {
   Plus,
   CalendarDays,
