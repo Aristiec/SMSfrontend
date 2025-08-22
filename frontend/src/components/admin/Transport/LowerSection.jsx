@@ -30,9 +30,42 @@ const menuItems = [
   },
 ];
 
+const initialRoutesData = [
+  {
+    id: "A",
+    title: "Route A",
+    startPoint: "Laxmi Nagar",
+    endPoint: "Khan Market",
+    description: "Main eastern route covering major residential areas",
+    stoppages: 8,
+    vehicles: 2,
+  },
+  {
+    id: "B",
+    title: "Route B",
+    startPoint: "Laxmi Nagar",
+    endPoint: "Khan Market",
+    description: "Main eastern route covering major residential areas",
+    stoppages: 8,
+    vehicles: 2,
+  },
+  {
+    id: "C",
+    title: "Route C",
+    startPoint: "Connaught Place",
+    endPoint: "University Campus",
+    description: "Central route for downtown students",
+    stoppages: 5,
+    vehicles: 1,
+  },
+];
+
 const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [routes, setRoutes] = useState(initialRoutesData);
+
   const vehiclesRef = useRef(null);
+  const driversRef = useRef(null);
 
   const handleTabChange = (index) => {
     setSelectedIndex(index);
@@ -41,23 +74,57 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
 
   // Function to add vehicle that will be passed to the form
   const handleAddVehicle = (newVehicle) => {
-    console.log('LowerSection: Adding vehicle', newVehicle);
+    console.log("LowerSection: Adding vehicle", newVehicle);
     if (vehiclesRef.current && vehiclesRef.current.addVehicle) {
       vehiclesRef.current.addVehicle(newVehicle);
-      console.log('LowerSection: Vehicle added through ref');
+      console.log("LowerSection: Vehicle added through ref");
     } else {
-      console.error('LowerSection: Vehicle ref or addVehicle function not available');
+      console.error(
+        "LowerSection: Vehicle ref or addVehicle function not available"
+      );
     }
   };
-
+  const handleAddDriver = (newDriver) => {
+    console.log("LowerSection: Adding Driver", newDriver);
+    if (driversRef.current && driversRef.current.addDriver) {
+      driversRef.current.addDriver(newDriver);
+      console.log("LowerSection: Driver added through ref");
+    } else {
+      console.error(
+        "LowerSection: Driver ref or addDriver function not available"
+      );
+    }
+  };
   const renderAddForm = () => {
+    console.log("Rendering add form for index:", selectedIndex);
     switch (selectedIndex) {
-      case 0: return <AddRouteForm onClose={onCloseForm} />;
-      case 1: return <AddStoppageForm onClose={onCloseForm} />;
-      case 2: return <AddVehicleForm onClose={onCloseForm} onAddVehicle={handleAddVehicle} />;
-      case 3: return <AddAssignForm onClose={onCloseForm} />;
-      case 4: return <AddDriverForm onClose={onCloseForm} />;
-      default: return null;
+      case 0:
+        return (
+          <AddRouteForm
+            onClose={onCloseForm}
+            onSaveRoute={(newRoute) => {
+              console.log("New Route from AddRouteForm:", newRoute);
+              setRoutes((prev) => [...prev, newRoute]); // Update the Routes list
+            }}
+          />
+        );
+      case 1:
+        return <AddStoppageForm onClose={onCloseForm} />;
+      case 2:
+        return (
+          <AddVehicleForm
+            onClose={onCloseForm}
+            onAddVehicle={handleAddVehicle}
+          />
+        );
+      case 3:
+        return <AddAssignForm onClose={onCloseForm} />;
+      case 4:
+        return (
+          <AddDriverForm onClose={onCloseForm} onAddDriver={handleAddDriver} />
+        );
+      default:
+        return null;
     }
   };
 
@@ -83,7 +150,7 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
             </button>
           ))}
         </div>
-        
+
         <AnimatePresence mode="wait">
           <motion.div
             animate={{ opacity: 1, y: 0 }}
@@ -93,7 +160,7 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
             key={selectedIndex}
           >
             {selectedIndex === 0 ? (
-              <Routes />
+              <Routes routes={routes} setRoutes={setRoutes} />
             ) : selectedIndex === 1 ? (
               <Stoppages />
             ) : selectedIndex === 2 ? (
@@ -101,7 +168,7 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
             ) : selectedIndex === 3 ? (
               <Assign />
             ) : selectedIndex === 4 ? (
-              <Driver />
+              <Driver ref={driversRef} />
             ) : null}
           </motion.div>
         </AnimatePresence>
@@ -111,8 +178,8 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
       <AnimatePresence>
         {showAddForm && (
           <div className="fixed inset-0 z-50 overflow-y-auto">
-            <div 
-              className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40" 
+            <div
+              className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"
               onClick={onCloseForm}
             ></div>
             <div className="relative z-50 flex items-center justify-center min-h-screen px-4 max-sm:py-2 max-sm:px-2">
