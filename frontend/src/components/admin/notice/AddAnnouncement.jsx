@@ -1,18 +1,73 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
-
 import Dropdown from "../../utils/Dropdown";
+import { Volleyball } from "lucide-react";
+import { FiAlertCircle } from "react-icons/fi";
+import { FaBookOpen, FaCalendarAlt } from "react-icons/fa";
 
-const AddAnnouncement = ({ onClose }) => {
+const AddAnnouncement = ({ onClose, onAdd }) => {
   const [announcementType, setAnnouncementType] = useState("General");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const announcementTypes = ["General", "Alert", "Event", "Sport"];
+  const getTypeMeta = (type) => {
+    switch (type) {
+      case "Alert":
+        return {
+          icon: <FiAlertCircle className="text-[#EF4444] w-[15px] h-[15px]" />,
+          labelColor: "text-[#EF4444]",
+          bgColor: "bg-[#FEF2F2]",
+        };
+      case "Event":
+        return {
+          icon: <FaCalendarAlt className="text-[#059669] w-[15px] h-[15px]" />,
 
+          labelColor: "text-[#059669]",
+          bgColor: "bg-[#ECFDF7]",
+        };
+      case "Sport":
+        return {
+          icon: <Volleyball className="text-[#F59E0B] w-[15px] h-[15px]" />,
+          labelColor: "text-[#F59E0B]",
+          bgColor: "bg-[#FFFBEB]",
+        };
+      default: // General
+        return {
+          icon: <FaBookOpen className="text-[#1D4ED8] w-[15px] h-[15px]" />,
+
+          labelColor: "text-[#1D4ED8]",
+          bgColor: "bg-[#F4F7FA]",
+        };
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ announcementType, title, content });
+    const meta = getTypeMeta(announcementType);
+
+    // 🔹 Naya notice object banaya
+    const newNotice = {
+      id: Date.now(),
+      type: announcementType,
+      icon: meta.icon,
+      labelColor: meta.labelColor,
+      bgColor: meta.bgColor,
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      title,
+      description: content,
+      plaindescription: content,
+      postedBy: "Admin",
+    };
+
+    // 🔹 Parent me bhejna
+    onAdd(newNotice);
+
+    // Modal close karna
+    onClose();
   };
 
   return (
@@ -21,7 +76,7 @@ const AddAnnouncement = ({ onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#1F1D1D] "
+          className="absolute top-4 right-4 text-[#1F1D1D]"
         >
           <X />
         </button>
@@ -37,7 +92,7 @@ const AddAnnouncement = ({ onClose }) => {
             <label className="block text-sm font-medium text-[#717171]">
               Announcement Type
             </label>
-            <div className="flex w-1/2   items-center">
+            <div className="flex w-1/2 items-center">
               <Dropdown
                 options={announcementTypes}
                 onSelect={(value) => setAnnouncementType(value)}

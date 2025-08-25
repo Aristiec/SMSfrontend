@@ -16,11 +16,8 @@ const Transport = () => {
 
   return (
     <div className="flex flex-col px-4 gap-6 mt-4">
-      <Header 
-        currentTab={currentTab} 
-        onAddClick={handleAddClick}
-      />
-      <LowerSection 
+      <Header currentTab={currentTab} onAddClick={handleAddClick} />
+      <LowerSection
         onTabChange={setCurrentTab}
         showAddForm={showAddForm}
         onCloseForm={handleCloseForm}

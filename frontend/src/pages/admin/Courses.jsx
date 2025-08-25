@@ -437,18 +437,18 @@ const Courses = () => {
         {/* Courses Table */}
         <div className="bg-[#FAFCFD] rounded-[8px]">
           {/* Table Header */}
-          <div className="bg-[#F4F7FA] py-[20px] px-[2px] flex items-center justify-between border-b border-[#71717166] rounded-t-[8px]">
+          <div className="bg-[#F4F7FA] py-[20px] px-[1px] flex items-center justify-between border-b border-[#71717166] rounded-t-[8px]">
             <div className="flex-3">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Course Name
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 -ml-6">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Course Code
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-3">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Duration
               </span>
@@ -458,12 +458,12 @@ const Courses = () => {
                 Total Fees
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-4">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 System
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-2">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Status
               </span>
