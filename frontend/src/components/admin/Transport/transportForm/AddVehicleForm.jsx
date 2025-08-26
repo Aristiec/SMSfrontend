@@ -91,60 +91,66 @@ function AddVehicleForm({ onClose, onAddVehicle }) {
         <h2 className="font-[Inter] font-semibold text-[20px] text-[#1F1D1D]">Add New Vehicle</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-[24px]">
-          {/* Vehicle Number */}
-          <div className="flex flex-col gap-[8px]">
-            <label className="font-[Inter] text-[14px] text-[#717171]">Vehicle Number</label>
-            <input
-              type="text"
-              name="vehicleNumber"
-              value={formData.vehicleNumber}
-              onChange={handleInputChange}
-              placeholder="e.g. UP-32-4591"
-              className="w-full h-[48px] rounded-[8px] border border-[#E5E5E5] px-[16px] py-[12px] text-[14px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#04203e]"
-              onClick={handleFormClick} // Prevent event bubbling
-              required
-            />
+          {/* First Row - Vehicle Number and Vehicle Type */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+            {/* Vehicle Number */}
+            <div className="flex flex-col gap-[8px]">
+              <label className="font-[Inter] text-[14px] text-[#717171]">Vehicle Number</label>
+              <input
+                type="text"
+                name="vehicleNumber"
+                value={formData.vehicleNumber}
+                onChange={handleInputChange}
+                placeholder="e.g. UP-32-4591"
+                className="w-full h-[48px] rounded-[8px] border border-[#E5E5E5] px-[16px] py-[12px] text-[14px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#04203e]"
+                onClick={handleFormClick}
+                required
+              />
+            </div>
+
+            {/* Vehicle Type */}
+            <div className="flex flex-col gap-[8px]">
+              <label className="font-[Inter] text-[14px] text-[#717171]">Vehicle Type</label>
+              <Dropdown
+                options={vehicleTypeOptions}
+                selected={formData.vehicleType}
+                onSelect={(option) => setFormData(prev => ({ ...prev, vehicleType: option }))}
+                placeholder="Select Vehicle Type"
+                className="w-full border border-[#E5E5E5] rounded-[8px] px-3 py-3 text-[14px] text-[#1F1D1D] font-[Inter] font-normal focus:border-[#04203e]"
+              />
+            </div>
           </div>
 
-          {/* Vehicle Type */}
-          <div className="flex flex-col gap-[8px]">
-            <label className="font-[Inter] text-[14px] text-[#717171]">Vehicle Type</label>
-            <Dropdown
-              options={vehicleTypeOptions}
-              selected={formData.vehicleType}
-              onSelect={(option) => setFormData(prev => ({ ...prev, vehicleType: option }))}
-              placeholder="Select Vehicle Type"
-              className="w-full border border-[#E5E5E5] rounded-[8px] px-3 py-3 text-[14px] text-[#1F1D1D] font-[Inter] font-normal focus:border-[#04203e]"
-            />
-          </div>
+          {/* Second Row - Capacity and Assign Route */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+            {/* Capacity */}
+            <div className="flex flex-col gap-[8px]">
+              <label className="font-[Inter] text-[14px] text-[#717171]">Capacity</label>
+              <input
+                type="number"
+                name="capacity"
+                value={formData.capacity}
+                onChange={handleInputChange}
+                placeholder="40"
+                min="1"
+                max="100"
+                className="w-full h-[48px] rounded-[8px] border border-[#E5E5E5] px-[16px] py-[12px] text-[14px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#04203e]"
+                onClick={handleFormClick}
+                required
+              />
+            </div>
 
-          {/* Capacity */}
-          <div className="flex flex-col gap-[8px]">
-            <label className="font-[Inter] text-[14px] text-[#717171]">Capacity</label>
-            <input
-              type="number"
-              name="capacity"
-              value={formData.capacity}
-              onChange={handleInputChange}
-              placeholder="40"
-              min="1"
-              max="100"
-              className="w-full h-[48px] rounded-[8px] border border-[#E5E5E5] px-[16px] py-[12px] text-[14px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#04203e]"
-              onClick={handleFormClick} // Prevent event bubbling
-              required
-            />
-          </div>
-
-          {/* Assign Route */}
-          <div className="flex flex-col gap-[8px]">
-            <label className="font-[Inter] text-[14px] text-[#717171]">Assign Route</label>
-            <Dropdown
-              options={routeOptions}
-              selected={formData.assignRoute}
-              onSelect={(option) => setFormData(prev => ({ ...prev, assignRoute: option }))}
-              placeholder="Select Route"
-              className="w-full border border-[#E5E5E5] rounded-[8px] px-3 py-3 text-[14px] text-[#1F1D1D] font-[Inter] font-normal focus:border-[#04203e]"
-            />
+            {/* Assign Route */}
+            <div className="flex flex-col gap-[8px]">
+              <label className="font-[Inter] text-[14px] text-[#717171]">Assign Route</label>
+              <Dropdown
+                options={routeOptions}
+                selected={formData.assignRoute}
+                onSelect={(option) => setFormData(prev => ({ ...prev, assignRoute: option }))}
+                placeholder="Select Route"
+                className="w-full border border-[#E5E5E5] rounded-[8px] px-3 py-3 text-[14px] text-[#1F1D1D] font-[Inter] font-normal focus:border-[#04203e]"
+              />
+            </div>
           </div>
 
           {/* Upload PVC and RC Documents */}
