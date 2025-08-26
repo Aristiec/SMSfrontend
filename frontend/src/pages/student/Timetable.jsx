@@ -14,7 +14,14 @@ const Timetable = () => {
   const [timetable, setTimetable] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const timeSlots = [
     { start: "08:00", end: "08:50" },
@@ -144,7 +151,7 @@ const Timetable = () => {
                                 className="border-2 border-[rgba(113,113,113,0.4)] w-24 md:w-28 h-16 md:h-20"
                               >
                                 {match ? (
-                                  <div className="flex flex-col text-left justify-center h-full px-2 py-1 text-center">
+                                  <div className="flex flex-col text-left justify-center h-full px-2 py-1 ">
                                     <div className="text-xs md:text-sm font-medium text-[#1F1D1D] truncate">
                                       {match.code}
                                     </div>
