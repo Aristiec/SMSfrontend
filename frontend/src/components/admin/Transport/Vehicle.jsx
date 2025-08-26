@@ -219,7 +219,7 @@ const Vehicles = forwardRef((props, ref) => {
         {showEditForm && editingVehicle && (
           <div className="fixed inset-0 z-50 overflow-y-auto">
             <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40" onClick={handleEditClose}></div>
-            <div className="relative z-50 flex items-center justify-center min-h-screen px-4 max-sm:py-2 max-sm:px-2">
+            <div className="relative z-50 flex items-start  justify-center min-h-screen px-4 pt-16 max-sm:py-2 max-sm:px-2">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -243,7 +243,7 @@ const Vehicles = forwardRef((props, ref) => {
         {showDeleteModal && deletingVehicle && (
           <div className="fixed inset-0 z-50 overflow-y-auto">
             <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40" onClick={handleDeleteClose}></div>
-            <div className="relative z-50 flex items-center justify-center min-h-screen px-4">
+            <div className="relative z-50 flex items-start justify-center min-h-screen px-4 pt-20">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
