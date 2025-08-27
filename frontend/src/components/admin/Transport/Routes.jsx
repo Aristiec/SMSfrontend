@@ -57,18 +57,17 @@ const Routes = ({ routes, setRoutes }) => {
       </div>
 
       <div
-        className="flex  flex-col md:flex-row justify-center"
-        style={{ gap: "23px", opacity: 1 }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        style={{ opacity: 1 }}
       >
         {routes.map((route) => (
           <div
             key={route.id}
-            className="flex  flex-col w-full md:w-1/3"
+            className="flex flex-col"
             style={{
-              borderRadius: "8px",
-              padding: "24px",
-              gap: "24px",
-              opacity: 1,
+              borderRadius: "10px",
+              padding: "32px",
+              gap: "34px",
               border: "1px solid #71717166",
               boxShadow: "0px 4px 8px 0px #0000001F",
               backgroundColor: "white",

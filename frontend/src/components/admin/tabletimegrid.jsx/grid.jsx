@@ -4,7 +4,7 @@ import { FileText } from "lucide-react";
 import { Eye } from "lucide-react";
 import { Save } from "lucide-react";
 import { Send } from "lucide-react";
-import { Plus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import EditTimeSlot from "./editTimeSlot";
 import ErrorBoundary from "./ErrorBoundary";
 
@@ -62,7 +62,7 @@ export default function TimetableGrid() {
       </div>
 
       {/* Timetable Grid */}
-      <div className="overflow-x-auto">
+      <div className="">
         <table className="border border-gray-300 w-full text-sm text-center">
           <thead className="bg-white">
             <tr>
@@ -102,7 +102,7 @@ export default function TimetableGrid() {
                   <td
                     key={i}
                     onClick={() => handleAssign(day, i)}
-                    className="border border-[#717171]  px-2 py-6 cursor-pointer"
+                    className="border border-[#717171]  px-0 py-4 cursor-pointer"
                   >
                     {grid[day][i] ? (
                       <span className="text-blue-700 font-bold">
@@ -161,9 +161,9 @@ export default function TimetableGrid() {
             {/* Close Button */}
             <button
               onClick={() => setIsEdit(false)}
-              className="absolute top-3 right-3  text-black hover:text-black"
+              className="absolute top-3 right-3  text-gray-500 hover:text-black"
             >
-              ✖
+              <X />
             </button>
 
             {/* Your Component */}
