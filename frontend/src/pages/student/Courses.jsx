@@ -40,7 +40,8 @@ const Courses = () => {
       <div className="flex flex-col px-4 gap-7 mt-4">
         {/* Header */}
         <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full h-[68px] px-4 text-[#FAFCFD]">
-          <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
+          <h1 className="text-[20px] md:text-[24px] font-bold font-npm run dev
+          [Montserrat]">
             Courses Enrolled
           </h1>
         </header>
