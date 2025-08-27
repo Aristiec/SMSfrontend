@@ -32,13 +32,7 @@ const menuItems = [
   { name: "User Management", icon: Users, path: "/admin/users" },
   { name: "Faculty Management", icon: CircleUserRound, path: "/admin/faculty" },
 
-  { name: "Results", icon: ChartNoAxesColumn, path: "/admin/results" },
-  { name: "Exams", icon: Calculator, path: "/admin/exam" },
-  { name: "Assignments", icon: ClipboardCheck, path: "/admin/assignments" },
-  { name: "Attendance", icon: UserCheck, path: "/admin/attendance" },
   { name: "Notices", icon: Bell, path: "/admin/notices" },
-
-  { name: "Settings", icon: Settings, path: "/admin/settings" },
 ];
 
 const examMenuItems = [

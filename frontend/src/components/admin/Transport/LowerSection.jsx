@@ -182,7 +182,7 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
               className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"
               onClick={onCloseForm}
             ></div>
-            <div className="relative z-50 flex items-center justify-center min-h-screen px-4 max-sm:py-2 max-sm:px-2">
+            <div className="relative z-50 flex items-start justify-center min-h-screen px-4 pt-16 max-sm:py-2 max-sm:px-2">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
