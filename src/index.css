@@ -15,6 +15,10 @@ body {
 .montserrat {
   font-family: "Montserrat", "Inter";
 }
+.merriweather
+{
+  font-family: "merriweather";
+}
 
 .scrollbar-hide {
   -ms-overflow-style: none;
