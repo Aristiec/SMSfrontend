@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell, CartesianGrid, Tooltip } from 'recharts';
 
 const Performance = () => {
@@ -360,3 +360,4 @@ const Performance = () => {
 };
 
 export default Performance;
+

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Calendar, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 
@@ -340,3 +341,4 @@ const Attendance = () => {
 };
 
 export default Attendance;
+
