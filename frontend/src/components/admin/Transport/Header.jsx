@@ -9,6 +9,7 @@ const Header = ({ currentTab, onAddClick }) => {
       case 2: return "Add Vehicle";
       case 3: return "Add Assignment";
       case 4: return "Add Driver";
+      case 5: return "Add Document";
       default: return "Add Route";
     }
   };
