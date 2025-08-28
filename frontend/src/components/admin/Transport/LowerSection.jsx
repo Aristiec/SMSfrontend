@@ -1,16 +1,18 @@
 import React, { useState, useRef } from "react";
-import { Route, MapPin, Car, Users, UserCheck } from "lucide-react";
+import { Route, MapPin, Car, Users, UserCheck, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Routes from "./Routes";
 import Stoppages from "./Stoppages";
 import Vehicles from "./Vehicle";
 import Assign from "./Assign";
 import Driver from "./Driver";
+import Documents from "./Documents";
 import AddRouteForm from "./transportForm/AddRouteForm";
 import AddStoppageForm from "./transportForm/AddStoppageForm";
 import AddVehicleForm from "./transportForm/AddVehicleForm";
 import AddAssignForm from "./transportForm/AddAssignForm";
 import AddDriverForm from "./transportForm/AddDriverForm";
+import AddDocumentForm from "./transportForm/AddDocumentForm";
 
 const menuItems = [
   {
@@ -27,6 +29,9 @@ const menuItems = [
   },
   {
     title: "Driver",
+  },
+  {
+    title: "Documents",
   },
 ];
 
@@ -66,6 +71,7 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
 
   const vehiclesRef = useRef(null);
   const driversRef = useRef(null);
+  const documentsRef = useRef(null);
 
   const handleTabChange = (index) => {
     setSelectedIndex(index);
@@ -92,6 +98,18 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
     } else {
       console.error(
         "LowerSection: Driver ref or addDriver function not available"
+      );
+    }
+  };
+
+  const handleAddDocument = (newDocument) => {
+    console.log("LowerSection: Adding Document", newDocument);
+    if (documentsRef.current && documentsRef.current.addDocument) {
+      documentsRef.current.addDocument(newDocument);
+      console.log("LowerSection: Document added through ref");
+    } else {
+      console.error(
+        "LowerSection: Document ref or addDocument function not available"
       );
     }
   };
@@ -122,6 +140,10 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
       case 4:
         return (
           <AddDriverForm onClose={onCloseForm} onAddDriver={handleAddDriver} />
+        );
+      case 5:
+        return (
+          <AddDocumentForm onClose={onCloseForm} onAddDocument={handleAddDocument} />
         );
       default:
         return null;
@@ -169,6 +191,8 @@ const LowerSection = ({ onTabChange, showAddForm, onCloseForm }) => {
               <Assign />
             ) : selectedIndex === 4 ? (
               <Driver ref={driversRef} />
+            ) : selectedIndex === 5 ? (
+              <Documents ref={documentsRef} />
             ) : null}
           </motion.div>
         </AnimatePresence>
