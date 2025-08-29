@@ -6,16 +6,14 @@ import {
   CheckCircle,
   Eye,
   FileUp,
-  CloudAlert,
   AlignCenter,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { fetchAssignmentsByCourseAndSem } from "../../features/auth/authAPI";
-import { useSelector } from "react-redux";
+// import { fetchAssignmentsByCourseAndSem } from "../../features/auth/authAPI"; // 🔒 API disabled
 import Dropdown from "../../components/utils/Dropdown";
-import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
-import AssingmentLoading from './LoadingSkeleton/AssignmentLoading'
+import AssingmentLoading from "./LoadingSkeleton/AssignmentLoading";
 
+// 🔹 Upcoming Assignments (right-side panel)
 const upcomingAssignments = [
   {
     title: "Modern Economics",
@@ -24,10 +22,56 @@ const upcomingAssignments = [
     dueTime: "11:59 PM",
   },
   {
-    title: "Modern Economics",
-    subject: "Economics 101",
+    title: "Operating System",
+    subject: "TCP/IP Protocol",
+    dueDate: "2/20/2024",
+    dueTime: "11:59 PM",
+  },
+  {
+    title: "Physics",
+    subject: "H.C Verma",
     dueDate: "2/15/2024",
     dueTime: "11:59 PM",
+  },
+  {
+    title: "Mathematics",
+    subject: "Linear Algebra",
+    dueDate: "3/20/2024",
+    dueTime: "11:59 PM",
+  },
+];
+
+// 🔹 Mock Assignments (main list)
+const mockAssignments = [
+  {
+    id: 1,
+    title: "Algebra Homework",
+    subjectName: "Math",
+    description: "Solve chapter 4 problems 1-10",
+    dueDate: "2024-09-30",
+    submissionMode: "ONLINE",
+    attempted: false,
+    maxMarks: 20,
+  },
+  {
+    id: 2,
+    title: "Chemistry Lab Report",
+    subjectName: "Chemistry",
+    description: "Submit lab report on acids & bases",
+    dueDate: "2024-08-25",
+    submissionMode: "OFFLINE",
+    completed: false,
+    maxMarks: 15,
+  },
+  {
+    id: 3,
+    title: "History Essay",
+    subjectName: "History",
+    description: "Write an essay on World War II causes",
+    dueDate: "2024-10-05",
+    submissionMode: "ONLINE",
+    attempted: true,
+    maxMarks: 30,
   },
 ];
 
@@ -40,9 +84,8 @@ const Assignments = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [size, setSize] = useState(10);
-  const { user } = useSelector((state) => state.auth);
-  const courseId = user?.courseId;
-  const sem = user?.sem || 1;
+  const courseId = 1;
+  const sem = 1;
   const [selectedSubject, setSelectedSubject] = useState("All Subjects");
 
   const subjectOptions = [
@@ -53,8 +96,7 @@ const Assignments = () => {
     "Math",
   ];
 
-  console.log("CourseID:", courseId, "Sem:", sem);
-
+  // 🔹 Assignment status logic
   const getAssignmentStatus = (assignment) => {
     const today = new Date();
     const dueDate = new Date(assignment.dueDate);
@@ -74,23 +116,19 @@ const Assignments = () => {
     return "pending";
   };
 
+  // 🔹 Using mock data instead of API
   useEffect(() => {
     const getAssignments = async () => {
-      if (!courseId || !sem) return;
       try {
-        const data = await fetchAssignmentsByCourseAndSem(
-          courseId,
-          sem,
-          page,
-          size
-        );
-        const updated = data.content.map((assignment) => ({
+        // const data = await fetchAssignmentsByCourseAndSem(courseId, sem, page, size); // 🔒 API disabled
+        const data = mockAssignments; // ✅ Use mock data
+        const updated = data.map((assignment) => ({
           ...assignment,
           subject: assignment.subjectName,
           status: getAssignmentStatus(assignment),
         }));
         setAssignments(updated);
-        setTotalPages(data.totalPages || 1);
+        setTotalPages(1); // since mock data doesn’t have pages
       } catch (err) {
         console.error(err);
         setError("Failed to load assignments");
@@ -101,30 +139,12 @@ const Assignments = () => {
     getAssignments();
   }, [courseId, sem, page, size]);
 
-  const handleMarkAsCompleted = async (assignment) => {
-    try {
-      await fetch(
-        "https://39bd5ed85d57.ngrok-free.app/api/v1/submission/submit-offline",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            assignmentId: assignment.id,
-            studentId: user?.id,
-          }),
-        }
-      );
-
-      setAssignments((prev) =>
-        prev.map((a) =>
-          a.id === assignment.id ? { ...a, completed: true } : a
-        )
-      );
-    } catch (err) {
-      console.error("Error marking as completed:", err);
-    }
+  const handleMarkAsCompleted = (assignment) => {
+    setAssignments((prev) =>
+      prev.map((a) =>
+        a.id === assignment.id ? { ...a, completed: true, status: "completed" } : a
+      )
+    );
   };
 
   const filteredAssignments = assignments.filter((assignment) => {
@@ -146,6 +166,7 @@ const Assignments = () => {
       case "pending":
         return <AlertCircle className="w-4 h-4 text-[#F97316]" />;
       case "submitted":
+      case "completed":
         return <CheckCircle className="w-4 h-4 text-[#10B981]" />;
       default:
         return null;
@@ -159,6 +180,7 @@ const Assignments = () => {
       case "pending":
         return "text-[#F97316]";
       case "submitted":
+      case "completed":
         return "text-[#10B981]";
       default:
         return "text-[#1F1D1D]";
@@ -171,24 +193,23 @@ const Assignments = () => {
     });
   };
 
-  const filters = ["All", "Overdue", "Pending", "Submitted"];
+  const filters = ["All", "Overdue", "Pending", "Submitted", "Completed"];
 
   if (loading) {
-    return (
-      <AssingmentLoading />
-      
-    );
+    return <AssingmentLoading />;
   }
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-1 mt-4">
+        {/* 🔹 Header */}
         <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather]">
             Assignments
           </h1>
         </header>
 
+        {/* 🔹 Filters & Subject Dropdown */}
         <div className="w-full mx-auto mt-3 mb-3 ">
           <div className="flex flex-wrap items-center justify-between gap-2 text-[#04203E] text-sm bg-[#FAFCFD] p-3 rounded-[12px]">
             <div className="flex flex-wrap gap-2">
@@ -196,14 +217,16 @@ const Assignments = () => {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-4 py-2 rounded-lg font-normal transition-colors flex items-center gap-2 ${activeFilter === filter
-                    ? "bg-[#04203E] text-[#FAFCFD]"
-                    : "bg-[#FAFCFD] text-[#1F1D1D] border border-[#1F1D1D] hover:bg-[#FAFCFD]"
-                    }`}
+                  className={`px-4 py-2 rounded-lg font-normal transition-colors flex items-center gap-2 ${
+                    activeFilter === filter
+                      ? "bg-[#04203E] text-[#FAFCFD]"
+                      : "bg-[#FAFCFD] text-[#1F1D1D] border border-[#1F1D1D] hover:bg-[#FAFCFD]"
+                  }`}
                 >
                   {filter === "Pending" && <Clock size={16} />}
                   {filter === "Overdue" && <Ban size={16} />}
                   {filter === "Submitted" && <CheckCircle size={16} />}
+                  {filter === "Completed" && <CheckCircle size={16} />}
                   {filter}
                 </button>
               ))}
@@ -219,7 +242,9 @@ const Assignments = () => {
           </div>
         </div>
 
+        {/* 🔹 Main Layout */}
         <div className="grid lg:grid-cols-[1fr_357px] gap-1 mx-auto w-full">
+          {/* 🔹 Left: Assignments List */}
           <div className="flex flex-col w-full">
             <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] scrollbar-hide w-full">
               {filteredAssignments.length > 0 ? (
@@ -258,10 +283,11 @@ const Assignments = () => {
                     <div className="flex items-center gap-6 text-sm text-[#1F1D1D] mb-4">
                       <div className="flex items-center gap-1">
                         <Clock
-                          className={`w-4 h-4 ${assignment.status === "overdue"
-                            ? "text-[#EF4444]"
-                            : ""
-                            }`}
+                          className={`w-4 h-4 ${
+                            assignment.status === "overdue"
+                              ? "text-[#EF4444]"
+                              : ""
+                          }`}
                         />
                         <span
                           className={
@@ -284,7 +310,7 @@ const Assignments = () => {
                       <div className="my-[8px]">
                         <div className="flex rounded-[8px] gap-[8px] p-[8px] items-center bg-[#FEF2F2]">
                           <Ban size={16} className="text-[#EF4444]" />
-                          <p className="font-[Inter] font-[400] text-[16px] leading-[0] text-center text-[#EF4444]">
+                          <p className="font-[Inter] font-[400] text-[16px] text-[#EF4444]">
                             Late submissions are not allowed
                           </p>
                         </div>
@@ -296,7 +322,9 @@ const Assignments = () => {
                         <>
                           {assignment.status === "pending" && (
                             <button
-                              onClick={() => handleMarkAsCompleted(assignment)}
+                              onClick={() =>
+                                handleMarkAsCompleted(assignment)
+                              }
                               className="bg-[#04203E] text-[#FAFCFD] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
                             >
                               Mark as Completed
@@ -325,118 +353,41 @@ const Assignments = () => {
                           )}
                           {(assignment.status === "submitted" ||
                             assignment.status === "overdue") && (
-                              <button
-                                onClick={() => handleOpenAssignment(assignment)}
-                                className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
-                              >
-                                <Eye className="w-4 h-4" />
-                                View Details
-                              </button>
-                            )}
+                            <button
+                              onClick={() => handleOpenAssignment(assignment)}
+                              className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                            >
+                              <Eye className="w-4 h-4" />
+                              View Details
+                            </button>
+                          )}
                         </>
                       )}
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] flex justify-center items-center w-[880px] h-full min-h-[600px]">
-                  <p className="text-[#04203E] text-lg font-semibold ">
-                    {loading
-                      ? <AssingmentLoading />
-                      :
-                      <div className="flex flex-col items-center justify-center gap-3">
-                        <div className="w-[72px] h-[72px] rounded-full bg-[#F5FAFF] flex flex-col items-center justify-center shadow-lg gap-3 p-4">
-
-                          <AlignCenter size={40} color="#2196F3" />
-                        </div>
-                        <span className="font-inter font-[600] text-[16px] leading-[24px] text-center">
-                          No Assignments Found !
-                        </span>
-
-                        <button
-                          // onClick={() => navigate("/student/tdetailss")}
-                          className="w-[150px] h-[40px] rounded-[8px] px-[12px] py-[8px] bg-[#04203E] flex items-center justify-center font-inter font-semibold text-[14px] leading-[24px] tracking-[0] text-white text-center"
-                          type="button"
-                        >
-                          Contact Admin
-                        </button>
-
-                      </div>
-
-
-
-                    }
-                  </p>
+                <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] flex justify-center items-center w-full w-[880px] h-full min-h-[600px]">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="w-[72px] h-[72px] rounded-full bg-[#F5FAFF] flex flex-col items-center justify-center shadow-lg gap-3 p-4">
+                      <AlignCenter size={40} color="#2196F3" />
+                    </div>
+                    <span className="font-inter font-[600] text-[16px] leading-[24px] text-center">
+                      No Assignments Found !
+                    </span>
+                    <button
+                      className="w-[150px] h-[40px] rounded-[8px] px-[12px] py-[8px] bg-[#04203E] flex items-center justify-center font-inter font-semibold text-[14px] leading-[24px] text-white text-center"
+                      type="button"
+                    >
+                      Contact Admin
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
-
-            {filteredAssignments.length > 0 && (
-              <div className="flex justify-center mt-2">
-                <div className="flex items-center gap-2 px-4 py-2">
-                  <button
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-                    disabled={page === 0}
-                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === 0
-                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                      }`}
-                  >
-                    Previous
-                  </button>
-
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setPage(index)}
-                      className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === index
-                        ? "bg-[#04203E] text-white"
-                        : "text-[#04203E] hover:bg-[#E9EEF4]"
-                        }`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-
-                  <button
-                    onClick={() =>
-                      setPage((prev) => Math.min(prev + 1, totalPages - 1))
-                    }
-                    disabled={page === totalPages - 1}
-                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === totalPages - 1
-                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                      }`}
-                  >
-                    Next
-                  </button>
-                  <div className="flex items-center gap-2">
-                    <label
-                      htmlFor="pageSize"
-                      className="text-sm text-[#04203E]"
-                    >
-                      Page size:
-                    </label>
-                    <select
-                      id="pageSize"
-                      value={size}
-                      onChange={(e) => {
-                        setSize(parseInt(e.target.value, 10));
-                        setPage(0);
-                      }}
-                      className="border border-[#04203E] rounded px-2 py-1 text-sm"
-                    >
-                      <option value={2}>2</option>
-                      <option value={4}>4</option>
-                      <option value={6}>6</option>
-                      <option value={10}>10</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
+          {/* 🔹 Right: Upcoming Assignments */}
           <div className="w-full lg:w-[357px] flex-shrink-0 h-full mt-6 lg:mt-0">
             <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] p-3 h-full min-h-[600px] flex flex-col justify-between">
               <div>
@@ -474,7 +425,6 @@ const Assignments = () => {
                   ))}
                 </div>
               </div>
-
               <div className="flex-grow" />
             </div>
           </div>

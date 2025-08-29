@@ -46,7 +46,7 @@ const AssignmentDetails = () => {
       transition={{ duration: 0.4 }}
       className="min-h-screen bg-[#E9EEF4] p-4 text-[Inter]"
     >
-      <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl px-6 py-4 text-[#FAFCFD] font-[Inter] mx-auto">
+      <header className="bg-[#04203e] flex justify-between items-center rounded-[12px] w-full px-6 py-4 text-[#FAFCFD] font-[Inter] mx-auto">
         <h1 className="text-[24px] font-bold font-[Merriweather]">
           Assignments
         </h1>
