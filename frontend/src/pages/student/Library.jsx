@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Book, Clock, DollarSign } from "lucide-react";
 import LowerComponent from "../../components/student/Library/LowerComponent.jsx";
-import { fetchLibrarySummary } from "../../features/auth/authAPI.js";
+// import { fetchLibrarySummary } from "../../features/auth/authAPI.js";
 
 const Card = ({ title, count, description, icon, iconBg }) => {
   return (
@@ -27,7 +27,7 @@ const Library = () => {
     {
       id: 1,
       title: "Books Issued",
-      count: "--",
+      count: "5", // mocked data
       description: "Books currently issued to you",
       icon: <Book className="w-5 h-5 text-[#4B5563]" />,
       iconBg: "bg-[#E9EEF4]",
@@ -35,27 +35,28 @@ const Library = () => {
     {
       id: 2,
       title: "Due Soon",
-      count: "--",
-      description: "Next due: --",
+      count: "2", // mocked data
+      description: "Next due: 5th Sep, 2025", // mocked data
       icon: <Clock className="w-5 h-5 text-[#FB923C]" />,
       iconBg: "bg-[#FEF4ED]",
     },
     {
       id: 3,
       title: "Fine Balance",
-      count: "--",
+      count: "₹150", // mocked data
       description: "Clear fines to continue borrowing",
       icon: <DollarSign className="w-5 h-5 text-[#34D399]" />,
       iconBg: "bg-[#ECFDF7]",
     },
   ]);
 
+  // Commented out API call
+  /*
   useEffect(() => {
     const getLibrarySummary = async () => {
       try {
         const studentId = localStorage.getItem("studentId");
         const data = await fetchLibrarySummary(studentId);
-
         setCardData([
           {
             id: 1,
@@ -89,6 +90,7 @@ const Library = () => {
 
     getLibrarySummary();
   }, []);
+  */
 
   return (
     <div className="mx-auto flex flex-col gap-8 min-h-screen">

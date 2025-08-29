@@ -2,7 +2,7 @@ import React from "react";
 
 const unpaidFines = [
   {
-    book: "Artificial Intelligence: A Modern Approach",
+    book: "To Kill a Mockingbird",
     isbn: "978-0132350051",
     dueDate: "12/04/2023",
     returnDate: "-",
@@ -14,7 +14,7 @@ const unpaidFines = [
 
 const paymentHistory = [
   {
-    book: "Computer Networks",
+    book: "The Great Gatsby",
     isbn: "978-0132356974",
     daysLate: 8,
     fine: "₹250",
@@ -22,9 +22,25 @@ const paymentHistory = [
     status: "Paid",
   },
   {
-    book: "Fundamentals of Database Systems",
+    book: "1984",
     isbn: "978-0132356794",
-    daysLate: 8,
+    daysLate: 4,
+    fine: "₹250",
+    paidOn: "22/06/2023",
+    status: "Paid",
+  },
+  {
+    book: "Database Management System",
+    isbn: "978-0132356794",
+    daysLate: 10,
+    fine: "₹250",
+    paidOn: "22/06/2023",
+    status: "Paid",
+  },
+  {
+    book: "Operating System",
+    isbn: "978-0132356794",
+    daysLate: 12,
     fine: "₹250",
     paidOn: "22/06/2023",
     status: "Paid",

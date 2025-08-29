@@ -17,87 +17,32 @@ import {
   fetchDriverByVehicle,
   fetchTransportNotifications,
 } from "../../features/auth/authAPI";
-const busRouteStops = [
-  {
-    stopName: "Laxmi Nagar Metro Station",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:10 AM",
-  },
-  {
-    stopName: "Preet Vihar Opp. PVR",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:18 AM",
-  },
-  {
-    stopName: "AIIMS Gate 1",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:25 AM",
-  },
-  {
-    stopName: "Nirman Vihar Red Light",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:32 AM",
-  },
-  {
-    stopName: "Karkardooma Court",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: true,
-    time: "7:39 AM",
-  },
-  {
-    stopName: "Welcome Metro Station",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:46 AM",
-  },
-  {
-    stopName: "ISBT Kashmere Gate",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "7:53 AM",
-  },
-  {
-    stopName: "Rajiv Chowk Gate 5",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:00 AM",
-  },
-  {
-    stopName: "Mandi House Circle",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:07 AM",
-  },
-  {
-    stopName: "India Gate Stop",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:14 AM",
-  },
-  {
-    stopName: "Khan Market Metro",
-    distance: "0.0 km",
-    duration: "~7 min",
-    isCurrentStop: false,
-    time: "8:21 AM",
-  },
+
+
+const mockStops = [
+  { stopName: "Laxmi Nagar Metro Station", distance: "0.0 km", duration: "~7 min", time: "7:10 AM", isCurrentStop: false },
+  { stopName: "Preet Vihar Opp. PVR", distance: "1.2 km", duration: "~7 min", time: "7:18 AM", isCurrentStop: false },
+  { stopName: "AIIMS Gate 1", distance: "3.5 km", duration: "~7 min", time: "7:25 AM", isCurrentStop: false },
+  { stopName: "Nirman Vihar Red Light", distance: "5.0 km", duration: "~7 min", time: "7:32 AM", isCurrentStop: false },
+  { stopName: "Karkardooma Court", distance: "6.2 km", duration: "~7 min", time: "7:39 AM", isCurrentStop: true },
+  { stopName: "ISBT Kashmere Gate", distance: "10.0 km", duration: "~7 min", time: "7:53 AM", isCurrentStop: false },
+  { stopName: "Rajiv Chowk Gate 5", distance: "12.0 km", duration: "~7 min", time: "8:00 AM", isCurrentStop: false },
+  { stopName: "India Gate Stop", distance: "15.0 km", duration: "~7 min", time: "8:14 AM", isCurrentStop: false },
 ];
 
-const updates = [
+
+
+const mockedDriverInfo = {
+  name: "Ravi Kumar",
+  contact: "+91 9876543210",
+};
+
+const mockRouteDetails = {
+  vehicle: { id: "VEH123", number: "DL 14 AB 2056" },
+  route: { id: "ROUTE99", name: "East Delhi Circular" },
+};
+
+const mockUpdates = [
   {
     id: 1,
     title: "Bus B205 Delay",
@@ -120,12 +65,13 @@ const updates = [
     id: 3,
     title: "Holiday Schedule",
     description:
-      "Please note that buses will operate on a reduced schedule during the upcoming holiday weekend.",
+      "Buses will operate on a reduced schedule during the upcoming holiday weekend.",
     time: "2 days ago, 10:00 AM",
     bg: "#F4F7FA",
     iconColor: "#1F1D1D",
   },
 ];
+
 const Transport = () => {
   const [showMap, setShowMap] = React.useState(false);
   const [busRouteStops, setBusRouteStops] = useState([]);
@@ -139,60 +85,55 @@ const Transport = () => {
     }
   };
 
+
+
+
+
   useEffect(() => {
-    if (!localStorage.getItem("studentCode")) {
-      localStorage.setItem("studentCode", "BTECH2025001");
-    }
-    if (!localStorage.getItem("token")) {
-      localStorage.setItem("token", "FAKE_TOKEN");
-    }
-    const studentCode = localStorage.getItem("studentCode");
-    const token = localStorage.getItem("token");
+    // if (!localStorage.getItem("studentCode")) {
+    //   localStorage.setItem("studentCode", "BTECH2025001");
+    // }
+    // if (!localStorage.getItem("token")) {
+    //   localStorage.setItem("token", "FAKE_TOKEN");
+    // }
+    // const studentCode = localStorage.getItem("studentCode");
+    // const token = localStorage.getItem("token");
 
-    if (studentCode && token) {
-      fetchTransportAssignment(studentCode, token)
-        .then((res) => {
-          const data = res.data[0];
-          setRouteDetails(data);
+  
+          setRouteDetails(mockRouteDetails);
 
-          const stops = data.allRouteStoppages.map((stop) => ({
-            stopName: stop.name,
-            distance: `${stop.distance} km`,
-            duration: stop.duration,
-            time: stop.arrivalTime,
-            isCurrentStop: stop.dropOff,
-          }));
-          setBusRouteStops(stops);
+          // const stops = data.allRouteStoppages.map((stop) => ({
+          //   stopName: stop.name,
+          //   distance: `${stop.distance} km`,
+          //   duration: stop.duration,
+          //   time: stop.arrivalTime,
+          //   isCurrentStop: stop.dropOff,
+          // }));
+          setBusRouteStops(mockStops);
 
-          const vehicleId = data.vehicle.id;
-          const routeId = data.route.id;
+          // const vehicleId = data.vehicle.id;
+          // const routeId = data.route.id;
 
-          return Promise.all([
-            fetchDriverByVehicle(vehicleId, token),
-            fetchTransportNotifications(routeId, vehicleId, token),
-          ]);
-        })
-        .then(([driverRes, notificationsRes]) => {
-          const driver = driverRes.data[0];
-          const notifications = notificationsRes.data;
+        //   return Promise.all([
+        //     fetchDriverByVehicle(vehicleId, token),
+        //     fetchTransportNotifications(routeId, vehicleId, token),
+        //   ]);
+        // })
+        // .then(([driverRes, notificationsRes]) => {
+        //   const driver = driverRes.data[0];
+        //   const notifications = notificationsRes.data;
 
-          setDriverInfo(driver);
-          setUpdates(
-            notifications.map((item) => ({
-              title: item.title,
-              description: item.description,
-              time: new Date(item.createdAt).toLocaleString(),
-              bg: "#F4F7FA",
-              iconColor: "#1F1D1D",
-            }))
-          );
+          setDriverInfo(mockedDriverInfo);
+          setUpdates(mockUpdates)
+          
         })
 
-        .catch((err) => {
-          console.error("Error fetching transport data:", err);
-        });
-    }
-  }, []);
+  //       .catch((err) => {
+  //         console.error("Error fetching transport data:", err);
+  //       });
+  //   }
+  // }, []);
+      // },[])
 
   const pickupTime = busRouteStops.length > 0 ? busRouteStops[0].time : "-";
   const returnStop = busRouteStops.find((stop) => stop.isCurrentStop);

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getBorrowActivity } from "../../../features/librarySlice";
+import React, { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getBorrowActivity } from "../../../features/librarySlice";
 
 const statusColor = {
   Returned: "text-[#10B981] bg-[#ECFDF7]",
@@ -8,16 +8,59 @@ const statusColor = {
   "Returned Late": "text-[#F97316] bg-[#FFF4ED]",
 };
 
+// ---------------- Mock Data ----------------
+const mockActivity = [
+  {
+    bookTitle: "The Great Gatsby",
+    isbn: "9780743273565",
+    issueDate: "2025-07-01",
+    dueDate: "2025-07-21",
+    returnDate: "2025-07-20",
+    status: "Returned",
+    fine: 0,
+  },
+  {
+    bookTitle: "To Kill a Mockingbird",
+    isbn: "9780061120084",
+    issueDate: "2025-06-10",
+    dueDate: "2025-07-01",
+    returnDate: "2025-07-05",
+    status: "Returned Late",
+    fine: 20,
+  },
+  {
+    bookTitle: "1984",
+    isbn: "9780451524935",
+    issueDate: "2025-08-01",
+    dueDate: "2025-08-21",
+    returnDate: null,
+    status: "Not Returned",
+    fine: 50,
+  },
+];
+// ------------------------------------------
+
 const ActivityHistory = () => {
-  const dispatch = useDispatch();
-  const { activity, loading, error } = useSelector((state) => state.library);
+  // const dispatch = useDispatch();
+  // const { activity, loading, error } = useSelector((state) => state.library);
+
+  const [activity, setActivity] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error] = useState(null);
 
   useEffect(() => {
-    const studentId = localStorage.getItem("studentId");
-    if (studentId) {
-      dispatch(getBorrowActivity(studentId));
-    }
-  }, [dispatch]);
+    // 🔹 Commented API call
+    // const studentId = localStorage.getItem("studentId");
+    // if (studentId) {
+    //   dispatch(getBorrowActivity(studentId));
+    // }
+
+    // 🔹 Use mock data
+    setTimeout(() => {
+      setActivity(mockActivity);
+      setLoading(false);
+    }, 800); // fake loading effect
+  }, []);
 
   return (
     <div className="bg-[#FAFCFD] flex flex-col gap-3 py-6 rounded-xl">

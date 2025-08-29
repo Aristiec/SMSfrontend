@@ -83,7 +83,7 @@ const Courses = () => {
         </header>
 
         {/* Table Header */}
-        <div className="bg-[#FAFCFD] rounded-2xl overflow-hidden mt-[12px] w-full max-w-7xl mx-auto px-4">
+        <div className="bg-[#FAFCFD] rounded-2xl overflow-hidden mt-[12px] w-full mx-auto px-4">
           <div className="hidden md:block w-full">
             <div className="grid grid-cols-3 border-b border-[#1F1D1D] px-4 md:px-8 py-6">
               <div className="text-[#1F1D1D] font-semibold text-[16px]">
@@ -103,7 +103,7 @@ const Courses = () => {
             {subjects.map((subject, index) => (
               <div
                 key={index}
-                className="w-full max-w-7xl bg-[#FAFCFD] rounded-[12px] px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg"
+                className="w-full  bg-[#FAFCFD] rounded-[12px] px-4 md:px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg"
               >
                 {/* Subject Info */}
                 <div className="flex items-start md:items-center space-x-3 flex-1 mb-4 md:mb-0">

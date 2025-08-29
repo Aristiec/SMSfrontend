@@ -1,43 +1,96 @@
 import React, { useEffect, useState } from "react";
 import { Clock, RefreshCcw, AlertCircle } from "lucide-react";
-import { fetchIssuedBooks } from "../../../features/auth/authAPI";
+import thegreatgatsby from '../../../assets/thegreatgatsby.png'
+import tokill from '../../../assets/tokill.png'
+import OS from '../../../assets/OS.png'
+import dbms from '../../../assets/dbms.png'
+// import { fetchIssuedBooks } from "../../../features/auth/authAPI";
+
+// ---------------- Mock Data ----------------
+const mockIssuedBooks = [
+  {
+    id: 1,
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    issuedDate: new Date("2025-08-01").toDateString(),
+    dueDate: new Date("2025-09-01").toDateString(),
+    status: "active",
+    daysLeft: 3,
+    overdueBy: 0,
+    cover:
+      thegreatgatsby
+  },
+  {
+    id: 2,
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    issuedDate: new Date("2025-07-15").toDateString(),
+    dueDate: new Date("2025-08-15").toDateString(),
+    status: "overdue",
+    daysLeft: 0,
+    overdueBy: 14,
+    cover:tokill,
+  },
+  {
+    id: 3,
+    title: "1984",
+    author: "George Orwell",
+    issuedDate: new Date("2025-08-10").toDateString(),
+    dueDate: new Date("2025-09-10").toDateString(),
+    status: "active",
+    daysLeft: 12,
+    overdueBy: 0,
+    cover:
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    id: 4,
+    title: "Operating System",
+    author: "Nupur Chauhan",
+    issuedDate: new Date("2025-08-10").toDateString(),
+    dueDate: new Date("2025-09-10").toDateString(),
+    status: "active",
+    daysLeft: 12,
+    overdueBy: 0,
+    cover:
+      OS,
+  },
+  {
+    id: 5,
+    title: "Database Management System",
+    author: "George Putin",
+    issuedDate: new Date("2025-08-10").toDateString(),
+    dueDate: new Date("2025-09-10").toDateString(),
+    status: "active",
+    daysLeft: 12,
+    overdueBy: 0,
+    cover:
+     dbms,
+  },
+  
+
+];
+// --------------------------------------------
 
 const IssuedBooks = () => {
   const [issuedBooks, setIssuedBooks] = useState([]);
 
   useEffect(() => {
-    const getIssuedBooks = async () => {
-      try {
-        const studentId = localStorage.getItem("studentId");
-        const books = await fetchIssuedBooks(studentId);
+    // 🔹 Commenting out API call
+    // const getIssuedBooks = async () => {
+    //   try {
+    //     const studentId = localStorage.getItem("studentId");
+    //     const books = await fetchIssuedBooks(studentId);
+    //     // ...map logic
+    //     setIssuedBooks(mapped);
+    //   } catch (error) {
+    //     console.error("Failed to fetch issued books:", error);
+    //   }
+    // };
+    // getIssuedBooks();
 
-        // Map to include status & days left / overdue
-        const today = new Date();
-        const mapped = books.map((book, index) => {
-          const dueDate = new Date(book.dueDate);
-          const timeDiff = dueDate - today;
-          const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-          return {
-            id: index + 1,
-            title: book.bookTitle,
-            author: book.author,
-            issuedDate: new Date(book.issueDate).toDateString(),
-            dueDate: new Date(book.dueDate).toDateString(),
-            status: daysDiff >= 0 ? "active" : "overdue",
-            daysLeft: daysDiff >= 0 ? daysDiff : 0,
-            overdueBy: daysDiff < 0 ? Math.abs(daysDiff) : 0,
-            cover: book.imageUrl,
-          };
-        });
-
-        setIssuedBooks(mapped);
-      } catch (error) {
-        console.error("Failed to fetch issued books:", error);
-      }
-    };
-
-    getIssuedBooks();
+    // 🔹 Use mock data instead
+    setIssuedBooks(mockIssuedBooks);
   }, []);
 
   return (

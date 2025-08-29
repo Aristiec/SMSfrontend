@@ -312,7 +312,7 @@ const BrowseLibrary = ({
   );
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-[#FAFCFD] rounded-lg min-h-screen mx-10">
+    <div className=" mx-auto p-6 bg-[#FAFCFD] rounded-lg min-h-screen mx-10">
       {!selectedBook || !bookDetails ? (
         <>
           <div className="relative mb-6">
