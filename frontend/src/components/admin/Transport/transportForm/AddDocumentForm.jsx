@@ -8,6 +8,7 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
     name: "",
     type: "driver", // driver or vehicle
     category: "",
+    vehicleNumber: "",
     expiryDate: "",
     file: null
   });
@@ -89,8 +90,11 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.category || !formData.expiryDate || !formData.file) {
-      alert("Please fill in all required fields and upload a file");
+    // Check required fields - vehicle number is now required for both types
+    const requiredFieldsValid = formData.name && formData.category && formData.expiryDate && formData.file && formData.vehicleNumber;
+    
+    if (!requiredFieldsValid) {
+      alert('Please fill in all required fields and upload a file (including vehicle number)');
       return;
     }
 
@@ -98,6 +102,7 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
       name: formData.name,
       type: formData.type,
       category: formData.category,
+      vehicleNumber: formData.vehicleNumber,
       uploadDate: new Date().toISOString().split('T')[0],
       expiryDate: formData.expiryDate,
       status: "Active",
@@ -136,7 +141,7 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
-              onClick={() => setFormData(prev => ({ ...prev, type: "driver", category: "" }))}
+              onClick={() => setFormData(prev => ({ ...prev, type: "driver", category: "", vehicleNumber: "" }))}
               className={`flex items-center justify-center gap-2 p-3 rounded-lg border-2 transition-colors duration-200 ${
                 formData.type === "driver"
                   ? "border-[#04203e] bg-[#04203e]/5 text-[#04203e]"
@@ -148,7 +153,7 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
             </button>
             <button
               type="button"
-              onClick={() => setFormData(prev => ({ ...prev, type: "vehicle", category: "" }))}
+              onClick={() => setFormData(prev => ({ ...prev, type: "vehicle", category: "", vehicleNumber: "" }))}
               className={`flex items-center justify-center gap-2 p-3 rounded-lg border-2 transition-colors duration-200 ${
                 formData.type === "vehicle"
                   ? "border-[#04203e] bg-[#04203e]/5 text-[#04203e]"
@@ -161,20 +166,37 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
           </div>
         </div>
 
-        {/* Document Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Document Name *
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="e.g., Driver License - John Doe"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-300"
-            required
-          />
+        {/* Document Name and Vehicle Number Row */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Document Name *
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="e.g., Driver License - John Doe"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-300"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Vehicle Number *
+            </label>
+            <input
+              type="text"
+              name="vehicleNumber"
+              value={formData.vehicleNumber}
+              onChange={handleInputChange}
+              placeholder={formData.type === "driver" ? "e.g., MH12AB1234, DL01BC5678" : "e.g., MH12AB1234, DL01BC5678"}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-300"
+              required
+            />
+          </div>
         </div>
 
         {/* Category and Expiry Date Row */}
@@ -188,7 +210,7 @@ const AddDocumentForm = ({ onClose, onAddDocument }) => {
               selected={formData.category}
               onSelect={(option) => setFormData({ ...formData, category: option })}
               placeholder="Select category"
-              className="w-full"
+              className="border-0 border-gray-300 focus:border-gray-300"
             />
           </div>
 
