@@ -137,7 +137,7 @@ const Help = () => {
             <div className="flex justify-end mt-6">
               <button
                 type="submit"
-                className="flex items-center gap-2 bg-[#04203E] text-white px-2 py-1 rounded-[8px] hover:bg-blue-800 transition"
+                className="flex items-center gap-2 bg-[#04203E] text-white px-2 py-1 rounded-[8px] cursor-pointer hover:bg-blue-800 transition"
               >
                 <FilePlus className="w-4 h-4" />
                 <span>Submit Request</span>
