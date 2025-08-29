@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { ArrowRightLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { fetchDailyTimetableByDay } from "../../../features/auth/authAPI";
+import { mockDailyTimetable } from "../../../data/mockTimetable";
 
 const DailyClassTimetable = () => {
   const [selectedDay, setSelectedDay] = useState("Monday");
@@ -38,9 +39,19 @@ const DailyClassTimetable = () => {
   useEffect(() => {
     const getDailyTimetable = async () => {
       try {
+        const studentId = localStorage.getItem("studentId");
+        
+        // If no studentId, use mock data immediately
+        if (!studentId) {
+          console.log("No studentId found, using mock timetable data");
+          const mockData = mockDailyTimetable[selectedDay] || [];
+          setDailyData(mockData);
+          return;
+        }
+
         const data = await fetchDailyTimetableByDay(selectedDay);
 
-        // Insert lunch break after "12:10"
+        // Insert lunch break after "12:10" for API data
         const updatedData = [];
         for (let i = 0; i < data.length; i++) {
           updatedData.push(data[i]);
@@ -52,7 +63,10 @@ const DailyClassTimetable = () => {
         setDailyData(updatedData);
       } catch (err) {
         console.error("Error fetching daily timetable:", err);
-        setDailyData([]);
+        // Fallback to mock data when API fails
+        console.log("API failed, using mock timetable data");
+        const mockData = mockDailyTimetable[selectedDay] || [];
+        setDailyData(mockData);
       }
     };
 

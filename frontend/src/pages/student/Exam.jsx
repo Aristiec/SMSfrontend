@@ -51,56 +51,86 @@ const Exam = () => {
 
   useEffect(() => {
     if (user?.courseId && user?.token) {
-      const now = new Date();
-
-      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-      const startDate = startOfMonth.toISOString().split("T")[0];
-
-      const threeYearsLater = new Date(now);
-      threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
-      const endDate = threeYearsLater.toISOString().split("T")[0];
-
-      console.log({ startDate, endDate });
-
-      const subjectId = null;
-
-      //Fetch subjects first
-      fetchSubjectsByCourseId(user.courseId)
-        .then((res) => {
-          console.log("Subjects API response:", res.data);
-
-          let subjectList = [];
-          res.data.forEach((student) => {
-            if (Array.isArray(student.subjects)) {
-              subjectList = subjectList.concat(student.subjects);
-            }
-          });
-
-          const subjectMap = {};
-          subjectList.forEach((s) => {
-            subjectMap[s.id] = s.name;
-          });
-          console.log("Subject Map:", subjectMap);
-          setSubjects(subjectMap);
-
-          console.log("Subject Map:", subjectMap);
-          setSubjects(subjectMap);
-
-          //Then fetch exams
-          return fetchUpcomingExamsAPI(
-            user.courseId,
-            null,
-            startDate,
-            endDate,
-            user.token
-          );
-        })
-        .then((res) => {
-          console.log("Fetched exams:", res.data);
-          setExams(res.data);
-        })
-        .catch((err) => console.error("Error fetching data:", err));
+      console.log("User found, fetching exam data...");
+    } else {
+      console.log("No user data, using mock exam data");
+      // Use mock data when no user data is available
+      setExams(upcomingExams);
+      const mockSubjects = {
+        1: "Data Structures",
+        2: "Python", 
+        3: "Web Development",
+        4: "Advanced SQL",
+        5: "System Design",
+        6: "Neural Networks",
+        7: "Network Protocols",
+        8: "React Native"
+      };
+      setSubjects(mockSubjects);
+      return;
     }
+
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const startDate = startOfMonth.toISOString().split("T")[0];
+
+    const threeYearsLater = new Date(now);
+    threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
+    const endDate = threeYearsLater.toISOString().split("T")[0];
+
+    console.log({ startDate, endDate });
+
+    const subjectId = null;
+
+    //Fetch subjects first
+    fetchSubjectsByCourseId(user.courseId)
+      .then((res) => {
+        console.log("Subjects API response:", res.data);
+
+        let subjectList = [];
+        res.data.forEach((student) => {
+          if (Array.isArray(student.subjects)) {
+            subjectList = subjectList.concat(student.subjects);
+          }
+        });
+
+        const subjectMap = {};
+        subjectList.forEach((s) => {
+          subjectMap[s.id] = s.name;
+        });
+        console.log("Subject Map:", subjectMap);
+        setSubjects(subjectMap);
+
+        //Then fetch exams
+        return fetchUpcomingExamsAPI(
+          user.courseId,
+          null,
+          startDate,
+          endDate,
+          user.token
+        );
+      })
+      .then((res) => {
+        console.log("Fetched exams:", res.data);
+        setExams(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+        // Fallback to mock data when API fails
+        console.log("API failed, using mock exam data");
+        setExams(upcomingExams);
+        const mockSubjects = {
+          1: "Data Structures",
+          2: "Python", 
+          3: "Web Development",
+          4: "Advanced SQL",
+          5: "System Design",
+          6: "Neural Networks",
+          7: "Network Protocols",
+          8: "React Native"
+        };
+        setSubjects(mockSubjects);
+      });
   }, [user]);
 
   return (
@@ -132,7 +162,7 @@ const Exam = () => {
           {/* Right Section (Sidebar) */}
           <div className="w-full lg:w-1/3 flex flex-col h-full">
             <div className="flex-1 overflow-y-auto">
-              <ExamUpdatesSidebar updates={loading ? [] : updates} />
+              <ExamUpdatesSidebar updates={loading ? [] : (updates.length > 0 ? updates : examUpdates)} />
             </div>
           </div>
         </div>
@@ -140,7 +170,7 @@ const Exam = () => {
         {/* Bottom Section (Upcoming / Completed Exams) */}
         <div className="mt-6">
           <UpcomingExams
-            exams={selectedExamType === "upcoming" ? exams : []}
+            exams={selectedExamType === "upcoming" ? exams : completedExams}
             selectedType={selectedExamType}
             onTypeChange={setSelectedExamType}
             subjects={subjects}
