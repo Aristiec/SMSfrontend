@@ -8,6 +8,9 @@ import Fees from "../pages/parent/Fees";
 import Notifications from "../pages/parent/Notifications";
 import Help from "../pages/parent/Help";
 
+import Profile from "../pages/parent/Profile";
+
+
 const ParentRoutes = () => {
   return (
     <>
@@ -20,6 +23,9 @@ const ParentRoutes = () => {
         <Route path="fees" element={<Fees />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="help" element={<Help />} />
+
+        <Route path="profile" element={<Profile />} />
+
       </Route>
     </>
   );
