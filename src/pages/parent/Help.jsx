@@ -24,7 +24,7 @@ const Help = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+              const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data Submitted:', formData);
     alert('✅ Request Submitted Successfully!');
