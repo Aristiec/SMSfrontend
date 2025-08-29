@@ -1,28 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { Book, Users } from "lucide-react";
 import SyllabusIcon from "../../assets/Syllabus.svg";
-import {
-  fetchProfileByEmail,
-  fetchSubjectsByCourseId,
-} from "../../features/auth/authAPI";
 
 const Courses = () => {
   const [subjects, setSubjects] = useState([]);
   const [studentName, setStudentName] = useState("");
 
   useEffect(() => {
+    
     const fetchCourses = async () => {
       try {
-        const email = localStorage.getItem("email");
-        const profileRes = await fetchProfileByEmail(email);
-        const courseId = profileRes.data.course.id;
+      
+        await new Promise((res) => setTimeout(res, 500));
 
+        
+        const mockProfile = {
+          data: {
+            firstName: "Tanishtha",
+            lastName: "Mahajan",
+            course: {
+              id: "COURSE123",
+              name: "Computer Science",
+            },
+          },
+        };
+
+        // Mock subjects data
+        const mockSubjects = {
+          data: [
+            {
+              subjects: [
+                {
+                  name: "Data Structures",
+                  code: "CS201",
+                  credit: 4,
+                  faculties: [{ name: "Dr. Sharma" }, { name: "Prof. Mehta" }],
+                },
+                {
+                  name: "Operating Systems",
+                  code: "CS301",
+                  credit: 3,
+                  faculties: [{ name: "Dr. Gupta" }],
+                },
+                {
+                  name: "Computer Networks",
+                  code: "CS305",
+                  credit: 3,
+                  faculties: [],
+                },
+              ],
+            },
+          ],
+        };
+
+       
         setStudentName(
-          `${profileRes.data.firstName} ${profileRes.data.lastName}`
+          `${mockProfile.data.firstName} ${mockProfile.data.lastName}`
         );
 
-        const subjectRes = await fetchSubjectsByCourseId(courseId);
-        setSubjects(subjectRes.data[0]?.subjects || []);
+        
+        setSubjects(mockSubjects.data[0]?.subjects || []);
       } catch (error) {
         console.error("Error fetching course subjects:", error);
       }
@@ -40,8 +77,8 @@ const Courses = () => {
       <div className="flex flex-col px-4 gap-7 mt-4">
         {/* Header */}
         <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full h-[68px] px-4 text-[#FAFCFD]">
-          <h1 className="text-[20px] md:text-[24px] font-bold font-[Montserrat]">
-            Courses Enrolled
+          <h1 className="text-[20px] md:text-[24px] font-bold [Montserrat]">
+            Courses Enrolled - {studentName}
           </h1>
         </header>
 

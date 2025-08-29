@@ -14,10 +14,11 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ userName: email, password }))
-      .unwrap()
-      .then(() => navigate("/student/dashboard"))
-      .catch(() => {});
+    navigate("/student/dashboard")
+    // dispatch(loginUser({ userName: email, password }))
+    //   .unwrap()
+    //   .then(() => navigate("/student/dashboard"))
+    //   .catch(() => {});
   };
 
   return (

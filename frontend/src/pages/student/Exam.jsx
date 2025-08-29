@@ -36,6 +36,7 @@ const Exam = () => {
   const handleStartExam = () => {
     console.log("Starting examination...");
   };
+  
   useEffect(() => {
     if (user?.courseId && user?.sem && user?.token) {
       dispatch(

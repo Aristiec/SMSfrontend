@@ -7,6 +7,7 @@ import {
   fetchAttendanceStats,
   fetchSubjectwiseAttendance,
 } from "../../features/auth/authAPI";
+import { CloudAlert } from "lucide-react";
 
 const attendanceData = [
   {
@@ -80,7 +81,10 @@ const AttendanceTable = () => {
           fetchSubjectwiseAttendance(studentId),
         ]);
 
-        setOverallStats(overallRes.data);
+        console.log("subjectwiseRes.data:", subjectwiseRes);
+
+
+
 
         const subjectData = subjectwiseRes.data.map((item) => {
           let status = "";
@@ -182,8 +186,8 @@ const AttendanceTable = () => {
                 <div className="text-[#1F1D1D] text-[12px] leading-[18px]">
                   {overallStats
                     ? `${overallStats.attendancePercentage.toFixed(
-                        1
-                      )}% of total classes`
+                      1
+                    )}% of total classes`
                     : ""}
                 </div>
               </div>
@@ -220,8 +224,8 @@ const AttendanceTable = () => {
                 <div className="text-[#1F1D1D] text-[12px] leading-[18px]">
                   {overallStats
                     ? `${(100 - overallStats.attendancePercentage).toFixed(
-                        1
-                      )}% of total classes`
+                      1
+                    )}% of total classes`
                     : ""}
                 </div>
               </div>
@@ -253,17 +257,17 @@ const AttendanceTable = () => {
                   <th className="p-3 font-semibold ">Status</th>
                 </tr>
               </thead>
-              <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px] ">
+              <tbody className="bg-[#FAFCFD]  px-[12px] py-[24px] border-spacing-y-[12px] min-w-full gap-[12px]">
                 {subjectAttendance.length > 0 ? (
                   subjectAttendance.map((item, index) => {
                     const statusColor =
                       item.status === "Outstanding"
                         ? "text-[#10B981]"
                         : item.status === "Satisfactory"
-                        ? "text-[#04203E]"
-                        : item.status === "Poor"
-                        ? "text-[#F97316]"
-                        : "text-[#EF4444]";
+                          ? "text-[#04203E]"
+                          : item.status === "Poor"
+                            ? "text-[#F97316]"
+                            : "text-[#EF4444]";
 
                     return (
                       <tr
@@ -292,9 +296,33 @@ const AttendanceTable = () => {
                     );
                   })
                 ) : (
+                  // <tr>
+                  //   <td colSpan="5">Loading...</td>
+                  // </tr>
                   <tr>
-                    <td colSpan="5">Loading...</td>
+                    <td colSpan="5">
+                    <div className="flex flex-col items-center gap-3 ">
+                      <div className="w-[72px] h-[72px] rounded-full bg-[#F5FAFF] flex flex-col items-center justify-center shadow-lg gap-3 p-5 mt-" >
+
+                        <CloudAlert size={40} color="#2196F3" />
+                      </div>
+                      <span className="font-inter font-[600] text-[16px] leading-[24px] text-center">
+                        No Attendance Record Found!
+                      </span>
+
+                      <button
+                        // onClick={() => navigate("/student/tdetailss")}
+                        className="w-[200px] h-[40px] rounded-[8px] px-[12px] py-[8px] bg-[#04203E] flex items-center justify-center font-inter font-semibold text-[14px] leading-[24px] tracking-[0] text-white text-center"
+                        type="button"
+                      >
+                        Please Contact the Admin
+                      </button>
+
+                    </div>
+                    </td>
+                   
                   </tr>
+
                 )}
               </tbody>
             </table>

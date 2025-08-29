@@ -3,7 +3,7 @@ import authReducer from "../features/auth/authSlice";
 import assignmentsReducer from "../features/assignments/assignmentsSlice";
 import libraryReducer from "../features/librarySlice";
 import examReducer from "../features/examSlice";
-// import chatpdfReducer from "../features/chatpdf/chatPdfSlice";
+import chatpdfReducer from "../features/chatpdf/chatpdfSlice";
 export const store = configureStore({
   reducer: {
     auth: authReducer,

@@ -5,7 +5,7 @@ import {
   startSession,
   uploadFile,
   fetchHistory,
-} from "../../../../features/chatpdf/chatPdfSlice";
+} from "../../../../features/chatpdf/chatpdfSlice";
 import MessageBubble from "./MessageBubble";
 import logo from "../../../../assets/logo.svg";
 import { FolderPlus } from "lucide-react";

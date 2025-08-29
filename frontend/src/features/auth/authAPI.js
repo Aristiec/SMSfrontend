@@ -1,7 +1,16 @@
 import api from "../../Services/api.js";
 
-export const loginUserAPI = (credentials) =>
-  api.post("/auth/login", credentials);
+export const loginUserAPI = async (credentials) => {
+  try {
+    console.log("Credentials:", credentials);
+    const response = await api.post("/auth/login", credentials);
+    return response.data;
+  } catch (error) {
+    console.error("Login API Error:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
 export const fetchProfileByEmail = (email, token) =>
   api.get(`/student/email/${email}`, {
     headers: {
@@ -18,6 +27,7 @@ export const fetchAssignments = async (page = 0, size = 10) => {
   );
   return response.data;
 };
+
 export const fetchAssignmentById = async (id) => {
   const response = await api.get(`/assignments/${id}`);
   return response.data;
@@ -262,3 +272,7 @@ export const fetchUpcomingExamsAPI = (
       Authorization: `Bearer ${token}`,
     },
   });
+
+
+  // export const fetchSubjectsByCourseId = (courseId) =>
+  // api.get(`/subjects/course/${courseId}/subjects`);

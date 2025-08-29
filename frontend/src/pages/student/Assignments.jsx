@@ -6,11 +6,15 @@ import {
   CheckCircle,
   Eye,
   FileUp,
+  CloudAlert,
+  AlignCenter,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { fetchAssignmentsByCourseAndSem } from "../../features/auth/authAPI";
 import { useSelector } from "react-redux";
 import Dropdown from "../../components/utils/Dropdown";
+import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
+import AssingmentLoading from './LoadingSkeleton/AssignmentLoading'
 
 const upcomingAssignments = [
   {
@@ -171,35 +175,31 @@ const Assignments = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#E9EEF4]">
-        <p className="text-[#04203E] text-lg font-semibold animate-pulse">
-          Loading assignments...
-        </p>
-      </div>
+      <AssingmentLoading />
+      
     );
   }
 
   return (
     <div className="mx-auto bg-[#E9EEF4] flex flex-col gap-8 min-h-screen font-[Inter]">
       <div className="flex flex-col px-4 gap-1 mt-4">
-        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full max-w-7xl h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
+        <header className="sticky top-20 bg-[#04203e] flex justify-between items-center rounded-[12px] w-full h-[68px] px-6 py-6 text-[#FAFCFD] font-[Inter] mx-auto">
           <h1 className="text-[24px] font-bold font-[Merriweather]">
             Assignments
           </h1>
         </header>
 
-        <div className="w-full max-w-7xl mx-auto mt-3 mb-3 ">
+        <div className="w-full mx-auto mt-3 mb-3 ">
           <div className="flex flex-wrap items-center justify-between gap-2 text-[#04203E] text-sm bg-[#FAFCFD] p-3 rounded-[12px]">
             <div className="flex flex-wrap gap-2">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-4 py-2 rounded-lg font-normal transition-colors flex items-center gap-2 ${
-                    activeFilter === filter
-                      ? "bg-[#04203E] text-[#FAFCFD]"
-                      : "bg-[#FAFCFD] text-[#1F1D1D] border border-[#1F1D1D] hover:bg-[#FAFCFD]"
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-normal transition-colors flex items-center gap-2 ${activeFilter === filter
+                    ? "bg-[#04203E] text-[#FAFCFD]"
+                    : "bg-[#FAFCFD] text-[#1F1D1D] border border-[#1F1D1D] hover:bg-[#FAFCFD]"
+                    }`}
                 >
                   {filter === "Pending" && <Clock size={16} />}
                   {filter === "Overdue" && <Ban size={16} />}
@@ -219,7 +219,7 @@ const Assignments = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_357px] gap-1 max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-[1fr_357px] gap-1 mx-auto w-full">
           <div className="flex flex-col w-full">
             <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 font-[Inter] scrollbar-hide w-full">
               {filteredAssignments.length > 0 ? (
@@ -258,11 +258,10 @@ const Assignments = () => {
                     <div className="flex items-center gap-6 text-sm text-[#1F1D1D] mb-4">
                       <div className="flex items-center gap-1">
                         <Clock
-                          className={`w-4 h-4 ${
-                            assignment.status === "overdue"
-                              ? "text-[#EF4444]"
-                              : ""
-                          }`}
+                          className={`w-4 h-4 ${assignment.status === "overdue"
+                            ? "text-[#EF4444]"
+                            : ""
+                            }`}
                         />
                         <span
                           className={
@@ -326,14 +325,14 @@ const Assignments = () => {
                           )}
                           {(assignment.status === "submitted" ||
                             assignment.status === "overdue") && (
-                            <button
-                              onClick={() => handleOpenAssignment(assignment)}
-                              className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
-                            >
-                              <Eye className="w-4 h-4" />
-                              View Details
-                            </button>
-                          )}
+                              <button
+                                onClick={() => handleOpenAssignment(assignment)}
+                                className="border border-[#1F1D1D] text-[#1F1D1D] px-4 py-2 rounded-lg font-medium flex items-center gap-2"
+                              >
+                                <Eye className="w-4 h-4" />
+                                View Details
+                              </button>
+                            )}
                         </>
                       )}
                     </div>
@@ -341,10 +340,32 @@ const Assignments = () => {
                 ))
               ) : (
                 <div className="bg-[#FAFCFD] rounded-lg shadow-sm border border-[#FAFCFD] flex justify-center items-center w-[880px] h-full min-h-[600px]">
-                  <p className="text-[#04203E] text-lg font-semibold animate-pulse">
+                  <p className="text-[#04203E] text-lg font-semibold ">
                     {loading
-                      ? "Loading assignments..."
-                      : "No assignments found."}
+                      ? <AssingmentLoading />
+                      :
+                      <div className="flex flex-col items-center justify-center gap-3">
+                        <div className="w-[72px] h-[72px] rounded-full bg-[#F5FAFF] flex flex-col items-center justify-center shadow-lg gap-3 p-4">
+
+                          <AlignCenter size={40} color="#2196F3" />
+                        </div>
+                        <span className="font-inter font-[600] text-[16px] leading-[24px] text-center">
+                          No Assignments Found !
+                        </span>
+
+                        <button
+                          // onClick={() => navigate("/student/tdetailss")}
+                          className="w-[150px] h-[40px] rounded-[8px] px-[12px] py-[8px] bg-[#04203E] flex items-center justify-center font-inter font-semibold text-[14px] leading-[24px] tracking-[0] text-white text-center"
+                          type="button"
+                        >
+                          Contact Admin
+                        </button>
+
+                      </div>
+
+
+
+                    }
                   </p>
                 </div>
               )}
@@ -356,11 +377,10 @@ const Assignments = () => {
                   <button
                     onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
                     disabled={page === 0}
-                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                      page === 0
-                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                        : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                    }`}
+                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === 0
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
+                      }`}
                   >
                     Previous
                   </button>
@@ -369,11 +389,10 @@ const Assignments = () => {
                     <button
                       key={index}
                       onClick={() => setPage(index)}
-                      className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                        page === index
-                          ? "bg-[#04203E] text-white"
-                          : "text-[#04203E] hover:bg-[#E9EEF4]"
-                      }`}
+                      className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === index
+                        ? "bg-[#04203E] text-white"
+                        : "text-[#04203E] hover:bg-[#E9EEF4]"
+                        }`}
                     >
                       {index + 1}
                     </button>
@@ -384,11 +403,10 @@ const Assignments = () => {
                       setPage((prev) => Math.min(prev + 1, totalPages - 1))
                     }
                     disabled={page === totalPages - 1}
-                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${
-                      page === totalPages - 1
-                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                        : "bg-[#04203E] text-white hover:bg-[#02172c]"
-                    }`}
+                    className={`px-3 py-1.5 rounded-md font-medium text-sm transition-all ${page === totalPages - 1
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-[#04203E] text-white hover:bg-[#02172c]"
+                      }`}
                   >
                     Next
                   </button>
