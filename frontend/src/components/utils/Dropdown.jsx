@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-const Dropdown = ({ options, onSelect, placeholder, selected, className,spanClassName }) => {
+const Dropdown = ({
+  options,
+  onSelect,
+  placeholder,
+  selected,
+  className,
+  spanClassName,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 

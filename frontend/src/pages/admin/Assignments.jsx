@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Assignments() {
-  return (
-    <div>Assignments</div>
-  )
-}
+const Assignments = () => {
+  return <div>Assignments</div>;
+};
 
-export default Assignments
+export default Assignments;
