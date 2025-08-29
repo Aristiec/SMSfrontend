@@ -54,7 +54,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 150,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 2,
@@ -63,7 +63,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 180,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 3,
@@ -72,7 +72,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 200,000",
       system: "Semester",
-      status: "Inactive"
+      status: "Inactive",
     },
     {
       id: 4,
@@ -81,7 +81,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 75,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 5,
@@ -90,7 +90,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 165,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 6,
@@ -99,7 +99,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 120,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 7,
@@ -108,7 +108,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 140,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 8,
@@ -117,7 +117,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 90,000",
       system: "Annual",
-      status: "Inactive"
+      status: "Inactive",
     },
     {
       id: 9,
@@ -126,7 +126,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 110,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 10,
@@ -135,7 +135,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 155,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 11,
@@ -144,7 +144,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 175,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 12,
@@ -153,7 +153,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 65,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 13,
@@ -162,7 +162,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 85,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 14,
@@ -171,7 +171,7 @@ const Courses = () => {
       duration: "4 years",
       totalFees: "₹ 250,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 15,
@@ -180,7 +180,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 220,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 16,
@@ -189,7 +189,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 55,000",
       system: "Annual",
-      status: "Inactive"
+      status: "Inactive",
     },
     {
       id: 17,
@@ -198,7 +198,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 135,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 18,
@@ -207,7 +207,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 160,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 19,
@@ -216,7 +216,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 70,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 20,
@@ -225,7 +225,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 95,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 21,
@@ -234,7 +234,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 100,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 22,
@@ -243,7 +243,7 @@ const Courses = () => {
       duration: "2 years",
       totalFees: "₹ 125,000",
       system: "Annual",
-      status: "Inactive"
+      status: "Inactive",
     },
     {
       id: 23,
@@ -252,7 +252,7 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 80,000",
       system: "Annual",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 24,
@@ -261,7 +261,7 @@ const Courses = () => {
       duration: "3 years",
       totalFees: "₹ 180,000",
       system: "Semester",
-      status: "Active"
+      status: "Active",
     },
     {
       id: 25,
@@ -270,20 +270,20 @@ const Courses = () => {
       duration: "1 years",
       totalFees: "₹ 45,000",
       system: "Annual",
-      status: "Active"
-    }
+      status: "Active",
+    },
   ]);
 
   // Function to handle adding new course
   const handleAddCourse = (newCourse) => {
-    setCoursesData(prev => [newCourse, ...prev]); // Add new course at the beginning
+    setCoursesData((prev) => [newCourse, ...prev]); // Add new course at the beginning
     setCurrentPage(1); // Reset to first page to show the new course
   };
 
   // Function to handle editing course
   const handleEditCourse = (updatedCourse) => {
-    setCoursesData(prev => 
-      prev.map(course => 
+    setCoursesData((prev) =>
+      prev.map((course) =>
         course.id === updatedCourse.id ? updatedCourse : course
       )
     );
@@ -292,8 +292,8 @@ const Courses = () => {
   // Function to handle deleting course
   const handleDeleteCourse = () => {
     if (deletingCourse) {
-      setCoursesData(prev => 
-        prev.filter(course => course.id !== deletingCourse.id)
+      setCoursesData((prev) =>
+        prev.filter((course) => course.id !== deletingCourse.id)
       );
       handleCloseDeleteModal();
     }
@@ -305,20 +305,12 @@ const Courses = () => {
     "1 years",
     "2 years",
     "3 years",
-    "4 years"
+    "4 years",
   ];
 
-  const statusOptions = [
-    "All Status",
-    "Active",
-    "Inactive"
-  ];
+  const statusOptions = ["All Status", "Active", "Inactive"];
 
-  const systemOptions = [
-    "All System",
-    "Semester",
-    "Annual"
-  ];
+  const systemOptions = ["All System", "Semester", "Annual"];
 
   // Status badge styling
   const getStatusStyle = (status) => {
@@ -334,12 +326,17 @@ const Courses = () => {
 
   // Filter courses based on selected filters and search query
   const filteredCourses = coursesData.filter((course) => {
-    const matchesDuration = selectedDuration === "All Duration" || course.duration === selectedDuration;
-    const matchesStatus = selectedStatus === "All Status" || course.status === selectedStatus;
-    const matchesSystem = selectedSystem === "All System" || course.system === selectedSystem;
-    const matchesSearch = course.courseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.courseCode.toLowerCase().includes(searchQuery.toLowerCase());
-    
+    const matchesDuration =
+      selectedDuration === "All Duration" ||
+      course.duration === selectedDuration;
+    const matchesStatus =
+      selectedStatus === "All Status" || course.status === selectedStatus;
+    const matchesSystem =
+      selectedSystem === "All System" || course.system === selectedSystem;
+    const matchesSearch =
+      course.courseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.courseCode.toLowerCase().includes(searchQuery.toLowerCase());
+
     return matchesDuration && matchesStatus && matchesSystem && matchesSearch;
   });
 
@@ -367,8 +364,6 @@ const Courses = () => {
     }
   };
 
-  
-
   // Handle edit button click
   const handleEditClick = (course) => {
     handleOpenEditForm(course);
@@ -386,20 +381,22 @@ const Courses = () => {
           <h1 className="text-[24px] font-bold font-[Merriweather] leading-7 tracking-normal">
             Courses
           </h1>
-          <button onClick={handleOpenForm} className="flex items-center gap-2 bg-[#FAFCFD] text-[#04203E] px-4 py-2 rounded-[8px] font-[Inter] font-medium text-[14px] hover:bg-[#E9EEF4] transition-colors">
+          <button
+            onClick={handleOpenForm}
+            className="flex items-center gap-2 bg-[#FAFCFD] text-[#04203E] px-4 py-2 rounded-[8px] font-[Inter] font-medium text-[14px] hover:bg-[#E9EEF4] transition-colors"
+          >
             <Plus className="w-4 h-4" />
             Add Course
           </button>
         </header>
       </div>
-      
+
       {/* Content area */}
       <div className="bg-[#FAFCFD] border-[#FAFCFD] border-[12px] p-[24px] gap-[24px] rounded-[12px]">
         {/* Search and Filters Section */}
         <div className="flex flex-row justify-between items-center mb-8">
           {/* Search Box - Left side */}
           <div className="relative">
-
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#717171]" />
 
             <input
@@ -407,12 +404,10 @@ const Courses = () => {
               placeholder="Search courses by name or code..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-
               className="w-[320px] h-[48px] border border-[#E5E5E5] rounded-[8px] pl-12 pr-4 py-3 font-[Inter] font-normal text-[14px] leading-[20px] text-[#1F1D1D] placeholder-[#717171] focus:outline-none focus:border-[#0077FF] focus:ring-1 focus:ring-[#0077FF]"
             />
-
           </div>
-          
+
           {/* Filters - Right side */}
           <div className="flex flex-row gap-4 items-center">
             {/* Status Dropdown */}
@@ -438,22 +433,22 @@ const Courses = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Courses Table */}
         <div className="bg-[#FAFCFD] rounded-[8px]">
           {/* Table Header */}
-          <div className="bg-[#F4F7FA] py-[20px] px-[2px] flex items-center justify-between border-b border-[#71717166] rounded-t-[8px]">
+          <div className="bg-[#F4F7FA] py-[20px] px-[1px] flex items-center justify-between border-b border-[#71717166] rounded-t-[8px]">
             <div className="flex-3">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Course Name
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 -ml-6">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Course Code
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-3">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Duration
               </span>
@@ -463,12 +458,12 @@ const Courses = () => {
                 Total Fees
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-4">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 System
               </span>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ml-2">
               <span className="font-[Inter] font-medium text-[14px] leading-[18px] text-[#717171]">
                 Status
               </span>
@@ -479,12 +474,12 @@ const Courses = () => {
               </span>
             </div>
           </div>
-          
+
           {/* Table Content */}
           <div>
             {currentCourses.length > 0 ? (
               currentCourses.map((course) => (
-                <div 
+                <div
                   key={course.id}
                   className="flex items-center justify-between py-[20px] px-[2px] border-b border-[#71717166] gap-3"
                 >
@@ -519,22 +514,58 @@ const Courses = () => {
                     </span>
                   </div>
                   <div className="flex-1 flex gap-3">
-                    <button 
+                    <button
                       onClick={() => handleEditClick(course)}
                       className="flex items-center gap-1 font-[Inter] font-medium text-[14px] leading-[16px] text-[#0077FF] hover:underline"
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M18.5 2.50001C18.8978 2.10218 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10218 21.5 2.50001C21.8978 2.89784 22.1213 3.43739 22.1213 4.00001C22.1213 4.56262 21.8978 5.10218 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M18.5 2.50001C18.8978 2.10218 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10218 21.5 2.50001C21.8978 2.89784 22.1213 3.43739 22.1213 4.00001C22.1213 4.56262 21.8978 5.10218 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleDeleteClick(course)}
                       className="flex items-center gap-1 font-[Inter] font-medium text-[14px] leading-[16px] text-[#EF4444] hover:underline"
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 6H5H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3 6H5H21"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -553,28 +584,30 @@ const Courses = () => {
         {/* Pagination */}
         <div className="flex justify-between items-center mt-6">
           <span className="font-[Inter] text-[14px] text-[#717171]">
-            Showing {startIndex + 1} to {Math.min(endIndex, filteredCourses.length)} of {filteredCourses.length} courses
+            Showing {startIndex + 1} to{" "}
+            {Math.min(endIndex, filteredCourses.length)} of{" "}
+            {filteredCourses.length} courses
           </span>
           <div className="flex gap-2 items-center">
-            <button 
+            <button
               onClick={handlePreviousPage}
               disabled={currentPage === 1}
               className={`px-3 py-2 border border-[#E5E5E5] rounded-[6px] font-[Inter] text-[14px] transition-colors ${
-                currentPage === 1 
-                  ? 'text-[#B0B0B0] cursor-not-allowed' 
-                  : 'text-[#717171] hover:bg-[#F4F7FA] cursor-pointer'
+                currentPage === 1
+                  ? "text-[#B0B0B0] cursor-not-allowed"
+                  : "text-[#717171] hover:bg-[#F4F7FA] cursor-pointer"
               }`}
             >
               Previous
             </button>
-            
-            <button 
+
+            <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
               className={`px-3 py-2 border border-[#E5E5E5] rounded-[6px] font-[Inter] text-[14px] transition-colors ${
-                currentPage === totalPages 
-                  ? 'text-[#B0B0B0] cursor-not-allowed' 
-                  : 'text-[#717171] hover:bg-[#F4F7FA] cursor-pointer'
+                currentPage === totalPages
+                  ? "text-[#B0B0B0] cursor-not-allowed"
+                  : "text-[#717171] hover:bg-[#F4F7FA] cursor-pointer"
               }`}
             >
               Next
@@ -582,13 +615,17 @@ const Courses = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Add Course Modal Overlay */}
       {isFormOpen && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
           <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
           <div className="relative z-50 flex items-center justify-center min-h-screen  px-4 max-sm:py-2 max-sm:px-2">
-            <AddCourse isOpen={isFormOpen} onClose={handleCloseForm} onAddCourse={handleAddCourse} />
+            <AddCourse
+              isOpen={isFormOpen}
+              onClose={handleCloseForm}
+              onAddCourse={handleAddCourse}
+            />
           </div>
         </div>
       )}
@@ -598,9 +635,9 @@ const Courses = () => {
         <div className="fixed inset-0 z-50 overflow-y-auto">
           <div className="fixed inset-0 bg-[#1F1D1D]/[0.24] z-40"></div>
           <div className="relative z-50 flex items-center justify-center min-h-screen px-4 max-sm:py-2 max-sm:px-2">
-            <EditCourse 
-              isOpen={isEditFormOpen} 
-              onClose={handleCloseEditForm} 
+            <EditCourse
+              isOpen={isEditFormOpen}
+              onClose={handleCloseEditForm}
               onEditCourse={handleEditCourse}
               courseData={editingCourse}
             />
@@ -615,7 +652,7 @@ const Courses = () => {
           <div className="relative z-50 flex items-center justify-center min-h-screen px-4">
             <div className="relative w-[400px] max-w-[90vw] bg-[#FFFFFF] rounded-[8px] p-[24px] shadow-lg">
               {/* Close Button */}
-              <button 
+              <button
                 onClick={handleCloseDeleteModal}
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-[20px] leading-none"
               >
@@ -625,17 +662,24 @@ const Courses = () => {
               {/* Warning Icon and Title */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-[#DC2626]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                  <svg
+                    className="w-6 h-6 text-[#DC2626]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z" />
                   </svg>
                 </div>
-                <h3 className="font-[Inter] font-semibold text-[18px] text-[#1F1D1D]">Remove Course</h3>
+                <h3 className="font-[Inter] font-semibold text-[18px] text-[#1F1D1D]">
+                  Remove Course
+                </h3>
               </div>
 
               {/* Content */}
               <div className="mb-6">
                 <p className="font-[Inter] text-[14px] text-[#717171] mb-3">
-                  Are you sure you want to remove '{deletingCourse?.courseName}' course?
+                  Are you sure you want to remove '{deletingCourse?.courseName}'
+                  course?
                 </p>
                 <p className="font-[Inter] text-[12px] text-[#DC2626] font-medium">
                   This action cannot be undone.

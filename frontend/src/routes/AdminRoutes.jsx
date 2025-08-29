@@ -11,6 +11,7 @@ import Attendance from "../pages/admin/Attendance";
 import Notices from "../pages/admin/Notices";
 
 import Users from "../pages/admin/UserManagement";
+import FacultyManagement from "../pages/admin/FacultyManagement";
 
 import Settings from "../pages/admin/Settings";
 import Library from "../pages/admin/Library";
@@ -25,7 +26,7 @@ const AdminRoutes = () => {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="" element={<AdminDashboard />} />
         <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="schedule" element={<Schedule />} />
+        <Route path="Timetable" element={<Schedule />} />
         <Route path="courses" element={<Courses />} />
         <Route path="results" element={<Results />} />
         <Route path="exam" element={<Exam />} />
@@ -34,6 +35,7 @@ const AdminRoutes = () => {
         <Route path="attendance" element={<Attendance />} />
         <Route path="notices" element={<Notices />} />
         <Route path="users" element={<Users />} />
+        <Route path="faculty" element={<FacultyManagement />} />
         <Route path="settings" element={<Settings />} />
         <Route path="library" element={<Library />} />
         <Route path="hostel" element={<Hostel />} />

@@ -10,6 +10,6 @@ export const store = configureStore({
     assignments: assignmentsReducer,
     library: libraryReducer,
     exam: examReducer,
-    chatpdf: chatpdfReducer,
+    // chatpdf: chatpdfReducer,
   },
 });
